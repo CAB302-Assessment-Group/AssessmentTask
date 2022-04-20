@@ -14,7 +14,6 @@ public class Frame {
         // initialize swing window
         window = new JFrame();
         window.setSize(1200, 800);
-        window.setVisible(true);
 
         // remove menu bar
         window.setLayout(null);
@@ -24,16 +23,29 @@ public class Frame {
         // make the program process close when the main window is closed
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        initialise("","");
+
+
+        // this is where "user customization" will come in
+
+        // needs to be put into seperate "render" class
+
+
+        window.setVisible(true);
+    }
+
+    public void initialise(String xvar, String yvar){
+        window.getContentPane().removeAll();
         JLabel labelx = new JLabel("Width:");
         labelx.setBounds(0,0,50,20);
 
         JLabel labely = new JLabel("Height:");
         labely.setBounds(110,0,50,20);
 
-        JTextArea inputx = new JTextArea("5");
+        JTextArea inputx = new JTextArea(xvar);
         inputx.setBounds(50, 0, 50, 20);
 
-        JTextArea inputy = new JTextArea("4");
+        JTextArea inputy = new JTextArea(yvar);
         inputy.setBounds(160, 0, 50, 20);
 
         JButton setSize = new JButton("Set Size");
@@ -46,17 +58,14 @@ public class Frame {
 
         window.add(setSize);
 
-        setSize.addActionListener(action -> setButtonPressed(Integer.parseInt(inputx.getText()), Integer.parseInt(inputy.getText())));
-
-        // this is where "user customization" will come in
-
-        // needs to be put into seperate "render" class
-
-
-        window.setVisible(true);
+        setSize.addActionListener(action -> setButtonPressed(inputx.getText(), inputy.getText()));
     }
-    public void setButtonPressed(int width, int height){
-        mazeSize = new int[]{width,height};
+
+    public void setButtonPressed(String width, String height){
+        initialise(width.trim(), height.trim());
+        System.out.println(width.trim()+", "+height.trim());
+
+        mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
         myMaze = new Maze(mazeSize);
         for (int x = 0; x < myMaze.mazeSize()[0]; x++) {
             for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
@@ -67,6 +76,7 @@ public class Frame {
                 window.add(tempBTN);
             }
         }
+
         SwingUtilities.updateComponentTreeUI(window);
     }
 }

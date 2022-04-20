@@ -63,7 +63,8 @@ public class Frame {
 
     public void setButtonPressed(String width, String height){
         initialise(width.trim(), height.trim());
-        System.out.println(width.trim()+", "+height.trim());
+
+        //System.out.println(width.trim()+", "+height.trim());
 
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
         myMaze = new Maze(mazeSize);

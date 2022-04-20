@@ -1,4 +1,4 @@
-package MazeClasses;
+package src.main.java.maze.core;
 
 public class Maze{
     private String Author;
@@ -17,11 +17,28 @@ public class Maze{
         }
     }
 
-    public void setStart(int x, int y){
+    public Tile tile(int x, int y) {
+        if (x < Maze.length || y < Maze[0].length) {
+            return new Tile();
+        }
 
+        return Maze[x][y];
     }
 
-    public void setEnd(int x, int y){
+    public void setStart(int x, int y){
+    }
 
+    public void getStart() {
+    }
+
+    public void setEnd(int x, int y) {
+    }
+
+    public void getEnd() {
+    }
+
+    public int[] getSize() {
+        int[] size = {Maze.length, Maze[0].length};
+        return size;
     }
 }

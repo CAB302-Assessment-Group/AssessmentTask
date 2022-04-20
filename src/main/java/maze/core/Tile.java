@@ -1,4 +1,4 @@
-package MazeClasses;
+package src.main.java.maze.core;
 
 public class Tile {
     private boolean leftWall;

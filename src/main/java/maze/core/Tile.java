@@ -13,6 +13,22 @@ public class Tile {
         bottomWall = walls[3];
     }
 
+    public void setLeftWall(boolean wall){
+        this.leftWall = wall;
+    }
+
+    public void setRightWall(boolean wall){
+        this.rightWall = wall;
+    }
+
+    public void setTopWall(boolean wall){
+        this.topWall = wall;
+    }
+
+    public void setBottomWall(boolean wall){
+        this.bottomWall = wall;
+    }
+
     public boolean LeftWall() {
         return leftWall;
     }
@@ -22,7 +38,6 @@ public class Tile {
     private boolean topWall() {
         return topWall;
     }
-
     public boolean bottomWall() {
         return bottomWall;
     }

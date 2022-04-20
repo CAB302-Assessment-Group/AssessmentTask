@@ -1,14 +1,15 @@
 package src.main.java.gui;
 
 import src.main.java.maze.core.Maze;
+import src.main.java.maze.core.Tile;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Frame {
-    int[] mazeSize = new int[2];
-    Maze myMaze;
-    JFrame window;
+    public int[] mazeSize = new int[2];
+    public Maze myMaze = new Maze(new int[]{100, 100});
+    public JFrame window;
 
     public Frame() {
         super();
@@ -24,7 +25,7 @@ public class Frame {
         // make the program process close when the main window is closed
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        initialise("2","2");
+        initialise("","");
 
 
         // this is where "user customization" will come in
@@ -76,13 +77,13 @@ public class Frame {
                 tempBTN.setBounds(10 + x * 50, 75 + y * 50, 40, 10);
                 int finalX = x;
                 int finalY = y;
-                tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN));
+                tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
                 tempBTN.setBackground(Color.WHITE);
                 window.add(tempBTN);
 
                 JButton tempBTN2 = new JButton("");
                 tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
-                tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2));
+                tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
                 tempBTN2.setBackground(Color.WHITE);
                 window.add(tempBTN2);
             }
@@ -93,7 +94,7 @@ public class Frame {
             tempBTN2.setBounds(myMaze.mazeSize()[0] * 50, 10+75 + i * 50, 10, 40);
             int finalX = myMaze.mazeSize()[0];
             int finalY = i;
-            tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2));
+            tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
             tempBTN2.setBackground(Color.WHITE);
             window.add(tempBTN2);
         }
@@ -103,7 +104,7 @@ public class Frame {
             tempBTN.setBounds(10 + i * 50, 75 + myMaze.mazeSize()[1] * 50, 40, 10);
             int finalX = i;
             int finalY = myMaze.mazeSize()[1];
-            tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN));
+            tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
             tempBTN.setBackground(Color.WHITE);
             window.add(tempBTN);
         }
@@ -112,16 +113,28 @@ public class Frame {
         SwingUtilities.updateComponentTreeUI(window);
     }
 
-    public void mazeButtonPressed(int x, int y, JButton button){
+    public void mazeButtonPressed(int x, int y, JButton button, boolean Top){
+        boolean set = false;
         if(button.getBackground() == Color.BLACK){
             button.setBackground(Color.WHITE);
         }else{
             button.setBackground(Color.BLACK);
+            set = true;
         }
 
+        if(Top){
+            if(y == 0){
+                myMaze.mazeTile(x,y).setTopWall(set);
+            }else if(y==mazeSize[1]){
+                myMaze.mazeTile(x,y).setBottomWall(set);
+            }else{
+                myMaze.mazeTile(x,y).setTopWall(set);
+                myMaze.mazeTile(x,y-1).setBottomWall(set);
+            }
+        }
 
         //Prints the coords of the button pressed
-        System.out.println(x + ", " + y);
+        System.out.println();
 
     }
 }

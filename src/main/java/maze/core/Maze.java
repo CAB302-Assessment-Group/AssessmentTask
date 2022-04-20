@@ -17,8 +17,8 @@ public class Maze{
         }
     }
 
-    public Tile mazeTile(int[] cords) {
-        return myMaze[cords[0]][cords[1]];
+    public Tile mazeTile(int x, int y) {
+        return myMaze[x][y];
     }
 
     public int[] mazeSize() {

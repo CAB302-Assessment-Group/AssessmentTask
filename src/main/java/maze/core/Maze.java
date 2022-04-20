@@ -20,4 +20,9 @@ public class Maze{
     public Tile mazeTile(int[] cords) {
         return myMaze[cords[0]][cords[1]];
     }
+
+    public int[] mazeSize() {
+        int[] myMazeSize = {60, 60};
+        return myMazeSize;
+    }
 }

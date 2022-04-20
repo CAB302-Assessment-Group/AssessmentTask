@@ -17,5 +17,14 @@ public class Frame {
 
         int[] mazeSize = {5, 4};
         Maze myMaze = new Maze(mazeSize);
+
+        // needs to be put into seperate "render" class
+        for (int x = 0; x < myMaze.mazeSize()[0]; x++) {
+            for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
+                JButton tempBTN = new JButton("0");
+                tempBTN.setBounds(x * 50, y * 50, 50, 50);
+                window.add(tempBTN);
+            }
+        }
     }
 }

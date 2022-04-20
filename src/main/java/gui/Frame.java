@@ -74,10 +74,18 @@ public class Frame {
                 JButton tempBTN = new JButton("");
 
                 tempBTN.setBounds(x * 50, 75 + y * 50, 50, 50);
+                int finalX = x;
+                int finalY = y;
+                tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY));
                 window.add(tempBTN);
             }
         }
 
         SwingUtilities.updateComponentTreeUI(window);
+    }
+
+    public void mazeButtonPressed(int x, int y){
+        //Prints the coords of the button pressed
+        System.out.println(x + ", " + y);
     }
 }

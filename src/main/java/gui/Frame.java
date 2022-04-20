@@ -9,11 +9,13 @@ public class Frame {
         super();
         // initialize swing window
         JFrame window = new JFrame();
-        window.setSize(500, 400);
+        window.setSize(1200, 800);
         window.setVisible(true);
 
         // remove menu bar
         window.setLayout(null);
+
+        window.setVisible(false);
 
         // make the program process close when the main window is closed
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -29,5 +31,7 @@ public class Frame {
                 window.add(tempBTN);
             }
         }
+
+        window.setVisible(true);
     }
 }

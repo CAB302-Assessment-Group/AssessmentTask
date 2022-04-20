@@ -15,6 +15,9 @@ public class Frame {
         // remove menu bar
         window.setLayout(null);
 
+        // make the program process close when the main window is closed
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         int[] mazeSize = {5, 4};
         Maze myMaze = new Maze(mazeSize);
 

@@ -20,6 +20,7 @@ public class Frame {
         // make the program process close when the main window is closed
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        // this is where "user customization" will come in
         int[] mazeSize = {5, 4};
         Maze myMaze = new Maze(mazeSize);
 

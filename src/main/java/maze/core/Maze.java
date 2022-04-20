@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Maze{
     private String Author;
     private String Name;
-    private Tile[][] myMaze = new Tile[60][60];
+    private Tile[][] myMaze;
 
 
     public Maze(int[] size){
+        myMaze = new Tile[size[0]][size[1]];
+
         for (int x = 0; x < size[0]; x++) {
             for (int y = 0; y < size[1]; y++) {
                 boolean[] myTileWalls = {false, false, false, false};
@@ -22,7 +24,7 @@ public class Maze{
     }
 
     public int[] mazeSize() {
-        int[] myMazeSize = {60, 60};
+        int[] myMazeSize = {myMaze.length, myMaze[1].length};
         return myMazeSize;
     }
 }

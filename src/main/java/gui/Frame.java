@@ -78,13 +78,13 @@ public class Frame {
                 int finalX = x;
                 int finalY = y;
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
-                tempBTN.setBackground(Color.WHITE);
+                tempBTN.setBackground(y == 0 ? Color.BLACK : Color.WHITE);
                 window.add(tempBTN);
 
                 JButton tempBTN2 = new JButton("");
                 tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
-                tempBTN2.setBackground(Color.WHITE);
+                tempBTN2.setBackground(x == 0 ? Color.BLACK : Color.WHITE);
                 window.add(tempBTN2);
             }
         }
@@ -95,7 +95,7 @@ public class Frame {
             int finalX = myMaze.mazeSize()[0];
             int finalY = i;
             tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
-            tempBTN2.setBackground(Color.WHITE);
+            tempBTN2.setBackground(Color.BLACK);
             window.add(tempBTN2);
         }
 
@@ -105,7 +105,7 @@ public class Frame {
             int finalX = i;
             int finalY = myMaze.mazeSize()[1];
             tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
-            tempBTN.setBackground(Color.WHITE);
+            tempBTN.setBackground(Color.BLACK);
             window.add(tempBTN);
         }
 

@@ -63,7 +63,27 @@ public class Frame {
         setSize.addActionListener(action -> setButtonPressed(inputx.getText(), inputy.getText()));
     }
 
+    // checks to see if the user input is a number and greater than 0
+    private boolean validateInput(String[] inputs) {
+        for (int i = 0; i < inputs.length; i++) {
+            try {
+                if (Integer.parseInt(inputs[i]) <= 0) return false;
+            } catch(Exception e) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public void setButtonPressed(String width, String height){
+        String[] inputs = {width, height};
+
+        if (!validateInput(inputs)) {
+            System.out.println("[ERROR] Invalid maze size...");
+            return;
+        }
+
         initialise(width.trim(), height.trim());
 
         //System.out.println(width.trim()+", "+height.trim());

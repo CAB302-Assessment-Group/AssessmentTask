@@ -58,7 +58,11 @@ public class Maze{
     }
 
 
-
+    /**
+     * Constructor for Maze object that generates a default tile set for the maze
+     * TODO: Maybe add a check to prevent larger then 2 height arrays
+     * @param size where size[0] is the width(x) and size[1] is the height(y)
+     */
 
     public Maze(int[] size){
         mazeTiles = new Tile[size[0]][size[1]];
@@ -71,10 +75,20 @@ public class Maze{
         }
     }
 
+    /**
+     * Returns the Tile at the coordinates specified
+     * @param x width of maze
+     * @param y height of maze
+     * @return Tile at that location
+     */
     public Tile mazeTile(int x, int y) {
         return mazeTiles[x][y];
     }
 
+    /**
+     * Gets the Maze size in terms of height and height (x,y)
+     * @return myMazeSize int[] where myMazeSize[0] is the width and myMazeSize[1] is the height
+     */
     public int[] mazeSize() {
         int[] myMazeSize = {mazeTiles.length, mazeTiles[1].length};
         return myMazeSize;

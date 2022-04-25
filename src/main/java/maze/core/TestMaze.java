@@ -6,17 +6,23 @@ import org.junit.jupiter.api.*;
 public class TestMaze {
     Maze testMaze;
 
+    /**
+     * Testing for Maze class constructor and important attributes such as Maze sizing
+     * @author JackFFFFFF
+     */
     @BeforeEach
     public void ConstructMaze(){
         int[] size = {5,5};
         testMaze = new Maze(size);
     }
     @Test
-    public void TestLength(){
-        assertEquals(5,testMaze.getMazeTiles().length);
-        System.out.println("Assigned length 5 matches Maze length");
-        assertNotEquals(6,testMaze.getMazeTiles().length);
-        System.out.println("Wrong length 6 does not match Maze length");
+    public void TestheightOfTiles(){
+        assertEquals(5,testMaze.mazeSize()[0]);
+        assertEquals(5,testMaze.mazeSize()[1]);
+        System.out.println("Assigned height 5 matches Maze height");
+        assertNotEquals(6,testMaze.mazeSize()[0]);
+        assertNotEquals(6,testMaze.mazeSize()[1]);
+        System.out.println("Wrong height 6 does not match Maze height");
     }
     @Test
     public void TestAttributes(){

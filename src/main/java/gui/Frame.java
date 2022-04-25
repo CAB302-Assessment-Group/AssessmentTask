@@ -14,6 +14,12 @@ public class Frame {
     private static class FrameHolder{
         private final static Frame INSTANCE = new Frame();
     }
+
+    /**
+     * getInstance enables the use of a Singleton class
+     * @author JackFFFFFF
+     * @return the current and ONLY instance of this class
+     */
     public static Frame getInstance(){
         return FrameHolder.INSTANCE;
     }
@@ -43,6 +49,11 @@ public class Frame {
         window.setVisible(true);
     }
 
+    /**
+     * Intialises the new blank maze GUI
+     * @param xvar Suitable screen width
+     * @param yvar Suitable screen height
+     */
     public void initialise(String xvar, String yvar){
         window.getContentPane().removeAll();
         JLabel labelx = new JLabel("Width:");
@@ -70,7 +81,11 @@ public class Frame {
         setSize.addActionListener(action -> setButtonPressed(inputx.getText(), inputy.getText()));
     }
 
-    // checks to see if the user input is a number and greater than 0
+    /**
+     * Validates user input for sizing maze
+     * @param inputs The width and height specified by the user
+     * @return True if input is a number and not less than or equal to 0. False if not
+     */
     private boolean validateInput(String[] inputs) {
         for (int i = 0; i < inputs.length; i++) {
             try {
@@ -83,6 +98,12 @@ public class Frame {
         return true;
     }
 
+    /**
+     * @author Jayden
+     * Actions that take place after the user has clicked the 'Generate Maze' button
+     * @param width Width specified by the user
+     * @param height Height specified by the user
+     */
     public void setButtonPressed(String width, String height){
         String[] inputs = {width, height};
 
@@ -140,6 +161,13 @@ public class Frame {
         SwingUtilities.updateComponentTreeUI(window);
     }
 
+    /**
+     * Actions that occur after the user selects a tile in the maze
+     * @param x X location of that tile
+     * @param y Y location of that tile
+     * @param button The button representing that tile
+     * @param Top Boolean to determine whether it is at the top of the maze
+     */
     public void mazeButtonPressed(int x, int y, JButton button, boolean Top){
         boolean set = false;
         if(button.getBackground() == Color.BLACK){

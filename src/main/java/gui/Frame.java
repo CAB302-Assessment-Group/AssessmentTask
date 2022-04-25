@@ -11,7 +11,14 @@ public class Frame {
     public Maze myMaze = new Maze(new int[]{100, 100});
     public JFrame window;
 
-    public Frame() {
+    private static class FrameHolder{
+        private final static Frame INSTANCE = new Frame();
+    }
+    public static Frame getInstance(){
+        return FrameHolder.INSTANCE;
+    }
+
+    protected Frame() {
         super();
         // initialize swing window
         window = new JFrame();

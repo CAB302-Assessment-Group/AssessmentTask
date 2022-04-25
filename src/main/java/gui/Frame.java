@@ -50,8 +50,8 @@ public class Frame {
         JTextArea inputy = new JTextArea(yvar);
         inputy.setBounds(160, 0, 50, 20);
 
-        JButton setSize = new JButton("Set Size");
-        setSize.setBounds(160, 30, 100, 20);
+        JButton setSize = new JButton("Generate Maze");
+        setSize.setBounds(160, 30, 120, 20);
 
         window.add(inputx);
         window.add(labelx);

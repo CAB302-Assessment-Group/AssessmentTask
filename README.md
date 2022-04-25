@@ -29,7 +29,7 @@ Project One Drive: https://connectqutedu-my.sharepoint.com/personal/n11031093_qu
   ![image](https://user-images.githubusercontent.com/102127250/164957368-44512704-34ee-4c10-b7d1-fcc4921e124d.png)
   Here I have assigned it to myself because I will be working on it. It is okay to not assign it to yourself only if it is part of a planned section that you are not currently working on but don't want to forget to not add the issue.
   
-  For labels I would say do as many as seen applicable, and if you wish you can go add some more. 
+  For labels I would say do as many as you think are applicable but it MUST have a priority (Low, Medium, or High)
   
   For projects I assigned it the GUI product as it is not documentation nor a general coding project and thus would probably clutter those project issues on the scrum board. 
   

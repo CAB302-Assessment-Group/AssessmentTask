@@ -14,6 +14,14 @@ public class Frame {
     public Maze myMaze = new Maze(new int[]{100, 100});
     public JFrame window;
 
+    public int WELCOMEFRAME = 1;
+    public int MAZETYPEFRAME = 2;
+    public int SIZEFRAME = 3;
+    public int ERRORFRAME = 4;
+    public int EDITFRAME = 5;
+    public int MAZECREATEFRAME = 6;
+
+
     private static class FrameHolder{
         private final static Frame INSTANCE = new Frame();
     }
@@ -27,6 +35,8 @@ public class Frame {
         return FrameHolder.INSTANCE;
     }
 
+
+
     protected Frame() {
         super();
         // initialize swing window
@@ -36,7 +46,39 @@ public class Frame {
         // set frame location to center of screen
         window.setLocationRelativeTo(null);
 
-        // remove menu bar
+        // menu bar
+        JMenuBar menubar = new JMenuBar();
+        JMenu fileMenuItem = new JMenu("File");
+
+        // sub menus
+        JMenuItem quitMenuItem = new JMenuItem("Quit");
+
+        fileMenuItem.add(quitMenuItem);
+
+        JMenu editMenuItem = new JMenu("Edit");
+
+        // sub menus
+        JMenuItem undoMenuItem = new JMenuItem("Undo");
+        JMenuItem redoMenuItem = new JMenuItem("Redo");
+
+        editMenuItem.add(undoMenuItem);
+        editMenuItem.add(redoMenuItem);
+
+        JMenu mazeMenuItem = new JMenu("My Maze");
+
+        // sub menus
+        JMenuItem exportMenuItem = new JMenuItem("Export Maze");
+        JMenuItem importMenuItem = new JMenuItem("Export Maze");
+
+        mazeMenuItem.add(exportMenuItem);
+        mazeMenuItem.add(importMenuItem);
+
+        menubar.add(fileMenuItem);
+        menubar.add(editMenuItem);
+        menubar.add(mazeMenuItem);
+
+        window.setJMenuBar(menubar);
+
         window.setLayout(null);
 
 
@@ -172,16 +214,29 @@ public class Frame {
         DifficultySelection.add(HardDifficulty);
 
         JButton setSize = new JButton("Generate Maze");
+<<<<<<< HEAD
         setSize.setBounds(600, 10, 120, 20);
 
 
+=======
+        setSize.setBounds(0, 30, 130, 20);
+
+        JButton exportBTN = new JButton("Export Maze");
+            exportBTN.setBounds(150, 30, 130, 20);
+>>>>>>> main
 
         window.add(inputx);
         window.add(labelx);
         window.add(inputy);
         window.add(labely);
 
+<<<<<<< HEAD
         window.add(Back);
+=======
+        window.add(exportBTN);
+
+
+>>>>>>> main
         window.add(setSize);
         window.add(Save);
         window.add(StandardLogoMaze);
@@ -224,6 +279,7 @@ public class Frame {
 
     /**
      * Validates user input for sizing maze
+     * @author Hudson
      * @param inputs The width and height specified by the user
      * @return True if input is a number and not less than or equal to 0. False if not
      */
@@ -240,7 +296,7 @@ public class Frame {
     }
 
     /**
-     * @author Jayden
+     * @author Jayden and Hudson
      * Actions that take place after the user has clicked the 'Generate Maze' button
      * @param width Width specified by the user
      * @param height Height specified by the user
@@ -304,6 +360,7 @@ public class Frame {
 
     /**
      * Actions that occur after the user selects a tile in the maze
+     * @author Jayden
      * @param x X location of that tile
      * @param y Y location of that tile
      * @param button The button representing that tile

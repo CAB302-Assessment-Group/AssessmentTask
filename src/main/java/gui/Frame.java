@@ -41,7 +41,7 @@ public class Frame {
         super();
         // initialize swing window
         window = new JFrame("MazeCo Maze Gen Tool");
-        window.setSize(750, 750);
+        window.setSize(850, 750);
 
         // set frame location to center of screen
         window.setLocationRelativeTo(null);
@@ -117,11 +117,11 @@ public class Frame {
         window.add(OpenExistingMaze);
         window.add(Exit);
 
-        // on CreateNewMaze button press move to Frame2 (maze generation)
+        // on CreateNewMaze button press move to SelectOption Screen
         CreateNewMaze.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                initialise("","");
+                SelectOption();
             }
         });
 
@@ -142,6 +142,253 @@ public class Frame {
             }
         });
     }
+
+
+    public void SelectOption(){
+        window.getContentPane().removeAll();
+        window.getContentPane().repaint();
+
+        JLabel SelectOption = new JLabel("Select one of the following options");
+        SelectOption.setBounds(10,10,500,20);
+
+        JButton CreateBlankNewMaze = new JButton("Create Blank New Maze");
+        CreateBlankNewMaze.setBounds(50, 50, 300, 20);
+
+        JButton AutoGenerateNewMaze = new JButton("Auto-generate New Maze");
+        AutoGenerateNewMaze.setBounds(50, 100, 300, 20);
+
+        JButton Back = new JButton(("Back"));
+        Back.setBounds(50,150,150,20);
+
+        window.add(SelectOption);
+        window.add(CreateBlankNewMaze);
+        window.add(AutoGenerateNewMaze);
+        window.add(Back);
+
+        // on CreateBlankNewMaze button press move to MazeType
+        CreateBlankNewMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MazeType();
+            }
+        });
+
+        AutoGenerateNewMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MazeType();
+            }
+        });
+
+        Back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainMenu();
+            }
+        });
+    }
+
+
+    public void MazeType(){
+        window.getContentPane().removeAll();
+        window.getContentPane().repaint();
+
+        JLabel MazeType = new JLabel("What Type of Maze would you like to construct?");
+        MazeType.setBounds(10,10,500,20);
+
+        JButton StandardLogoMaze = new JButton("Standard Logo Maze");
+        StandardLogoMaze.setBounds(50, 50, 300, 20);
+
+        JButton ChildrenMaze = new JButton("Children Maze");
+        ChildrenMaze.setBounds(50, 100, 300, 20);
+
+        JButton Back = new JButton(("Back"));
+        Back.setBounds(50,150,150,20);
+
+        window.add(MazeType);
+        window.add(StandardLogoMaze);
+        window.add(ChildrenMaze);
+        window.add(Back);
+
+        // on CreateBlankNewMaze button press move to MazeType
+        StandardLogoMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InitialLogoMazeDesign();
+            }
+        });
+
+        ChildrenMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InitialChildrenMazeDesign();
+            }
+        });
+
+        Back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SelectOption();
+            }
+        });
+    }
+
+
+
+    public void InitialChildrenMazeDesign(){
+        window.getContentPane().removeAll();
+        window.getContentPane().repaint();
+
+        JLabel InitialMazeDesign = new JLabel("Please specify the initial design of the maze");
+        InitialMazeDesign.setBounds(10,10,500,20);
+
+        JLabel ImportStartingLogo = new JLabel("Please import starting logo:");
+        ImportStartingLogo.setBounds(50,50,300,20);
+        JButton BrowseStartingLogo = new JButton("Browse");
+        BrowseStartingLogo.setBounds(400, 50, 300, 20);
+
+        JLabel ImportFinishingLogo = new JLabel("Please import finishing logo:");
+        ImportFinishingLogo.setBounds(50,100,300,20);
+        JButton BrowseFinishingLogo = new JButton("Browse");
+        BrowseFinishingLogo.setBounds(400, 100, 300, 20);
+
+        JLabel SpecifyWidth = new JLabel("Specify Width:");
+        SpecifyWidth.setBounds(50,150,300,20);
+        JSpinner SpinnerWidth = new JSpinner(new SpinnerNumberModel(2,2,100,1));
+        SpinnerWidth.setBounds(400,150,50,20);
+
+        JLabel SpecifyLength = new JLabel("Specify Length:");
+        SpecifyLength.setBounds(50,200,300,20);
+        JSpinner SpinnerLength = new JSpinner(new SpinnerNumberModel(2,2,100,1));
+        SpinnerLength.setBounds(400,200,50,20);
+
+        JLabel MazeAuthor = new JLabel("Maze Author:");
+        MazeAuthor.setBounds(50,250,200,20);
+        JTextArea MazeAuthorName = new JTextArea();
+        MazeAuthorName.setBounds(200, 250, 300, 20);
+
+        JButton CreateMaze = new JButton(("Create Maze"));
+        CreateMaze.setBounds(50,300,150,20);
+
+        JButton Back = new JButton(("Back"));
+        Back.setBounds(50,350,150,20);
+
+        window.add(InitialMazeDesign);
+        window.add(ImportStartingLogo);
+        window.add(BrowseStartingLogo);
+        window.add(ImportFinishingLogo);
+        window.add(BrowseFinishingLogo);
+        window.add(SpecifyWidth);
+        window.add(SpinnerWidth);
+        window.add(SpecifyLength);
+        window.add(SpinnerLength);
+        window.add(MazeAuthor);
+        window.add(MazeAuthorName);
+        window.add(CreateMaze);
+        window.add(Back);
+
+        // on CreateBlankNewMaze button press move to MazeType
+        BrowseStartingLogo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                importFile.showOpenDialog(null);
+            }
+        });
+
+        BrowseFinishingLogo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                importFile.showOpenDialog(null);
+            }
+        });
+
+        CreateMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                initialise("","");
+            }
+        });
+
+        Back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MazeType();
+            }
+        });
+    }
+
+
+    public void InitialLogoMazeDesign(){
+        window.getContentPane().removeAll();
+        window.getContentPane().repaint();
+
+        JLabel InitialMazeDesign = new JLabel("Please specify the initial design of the maze");
+        InitialMazeDesign.setBounds(10,10,500,20);
+
+        JLabel ImportMazeLogo = new JLabel("Please import Maze logo:");
+        ImportMazeLogo.setBounds(50,50,300,20);
+        JButton BrowseMazeLogo = new JButton("Browse");
+        BrowseMazeLogo.setBounds(400, 50, 300, 20);
+
+        JLabel SpecifyWidth = new JLabel("Specify Width:");
+        SpecifyWidth.setBounds(50,150,300,20);
+        JSpinner SpinnerWidth = new JSpinner(new SpinnerNumberModel(2,2,100,1));
+        SpinnerWidth.setBounds(400,150,50,20);
+
+        JLabel SpecifyLength = new JLabel("Specify Length:");
+        SpecifyLength.setBounds(50,200,300,20);
+        JSpinner SpinnerLength = new JSpinner(new SpinnerNumberModel(2,2,100,1));
+        SpinnerLength.setBounds(400,200,50,20);
+
+        JLabel MazeAuthor = new JLabel("Maze Author:");
+        MazeAuthor.setBounds(50,250,200,20);
+        JTextArea MazeAuthorName = new JTextArea();
+        MazeAuthorName.setBounds(200, 250, 300, 20);
+
+        JButton CreateMaze = new JButton(("Create Maze"));
+        CreateMaze.setBounds(50,300,150,20);
+
+        JButton Back = new JButton(("Back"));
+        Back.setBounds(50,350,150,20);
+
+        window.add(InitialMazeDesign);
+        window.add(ImportMazeLogo);
+        window.add(BrowseMazeLogo);
+        window.add(SpecifyWidth);
+        window.add(SpinnerWidth);
+        window.add(SpecifyLength);
+        window.add(SpinnerLength);
+        window.add(CreateMaze);
+        window.add(MazeAuthor);
+        window.add(MazeAuthorName);
+        window.add(Back);
+
+        // on CreateBlankNewMaze button press move to MazeType
+        BrowseMazeLogo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                importFile.showOpenDialog(null);
+            }
+        });
+
+        CreateMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                initialise("","");
+            }
+        });
+
+        Back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MazeType();
+            }
+        });
+    }
+
 
     /**
      * Intialises the new blank maze GUI
@@ -195,7 +442,6 @@ public class Frame {
         MazeTypeSelection.add(ChildrensLogoMaze);
 
 
-
         JRadioButton EasyDifficulty = new JRadioButton("Easy");
         EasyDifficulty.setActionCommand("Easy Difficulty Action");
         EasyDifficulty.setBounds(360, 30, 100, 20);
@@ -215,7 +461,11 @@ public class Frame {
 
         JButton setSize = new JButton("Generate Maze");
 <<<<<<< HEAD
+<<<<<<< HEAD
         setSize.setBounds(600, 10, 120, 20);
+=======
+        setSize.setBounds(600, 10, 200, 20);
+>>>>>>> 6eeac4e2771bcff2c3c617915f8a9f7fdf75459b
 
 
 =======
@@ -248,13 +498,11 @@ public class Frame {
         window.add(HardDifficulty);
 
 
-
-
         setSize.addActionListener(action -> setButtonPressed(inputx.getText(), inputy.getText()));
         Back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainMenu();
+                MazeType();
             }
         });
 

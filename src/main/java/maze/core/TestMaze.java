@@ -16,7 +16,7 @@ public class TestMaze {
         testMaze = new Maze(size);
     }
     @Test
-    public void TestheightOfTiles(){
+    public void TestTileDimensions(){
         assertEquals(5,testMaze.mazeSize()[0]);
         assertEquals(5,testMaze.mazeSize()[1]);
         System.out.println("Assigned height 5 matches Maze height");

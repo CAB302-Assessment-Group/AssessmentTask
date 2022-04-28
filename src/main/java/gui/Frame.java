@@ -79,12 +79,17 @@ public class Frame {
         inputy.setBounds(160, 0, 50, 20);
 
         JButton setSize = new JButton("Generate Maze");
-        setSize.setBounds(160, 30, 130, 20);
+        setSize.setBounds(0, 30, 130, 20);
+
+        JButton exportBTN = new JButton("Export Maze");
+            exportBTN.setBounds(150, 30, 130, 20);
 
         window.add(inputx);
         window.add(labelx);
         window.add(inputy);
         window.add(labely);
+
+        window.add(exportBTN);
 
 
         window.add(setSize);

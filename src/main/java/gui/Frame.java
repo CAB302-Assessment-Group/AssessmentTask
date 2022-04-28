@@ -4,7 +4,10 @@ import src.main.java.maze.core.Maze;
 import src.main.java.maze.core.Tile;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Frame {
     public int[] mazeSize = new int[2];
@@ -27,19 +30,21 @@ public class Frame {
     protected Frame() {
         super();
         // initialize swing window
-        window = new JFrame();
-        window.setSize(1200, 800);
+        window = new JFrame("MazeCo Maze Gen Tool");
+        window.setSize(750, 750);
+
+        // set frame location to center of screen
+        window.setLocationRelativeTo(null);
 
         // remove menu bar
         window.setLayout(null);
 
-        window.setVisible(false);
 
         // make the program process close when the main window is closed
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        initialise("","");
-
+        MainMenu();
+        // initialise("","");
 
         // this is where "user customization" will come in
 
@@ -49,6 +54,53 @@ public class Frame {
         window.setVisible(true);
     }
 
+    public void MainMenu(){
+        window.getContentPane().removeAll();
+        window.getContentPane().repaint();
+
+        JLabel Title = new JLabel("MazeCo Maze Gen Tool");
+        Title.setBounds(10,10,200,20);
+
+        JButton CreateNewMaze = new JButton("Create New Maze");
+        CreateNewMaze.setBounds(50, 50, 150, 20);
+
+        JButton OpenExistingMaze = new JButton("Open Existing Maze");
+        OpenExistingMaze.setBounds(50, 100, 150, 20);
+
+        JButton Exit = new JButton(("Exit"));
+        Exit.setBounds(50,150,150,20);
+
+        window.add(Title);
+        window.add(CreateNewMaze);
+        window.add(OpenExistingMaze);
+        window.add(Exit);
+
+        // on CreateNewMaze button press move to Frame2 (maze generation)
+        CreateNewMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                initialise("","");
+            }
+        });
+
+        // on OpenExistingMaze button press open file chooser
+        OpenExistingMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                importFile.showOpenDialog(null);
+            }
+        });
+
+        // on Exist button press close window
+        Exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+    }
+
     /**
      * Intialises the new blank maze GUI
      * @param xvar Suitable screen width
@@ -56,29 +108,118 @@ public class Frame {
      */
     public void initialise(String xvar, String yvar){
         window.getContentPane().removeAll();
+        window.getContentPane().repaint();
+
+        // maze needs to be drawn inside a pane for scrollbars to work and for other buttons to stay constant
+        /*JScrollPane pane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        window.setContentPane(pane);*/
+
         JLabel labelx = new JLabel("Width:");
-        labelx.setBounds(0,0,50,20);
+        labelx.setBounds(10,50,50,20);
 
         JLabel labely = new JLabel("Height:");
-        labely.setBounds(110,0,50,20);
+        labely.setBounds(120,50,50,20);
 
         JTextArea inputx = new JTextArea(xvar);
-        inputx.setBounds(50, 0, 50, 20);
+        inputx.setBounds(50, 50, 50, 20);
 
         JTextArea inputy = new JTextArea(yvar);
-        inputy.setBounds(160, 0, 50, 20);
+        inputy.setBounds(160, 50, 50, 20);
+
+        JButton Back = new JButton("Back");
+        Back.setBounds(10, 10, 75, 20);
+
+        JButton Save = new JButton("Save");
+        Save.setBounds(100, 10, 75, 20);
+
+        JButton ImportStartingLogo = new JButton("Import Starting Logo");
+        ImportStartingLogo.setBounds(200,10,175,20);
+
+        JButton ImportFinishingLogo = new JButton("Import Finishing Logo");
+        ImportFinishingLogo.setBounds( 400,10,175,20);
+
+
+        JRadioButton StandardLogoMaze = new JRadioButton("Standard Logo Maze");
+        StandardLogoMaze.setActionCommand("StandardLogoMaze Action");
+        StandardLogoMaze.setBounds(10, 30, 150, 20);
+
+        JRadioButton ChildrensLogoMaze = new JRadioButton("Childrens Logo Maze");
+        ChildrensLogoMaze.setActionCommand("ChildrensLogoMaze Action");
+        ChildrensLogoMaze.setBounds(160, 30, 150, 20);
+
+        ButtonGroup MazeTypeSelection = new ButtonGroup();
+        MazeTypeSelection.add(StandardLogoMaze);
+        MazeTypeSelection.add(ChildrensLogoMaze);
+        MazeTypeSelection.add(ChildrensLogoMaze);
+
+
+
+        JRadioButton EasyDifficulty = new JRadioButton("Easy");
+        EasyDifficulty.setActionCommand("Easy Difficulty Action");
+        EasyDifficulty.setBounds(360, 30, 100, 20);
+
+        JRadioButton MediumDifficulty = new JRadioButton("Medium");
+        MediumDifficulty.setActionCommand("Medium Difficulty Action");
+        MediumDifficulty.setBounds(460, 30, 100, 20);
+
+        JRadioButton HardDifficulty = new JRadioButton("Hard");
+        HardDifficulty.setActionCommand("Hard Difficulty Action");
+        HardDifficulty.setBounds(560, 30, 100, 20);
+
+        ButtonGroup DifficultySelection = new ButtonGroup();
+        DifficultySelection.add(EasyDifficulty);
+        DifficultySelection.add(MediumDifficulty);
+        DifficultySelection.add(HardDifficulty);
 
         JButton setSize = new JButton("Generate Maze");
-        setSize.setBounds(160, 30, 120, 20);
+        setSize.setBounds(600, 10, 120, 20);
+
+
 
         window.add(inputx);
         window.add(labelx);
         window.add(inputy);
         window.add(labely);
 
+        window.add(Back);
         window.add(setSize);
+        window.add(Save);
+        window.add(StandardLogoMaze);
+        window.add(ChildrensLogoMaze);
+        window.add(ImportStartingLogo);
+        window.add(ImportFinishingLogo);
+        window.add(EasyDifficulty);
+        window.add(MediumDifficulty);
+        window.add(HardDifficulty);
+
+
+
 
         setSize.addActionListener(action -> setButtonPressed(inputx.getText(), inputy.getText()));
+        Back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainMenu();
+            }
+        });
+
+        ImportStartingLogo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                importFile.showOpenDialog(null);
+            }
+        });
+
+        ImportFinishingLogo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                importFile.showOpenDialog(null);
+            }
+        });
+
+
     }
 
     /**

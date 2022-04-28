@@ -61,6 +61,7 @@ public class Frame {
 
     /**
      * Intialises the new blank maze GUI
+     * @author Hudson
      * @param xvar Suitable screen width
      * @param yvar Suitable screen height
      */
@@ -79,12 +80,13 @@ public class Frame {
         inputy.setBounds(160, 0, 50, 20);
 
         JButton setSize = new JButton("Generate Maze");
-        setSize.setBounds(160, 30, 120, 20);
+        setSize.setBounds(160, 30, 130, 20);
 
         window.add(inputx);
         window.add(labelx);
         window.add(inputy);
         window.add(labely);
+
 
         window.add(setSize);
 
@@ -93,6 +95,7 @@ public class Frame {
 
     /**
      * Validates user input for sizing maze
+     * @author Hudson
      * @param inputs The width and height specified by the user
      * @return True if input is a number and not less than or equal to 0. False if not
      */
@@ -109,7 +112,7 @@ public class Frame {
     }
 
     /**
-     * @author Jayden
+     * @author Jayden and Hudson
      * Actions that take place after the user has clicked the 'Generate Maze' button
      * @param width Width specified by the user
      * @param height Height specified by the user
@@ -173,6 +176,7 @@ public class Frame {
 
     /**
      * Actions that occur after the user selects a tile in the maze
+     * @author Jayden
      * @param x X location of that tile
      * @param y Y location of that tile
      * @param button The button representing that tile

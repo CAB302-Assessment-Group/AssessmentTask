@@ -129,8 +129,7 @@ public class Frame {
         OpenExistingMaze.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
-                importFile.showOpenDialog(null);
+                OpenExistingMaze();
             }
         });
 
@@ -139,6 +138,88 @@ public class Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+            }
+        });
+    }
+
+
+    public void OpenExistingMaze(){
+        window.getContentPane().removeAll();
+        window.getContentPane().repaint();
+
+        JLabel OpenExistingMaze = new JLabel("Search for a Maze to edit");
+        OpenExistingMaze.setBounds(10,10,200,20);
+
+        JLabel SearchByName = new JLabel("Search By: Name");
+        SearchByName.setBounds(50,50,150,20);
+        JCheckBox CheckSearchByName = new JCheckBox();
+        CheckSearchByName.setBounds(150,50,20,20);
+
+        JLabel DateTime = new JLabel("Date/Time");
+        DateTime.setBounds(200,50,100,20);
+        JCheckBox CheckDateTime = new JCheckBox();
+        CheckDateTime.setBounds(275,50,20,20);
+
+        JLabel CreatedBy = new JLabel("Created By");
+        CreatedBy.setBounds(325,50,100,20);
+        JCheckBox CheckCreatedBy = new JCheckBox();
+        CheckCreatedBy.setBounds(425,50,20,20);
+
+
+        JLabel NameOfMaze = new JLabel("Name of Maze");
+        NameOfMaze.setBounds(50,100,200,20);
+        JTextArea TextNameOfMaze = new JTextArea();
+        TextNameOfMaze.setBounds(150,100,300,20);
+
+        JLabel CreatedByMenu = new JLabel("Created By:");
+        CreatedByMenu.setBounds(50,150,100,20);
+        JComboBox<String> CreatedByDrop = new JComboBox<>();
+        CreatedByDrop.setBounds(150,150,300,20);
+
+        JLabel AccessedCreatedDate = new JLabel("Accessed/Created Date");
+        AccessedCreatedDate.setBounds(50,200,200,20);
+        JTextArea TextAccessedCreatedDate = new JTextArea();
+        TextAccessedCreatedDate.setBounds(200,200,300,20);
+
+
+        JButton Search = new JButton("Search");
+        Search.setBounds(50, 250, 150, 20);
+
+        JLabel Results = new JLabel("Results");
+        Results.setBounds(50,300,100,20);
+        JComboBox<String> ResultsDrop = new JComboBox<>();
+        ResultsDrop.setBounds(50,350,300,20);
+
+
+        JButton SelectMaze = new JButton(("SelectMaze"));
+        SelectMaze.setBounds(50,400,150,20);
+
+        JButton Back = new JButton(("Back"));
+        Back.setBounds(50,450,150,20);
+
+        window.add(OpenExistingMaze);
+        window.add(SearchByName);
+        window.add(CheckSearchByName);
+        window.add(DateTime);
+        window.add(CheckDateTime);
+        window.add(CreatedBy);
+        window.add(CheckCreatedBy);
+        window.add(NameOfMaze);
+        window.add(TextNameOfMaze);
+        window.add(CreatedByMenu);
+        window.add(CreatedByDrop);
+        window.add(AccessedCreatedDate);
+        window.add(TextAccessedCreatedDate);
+        window.add(Search);
+        window.add(Results);
+        window.add(ResultsDrop);
+        window.add(SelectMaze);
+        window.add(Back);
+
+        Back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainMenu();
             }
         });
     }

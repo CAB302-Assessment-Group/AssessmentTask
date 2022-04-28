@@ -11,6 +11,14 @@ public class Frame {
     public Maze myMaze = new Maze(new int[]{100, 100});
     public JFrame window;
 
+    public int WELCOMEFRAME = 1;
+    public int MAZETYPEFRAME = 2;
+    public int SIZEFRAME = 3;
+    public int ERRORFRAME = 4;
+    public int EDITFRAME = 5;
+    public int MAZECREATEFRAME = 6;
+
+
     private static class FrameHolder{
         private final static Frame INSTANCE = new Frame();
     }
@@ -23,6 +31,8 @@ public class Frame {
     public static Frame getInstance(){
         return FrameHolder.INSTANCE;
     }
+
+
 
     protected Frame() {
         super();

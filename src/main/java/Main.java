@@ -4,7 +4,9 @@ import src.main.java.gui.Frame;
 
 public class Main {
     // program entry point
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+
         Frame mainWindow = Frame.getInstance();
     }
 }

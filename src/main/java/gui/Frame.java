@@ -61,7 +61,6 @@ public class Frame {
 
     /**
      * Intialises the new blank maze GUI
-     * @author Hudson
      * @param xvar Suitable screen width
      * @param yvar Suitable screen height
      */

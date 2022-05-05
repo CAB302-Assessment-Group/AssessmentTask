@@ -1,6 +1,7 @@
-package src.main.java.maze.core;
+package src.main.java.tests;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
+import src.main.java.maze.core.Maze;
 
 
 public class TestMaze {

@@ -33,5 +33,9 @@ public class solver {
 
         boolean[] tile_4_4N = {true, true, false, true};
         assertArrayEquals(tile_4_4N, mySolver.neighbours(4, 4, testMaze));
+
+        // test if the solving function is checking tiles next to the selected tile
+        boolean[] tile_3_4N = {false, true, true, true};
+        assertArrayEquals(tile_3_4N, mySolver.neighbours(3, 4, testMaze));
     }
 }

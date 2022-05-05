@@ -1,6 +1,7 @@
 package src.main.java.maze.core.solver;
 
 import src.main.java.maze.core.*;
+import src.main.java.util;
 
 /**
  * The main solving class that uses DFS to calculate how to finish a maze
@@ -8,7 +9,9 @@ import src.main.java.maze.core.*;
  * @author Hudson
  */
 public class Solver {
-    public boolean[] neighbours(int tileLocationX, int tileLocationY, Maze myMaze) {
+    private Maze myMaze;
+
+    private boolean[] tileState(int tileLocationX, int tileLocationY) {
         Tile selectedTile = myMaze.mazeTile(tileLocationX, tileLocationY);
 
         boolean[] returnArray = {false, false, false, false};
@@ -26,5 +29,12 @@ public class Solver {
         returnArray[3] = !walls[3] && tileLocationY != myMaze.mazeSize()[1];
 
         return returnArray;
+    }
+
+    public boolean[] neighbours(int tileLocationX, int tileLocationY, Maze myMaze) {
+        boolean[] N = {true, true, true, true};
+
+
+        this.myMaze = myMaze;
     }
 }

@@ -3,11 +3,7 @@ package src.main.java.tests;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 import src.main.java.maze.core.Maze;
-import src.main.java.maze.core.Tile;
 import src.main.java.maze.core.solver.Solver;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class solver {
     Maze testMaze;

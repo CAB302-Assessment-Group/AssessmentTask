@@ -32,13 +32,13 @@ public class Tile {
     public boolean LeftWall() {
         return leftWall;
     }
-    public boolean rightWall() {
+    public boolean RightWall() {
         return rightWall;
     }
-    private boolean topWall() {
+    public boolean TopWall() {
         return topWall;
     }
-    public boolean bottomWall() {
+    public boolean BottomWall() {
         return bottomWall;
     }
 }

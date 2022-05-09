@@ -611,7 +611,7 @@ public class Frame {
         return true;
     }
     /**
-     * Validates the validateInput is working as per user story 
+     * Validates the validateInput is working as per user story
      * @author Jack
      */
     @Test

@@ -1,6 +1,8 @@
 package src.main.java.maze.core;
 
 
+import src.main.java.exceptions.MazeException;
+
 public class Maze{
     private String Author;
     private String MazeName;
@@ -95,5 +97,22 @@ public class Maze{
     public int[] mazeSize() {
         int[] myMazeSize = {mazeTiles.length, mazeTiles[1].length};
         return myMazeSize;
+    }
+
+    /**
+     * TODO
+     * @param start
+     * @throws MazeException
+     */
+    public void setStart(int[] start) throws MazeException {
+
+    }
+    /**
+     * TODO
+     * @param start
+     * @throws MazeException
+     */
+    public void setEnd(int[] end) throws MazeException {
+
     }
 }

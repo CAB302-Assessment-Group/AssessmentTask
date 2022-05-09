@@ -1,0 +1,10 @@
+package src.main.java.exceptions;
+
+public class MazeException extends Exception{
+    public MazeException(){
+        super();
+    }
+    public MazeException(String message){
+        super(message);
+    }
+}

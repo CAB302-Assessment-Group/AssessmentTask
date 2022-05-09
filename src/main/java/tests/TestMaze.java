@@ -16,8 +16,7 @@ public class TestMaze {
         testMaze = new Maze(size);
     }
     /**
-     * Testing for Maze class constructor and important attributes such as Maze sizing
-     * Test 1 and 2
+     * Test 1 and 2: Testing for Maze class constructor and important attributes such as Maze sizing
      * @author JackFFFFFF
      */
     @Test
@@ -73,8 +72,7 @@ public class TestMaze {
 
     }
     /**
-     * Set a start position and have only one edge value be false
-     * Test 3
+     * Test 3 :Set a start position and have only one edge value be false
      * @author JackFFFFFF
      */
     @Test
@@ -112,8 +110,7 @@ public class TestMaze {
         assertFalse(startTile.TopWall() && startTile.RightWall());
     }
     /**
-     * Set a start position and have only one edge value be false. Not testing corners as previous test did this
-     * Test 4
+     * Test 4: Set a start position and have only one edge value be false. Not testing corners as previous test did this
      * @author JackFFFFFF
      */
     @Test
@@ -158,8 +155,7 @@ public class TestMaze {
 
     }
     /**
-     * Set a start position not on the boundary
-     * Test 5
+     * Test 5: Set a start position not on the boundary
      * @author JackFFFFFF
      */
     @Test
@@ -183,8 +179,7 @@ public class TestMaze {
 
     }
     /**
-     * Set an end position and have only one edge value be false
-     * Test 6
+     * Test 6: Set an end position and have only one edge value be false
      * @author JackFFFFFF
      */
     @Test
@@ -222,8 +217,7 @@ public class TestMaze {
         assertFalse(startTile.TopWall() && startTile.RightWall());
     }
     /**
-     * Set an end position and have only one edge value be false. Not testing corners as previous test did this
-     * Test 7
+     * Test 7: Set an end position and have only one edge value be false. Not testing corners as previous test did this
      * @author JackFFFFFF
      */
     @Test
@@ -268,8 +262,7 @@ public class TestMaze {
 
     }
     /**
-     * Set an end position not on the boundary
-     * Test 8
+     * Test 8: Set an end position not on the boundary
      * @author JackFFFFFF
      */
     @Test
@@ -293,8 +286,7 @@ public class TestMaze {
 
     }
     /**
-     * Set a start and end and have them not be equal to each other
-     * Test 9
+     * Test 9: Set a start and end and have them not be equal to each other
      * @author JackFFFFFF
      */
     @Test

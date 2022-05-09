@@ -1,3 +1,6 @@
 src.main.java
+src.main.java.exceptions
 src.main.java.gui
 src.main.java.maze.core
+src.main.java.maze.core.solver
+src.main.java.tests

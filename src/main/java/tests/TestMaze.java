@@ -5,6 +5,8 @@ import src.main.java.exceptions.MazeException;
 import src.main.java.maze.core.Maze;
 import src.main.java.maze.core.Tile;
 
+import java.sql.Blob;
+
 
 public class TestMaze {
     Maze testMaze;
@@ -47,6 +49,8 @@ public class TestMaze {
         final int[] STARTLOC = {2, 1};
         final int[] ENDLOC = {5, 3};
         final int ID = 51;
+        final Byte[] startImage = new Byte[1000];
+        final Byte[] endImage = new Byte[1000];
 
         testMaze.setAuthor(AUTHOR);
         testMaze.setMazeName(NAME);
@@ -58,6 +62,8 @@ public class TestMaze {
         //testMaze.setDeadEnds(DEADENDCELLS);
         //testMaze.setStart(STARTLOC);
         //testMaze.setEnd(ENDLOC);
+        //testMaze.setStartImage(startImage);
+        //testMaze.setEndImage(endImage);
 
         assertEquals(ID,testMaze.getId());
         assertEquals(AUTHOR,testMaze.getAuthor());
@@ -69,6 +75,8 @@ public class TestMaze {
         //assertEquals(DEADENDCELLS,testMaze.getDeadEnds());
         //assertEquals(STARTLOC,testMaze.getStart());
         //assertEquals(ENDLOC,testMaze.getEnd());
+        //assertEquals(startImage,testMaze.getStartImage());
+        //assertEquals(endImage,testMaze.getEndImage());
 
     }
     /**
@@ -339,6 +347,21 @@ public class TestMaze {
             testMaze.setStart(STARTLOC);
         });
     }
+    /**
+     * Test 10: Create a maze of 100x100 length (ID 26)
+     * @author JackFFFFFF
+     */
+    @Test
+    public void TestMazeReq(){
+        for(int x=2;x<=100;x++){
+            for(int y=2;y<=100;y++){
+                int[] size = {x,y};
+                assertDoesNotThrow(() ->{
+                    Maze testSizeMaze = new Maze(size);
+                });
+            }
+        }
 
+    }
 
 }

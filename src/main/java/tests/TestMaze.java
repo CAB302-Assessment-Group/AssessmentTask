@@ -295,7 +295,7 @@ public class TestMaze {
     }
     /**
      * Test 9: Set a start and end and have them not be equal to each other
-     * @author JackFFFFFF
+     * @author JackFFFFFF & Jayden
      */
     @Test
     public void TestDuplicateStartEnd() throws MazeException {
@@ -307,13 +307,14 @@ public class TestMaze {
             testMaze.setEnd(ENDLOC);
         });
         assertThrows(MazeException.class, () ->{
-            testMaze.setEnd(ENDLOC);
             testMaze.setStart(STARTLOC);
         });
 
         //Bottom left corner
         STARTLOC[0]=0;
         STARTLOC[1]=4;
+        ENDLOC[0] = 0;
+        ENDLOC[1] = 4;
         assertThrows(MazeException.class, () ->{
             testMaze.setStart(STARTLOC);
             testMaze.setEnd(ENDLOC);
@@ -326,6 +327,8 @@ public class TestMaze {
         //Bottom right corner
         STARTLOC[0]=4;
         STARTLOC[1]=4;
+        ENDLOC[0] = 4;
+        ENDLOC[1] = 4;
         assertThrows(MazeException.class, () ->{
             testMaze.setStart(STARTLOC);
             testMaze.setEnd(ENDLOC);
@@ -338,6 +341,8 @@ public class TestMaze {
         //Top right corner
         STARTLOC[0]=4;
         STARTLOC[1]=1;
+        ENDLOC[0] = 4;
+        ENDLOC[1] = 1;
         assertThrows(MazeException.class, () ->{
             testMaze.setStart(STARTLOC);
             testMaze.setEnd(ENDLOC);

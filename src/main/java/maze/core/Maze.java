@@ -10,7 +10,10 @@ public class Maze{
     private String DateEdited;
     private String DateCreated;
     private Tile[][] mazeTiles;
+    private int[] startLoc;
+    private int[] endLoc;
     private boolean childMaze;
+    private boolean OneLocSet;
 
 
 
@@ -110,8 +113,12 @@ public class Maze{
      * @throws MazeException
      */
     public void setStart(int[] start) throws MazeException {
+        this.startLoc = start;
+        if(OneLocSet){
+            if(startLoc == endLoc)
+                throw new MazeException("Start and End Locations are the Same");
+        }
         if(!childMaze){
-
             if(start[0] == 0 || start[1] == 0 || start[0] == mazeTiles.length || start[1] == mazeTiles[1].length){
                 if(start[0]==0) // needs condition for on a corner
                     this.mazeTile(start[0],start[1]).setLeftWall(false);
@@ -121,6 +128,7 @@ public class Maze{
                     this.mazeTile(start[0],start[1]).setRightWall(false);
                 if (start[1] == mazeTiles[1].length)
                     this.mazeTile(start[0],start[1]).setBottomWall(false);
+                this.OneLocSet = true;
             }else{
                 throw new MazeException("Maze start position lies not on edge for Adult Maze");
             }
@@ -137,8 +145,12 @@ public class Maze{
      * @throws MazeException
      */
     public void setEnd(int[] end) throws MazeException {
+        this.endLoc = end;
+        if(OneLocSet){
+            if(startLoc == endLoc)
+                throw new MazeException("Start and End Locations are the Same");
+        }
         if(!childMaze){
-
             if(end[0] == 0 || end[1] == 0 || end[0] == mazeTiles.length || end[1] == mazeTiles[1].length){
                 if(end[0]==0) // needs condition for on a corner
                     this.mazeTile(end[0],end[1]).setLeftWall(false);
@@ -148,6 +160,7 @@ public class Maze{
                     this.mazeTile(end[0],end[1]).setRightWall(false);
                 if (end[1] == mazeTiles[1].length)
                     this.mazeTile(end[0],end[1]).setBottomWall(false);
+                this.OneLocSet = true;
             }else{
                 throw new MazeException("Maze start position lies not on edge for Adult Maze");
             }

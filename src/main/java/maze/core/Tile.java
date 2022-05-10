@@ -5,8 +5,8 @@ public class Tile {
     private boolean rightWall;
     private boolean topWall;
     private boolean bottomWall;
-    private String startIm;
-    private String endIm;
+    private byte[] startIm;
+    private byte[] endIm;
 
     public Tile(boolean[] walls){
         rightWall = walls[0];
@@ -15,23 +15,19 @@ public class Tile {
         bottomWall = walls[3];
     }
 
-    public void setStartImage(String imageref){
-        this.startIm = imageref;
-        //commit image in b64 to DB??
-
+    public void setStartImage(byte[] startImage){
+        this.startIm = startImage;
     }
 
-    public String getStartImage(){
+    public byte[] getStartImage(){
         return this.startIm;
     }
 
-    public void setEndImage(String imageref){
-        this.endIm = imageref;
-        //commit image in b64 to DB??
-
+    public void setEndImage(byte[] endImage){
+        this.endIm = endImage;
     }
 
-    public String getEndImage(){
+    public byte[] getEndImage(){
         return this.endIm;
     }
 

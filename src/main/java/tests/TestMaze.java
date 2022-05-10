@@ -19,7 +19,7 @@ public class TestMaze {
     }
     /**
      * Test 1 and 2: Testing for Maze class constructor and important attributes such as Maze sizing
-     * @author JackFFFFFF
+     * @author JackFFFFFF, Jayden
      */
     @Test
     public void TestTileDimensions(){
@@ -39,7 +39,7 @@ public class TestMaze {
      * - endloc
      */
     @Test
-    public void TestAttributes(){
+    public void TestAttributes() throws MazeException {
         final String AUTHOR = "Me";
         final String NAME ="My cool maze";
         final String CREATEDATE ="24/04/2022";
@@ -49,8 +49,8 @@ public class TestMaze {
         final int[] STARTLOC = {2, 1};
         final int[] ENDLOC = {5, 3};
         final int ID = 51;
-        final Byte[] startImage = new Byte[1000];
-        final Byte[] endImage = new Byte[1000];
+        final byte[] startImage = new byte[1000];
+        final byte[] endImage = new byte[1000];
 
         testMaze.setAuthor(AUTHOR);
         testMaze.setMazeName(NAME);
@@ -60,10 +60,10 @@ public class TestMaze {
 
         //testMaze.setVistCells(VISITCELLS);
         //testMaze.setDeadEnds(DEADENDCELLS);
-        //testMaze.setStart(STARTLOC);
-        //testMaze.setEnd(ENDLOC);
-        //testMaze.setStartImage(startImage);
-        //testMaze.setEndImage(endImage);
+        testMaze.setStart(STARTLOC);
+        testMaze.setEnd(ENDLOC);
+        testMaze.setStart(STARTLOC,startImage);
+        testMaze.setStart(ENDLOC,endImage);
 
         assertEquals(ID,testMaze.getId());
         assertEquals(AUTHOR,testMaze.getAuthor());
@@ -73,10 +73,10 @@ public class TestMaze {
 
         //assertEquals(VISITCELLS,testMaze.getVistCells());
         //assertEquals(DEADENDCELLS,testMaze.getDeadEnds());
-        //assertEquals(STARTLOC,testMaze.getStart());
-        //assertEquals(ENDLOC,testMaze.getEnd());
-        //assertEquals(startImage,testMaze.getStartImage());
-        //assertEquals(endImage,testMaze.getEndImage());
+        assertEquals(STARTLOC,testMaze.getStart());
+        assertEquals(ENDLOC,testMaze.getEnd());
+        assertEquals(startImage,testMaze.getStartImage());
+        assertEquals(endImage,testMaze.getEndImage());
 
     }
     /**

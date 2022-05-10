@@ -87,7 +87,7 @@ public class TestMaze {
     public void TestSetStart() throws MazeException {
         //Top left corner
         int[] STARTLOC = {0, 0};
-        //testMaze.setStart(STARTLOC)
+        testMaze.setStart(STARTLOC);
         Tile[][] start = testMaze.getMazeTiles();
         Tile startTile = start[STARTLOC[1]][STARTLOC[1]];
         assertFalse(startTile.TopWall() || startTile.LeftWall());

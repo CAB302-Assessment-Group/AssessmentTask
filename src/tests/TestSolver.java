@@ -15,7 +15,7 @@ public class TestSolver {
     @BeforeEach
     public void ConstructMaze(){
         int[] size = {10,10};
-        testMaze = new Maze(size);
+        testMaze = new Maze(size, false);
         mySolver = new Solver();
     }
 

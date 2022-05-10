@@ -13,13 +13,13 @@ public class TestMaze {
 
 
     @BeforeEach
-    public void ConstructMaze(){
+    public void ConstructMaze(){ //needs a param for child maze
         int[] size = {5,5};
-        testMaze = new Maze(size);
+        testMaze = new Maze(size, false);
     }
     /**
      * Test 1 and 2: Testing for Maze class constructor and important attributes such as Maze sizing
-     * @author JackFFFFFF
+     * @author JackFFFFFF, Jayden
      */
     @Test
     public void TestTileDimensions(){
@@ -39,7 +39,7 @@ public class TestMaze {
      * - endloc
      */
     @Test
-    public void TestAttributes(){
+    public void TestAttributes() throws MazeException {
         final String AUTHOR = "Me";
         final String NAME ="My cool maze";
         final String CREATEDATE ="24/04/2022";
@@ -49,8 +49,8 @@ public class TestMaze {
         final int[] STARTLOC = {2, 1};
         final int[] ENDLOC = {5, 3};
         final int ID = 51;
-        final Byte[] startImage = new Byte[1000];
-        final Byte[] endImage = new Byte[1000];
+        final byte[] startImage = new byte[1000];
+        final byte[] endImage = new byte[1000];
 
         testMaze.setAuthor(AUTHOR);
         testMaze.setMazeName(NAME);
@@ -60,10 +60,10 @@ public class TestMaze {
 
         //testMaze.setVistCells(VISITCELLS);
         //testMaze.setDeadEnds(DEADENDCELLS);
-        //testMaze.setStart(STARTLOC);
-        //testMaze.setEnd(ENDLOC);
-        //testMaze.setStartImage(startImage);
-        //testMaze.setEndImage(endImage);
+        testMaze.setStart(STARTLOC);
+        testMaze.setEnd(ENDLOC);
+        testMaze.setStart(STARTLOC,startImage);
+        testMaze.setStart(ENDLOC,endImage);
 
         assertEquals(ID,testMaze.getId());
         assertEquals(AUTHOR,testMaze.getAuthor());
@@ -73,10 +73,10 @@ public class TestMaze {
 
         //assertEquals(VISITCELLS,testMaze.getVistCells());
         //assertEquals(DEADENDCELLS,testMaze.getDeadEnds());
-        //assertEquals(STARTLOC,testMaze.getStart());
-        //assertEquals(ENDLOC,testMaze.getEnd());
-        //assertEquals(startImage,testMaze.getStartImage());
-        //assertEquals(endImage,testMaze.getEndImage());
+        assertEquals(STARTLOC,testMaze.getStart());
+        assertEquals(ENDLOC,testMaze.getEnd());
+        assertEquals(startImage,testMaze.getStartImage());
+        assertEquals(endImage,testMaze.getEndImage());
 
     }
     /**
@@ -87,7 +87,7 @@ public class TestMaze {
     public void TestSetStart() throws MazeException {
         //Top left corner
         int[] STARTLOC = {0, 0};
-        //testMaze.setStart(STARTLOC)
+        testMaze.setStart(STARTLOC);
         Tile[][] start = testMaze.getMazeTiles();
         Tile startTile = start[STARTLOC[1]][STARTLOC[1]];
         assertFalse(startTile.TopWall() || startTile.LeftWall());
@@ -295,7 +295,7 @@ public class TestMaze {
     }
     /**
      * Test 9: Set a start and end and have them not be equal to each other
-     * @author JackFFFFFF
+     * @author JackFFFFFF & Jayden
      */
     @Test
     public void TestDuplicateStartEnd() throws MazeException {
@@ -307,13 +307,14 @@ public class TestMaze {
             testMaze.setEnd(ENDLOC);
         });
         assertThrows(MazeException.class, () ->{
-            testMaze.setEnd(ENDLOC);
             testMaze.setStart(STARTLOC);
         });
 
         //Bottom left corner
         STARTLOC[0]=0;
         STARTLOC[1]=4;
+        ENDLOC[0] = 0;
+        ENDLOC[1] = 4;
         assertThrows(MazeException.class, () ->{
             testMaze.setStart(STARTLOC);
             testMaze.setEnd(ENDLOC);
@@ -326,6 +327,8 @@ public class TestMaze {
         //Bottom right corner
         STARTLOC[0]=4;
         STARTLOC[1]=4;
+        ENDLOC[0] = 4;
+        ENDLOC[1] = 4;
         assertThrows(MazeException.class, () ->{
             testMaze.setStart(STARTLOC);
             testMaze.setEnd(ENDLOC);
@@ -338,6 +341,8 @@ public class TestMaze {
         //Top right corner
         STARTLOC[0]=4;
         STARTLOC[1]=1;
+        ENDLOC[0] = 4;
+        ENDLOC[1] = 1;
         assertThrows(MazeException.class, () ->{
             testMaze.setStart(STARTLOC);
             testMaze.setEnd(ENDLOC);
@@ -357,7 +362,7 @@ public class TestMaze {
             for(int y=2;y<=100;y++){
                 int[] size = {x,y};
                 assertDoesNotThrow(() ->{
-                    Maze testSizeMaze = new Maze(size);
+                    Maze testSizeMaze = new Maze(size, false);
                 });
             }
         }

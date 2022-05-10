@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Frame {
     public int[] mazeSize = new int[2];
-    public Maze myMaze = new Maze(new int[]{100, 100});
+    public Maze myMaze = new Maze(new int[]{100, 100}, false); //init as adult maze
     public JFrame window;
 
     public int WELCOMEFRAME = 1;
@@ -672,7 +672,7 @@ public class Frame {
         //System.out.println(width.trim()+", "+height.trim());
 
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
-        myMaze = new Maze(mazeSize);
+        myMaze = new Maze(mazeSize, false); //need to pass child maze param
         for (int x = 0; x < myMaze.mazeSize()[0]; x++) {
             for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
                 // border styling

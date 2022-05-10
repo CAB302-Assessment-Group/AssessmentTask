@@ -5,12 +5,34 @@ public class Tile {
     private boolean rightWall;
     private boolean topWall;
     private boolean bottomWall;
+    private String startIm;
+    private String endIm;
 
     public Tile(boolean[] walls){
         rightWall = walls[0];
         topWall = walls[1];
         leftWall = walls[2];
         bottomWall = walls[3];
+    }
+
+    public void setStartImage(String imageref){
+        this.startIm = imageref;
+        //commit image in b64 to DB??
+
+    }
+
+    public String getStartImage(){
+        return this.startIm;
+    }
+
+    public void setEndImage(String imageref){
+        this.endIm = imageref;
+        //commit image in b64 to DB??
+
+    }
+
+    public String getEndImage(){
+        return this.endIm;
     }
 
     public void setLeftWall(boolean wall){

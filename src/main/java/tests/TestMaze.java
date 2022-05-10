@@ -13,9 +13,9 @@ public class TestMaze {
 
 
     @BeforeEach
-    public void ConstructMaze(){
+    public void ConstructMaze(){ //needs a param for child maze
         int[] size = {5,5};
-        testMaze = new Maze(size);
+        testMaze = new Maze(size, false);
     }
     /**
      * Test 1 and 2: Testing for Maze class constructor and important attributes such as Maze sizing
@@ -357,7 +357,7 @@ public class TestMaze {
             for(int y=2;y<=100;y++){
                 int[] size = {x,y};
                 assertDoesNotThrow(() ->{
-                    Maze testSizeMaze = new Maze(size);
+                    Maze testSizeMaze = new Maze(size, false);
                 });
             }
         }

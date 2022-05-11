@@ -1,4 +1,4 @@
-package src.main.java.tests;
+package src.tests.java;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 import src.main.java.exceptions.MazeException;
@@ -89,7 +89,7 @@ public class TestMaze {
         int[] STARTLOC = {0, 0};
         testMaze.setStart(STARTLOC);
         Tile[][] start = testMaze.getMazeTiles();
-        Tile startTile = start[STARTLOC[1]][STARTLOC[1]];
+        Tile startTile = start[STARTLOC[0]][STARTLOC[1]];
         assertFalse(startTile.TopWall() || startTile.LeftWall());
         assertFalse(startTile.TopWall() && startTile.LeftWall());
 
@@ -97,7 +97,7 @@ public class TestMaze {
         STARTLOC[0] = 0; STARTLOC[1] = 4;
         testMaze.setStart(STARTLOC);
         start = testMaze.getMazeTiles();
-        startTile = start[STARTLOC[1]][STARTLOC[2]];
+        startTile = start[STARTLOC[0]][STARTLOC[1]];
         assertFalse(startTile.BottomWall() || startTile.LeftWall());
         assertFalse(startTile.BottomWall() && startTile.LeftWall());
 
@@ -105,7 +105,7 @@ public class TestMaze {
         STARTLOC[0] = 4; STARTLOC[1] = 4;
         testMaze.setStart(STARTLOC);
         start = testMaze.getMazeTiles();
-        startTile = start[STARTLOC[1]][STARTLOC[2]];
+        startTile = start[STARTLOC[0]][STARTLOC[1]];
         assertFalse(startTile.BottomWall() || startTile.RightWall());
         assertFalse(startTile.BottomWall() && startTile.RightWall());
 
@@ -113,7 +113,7 @@ public class TestMaze {
         STARTLOC[0] = 4; STARTLOC[1] = 4;
         testMaze.setStart(STARTLOC);
         start = testMaze.getMazeTiles();
-        startTile = start[STARTLOC[1]][STARTLOC[2]];
+        startTile = start[STARTLOC[0]][STARTLOC[1]];
         assertFalse(startTile.TopWall() || startTile.RightWall());
         assertFalse(startTile.TopWall() && startTile.RightWall());
     }
@@ -129,7 +129,7 @@ public class TestMaze {
             STARTLOC[1] = i;
             testMaze.setStart(STARTLOC);
             Tile[][] start = testMaze.getMazeTiles();
-            Tile startTile = start[STARTLOC[1]][STARTLOC[2]];
+            Tile startTile = start[STARTLOC[0]][STARTLOC[1]];
             assertFalse(startTile.LeftWall());
         }
         //Across bottom
@@ -138,7 +138,7 @@ public class TestMaze {
             STARTLOC[0] = i;
             testMaze.setStart(STARTLOC);
             Tile[][] start = testMaze.getMazeTiles();
-            Tile startTile = start[STARTLOC[1]][STARTLOC[2]];
+            Tile startTile = start[STARTLOC[0]][STARTLOC[1]];
             assertFalse(startTile.LeftWall());
         }
         //Across bottom
@@ -147,7 +147,7 @@ public class TestMaze {
             STARTLOC[1] = i;
             testMaze.setStart(STARTLOC);
             Tile[][] start = testMaze.getMazeTiles();
-            Tile startTile = start[STARTLOC[1]][STARTLOC[2]];
+            Tile startTile = start[STARTLOC[0]][STARTLOC[1]];
             assertFalse(startTile.LeftWall());
         }
         //Across top
@@ -156,7 +156,7 @@ public class TestMaze {
             STARTLOC[0] = i;
             testMaze.setStart(STARTLOC);
             Tile[][] start = testMaze.getMazeTiles();
-            Tile startTile = start[STARTLOC[1]][STARTLOC[2]];
+            Tile startTile = start[STARTLOC[0]][STARTLOC[1]];
             assertFalse(startTile.LeftWall());
         }
 
@@ -175,12 +175,12 @@ public class TestMaze {
         });
 
         //Almost edge
-        STARTLOC[1] = 2; STARTLOC[2] = 2;
+        STARTLOC[0] = 2; STARTLOC[1] = 2;
         assertThrows(MazeException.class, () ->{
             testMaze.setStart(STARTLOC);
         });
 
-        STARTLOC[1] = 4; STARTLOC[2] = 4;
+        STARTLOC[0] = 4; STARTLOC[1] = 4;
         assertThrows(MazeException.class, () ->{
             testMaze.setStart(STARTLOC);
         });
@@ -196,7 +196,7 @@ public class TestMaze {
         int[] STARTLOC = {0, 0};
         testMaze.setEnd(STARTLOC);
         Tile[][] start = testMaze.getMazeTiles();
-        Tile startTile = start[STARTLOC[1]][STARTLOC[1]];
+        Tile startTile = start[STARTLOC[0]] [STARTLOC[1]];
         assertFalse(startTile.TopWall() || startTile.LeftWall());
         assertFalse(startTile.TopWall() && startTile.LeftWall());
 
@@ -204,7 +204,7 @@ public class TestMaze {
         STARTLOC[0] = 0; STARTLOC[1] = 4;
         testMaze.setEnd(STARTLOC);
         start = testMaze.getMazeTiles();
-        startTile = start[STARTLOC[1]][STARTLOC[2]];
+        startTile = start[STARTLOC[0]][STARTLOC[1]];
         assertFalse(startTile.BottomWall() || startTile.LeftWall());
         assertFalse(startTile.BottomWall() && startTile.LeftWall());
 
@@ -212,7 +212,7 @@ public class TestMaze {
         STARTLOC[0] = 4; STARTLOC[1] = 4;
         testMaze.setEnd(STARTLOC);
         start = testMaze.getMazeTiles();
-        startTile = start[STARTLOC[1]][STARTLOC[2]];
+        startTile = start[STARTLOC[0]][STARTLOC[1]];
         assertFalse(startTile.BottomWall() || startTile.RightWall());
         assertFalse(startTile.BottomWall() && startTile.RightWall());
 
@@ -220,7 +220,7 @@ public class TestMaze {
         STARTLOC[0] = 4; STARTLOC[1] = 4;
         testMaze.setEnd(STARTLOC);
         start = testMaze.getMazeTiles();
-        startTile = start[STARTLOC[1]][STARTLOC[2]];
+        startTile = start[STARTLOC[0]][STARTLOC[1]];
         assertFalse(startTile.TopWall() || startTile.RightWall());
         assertFalse(startTile.TopWall() && startTile.RightWall());
     }
@@ -236,7 +236,7 @@ public class TestMaze {
             STARTLOC[1] = i;
             testMaze.setEnd(STARTLOC);
             Tile[][] start = testMaze.getMazeTiles();
-            Tile startTile = start[STARTLOC[1]][STARTLOC[2]];
+            Tile startTile = start[STARTLOC[0]][STARTLOC[1]];
             assertFalse(startTile.LeftWall());
         }
         //Across bottom
@@ -245,7 +245,7 @@ public class TestMaze {
             STARTLOC[0] = i;
             testMaze.setEnd(STARTLOC);
             Tile[][] start = testMaze.getMazeTiles();
-            Tile startTile = start[STARTLOC[1]][STARTLOC[2]];
+            Tile startTile = start[STARTLOC[0]][STARTLOC[1]];
             assertFalse(startTile.LeftWall());
         }
         //Across bottom
@@ -254,7 +254,7 @@ public class TestMaze {
             STARTLOC[1] = i;
             testMaze.setEnd(STARTLOC);
             Tile[][] start = testMaze.getMazeTiles();
-            Tile startTile = start[STARTLOC[1]][STARTLOC[2]];
+            Tile startTile = start[STARTLOC[0]][STARTLOC[1]];
             assertFalse(startTile.LeftWall());
         }
         //Across top
@@ -263,7 +263,7 @@ public class TestMaze {
             STARTLOC[0] = i;
             testMaze.setEnd(STARTLOC);
             Tile[][] start = testMaze.getMazeTiles();
-            Tile startTile = start[STARTLOC[1]][STARTLOC[2]];
+            Tile startTile = start[STARTLOC[0]][STARTLOC[1]];
             assertFalse(startTile.LeftWall());
         }
 
@@ -282,12 +282,12 @@ public class TestMaze {
         });
 
         //Almost edge
-        STARTLOC[1] = 2; STARTLOC[2] = 2;
+        STARTLOC[0] = 2; STARTLOC[1] = 2;
         assertThrows(MazeException.class, () ->{
             testMaze.setEnd(STARTLOC);
         });
 
-        STARTLOC[1] = 4; STARTLOC[2] = 4;
+        STARTLOC[0] = 4; STARTLOC[1] = 4;
         assertThrows(MazeException.class, () ->{
             testMaze.setEnd(STARTLOC);
         });

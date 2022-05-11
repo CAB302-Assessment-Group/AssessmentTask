@@ -2,6 +2,11 @@ package src.main.java.maze.core;
 
 import src.main.java.util.statusCodes;
 
+// SQLITE3 database import
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 // using a singleton class to define the database since there won't be more than once
 // instance of the database
 /**
@@ -12,7 +17,12 @@ public class Database {
     private static Database dbInstance = null;
 
     protected Database() {
-        // System.out.println("Initiated database instance");
+        System.out.println("Initiated database instance");
+
+        // init database connection
+        Connection conn = null;
+
+        String dbURl = "jdbc:sqlite:System." + System.getProperty("user.dir") + "\\..\\database.db";
     }
 
     public Database getInstance() {

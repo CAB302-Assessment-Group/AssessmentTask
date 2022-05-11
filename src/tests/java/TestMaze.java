@@ -18,7 +18,8 @@ public class TestMaze {
         testMaze = new Maze(size, false);
     }
     /**
-     * Test 1 and 2: Testing for Maze class constructor and important attributes such as Maze sizing
+     * Test 1 and 2: Testing for Maze class constructor and important attributes such as Maze sizing.
+     *
      * @author JackFFFFFF, Jayden
      */
     @Test
@@ -35,8 +36,6 @@ public class TestMaze {
      * TODO: Test for following new fields (uncomment once implemented)
      * - deadEndCells
      * - visitedCells
-     * - startloc
-     * - endloc
      */
     @Test
     public void TestAttributes() throws MazeException {

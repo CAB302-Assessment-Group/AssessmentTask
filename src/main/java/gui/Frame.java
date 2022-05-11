@@ -1,5 +1,6 @@
 package src.main.java.gui;
 
+import org.junit.jupiter.api.Test;
 import src.main.java.maze.core.Maze;
 import src.main.java.maze.core.Tile;
 
@@ -8,10 +9,11 @@ import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Frame {
     public int[] mazeSize = new int[2];
-    public Maze myMaze = new Maze(new int[]{100, 100});
+    public Maze myMaze = new Maze(new int[]{100, 100}, false); //init as adult maze
     public JFrame window;
 
     public int WELCOMEFRAME = 1;
@@ -608,6 +610,48 @@ public class Frame {
 
         return true;
     }
+    /**
+     * Validates the validateInput is working as per user story
+     * @author Jack
+     */
+    @Test
+    public void TestValidateInput(){
+        //Valid Case 1
+        String[] inputs = {"1", "1"};
+        assertTrue(this.validateInput(inputs));
+
+        //Valid Case 2
+        inputs[0] ="1";inputs[1]="100";
+        assertTrue(this.validateInput(inputs));
+
+        //Valid Case 3
+        inputs[0] ="100";inputs[1]="1";
+        assertTrue(this.validateInput(inputs));
+
+        //Valid Case 4
+        inputs[0] ="100";inputs[1]="100";
+        assertTrue(this.validateInput(inputs));
+
+        //Invalid Case 1
+        inputs[0] ="1 2";inputs[1]="1 0 0";
+        assertFalse(this.validateInput(inputs), "Not valid inputs " + inputs);
+
+        //Invalid Case 2
+        inputs[0] ="0";inputs[1]="1";
+        assertFalse(this.validateInput(inputs), "Under limit for " + inputs);
+
+        //Invalid Case 4
+        inputs[0] ="-1";inputs[1]="0";
+        assertFalse(this.validateInput(inputs), "Under limit for " + inputs);
+
+        //Invalid Case 5
+        inputs[0] ="1F";inputs[1]="one";
+        assertFalse(this.validateInput(inputs),"Not valid inputs " + inputs);
+
+        //Invalid Case 6
+        inputs[0] ="101";inputs[1]="101";
+        assertFalse(this.validateInput(inputs),"Over limit for " + inputs);
+    }
 
     /**
      * @author Jayden and Hudson
@@ -628,7 +672,7 @@ public class Frame {
         //System.out.println(width.trim()+", "+height.trim());
 
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
-        myMaze = new Maze(mazeSize);
+        myMaze = new Maze(mazeSize, false); //need to pass child maze param
         for (int x = 0; x < myMaze.mazeSize()[0]; x++) {
             for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
                 // border styling

@@ -16,7 +16,14 @@ public class Solver {
     // getter for the solution
     public ArrayList<Integer[]> Solution() { return myTree; }
 
-    // gets the neighbours of the current tile in a boolean array starting from 3 o'clock and moving anti-clockwise
+    /**
+     * gets the neighbours of the current tile in a boolean array starting from 3 o'clock and moving anti-clockwise
+     * @param tileLocationX Location of the tile row-wise
+     * @param tileLocationY Location of the tile column-wise
+     * @param myMaze Maze that the position is
+     * @return boolean array of 4 values for determining if neighbours are valid
+     * @author Hudson
+     */
     public boolean[] neighbours(int tileLocationX, int tileLocationY, Maze myMaze) {
         Tile selectedTile = myMaze.mazeTile(tileLocationX, tileLocationY);
 
@@ -39,7 +46,16 @@ public class Solver {
 
     // checks to see if the current position is a winning position
     // this is done by checking if the algorithm is on the edge of the board
+
+    /**
+     * Checks to see if the current position is a winning position.
+     * This is done by checking if the algorithm is on the edge of the board
+     * @param position Current position determined by DFS
+     * @param gb Maze to be solved
+     * @return True if the position is a good value that is on the edge or is the end, else do not
+     */
     private boolean isWin(Integer[] position, Maze gb) {
+        // TODO: This stops the maze from going any further if the start is on an edge
         if (position[0] == gb.mazeSize()[0]) return true;
         if (position[0] == 0) return true;
         if (position[1] == gb.mazeSize()[1]) return true;
@@ -47,6 +63,15 @@ public class Solver {
 
         return false;
     }
+
+    /**
+     * Depth First Search Algorithim that recursively calls itself until it reaches the end or
+     * everything is a dead end
+     * @param gb Maze to solve
+     * @param position The position going into before solving further
+     * @return The new position the search has chosen to go to based off of position and current explored maze
+     * @author Hudson
+     */
 
     public Integer[] DFS(Maze gb, Integer[] position) {
         boolean[] tileN = neighbours(position[0], position[1], gb);
@@ -67,6 +92,7 @@ public class Solver {
         myTree.add(position);
 
         // checks to see if the current position is winning
+
         if (isWin(position, gb)) {
             return position;
         }
@@ -106,5 +132,28 @@ public class Solver {
 
         // return to the last node with possible options
         return null;
+    }
+
+    /**
+     * Method to print out solution in a way that can be tested/debugged easier
+     * @return String output in form x1,y1 -> x2,y2 -> ... -> xEnd, yEnd ->
+     */
+    public String outputSolution(){
+        String output="";
+        for (Integer[] i: this.Solution()) {
+            output+=(i[0] +","+i[1] +" -> ");
+        }
+        return  output;
+    }
+    /**
+     * Method to print out solution in a way that can be tested/debugged easier
+     * @return String output in form x1,y1 -> x2,y2 -> ... -> xEnd, yEnd ->
+     */
+    public String outputSolution(ArrayList<Integer[]> Solution){
+        String output="";
+        for (Integer[] i: Solution) {
+            output+=(i[0] +","+i[1] +" -> ");
+        }
+        return  output;
     }
 }

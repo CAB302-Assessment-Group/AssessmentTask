@@ -118,14 +118,14 @@ public class Maze{
                 throw new MazeException("Start and End Locations are the Same");
         }
 
-        if(start[0] == 0 || start[1] == 0 || start[0] == mazeTiles.length || start[1] == mazeTiles[1].length){
+        if(start[0] == 0 || start[1] == 0 || start[0] == mazeTiles.length-1 || start[1] == mazeTiles[1].length-1){
             if(start[0]==0) // needs condition for on a corner
                 this.mazeTile(start[0],start[1]).setLeftWall(false);
             if(start[1] == 0)
                 this.mazeTile(start[0],start[1]).setTopWall(false);
-            if (start[0] == mazeTiles.length)
+            if (start[0] == mazeTiles.length-1)
                 this.mazeTile(start[0],start[1]).setRightWall(false);
-            if (start[1] == mazeTiles[1].length)
+            if (start[1] == mazeTiles[1].length-1)
                 this.mazeTile(start[0],start[1]).setBottomWall(false);
             this.OneLocSet = true;
         }else{
@@ -163,14 +163,14 @@ public class Maze{
             if(startLoc == endLoc)
                 throw new MazeException("Start and End Locations are the Same");
         }
-        if(end[0] == 0 || end[1] == 0 || end[0] == mazeTiles.length || end[1] == mazeTiles[1].length){
+        if(end[0] == 0 || end[1] == 0 || end[0] == mazeTiles.length-1 || end[1] == mazeTiles[1].length-1){
             if(end[0]==0) // needs condition for on a corner
                 this.mazeTile(end[0],end[1]).setLeftWall(false);
             if(end[1] == 0)
                 this.mazeTile(end[0],end[1]).setTopWall(false);
-            if (end[0] == mazeTiles.length)
+            if (end[0] == mazeTiles.length-1)
                 this.mazeTile(end[0],end[1]).setRightWall(false);
-            if (end[1] == mazeTiles[1].length)
+            if (end[1] == mazeTiles[1].length-1)
                 this.mazeTile(end[0],end[1]).setBottomWall(false);
             this.OneLocSet = true;
         }else{
@@ -194,6 +194,7 @@ public class Maze{
         }
             this.OneLocSet = true;
     }
+
 
     public int[] getStart() {
         return startLoc;

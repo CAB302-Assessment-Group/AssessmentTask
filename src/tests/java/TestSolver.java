@@ -2,6 +2,7 @@ package src.tests.java;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
+import org.opentest4j.AssertionFailedError;
 import src.main.java.exceptions.MazeException;
 import src.main.java.maze.core.Maze;
 import src.main.java.maze.core.solver.Solver;
@@ -89,12 +90,38 @@ public class TestSolver {
     @Test
     public void TestBestSolutionNoWalls(){
         mySolver.DFS(testMaze,START);
-        ArrayList<Integer[]> Solution = new ArrayList<Integer[]>();
+        ArrayList<Integer[]> Solution1 = new ArrayList<Integer[]>();
+        //Potential Solution 1: Diagonal going down then right
         for(int i=0;i<testMaze.mazeSize()[0]-1;i++){
             Integer[] pos = {i,i};
-            Solution.add(pos);
+            Solution1.add(pos);
+
+            if(i+1!=testMaze.mazeSize()[0]-1){
+                Integer[] pos2 = {i+1,i};
+                Solution1.add(pos2);
+            }
+
         }
-        assertEquals(mySolver.outputSolution(Solution),mySolver.outputSolution(),"Maze solver is not optimal");
+        //Potential Solution 2: Diagonal going right then down
+        ArrayList<Integer[]> Solution2 = new ArrayList<Integer[]>();
+        for(int i=0;i<testMaze.mazeSize()[0]-1;i++){
+            Integer[] pos = {i,i};
+            Solution2.add(pos);
+
+            if(i+1!=testMaze.mazeSize()[0]-1){
+                Integer[] pos2 = {i,i+1};
+                Solution2.add(pos2);
+            }
+
+        }
+
+        try {
+            assertEquals(mySolver.outputSolution(Solution1),mySolver.outputSolution(),"Maze solver is not optimal");
+
+        } catch (AssertionFailedError e){
+            assertEquals(mySolver.outputSolution(Solution2),mySolver.outputSolution(),"Maze solver is not optimal");
+
+        }
 
     }
 

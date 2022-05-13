@@ -44,7 +44,7 @@ public class TestSolver {
         assertArrayEquals(tile_0_0N, mySolver.neighbours(0, 0, testMaze));
 
         // set tile 3, 4's right wall to active
-        testMaze.mazeTile(4, 4).setLeftWall(true);
+        testMaze.mazeTile(4, 4).setRightWall(true);
 
         boolean[] tile_4_4N = {true, true, false, true};
         assertArrayEquals(tile_4_4N, mySolver.neighbours(4, 4, testMaze));

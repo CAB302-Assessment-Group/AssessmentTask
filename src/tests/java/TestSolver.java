@@ -2,8 +2,12 @@ package src.tests.java;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
+import org.opentest4j.AssertionFailedError;
+import src.main.java.exceptions.MazeException;
 import src.main.java.maze.core.Maze;
 import src.main.java.maze.core.solver.Solver;
+
+import java.util.ArrayList;
 
 public class TestSolver {
     Maze testMaze;
@@ -12,12 +16,19 @@ public class TestSolver {
     /**
      * @author Hudson
      */
+    public final int[] STARTLOC = {0,0};
+    public final int[] ENDLOC= {9,9};
+    public final Integer[] START = {0,0};
+    public final Integer[] END= {9,9};
     @BeforeEach
-    public void ConstructMaze(){
+    public void ConstructMaze() throws MazeException {
         //TODO Add in call to automatically generate or manually make one so we can test solvability
         int[] size = {10,10};
         testMaze = new Maze(size, false);
         mySolver = new Solver();
+
+        testMaze.setStart(STARTLOC);
+        testMaze.setEnd(ENDLOC);
     }
     /**
      * Test 1: Test to see if the neighbours functions returns values adjacent to the cell
@@ -47,10 +58,71 @@ public class TestSolver {
     @Test
     public void TestSolverTime(){
         long startTime = System.nanoTime();
-        //mySolver.solveMaze(testMaze);
+        mySolver.DFS(testMaze,START);
         long endTime = System.nanoTime();
-
+        //mySolver.outputSolution();
         long duration = (endTime - startTime)/1000000;  //divide by 1000000 to get milliseconds.
         assertTrue(duration<60000,"Maze solver took longer then 60 seconds");
     }
+    /**
+     * Test 3: Test to see if the solver returns a valid search where the search starts at the starting location
+     * and finishes at the end location
+     * #ID 27
+     * @author Jack
+     */
+    @Test
+    public void TestValidSolver(){
+        mySolver.DFS(testMaze,START);
+        int l = mySolver.Solution().size();
+        assertEquals(START,mySolver.Solution().get(0),"First position in solver is " +
+                mySolver.Solution().get(l-1)[0] + ", " + mySolver.Solution().get(l-1)[1] + " instead of "+
+                END[0] + ", " + END[1]);
+        assertEquals(END,mySolver.Solution().get(l-1),"Last position in solver is " +
+                mySolver.Solution().get(l-1)[0] + ", " + mySolver.Solution().get(l-1)[1] + " instead of "+
+                END[0] + ", " + END[1]);
+    }
+    /**
+     * Test 4: Tests to see if it follows the fastest path for a blank maze from top left to bottom right.
+     * This should be a diagonal path
+     * #ID 27
+     * @author Jack
+     */
+    @Test
+    public void TestBestSolutionNoWalls(){
+        mySolver.DFS(testMaze,START);
+        ArrayList<Integer[]> Solution1 = new ArrayList<Integer[]>();
+        //Potential Solution 1: Diagonal going down then right
+        for(int i=0;i<testMaze.mazeSize()[0]-1;i++){
+            Integer[] pos = {i,i};
+            Solution1.add(pos);
+
+            if(i+1!=testMaze.mazeSize()[0]-1){
+                Integer[] pos2 = {i+1,i};
+                Solution1.add(pos2);
+            }
+
+        }
+        //Potential Solution 2: Diagonal going right then down
+        ArrayList<Integer[]> Solution2 = new ArrayList<Integer[]>();
+        for(int i=0;i<testMaze.mazeSize()[0]-1;i++){
+            Integer[] pos = {i,i};
+            Solution2.add(pos);
+
+            if(i+1!=testMaze.mazeSize()[0]-1){
+                Integer[] pos2 = {i,i+1};
+                Solution2.add(pos2);
+            }
+
+        }
+
+        try {
+            assertEquals(mySolver.outputSolution(Solution1),mySolver.outputSolution(),"Maze solver is not optimal");
+
+        } catch (AssertionFailedError e){
+            assertEquals(mySolver.outputSolution(Solution2),mySolver.outputSolution(),"Maze solver is not optimal");
+
+        }
+
+    }
+
 }

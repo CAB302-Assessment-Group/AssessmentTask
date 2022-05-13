@@ -25,7 +25,7 @@ public class Database {
         System.out.println("Initiated database instance");
     }
 
-    private Connection connect() {
+    public static Connection connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:C://sqlite/SSSIT.db";
         Connection conn = null;
@@ -37,7 +37,7 @@ public class Database {
         return conn;
     }
 
-    public Database getInstance() {
+    public static Database getInstance() {
         if (dbInstance == null) dbInstance = new Database();
 
         return dbInstance;

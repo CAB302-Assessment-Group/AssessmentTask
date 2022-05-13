@@ -84,7 +84,7 @@ public class TestSolver {
     /**
      * Test 4: Tests to see if it follows the fastest path for a blank maze from top left to bottom right.
      * This should be a diagonal path
-     * #ID 27
+     * #ID 28
      * @author Jack
      */
     @Test

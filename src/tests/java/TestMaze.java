@@ -226,6 +226,7 @@ public class TestMaze {
     /**
      * Test 7: Set an end position and have only one edge value be false. Not testing corners as previous test did this
      * @author JackFFFFFF
+     * #ID 14
      */
     @Test
     public void TestSetEndEdge() throws MazeException {
@@ -352,8 +353,9 @@ public class TestMaze {
         });
     }
     /**
-     * Test 10: Create a maze of 100x100 length (ID 26)
+     * Test 10: Create a maze of 100x100 length
      * @author JackFFFFFF
+     * #ID 26
      */
     @Test
     public void TestMazeReq(){
@@ -366,6 +368,43 @@ public class TestMaze {
             }
         }
 
+        //Negative case
+        int[] size = {101,100};
+        assertThrows(MazeException.class, () ->{
+            Maze testSizeMaze = new Maze(size, false);
+        },"Invalid size " + size[0] + ", " + size[1]);
+
+        //Negative case
+        size[0] = 100; size[0] = 101;
+        assertThrows(MazeException.class, () ->{
+            Maze testSizeMaze = new Maze(size, false);
+        },"Invalid size " + size[0] + ", " + size[1]);
+
+        //Negative case
+        size[0] = 101; size[0] = 101;
+        assertThrows(MazeException.class, () ->{
+            Maze testSizeMaze = new Maze(size, false);
+        },"Invalid size " + size[0] + ", " + size[1]);
+
+        //Negative case
+        size[0] = -1; size[0] = 100;
+        assertThrows(MazeException.class, () ->{
+            Maze testSizeMaze = new Maze(size, false);
+        },"Invalid size " + size[0] + ", " + size[1]);
+
+        //Negative case
+        size[0] = 100; size[0] = -1;
+        assertThrows(MazeException.class, () ->{
+            Maze testSizeMaze = new Maze(size, false);
+        },"Invalid size " + size[0] + ", " + size[1]);
+
+        //Negative case
+        size[0] = 100; size[0] = -1;
+        assertThrows(MazeException.class, () ->{
+            Maze testSizeMaze = new Maze(size, false);
+        },"Invalid size " + size[0] + ", " + size[1]);
+
     }
+
 
 }

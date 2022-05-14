@@ -78,19 +78,6 @@ public class Solver {
     public Integer[] DFS(Maze gb, Integer[] position) {
         boolean[] tileN = neighbours(position[0], position[1], gb);
 
-        // make sure that we haven't visited the tile yet
-        boolean haveVisited = false;
-
-        // check if the tile has already been visited
-        // TODO: NEED TO REFACTOR THIS CODE TO HAVE BETTER PERFORMANCE
-        for (int i = 0; i < visited.size(); i++) {
-            if (visited.get(i) == position) {
-                haveVisited = true;
-            }
-
-            if (haveVisited) break;
-        }
-
         // adds the current position to the solution tree
         myTree.add(position);
 
@@ -103,37 +90,52 @@ public class Solver {
         // goes through all possible options that a tile has
         if (tileN[0]) {
             Integer[] newTileLoc = {position[0] + 1, position[1]};
-            Integer[] possibleSolution = DFS(gb, newTileLoc);
 
-            if (possibleSolution != null) {
-                return possibleSolution;
+            // check that the new tile location hasn't been visited
+            if (!(inList(visited, newTileLoc))) {
+
+                // search through the next solution
+                Integer[] possibleSolution = DFS(gb, newTileLoc);
+
+                if (possibleSolution != null) {
+                    return possibleSolution;
+                }
             }
         }
 
         if (tileN[1]) {
             Integer[] newTileLoc = {position[0], position[1] + 1};
-            Integer[] possibleSolution = DFS(gb, newTileLoc);
 
-            if (possibleSolution != null) {
-                return possibleSolution;
+            if (!(inList(visited, newTileLoc))) {
+                Integer[] possibleSolution = DFS(gb, newTileLoc);
+
+                if (possibleSolution != null) {
+                    return possibleSolution;
+                }
             }
         }
 
         if (tileN[2]) {
             Integer[] newTileLoc = {position[0] - 1, position[1]};
-            Integer[] possibleSolution = DFS(gb, newTileLoc);
 
-            if (possibleSolution != null) {
-                return possibleSolution;
+            if (!(inList(visited, newTileLoc))) {
+                Integer[] possibleSolution = DFS(gb, newTileLoc);
+
+                if (possibleSolution != null) {
+                    return possibleSolution;
+                }
             }
         }
 
         if (tileN[3]) {
             Integer[] newTileLoc = {position[0], position[1] - 1};
-            Integer[] possibleSolution = DFS(gb, newTileLoc);
 
-            if (possibleSolution != null) {
-                return possibleSolution;
+            if (!(inList(visited, newTileLoc))) {
+                Integer[] possibleSolution = DFS(gb, newTileLoc);
+
+                if (possibleSolution != null) {
+                    return possibleSolution;
+                }
             }
         }
 

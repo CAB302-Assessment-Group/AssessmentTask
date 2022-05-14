@@ -77,9 +77,9 @@ public class TestSolver {
         assertEquals(START,mySolver.Solution().get(0),"First position in solver is " +
                 mySolver.Solution().get(l-1)[0] + ", " + mySolver.Solution().get(l-1)[1] + " instead of "+
                 END[0] + ", " + END[1]);
-        assertEquals(END,mySolver.Solution().get(l-1),"Last position in solver is " +
-                mySolver.Solution().get(l-1)[0] + ", " + mySolver.Solution().get(l-1)[1] + " instead of "+
-                END[0] + ", " + END[1]);
+        assertEquals(END[0] + ", " + END[1],mySolver.Solution().get(l-1)[0] + ", " +mySolver.Solution().get(l-1)[1]
+                ,"Last position in solver is " + mySolver.Solution().get(l-1)[0] + ", "
+                        + mySolver.Solution().get(l-1)[1] + " instead of "+ END[0] + ", " + END[1]);
     }
     /**
      * Test 4: Tests to see if it follows the fastest path for a blank maze from top left to bottom right.
@@ -91,37 +91,27 @@ public class TestSolver {
     public void TestBestSolutionNoWalls(){
         mySolver.DFS(testMaze,START);
         ArrayList<Integer[]> Solution1 = new ArrayList<Integer[]>();
-        //Potential Solution 1: Diagonal going down then right
+        //Across top
         for(int i=0;i<testMaze.mazeSize()[0]-1;i++){
-            Integer[] pos = {i,i};
+            Integer[] pos = {i,0};
             Solution1.add(pos);
 
-            if(i+1!=testMaze.mazeSize()[0]-1){
-                Integer[] pos2 = {i+1,i};
-                Solution1.add(pos2);
-            }
-
         }
-        //Potential Solution 2: Diagonal going right then down
-        ArrayList<Integer[]> Solution2 = new ArrayList<Integer[]>();
         for(int i=0;i<testMaze.mazeSize()[0]-1;i++){
-            Integer[] pos = {i,i};
-            Solution2.add(pos);
-
-            if(i+1!=testMaze.mazeSize()[0]-1){
-                Integer[] pos2 = {i,i+1};
-                Solution2.add(pos2);
-            }
+            Integer[] pos = {9,i};
+            Solution1.add(pos);
 
         }
+        Integer[] pos = {9,9};
+        Solution1.add(pos);
+        assertEquals(mySolver.outputSolution(Solution1),mySolver.outputSolution(),"Maze solver is not optimal");
 
-        try {
-            assertEquals(mySolver.outputSolution(Solution1),mySolver.outputSolution(),"Maze solver is not optimal");
 
-        } catch (AssertionFailedError e){
-            assertEquals(mySolver.outputSolution(Solution2),mySolver.outputSolution(),"Maze solver is not optimal");
 
-        }
+
+
+
+
 
     }
 

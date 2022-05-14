@@ -55,7 +55,6 @@ public class Solver {
      * @return True if the position is a good value that is on the edge or is the end, else do not
      */
     private boolean isWin(Integer[] position, Maze gb) {
-        // TODO: This stops the maze from going any further if the start is on an edge
 //        if (position[0] == gb.mazeSize()[0]) return true;
 //        if (position[0] == 0) return true;
 //        if (position[1] == gb.mazeSize()[1]) return true;
@@ -162,6 +161,7 @@ public class Solver {
     /**
      * Method to print out solution in a way that can be tested/debugged easier
      * @return String output in form x1,y1 -> x2,y2 -> ... -> xEnd, yEnd ->
+     * @author Jack
      */
     public String outputSolution(){
         String output="";
@@ -173,6 +173,7 @@ public class Solver {
     /**
      * Method to print out solution in a way that can be tested/debugged easier
      * @return String output in form x1,y1 -> x2,y2 -> ... -> xEnd, yEnd ->
+     * @author Jack
      */
     public String outputSolution(ArrayList<Integer[]> Solution){
         String output="";

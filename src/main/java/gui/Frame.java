@@ -264,16 +264,35 @@ public class Frame {
 
 
         JRadioButton StandardMazeButton = new JRadioButton("Standard Maze");
-        StandardMazeButton.setBounds(20, 20, 150, 20);
+        StandardMazeButton.setBounds(20, 20, 100, 20);
         StandardMazeButton.setActionCommand("Standard Maze Action");
 
         JRadioButton ChildrensMazeButton = new JRadioButton("Childrens Maze");
-        ChildrensMazeButton.setBounds(20, 50, 150, 20);
+        ChildrensMazeButton.setBounds(20, 50, 100, 20);
         ChildrensMazeButton.setActionCommand("Childrens Maze Action");
 
         ButtonGroup MazeTypeSelection = new ButtonGroup();
         MazeTypeSelection.add(StandardMazeButton);
         MazeTypeSelection.add(ChildrensMazeButton);
+
+
+        JRadioButton EasyDifficultyButton = new JRadioButton("Easy");
+        EasyDifficultyButton.setActionCommand("Easy Difficulty Action");
+        EasyDifficultyButton.setBounds(20,   20, 100, 20);
+
+        JRadioButton MediumDifficultyButton = new JRadioButton("Medium");
+        MediumDifficultyButton.setActionCommand("Medium Difficulty Action");
+        MediumDifficultyButton.setBounds(20, 50, 100, 20);
+
+        JRadioButton HardDifficultyButton = new JRadioButton("Hard");
+        HardDifficultyButton.setActionCommand("Hard Difficulty Action");
+        HardDifficultyButton.setBounds(20, 80, 100, 20);
+
+        ButtonGroup DifficultySelection = new ButtonGroup();
+        DifficultySelection.add(EasyDifficultyButton);
+        DifficultySelection.add(MediumDifficultyButton);
+        DifficultySelection.add(HardDifficultyButton);
+
 
 
         JButton Back = new JButton("Back");
@@ -292,22 +311,9 @@ public class Frame {
 
 
 
-        JRadioButton EasyDifficulty = new JRadioButton("Easy");
-        EasyDifficulty.setActionCommand("Easy Difficulty Action");
-        EasyDifficulty.setBounds(360,   30, 100, 20);
 
-        JRadioButton MediumDifficulty = new JRadioButton("Medium");
-        MediumDifficulty.setActionCommand("Medium Difficulty Action");
-        MediumDifficulty.setBounds(460, 30, 100, 20);
 
-        JRadioButton HardDifficulty = new JRadioButton("Hard");
-        HardDifficulty.setActionCommand("Hard Difficulty Action");
-        HardDifficulty.setBounds(560, 30, 100, 20);
 
-        ButtonGroup DifficultySelection = new ButtonGroup();
-        DifficultySelection.add(EasyDifficulty);
-        DifficultySelection.add(MediumDifficulty);
-        DifficultySelection.add(HardDifficulty);
 
         JButton setSize = new JButton("Generate Maze");
         setSize.setBounds(660, 30, 130, 20);
@@ -331,6 +337,10 @@ public class Frame {
         JPanel MazeDifficultyPanel = new JPanel();
         MazeDifficultyPanel.setBounds(370, 100, 175, 125);
         MazeDifficultyPanel.setBorder(BorderFactory.createTitledBorder("Maze Difficulty"));
+        MazeDifficultyPanel.add(EasyDifficultyButton);
+        MazeDifficultyPanel.add(MediumDifficultyButton);
+        MazeDifficultyPanel.add(HardDifficultyButton);
+
 
 
         //window.add(inputx);
@@ -347,9 +357,9 @@ public class Frame {
         //window.add(ChildrensMazeButton);
         window.add(ImportStartingLogo);
         window.add(ImportFinishingLogo);
-        window.add(EasyDifficulty);
-        window.add(MediumDifficulty);
-        window.add(HardDifficulty);
+        //window.add(EasyDifficulty);
+        //window.add(MediumDifficulty);
+        //window.add(HardDifficulty);
         window.add(MazePropertiesPanel);
         window.add(MazeTypePanel);
         window.add(MazeDifficultyPanel);

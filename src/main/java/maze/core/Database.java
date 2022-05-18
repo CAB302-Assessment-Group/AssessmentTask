@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 // for javadocs and report
 // using code from https://www.javatpoint.com/java-sqlite
@@ -42,6 +43,13 @@ public class Database {
 
         return dbInstance;
     }
+
+    /**
+     * Reads a db.props file
+     * @param filePath specifies the file path to the db.props file (can be relative path)
+     * @author Hudson
+     */
+    private String[] readProps(String filePath) { return new String[0]; }
 
 //    private SerialBlob generateThumbnail(Maze myMaze) {
 //    }

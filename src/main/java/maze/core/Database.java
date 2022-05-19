@@ -1,24 +1,22 @@
 package src.main.java.maze.core;
 
-import com.sun.jdi.connect.ListeningConnector;
-import src.main.java.util;
 import src.main.java.util.statusCodes;
-
-// SQLITE3 database import
-import javax.sql.rowset.serial.SerialBlob;
-import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 // file reader
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 // for javadocs and report
 // using code from https://www.javatpoint.com/java-sqlite
@@ -30,61 +28,67 @@ import java.util.Map;
  * @author Hudson
  */
 public class Database {
-    private static Database dbInstance = null;
+    private static Connection dbInstance = null;
+
+    public static final String CREATE_TABLE =
+            "CREATE TABLE IF NOT EXISTS address ("
+                    + "idx INTEGER PRIMARY KEY /*!40101 AUTO_INCREMENT */ NOT NULL UNIQUE,"
+                    + "name VARCHAR(30),"
+                    + "creator VARCHAR(30),"
+                    + "last_editor VARCHAR(20),"
+                    + "create_timestamp VARCHAR(10),"
+                    + "logoOne VARCHAR(30)" + ");";
 
     protected Database() {
+        connect();
         System.out.println("Initiated database instance");
     }
 
-    public static Connection connect() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:C://sqlite/SSSIT.db";
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return conn;
+    private statusCodes.dbStatus CreateSchema() {
+        dbInstance = this.getInstance();
+
+        Statement st = dbInstance.createStatement();
+        st.execute(CREATE_TABLE);
+
+        return statusCodes.dbStatus.OK;
     }
 
-    public static Database getInstance() {
-        if (dbInstance == null) dbInstance = new Database();
+    public static void connect() {
+        FileInputStream in = null;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+
+            System.out.println("got here");
+            Properties props = new Properties();
+
+            in = new FileInputStream("./db.props");
+            props.load(in);
+            in.close();
+
+            // specify the data source, username and password
+            String url = props.getProperty("jdbc.url");
+            String username = props.getProperty("jdbc.username");
+            String password = props.getProperty("jdbc.password");
+            String schema = props.getProperty("jdbc.schema");
+
+            // get a connection
+            dbInstance = DriverManager.getConnection(url + "/" + schema, username, password);
+        } catch (SQLException sqle) {
+            System.err.println(sqle);
+        } catch (FileNotFoundException fnfe) {
+            System.err.println(fnfe);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static Connection getInstance() {
+        if (dbInstance == null) new Database();
 
         return dbInstance;
-    }
-
-    /**
-     * Reads a file in a given directory, mostly used to read db.props file
-     * @param filePath specifies the file path to the db.props file (can be relative path)
-     * @author Hudson
-     */
-    private String[] readFile(String filePath) {
-        ArrayList<String> fileContents = new ArrayList<String>();
-
-        // read the file line by line and append it to fileContents arrayList
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            for(String line; (line = br.readLine()) != null; ) fileContents.add(line);
-        } catch (Exception e) { return new String[0]; }
-
-        // convert ArrayList<String> to array to better conserve memory and keep inline with
-        // the variable types in the reset of the program
-        return fileContents.toArray(new String[fileContents.size()]);
-    }
-
-    private Map<String, String> parseProps(String[] fileContents) {
-        Map<String, String> map = new HashMap<String, String>();
-
-        try {
-            map.put("url", fileContents[0].substring(8));
-            map.put("schema", fileContents[1].substring(11));
-            map.put("username", fileContents[1].substring(13));
-            map.put("password", fileContents[1].substring(13));
-
-
-        } catch (Exception e) { return new HashMap<>(); }
-
-        return map;
     }
 
 //    private SerialBlob generateThumbnail(Maze myMaze) {
@@ -97,28 +101,7 @@ public class Database {
      * @return The status/success code of the function
      */
     public statusCodes.dbStatus exportMaze(Maze myMaze) {
-        String sql = "INSERT INTO mazes(Maze_Name, Creator, Last_Editor, Create_time, Edit_time, Logo_one, Logo_two, Thumbnail, Maze_Object) VALUES(?,?,?,?,?,?,?,?,?)";
-
-        if (myMaze == null) return statusCodes.dbStatus.INVALID_ARGUMENTS;
-
-        try{
-            Connection conn = this.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, myMaze.getMazeName());
-            pstmt.setString(2, myMaze.getAuthor());
-            pstmt.setString(3, "todo");
-            pstmt.setString(4, myMaze.getDateCreated());
-            pstmt.setString(5, myMaze.getDateEdited());
-            pstmt.setBlob(6, new SerialBlob(myMaze.getStartImage()));
-            pstmt.setBlob(7, new SerialBlob(myMaze.getEndImage()));
-//            pstmt.setBlob(8, new SerialBlob()); todo
-//            pstmt.setBlob(9, new SerialBlob( myMaze ));
-            pstmt.executeUpdate();
-
-            return statusCodes.dbStatus.OK;
-        } catch (SQLException e) {
-            return statusCodes.dbStatus.FAILED;
-        }
+        return statusCodes.dbStatus.FAILED;
     }
 
     /**

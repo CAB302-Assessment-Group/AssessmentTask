@@ -1,4 +1,4 @@
-jdbc.url=jdbc:mariadb://localhost:3306
-jdbc.schema=mazeco
-jdbc.username=user
-jdbc.password=hdsajkhd
+jdbc.url=jdbc:sqlite:cab302.db
+jdbc.schema=
+jdbc.username=
+jdbc.password=

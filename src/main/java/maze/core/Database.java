@@ -1,5 +1,6 @@
 package src.main.java.maze.core;
 
+import com.sun.jdi.connect.ListeningConnector;
 import src.main.java.util;
 import src.main.java.util.statusCodes;
 
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 // for javadocs and report
 // using code from https://www.javatpoint.com/java-sqlite
@@ -52,11 +55,11 @@ public class Database {
     }
 
     /**
-     * Reads a db.props file
+     * Reads a file in a given directory, mostly used to read db.props file
      * @param filePath specifies the file path to the db.props file (can be relative path)
      * @author Hudson
      */
-    private String[] readProps(String filePath) {
+    private String[] readFile(String filePath) {
         ArrayList<String> fileContents = new ArrayList<String>();
 
         // read the file line by line and append it to fileContents arrayList
@@ -67,6 +70,21 @@ public class Database {
         // convert ArrayList<String> to array to better conserve memory and keep inline with
         // the variable types in the reset of the program
         return fileContents.toArray(new String[fileContents.size()]);
+    }
+
+    private Map<String, String> parseProps(String[] fileContents) {
+        Map<String, String> map = new HashMap<String, String>();
+
+        try {
+            map.put("url", fileContents[0].substring(8));
+            map.put("schema", fileContents[1].substring(11));
+            map.put("username", fileContents[1].substring(13));
+            map.put("password", fileContents[1].substring(13));
+
+
+        } catch (Exception e) { return new HashMap<>(); }
+
+        return map;
     }
 
 //    private SerialBlob generateThumbnail(Maze myMaze) {

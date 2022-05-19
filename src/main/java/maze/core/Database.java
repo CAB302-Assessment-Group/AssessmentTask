@@ -1,14 +1,21 @@
 package src.main.java.maze.core;
 
+import src.main.java.util;
 import src.main.java.util.statusCodes;
 
 // SQLITE3 database import
 import javax.sql.rowset.serial.SerialBlob;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+// file reader
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 // for javadocs and report
 // using code from https://www.javatpoint.com/java-sqlite
@@ -49,7 +56,18 @@ public class Database {
      * @param filePath specifies the file path to the db.props file (can be relative path)
      * @author Hudson
      */
-    private String[] readProps(String filePath) { return new String[0]; }
+    private String[] readProps(String filePath) {
+        ArrayList<String> fileContents = new ArrayList<String>();
+
+        // read the file line by line and append it to fileContents arrayList
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            for(String line; (line = br.readLine()) != null; ) fileContents.add(line);
+        } catch (Exception e) { return new String[0]; }
+
+        // convert ArrayList<String> to array to better conserve memory and keep inline with
+        // the variable types in the reset of the program
+        return fileContents.toArray(new String[fileContents.size()]);
+    }
 
 //    private SerialBlob generateThumbnail(Maze myMaze) {
 //    }

@@ -5,12 +5,30 @@ public class Tile {
     private boolean rightWall;
     private boolean topWall;
     private boolean bottomWall;
+    private byte[] startIm;
+    private byte[] endIm;
 
     public Tile(boolean[] walls){
         rightWall = walls[0];
         topWall = walls[1];
         leftWall = walls[2];
         bottomWall = walls[3];
+    }
+
+    public void setStartImage(byte[] startImage){
+        this.startIm = startImage;
+    }
+
+    public byte[] getStartImage(){
+        return this.startIm;
+    }
+
+    public void setEndImage(byte[] endImage){
+        this.endIm = endImage;
+    }
+
+    public byte[] getEndImage(){
+        return this.endIm;
     }
 
     public void setLeftWall(boolean wall){
@@ -32,13 +50,13 @@ public class Tile {
     public boolean LeftWall() {
         return leftWall;
     }
-    public boolean rightWall() {
+    public boolean RightWall() {
         return rightWall;
     }
-    private boolean topWall() {
+    public boolean TopWall() {
         return topWall;
     }
-    public boolean bottomWall() {
+    public boolean BottomWall() {
         return bottomWall;
     }
 }

@@ -15,7 +15,7 @@ public class TestMaze {
     @BeforeEach
     public void ConstructMaze(){ //needs a param for child maze
         int[] size = {5,5};
-        testMaze = new Maze(size, false);
+        testMaze = new Maze(size);
     }
     /**
      * Test 1 and 2: Testing for Maze class constructor and important attributes such as Maze sizing.
@@ -363,7 +363,7 @@ public class TestMaze {
             for(int y=2;y<=100;y++){
                 int[] size = {x,y};
                 assertDoesNotThrow(() ->{
-                    Maze testSizeMaze = new Maze(size, false);
+                    Maze testSizeMaze = new Maze(size);
                 });
             }
         }
@@ -371,37 +371,37 @@ public class TestMaze {
         //Negative case
         int[] size = {101,100};
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
         //Negative case
         size[0] = 100; size[0] = 101;
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
         //Negative case
         size[0] = 101; size[0] = 101;
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
         //Negative case
         size[0] = -1; size[0] = 100;
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
         //Negative case
         size[0] = 100; size[0] = -1;
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
         //Negative case
         size[0] = 100; size[0] = -1;
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
     }

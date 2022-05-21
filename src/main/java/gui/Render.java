@@ -1,6 +1,6 @@
 package src.main.java.gui;
 
-import org.junit.jupiter.api.Test;
+
 import src.main.java.maze.core.Maze;
 import src.main.java.gui.Frame;
 
@@ -10,8 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static src.main.java.gui.Frame.initialise;
 
 public class Render {
@@ -24,7 +22,7 @@ public class Render {
      * @param inputs The width and height specified by the user
      * @return True if input is a number and not less than or equal to 0. False if not
      */
-    private static boolean validateInput(String[] inputs) {
+    public static boolean validateInput(String[] inputs) {
         for (int i = 0; i < inputs.length; i++) {
             try {
                 if (Integer.parseInt(inputs[i]) <= 0) return false;
@@ -35,48 +33,7 @@ public class Render {
 
         return true;
     }
-    /**
-     * Validates the validateInput is working as per user story
-     * @author Jack
-     */
-    @Test
-    public void TestValidateInput(){
-        //Valid Case 1
-        String[] inputs = {"1", "1"};
-        assertTrue(this.validateInput(inputs));
 
-        //Valid Case 2
-        inputs[0] ="1";inputs[1]="100";
-        assertTrue(this.validateInput(inputs));
-
-        //Valid Case 3
-        inputs[0] ="100";inputs[1]="1";
-        assertTrue(this.validateInput(inputs));
-
-        //Valid Case 4
-        inputs[0] ="100";inputs[1]="100";
-        assertTrue(this.validateInput(inputs));
-
-        //Invalid Case 1
-        inputs[0] ="1 2";inputs[1]="1 0 0";
-        assertFalse(this.validateInput(inputs), "Not valid inputs " + inputs);
-
-        //Invalid Case 2
-        inputs[0] ="0";inputs[1]="1";
-        assertFalse(this.validateInput(inputs), "Under limit for " + inputs);
-
-        //Invalid Case 4
-        inputs[0] ="-1";inputs[1]="0";
-        assertFalse(this.validateInput(inputs), "Under limit for " + inputs);
-
-        //Invalid Case 5
-        inputs[0] ="1F";inputs[1]="one";
-        assertFalse(this.validateInput(inputs),"Not valid inputs " + inputs);
-
-        //Invalid Case 6
-        inputs[0] ="101";inputs[1]="101";
-        assertFalse(this.validateInput(inputs),"Over limit for " + inputs);
-    }
 
     /**
      * @author Jayden and Hudson

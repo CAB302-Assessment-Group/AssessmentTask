@@ -110,10 +110,16 @@ public class Maze implements MazeOutline{
      * @throws MazeException
      */
     public void setStart(int[] start) throws MazeException {
-        this.startLoc = start;
         if(OneLocSet){
-            if(startLoc == endLoc)
+            if(startLoc !=null && startLoc == endLoc)
+            {
                 throw new MazeException("Start and End Locations are the Same");
+            }
+            else {
+                this.startLoc=start;
+            }
+
+
         }
 
         if(start[0] == 0 || start[1] == 0 || start[0] == mazeTiles.length-1 || start[1] == mazeTiles[1].length-1){
@@ -139,14 +145,16 @@ public class Maze implements MazeOutline{
      * @throws MazeException
      */
     public void setStart(int[] start, byte[] StartImage) throws MazeException {
-        this.startLoc = start;
-        this.mazeTile(start[0],start[1]).setStartImage(StartImage);
-        if(OneLocSet){
-            if(startLoc == endLoc)
+        if (OneLocSet) {
+            if (startLoc != null && startLoc == endLoc) {
                 throw new MazeException("Start and End Locations are the Same");
-        }
-        this.OneLocSet = true;
+            } else {
+                this.startLoc=start;
+                this.mazeTile(startLoc[0], startLoc[1]).setStartImage(StartImage);
+            }
+            this.OneLocSet = true;
 
+        }
     }
     /**
      * Validates that the end location is on the outside of the maze for adult mazes
@@ -156,10 +164,15 @@ public class Maze implements MazeOutline{
      * @throws MazeException
      */
     public void setEnd(int[] end) throws MazeException {
-        this.endLoc = end;
         if(OneLocSet){
-            if(startLoc == endLoc)
+            if(startLoc!=null && startLoc == endLoc){
                 throw new MazeException("Start and End Locations are the Same");
+            }
+            else{
+                this.endLoc=end;
+
+            }
+
         }
         if(end[0] == 0 || end[1] == 0 || end[0] == mazeTiles.length-1 || end[1] == mazeTiles[1].length-1){
             if(end[0]==0) // needs condition for on a corner
@@ -180,15 +193,18 @@ public class Maze implements MazeOutline{
      * Sets the end location for the maze for child mazes
      * @param end 2D position representing the end coordinate
      * @param EndImage image for the end tile in byte[] format
-     * @author Jayden
+     * @author Jayden, Jack
      * @throws MazeException
      */
     public void setEnd(int[] end, byte[] EndImage) throws MazeException {
-        this.endLoc = end;
-        this.mazeTile(end[0],end[1]).setEndImage(EndImage);
         if(OneLocSet){
-            if(startLoc == endLoc)
+            if(endLoc !=null && startLoc == endLoc)
                 throw new MazeException("Start and End Locations are the Same");
+            else {
+                this.endLoc=end;
+                this.mazeTile(endLoc[0], endLoc[1]).setStartImage(EndImage);
+            }
+
         }
             this.OneLocSet = true;
     }
@@ -202,8 +218,12 @@ public class Maze implements MazeOutline{
         return endLoc;
     }
 
+    /**
+     * End image does not exist for a standard maze
+     * @return
+     */
     public byte[] getEndImage() {
-        return this.mazeTile(endLoc[0],endLoc[1]).getEndImage();
+        return null;
     }
 
     public byte[] getStartImage() {

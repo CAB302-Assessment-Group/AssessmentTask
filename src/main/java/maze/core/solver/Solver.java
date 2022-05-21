@@ -55,12 +55,12 @@ public class Solver {
      * @return True if the position is a good value that is on the edge or is the end, else do not
      */
     private boolean isWin(Integer[] position, Maze gb) {
-//        if (position[0] == gb.mazeSize()[0]) return true;
-//        if (position[0] == 0) return true;
-//        if (position[1] == gb.mazeSize()[1]) return true;
-//        if (position[1] == 0) return true;
+        //if (position[0] == gb.mazeSize()[0]) return true;
+        //if (position[0] == 0) return true;
+        //if (position[1] == gb.mazeSize()[1]) return true;
+        //if (position[1] == 0) return true;
 
-        if (position[0] == 9 && position[1] == 9) return true;
+        if (position[0] == gb.getEnd()[0] && position[1] == gb.getEnd()[1]) return true;
 
         return false;
     }

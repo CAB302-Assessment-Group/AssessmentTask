@@ -21,7 +21,7 @@ public class TestDatabase {
 
         final int[] SIZE = {10,10};
 
-        testChildMaze = new Maze(SIZE,false);
+        testChildMaze = new Maze(SIZE);
         testChildMaze.setStart(STARTLOC);
         testChildMaze.setEnd(ENDLOC);
         testChildMaze.setMazeName(MAZENAME);

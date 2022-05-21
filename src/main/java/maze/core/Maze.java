@@ -3,7 +3,7 @@ package src.main.java.maze.core;
 
 import src.main.java.exceptions.MazeException;
 
-public class Maze{
+public class Maze implements MazeOutline{
     private String Author;
     private String MazeName;
     private int id;
@@ -12,7 +12,6 @@ public class Maze{
     private Tile[][] mazeTiles;
     private int[] startLoc;
     private int[] endLoc;
-    private boolean childMaze;
     private boolean OneLocSet;
 
 
@@ -73,9 +72,8 @@ public class Maze{
      * @param size where size[0] is the width(x) and size[1] is the height(y)
      */
 
-    public Maze(int[] size, boolean childMaze){
+    public Maze(int[] size){
         mazeTiles = new Tile[size[0]][size[1]];
-        this.childMaze = childMaze;
         for (int x = 0; x < size[0]; x++) {
             for (int y = 0; y < size[1]; y++) {
                 boolean[] myTileWalls = {false, false, false, false};

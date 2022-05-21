@@ -24,7 +24,7 @@ public class TestSolver {
     public void ConstructMaze() throws MazeException {
         //TODO Add in call to automatically generate or manually make one so we can test solvability
         int[] size = {10,10};
-        testMaze = new Maze(size, false);
+        testMaze = new Maze(size);
         mySolver = new Solver();
 
         testMaze.setStart(STARTLOC);
@@ -105,14 +105,6 @@ public class TestSolver {
         Integer[] pos = {9,9};
         Solution1.add(pos);
         assertEquals(mySolver.outputSolution(Solution1),mySolver.outputSolution(),"Maze solver is not optimal");
-
-
-
-
-
-
-
-
     }
 
 }

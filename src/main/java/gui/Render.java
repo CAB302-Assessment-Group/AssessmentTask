@@ -69,7 +69,7 @@ public class Render {
                 tempBTN.setBackground(y == 0 ? Color.BLACK : Color.WHITE);
 
                 tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).BottomWall() ? Color.BLACK : Color.WHITE);
-                
+
 
                 window.add(tempBTN);
 

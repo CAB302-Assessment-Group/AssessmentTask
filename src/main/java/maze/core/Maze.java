@@ -268,12 +268,16 @@ public class Maze implements MazeOutline{
             if(mazeTile(location[0],location[1]).getVisited() == false){ //location has not been visited
                 if(step == 0){ //gone up
                     mazeTile(location[0],location[1]).setBottomWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setTopWall(false);
                 }else if(step == 1){ //gone down
                     mazeTile(location[0],location[1]).setTopWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setBottomWall(false);
                 }else if(step == 2){ //gone left
                     mazeTile(location[0],location[1]).setRightWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setLeftWall(false);
                 }else{ //gone right
                     mazeTile(location[0],location[1]).setLeftWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setRightWall(false);
                 }
                 mazeTile(location[0],location[1]).setVisited(true);
                 currentwalk.add(new int[]{location[0],location[1]});
@@ -316,12 +320,16 @@ public class Maze implements MazeOutline{
                 if(!breaker){
                     if(step == 0){ //gone up
                         mazeTile(location[0],location[1]).setBottomWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setTopWall(false);
                     }else if(step == 1){ //gone down
                         mazeTile(location[0],location[1]).setTopWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setBottomWall(false);
                     }else if(step == 2){ //gone left
                         mazeTile(location[0],location[1]).setRightWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setLeftWall(false);
                     }else{ //gone right
                         mazeTile(location[0],location[1]).setLeftWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setRightWall(false);
                     }
                     mazeTile(location[0],location[1]).setVisited(true);
                     currentwalk.add(new int[]{location[0],location[1]});

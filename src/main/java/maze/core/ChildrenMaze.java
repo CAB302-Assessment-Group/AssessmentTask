@@ -1,4 +1,4 @@
-package src.main.java.maze.core;
+package maze.core;
 
 public class ChildrenMaze extends Maze {
 

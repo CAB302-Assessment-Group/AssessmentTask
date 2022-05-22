@@ -1,10 +1,10 @@
-package src.main.java;
+
 
 import src.main.java.exceptions.MazeException;
-import src.main.java.gui.Frame;
-import src.main.java.maze.core.Database;
-import src.main.java.maze.core.Maze;
-import src.main.java.maze.core.solver.Solver;
+import gui.Frame;
+import maze.core.Database;
+import maze.core.Maze;
+import maze.core.solver.Solver;
 
 import javax.xml.crypto.Data;
 
@@ -33,7 +33,7 @@ public class Main {
 //
 //        mySolver.DFS(testMaze,START);
 
-        Database.getInstance();
+        //Database.getInstance();
 
 
         Frame mainWindow = Frame.getInstance();

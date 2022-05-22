@@ -1,8 +1,8 @@
-package src.main.java.gui;
+package gui;
 
 
-import src.main.java.maze.core.Maze;
-import src.main.java.gui.Frame;
+import maze.core.Maze;
+import gui.Frame;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static src.main.java.gui.Frame.initialise;
+import static gui.Frame.initialise;
 
 public class Render {
     private static JFrame window = Frame.getInstance().window;
@@ -48,6 +48,7 @@ public class Render {
             System.out.println("[ERROR] Invalid maze size...");
             return;
         }
+
         initialise(width.trim(), height.trim());
 
         //System.out.println(width.trim()+", "+height.trim());

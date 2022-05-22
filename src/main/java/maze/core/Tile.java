@@ -1,4 +1,4 @@
-package src.main.java.maze.core;
+package maze.core;
 
 public class Tile {
     private boolean leftWall;
@@ -7,6 +7,7 @@ public class Tile {
     private boolean bottomWall;
     private byte[] startIm;
     private byte[] endIm;
+    private boolean visited;
 
     public Tile(boolean[] walls){
         rightWall = walls[0];
@@ -59,4 +60,7 @@ public class Tile {
     public boolean BottomWall() {
         return bottomWall;
     }
+
+    public boolean getVisited(){ return visited;}
+    public void setVisited(boolean visited){this.visited = visited;}
 }

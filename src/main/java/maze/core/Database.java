@@ -1,4 +1,4 @@
-package src.main.java.maze.core;
+package maze.core;
 
 import src.main.java.util.statusCodes;
 
@@ -44,7 +44,7 @@ public class Database {
         System.out.println("Initiated database instance");
     }
 
-    private statusCodes.dbStatus CreateSchema() {
+    private statusCodes.dbStatus CreateSchema() throws SQLException {
         dbInstance = this.getInstance();
 
         Statement st = dbInstance.createStatement();

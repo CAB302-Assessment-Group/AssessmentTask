@@ -1,8 +1,8 @@
-package src.main.java.gui;
+package gui;
 
 import org.junit.jupiter.api.Test;
-import src.main.java.maze.core.Maze;
-import src.main.java.maze.core.Tile;
+import maze.core.Maze;
+import maze.core.Tile;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static org.junit.jupiter.api.Assertions.*;
-import src.main.java.gui.Render;
+import gui.Render;
 public class Frame {
     public int[] mazeSize = new int[2];
     public Maze myMaze = new Maze(new int[]{100, 100}); //init as adult maze

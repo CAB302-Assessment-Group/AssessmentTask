@@ -1,13 +1,11 @@
-package src.tests.java;
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 import src.main.java.exceptions.MazeException;
-import src.main.java.gui.Frame;
-import src.main.java.gui.Render;
-import src.main.java.maze.core.Maze;
-import src.main.java.maze.core.Tile;
-
-import java.sql.Blob;
+import gui.Frame;
+import gui.Render;
+import maze.core.Maze;
+import maze.core.Tile;
 
 
 public class TestMaze {

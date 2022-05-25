@@ -1,11 +1,10 @@
-package src.tests.java;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
-import org.opentest4j.AssertionFailedError;
 import src.main.java.exceptions.MazeException;
-import src.main.java.maze.core.Maze;
-import src.main.java.maze.core.solver.Solver;
+import maze.core.Maze;
+import maze.core.solver.Solver;
 
 import java.util.ArrayList;
 

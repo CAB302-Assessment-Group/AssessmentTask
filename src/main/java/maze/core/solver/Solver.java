@@ -1,6 +1,6 @@
-package src.main.java.maze.core.solver;
+package maze.core.solver;
 
-import src.main.java.maze.core.*;
+import maze.core.*;
 
 import java.util.ArrayList;
 

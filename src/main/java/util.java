@@ -8,6 +8,12 @@ public class util {
             UNAUTHORISED,
             INVALID_ARGUMENTS
         }
+
+        public static enum readFile {
+            FileNotFound,
+            InvalidContents,
+            FileToBig
+        }
     }
 
     public static boolean[] U(boolean[] a1, boolean[] a2) {

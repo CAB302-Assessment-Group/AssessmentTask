@@ -1,9 +1,11 @@
-package src.main.java.maze.core;
+package maze.core;
 
 
 import src.main.java.exceptions.MazeException;
 
-public class Maze{
+import java.util.ArrayList;
+
+public class Maze implements MazeOutline{
     private String Author;
     private String MazeName;
     private int id;
@@ -12,7 +14,6 @@ public class Maze{
     private Tile[][] mazeTiles;
     private int[] startLoc;
     private int[] endLoc;
-    private boolean childMaze;
     private boolean OneLocSet;
 
 
@@ -73,9 +74,8 @@ public class Maze{
      * @param size where size[0] is the width(x) and size[1] is the height(y)
      */
 
-    public Maze(int[] size, boolean childMaze){
+    public Maze(int[] size){
         mazeTiles = new Tile[size[0]][size[1]];
-        this.childMaze = childMaze;
         for (int x = 0; x < size[0]; x++) {
             for (int y = 0; y < size[1]; y++) {
                 boolean[] myTileWalls = {false, false, false, false};
@@ -210,5 +210,108 @@ public class Maze{
 
     public byte[] getStartImage() {
         return this.mazeTile(startLoc[0],startLoc[1]).getStartImage();
+    }
+
+    /**
+     * Automatically generates the maze between the start and end tiles
+     * Utilises Wilson's Algorithm
+     * @author Jayden
+     *
+     */
+    public boolean generateMaze() {
+        int[] location = startLoc;
+
+        for(int i = 0; i<mazeSize()[0]; i++){ //set all walls to be true
+            for(int j = 0; j<mazeSize()[1]; j++){
+                mazeTile(i,j).setLeftWall(true);
+                mazeTile(i,j).setRightWall(true);
+                mazeTile(i,j).setTopWall(true);
+                mazeTile(i,j).setBottomWall(true);
+            }
+        }
+
+        ArrayList<int[]> currentwalk = new ArrayList<>();
+        currentwalk.add(location);
+        int visited = 1;
+        mazeTile(location[0],location[1]).setVisited(true);
+        int step;
+        while(visited != mazeSize()[0] * mazeSize()[1]){
+            while(true){ //pick a valid step
+                step = (int)Math.round(Math.random() * 3);
+
+                if(step == 0){ //go up
+                    if(location[1] != 0){
+                        location[1]--;
+                        break;
+                    }
+                }else if(step == 1){ //go down
+                    if(location[1] != mazeSize()[1]){
+                        location[1]++;
+                        break;
+                    }
+                }else if(step == 2){ //go left
+                    if(location[0] != 0){
+                        location[0]--;
+                        break;
+                    }
+                }else{ //go right
+                    if(location[0] != mazeSize()[0]){
+                        location[0]++;
+                        break;
+                    }
+                }
+            }
+            if(mazeTile(location[0],location[1]).getVisited() == false){ //location has not been visited
+                if(step == 0){ //gone up
+                    mazeTile(location[0],location[1]).setBottomWall(false);
+                }else if(step == 1){ //gone down
+                    mazeTile(location[0],location[1]).setTopWall(false);
+                }else if(step == 2){ //gone left
+                    mazeTile(location[0],location[1]).setRightWall(false);
+                }else{ //gone right
+                    mazeTile(location[0],location[1]).setLeftWall(false);
+                }
+                currentwalk.add(location);
+                visited++;
+            }else { //cell has already been visited, try all other possibilities from
+
+                int count = 1;
+                boolean breaker = false;
+                while (breaker == false) {
+                    location = currentwalk.get(currentwalk.size() - 1); //reset the location
+                    step = Math.floorMod(step + 1, 4); //increment the step and try again
+                    if (step == 0) { //go up
+                        if (location[1] != 0) {
+                            location[1]--;
+                        }
+                    } else if (step == 1) { //go down
+                        if (location[1] != mazeSize()[1]) {
+                            location[1]++;
+                        }
+                    } else if (step == 2) { //go left
+                        if (location[0] != 0) {
+                            location[0]--;
+                        }
+                    } else { //go right
+                        if (location[0] != mazeSize()[0]) {
+                            location[0]++;
+                        }
+                    }
+                    breaker = mazeTile(location[0], location[1]).getVisited(); //check if new cell has been visited
+                    count++;
+                    if (count == 4) { //tried all options
+                        location = currentwalk.get(0);
+                        currentwalk.remove(0); //pop from front of queue
+                        breaker = true;
+                    }
+                }
+            }
+        }
+
+
+
+
+
+        return false;
     }
 }

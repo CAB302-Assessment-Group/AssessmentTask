@@ -1,11 +1,10 @@
-package src.tests.java;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
-import org.opentest4j.AssertionFailedError;
 import src.main.java.exceptions.MazeException;
-import src.main.java.maze.core.Maze;
-import src.main.java.maze.core.solver.Solver;
+import maze.core.Maze;
+import maze.core.solver.Solver;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ public class TestSolver {
     public void ConstructMaze() throws MazeException {
         //TODO Add in call to automatically generate or manually make one so we can test solvability
         int[] size = {10,10};
-        testMaze = new Maze(size, false);
+        testMaze = new Maze(size);
         mySolver = new Solver();
 
         testMaze.setStart(STARTLOC);
@@ -105,14 +104,6 @@ public class TestSolver {
         Integer[] pos = {9,9};
         Solution1.add(pos);
         assertEquals(mySolver.outputSolution(Solution1),mySolver.outputSolution(),"Maze solver is not optimal");
-
-
-
-
-
-
-
-
     }
 
 }

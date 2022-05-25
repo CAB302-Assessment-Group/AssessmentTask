@@ -1,11 +1,11 @@
-package src.tests.java;
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 import src.main.java.exceptions.MazeException;
-import src.main.java.maze.core.Maze;
-import src.main.java.maze.core.Tile;
-
-import java.sql.Blob;
+import gui.Frame;
+import gui.Render;
+import maze.core.Maze;
+import maze.core.Tile;
 
 
 public class TestMaze {
@@ -15,7 +15,7 @@ public class TestMaze {
     @BeforeEach
     public void ConstructMaze(){ //needs a param for child maze
         int[] size = {5,5};
-        testMaze = new Maze(size, false);
+        testMaze = new Maze(size);
     }
     /**
      * Test 1 and 2: Testing for Maze class constructor and important attributes such as Maze sizing.
@@ -363,7 +363,7 @@ public class TestMaze {
             for(int y=2;y<=100;y++){
                 int[] size = {x,y};
                 assertDoesNotThrow(() ->{
-                    Maze testSizeMaze = new Maze(size, false);
+                    Maze testSizeMaze = new Maze(size);
                 });
             }
         }
@@ -371,39 +371,82 @@ public class TestMaze {
         //Negative case
         int[] size = {101,100};
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
         //Negative case
         size[0] = 100; size[0] = 101;
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
         //Negative case
         size[0] = 101; size[0] = 101;
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
         //Negative case
         size[0] = -1; size[0] = 100;
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
         //Negative case
         size[0] = 100; size[0] = -1;
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
         //Negative case
         size[0] = 100; size[0] = -1;
         assertThrows(MazeException.class, () ->{
-            Maze testSizeMaze = new Maze(size, false);
+            Maze testSizeMaze = new Maze(size);
         },"Invalid size " + size[0] + ", " + size[1]);
 
+    }
+    /**
+     * Test 11:
+     * Validates the validateInput is working for frame class
+     * @author Jack
+     */
+    @Test
+    public void TestValidateInput(){
+        //Valid Case 1
+        String[] inputs = {"1", "1"};
+        assertTrue(Render.validateInput(inputs));
+
+        //Valid Case 2
+        inputs[0] ="1";inputs[1]="100";
+        assertTrue(Render.validateInput(inputs));
+
+        //Valid Case 3
+        inputs[0] ="100";inputs[1]="1";
+        assertTrue(Render.validateInput(inputs));
+
+        //Valid Case 4
+        inputs[0] ="100";inputs[1]="100";
+        assertTrue(Render.validateInput(inputs));
+
+        //Invalid Case 1
+        inputs[0] ="1 2";inputs[1]="1 0 0";
+        assertFalse(Render.validateInput(inputs), "Not valid inputs " + inputs);
+
+        //Invalid Case 2
+        inputs[0] ="0";inputs[1]="1";
+        assertFalse(Render.validateInput(inputs), "Under limit for " + inputs);
+
+        //Invalid Case 4
+        inputs[0] ="-1";inputs[1]="0";
+        assertFalse(Render.validateInput(inputs), "Under limit for " + inputs);
+
+        //Invalid Case 5
+        inputs[0] ="1F";inputs[1]="one";
+        assertFalse(Render.validateInput(inputs),"Not valid inputs " + inputs);
+
+        //Invalid Case 6
+        inputs[0] ="101";inputs[1]="101";
+        assertFalse(Render.validateInput(inputs),"Over limit for " + inputs);
     }
 
 

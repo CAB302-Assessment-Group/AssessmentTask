@@ -133,7 +133,7 @@ public class Frame {
             }
         });
 
-        // on Exist button press close window
+        // on Exit button press close window
         Exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -232,6 +232,7 @@ public class Frame {
         window.getContentPane().removeAll();
         window.getContentPane().repaint();
 
+
         // maze needs to be drawn inside a pane for scrollbars to work and for other buttons to stay constant
         /*JScrollPane pane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         window.setContentPane(pane);*/
@@ -240,24 +241,24 @@ public class Frame {
 
 
         JLabel labelx = new JLabel("Width:");
-        labelx.setBounds(20,20,50,20);
+        labelx.setBounds(20,100,50,20);
 
         JTextArea inputx = new JTextArea(xvar);
-        inputx.setBounds(110, 20, 50, 20);
+        inputx.setBounds(70, 100, 30, 20);
 
 
         JLabel labely = new JLabel("Height:");
-        labely.setBounds(20,50,50,20);
+        labely.setBounds(20,130,50,20);
 
         JTextArea inputy = new JTextArea(yvar);
-        inputy.setBounds(110, 50, 50, 20);
+        inputy.setBounds(70, 130, 30, 20);
 
 
         JLabel LogoCellSizeLabel = new JLabel("Logo Cell Size:");
-        LogoCellSizeLabel.setBounds(20,80,100,20);
+        LogoCellSizeLabel.setBounds(0,0,100,20);
 
         JTextArea LogoCellSizeInput = new JTextArea();
-        LogoCellSizeInput.setBounds(110, 80, 50,20);
+        LogoCellSizeInput.setBounds(0,0, 50,20);
 
 
         JRadioButton StandardMazeButton = new JRadioButton("Standard Maze");
@@ -303,10 +304,10 @@ public class Frame {
         ExportMazeButton.setBounds(150, 30, 130, 20);
 
         JButton GenerateBlankMazeButton = new JButton("Generate Blank Maze");
-        GenerateBlankMazeButton.setBounds(600, 10, 120, 20);
+        GenerateBlankMazeButton.setBounds(140, 100, 175, 20);
 
         JButton AutoGenerateMazeButton = new JButton("Auto Generate Maze");
-        AutoGenerateMazeButton.setBounds(10,10,10,10);
+        AutoGenerateMazeButton.setBounds(140,130,175,20);
 
         JButton ImportStartingLogo = new JButton("Import Starting Logo");
         ImportStartingLogo.setBounds(200,10,175,20);
@@ -321,22 +322,54 @@ public class Frame {
         MenuBarPanel.setBorder(BorderFactory.createTitledBorder("Menu Bar"));
         MenuBarPanel.add(BackButton);
         MenuBarPanel.add(SaveButton);
-        MenuBarPanel.add(ExportMazeButton);
+        //MenuBarPanel.add(ExportMazeButton);
 
 
 
 
 
 
-        JPanel MazePropertiesPanel = new JPanel();
+
+
+        /*JPanel MazePropertiesPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+
+        constraints.gridwidth = 3;
+        constraints.gridheight = 3;
+
+
         MazePropertiesPanel.setBounds(10,100,175,125);
         MazePropertiesPanel.setBorder(BorderFactory.createTitledBorder("Maze Properties"));
-        MazePropertiesPanel.add(labelx);
-        MazePropertiesPanel.add(inputx);
-        MazePropertiesPanel.add(labely);
-        MazePropertiesPanel.add(inputy);
-        MazePropertiesPanel.add(LogoCellSizeLabel);
-        MazePropertiesPanel.add(LogoCellSizeInput);
+
+
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+
+        MazePropertiesPanel.add(labelx, constraints);
+
+        *//*constraints.gridx = 1;
+        constraints.gridy = 0;
+        MazePropertiesPanel.add(inputx, constraints);*//*
+
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        //c.weighty = 0.01;
+        MazePropertiesPanel.add(labely, constraints);
+
+        *//*c.gridx = 2;
+        c.gridy = 1;
+        //c.weighty = 0.01;
+        MazePropertiesPanel.add(inputy, c);*//*
+
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        //c.weighty = 0.01;*/
+        /*MazePropertiesPanel.add(LogoCellSizeLabel, constraints);*/
+
+        /*c.gridx = 2;
+        c.gridy = 2;
+        //c.weighty = 0.01;
+        MazePropertiesPanel.add(LogoCellSizeInput, c);*/
 
         JPanel MazeTypePanel = new JPanel();
         MazeTypePanel.setBounds(190, 100, 150,125);
@@ -359,15 +392,25 @@ public class Frame {
 
 
 
+
+
         //window.add(exportBTN);
         //window.add(Back);
         //window.add(setSize);
-        window.add(ImportStartingLogo);
-        window.add(ImportFinishingLogo);
+        //window.add(ImportStartingLogo);
+        //window.add(ImportFinishingLogo);
+        window.add(labelx);
+        window.add(inputx);
+        window.add(labely);
+        window.add(inputy);
+        window.add(GenerateBlankMazeButton);
+        window.add(AutoGenerateMazeButton);
+
+
         window.add(MenuBarPanel);
-        window.add(MazePropertiesPanel);
-        window.add(MazeTypePanel);
-        window.add(MazeDifficultyPanel);
+        //window.add(MazePropertiesPanel);
+        //window.add(MazeTypePanel);
+        //window.add(MazeDifficultyPanel);
         window.add(MazeGenerationPanel);
 
 
@@ -391,6 +434,13 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
                 importFile.showOpenDialog(null);
+            }
+        });
+
+        GenerateBlankMazeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                initialise(inputx.getText(),inputy.getText());
             }
         });
 

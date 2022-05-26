@@ -37,11 +37,14 @@ public class Database {
                     + "creator VARCHAR(30),"
                     + "last_editor VARCHAR(20),"
                     + "create_timestamp VARCHAR(10),"
-                    + "logoOne VARCHAR(30)" + ");";
+                    + "maze_obj BLOB" + ");";
 
     protected Database() {
         connect();
         System.out.println("Initiated database instance");
+        try {
+            statusCodes.dbStatus _ = CreateSchema();
+        } catch(Exception e) {}
     }
 
     private statusCodes.dbStatus CreateSchema() throws SQLException {
@@ -91,9 +94,6 @@ public class Database {
         return dbInstance;
     }
 
-//    private SerialBlob generateThumbnail(Maze myMaze) {
-//    }
-
     /**
      * Validates user input for sizing maze
      * @author Hudson
@@ -101,7 +101,11 @@ public class Database {
      * @return The status/success code of the function
      */
     public statusCodes.dbStatus exportMaze(Maze myMaze) {
-        return statusCodes.dbStatus.FAILED;
+        try {
+            return statusCodes.dbStatus.OK;
+        } catch(Exception e) {
+            return statusCodes.dbStatus.FAILED;
+        }
     }
 
     /**

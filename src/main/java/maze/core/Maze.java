@@ -237,7 +237,7 @@ public class Maze implements MazeOutline{
         mazeTile(location[0],location[1]).setVisited(true);
         int step;
         int max = mazeSize()[0] * mazeSize()[1];
-        while(visited < max){
+        while(visited < max) {
             int[] lastloc = new int[]{location[0],location[1]};
             while(true){ //pick a valid step
                 step = (int)Math.round(Math.random() * 4);

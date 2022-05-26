@@ -68,7 +68,7 @@ public class Render {
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
                 tempBTN.setBackground(y == 0 ? Color.BLACK : Color.WHITE);
 
-                tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).BottomWall() ? Color.BLACK : Color.WHITE);
+                tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).TopWall() ? Color.BLACK : Color.WHITE);
 
 
                 window.add(tempBTN);
@@ -77,7 +77,7 @@ public class Render {
                 tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
                 tempBTN2.setBackground(x == 0 ? Color.BLACK : Color.WHITE);
-                tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).RightWall() ? Color.BLACK : Color.WHITE);
+                tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).LeftWall() ? Color.BLACK : Color.WHITE);
 
 
                 window.add(tempBTN2);

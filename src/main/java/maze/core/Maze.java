@@ -219,7 +219,8 @@ public class Maze implements MazeOutline{
      *
      */
     public boolean generateMaze() {
-        int[] location = startLoc;
+        int[] location = new int[]{0,0};
+
 
         for(int i = 0; i<mazeSize()[0]; i++){ //set all walls to be true
             for(int j = 0; j<mazeSize()[1]; j++){
@@ -231,13 +232,15 @@ public class Maze implements MazeOutline{
         }
 
         ArrayList<int[]> currentwalk = new ArrayList<>();
-        currentwalk.add(location);
+        currentwalk.add(new int[]{location[0],location[1]});
         int visited = 1;
         mazeTile(location[0],location[1]).setVisited(true);
         int step;
-        while(visited != mazeSize()[0] * mazeSize()[1]){
+        int max = mazeSize()[0] * mazeSize()[1];
+        while(visited < max){
+            int[] lastloc = new int[]{location[0],location[1]};
             while(true){ //pick a valid step
-                step = (int)Math.round(Math.random() * 3);
+                step = (int)Math.round(Math.random() * 4);
 
                 if(step == 0){ //go up
                     if(location[1] != 0){
@@ -245,7 +248,7 @@ public class Maze implements MazeOutline{
                         break;
                     }
                 }else if(step == 1){ //go down
-                    if(location[1] != mazeSize()[1]){
+                    if(location[1] != mazeSize()[1] - 1){
                         location[1]++;
                         break;
                     }
@@ -255,37 +258,44 @@ public class Maze implements MazeOutline{
                         break;
                     }
                 }else{ //go right
-                    if(location[0] != mazeSize()[0]){
+                    if(location[0] != mazeSize()[0] - 1){
                         location[0]++;
                         break;
                     }
                 }
             }
+
             if(mazeTile(location[0],location[1]).getVisited() == false){ //location has not been visited
                 if(step == 0){ //gone up
                     mazeTile(location[0],location[1]).setBottomWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setTopWall(false);
                 }else if(step == 1){ //gone down
                     mazeTile(location[0],location[1]).setTopWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setBottomWall(false);
                 }else if(step == 2){ //gone left
                     mazeTile(location[0],location[1]).setRightWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setLeftWall(false);
                 }else{ //gone right
                     mazeTile(location[0],location[1]).setLeftWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setRightWall(false);
                 }
-                currentwalk.add(location);
+                mazeTile(location[0],location[1]).setVisited(true);
+                currentwalk.add(new int[]{location[0],location[1]});
                 visited++;
+                System.out.println(location[0]+", "+location[1]);
             }else { //cell has already been visited, try all other possibilities from
 
-                int count = 1;
-                boolean breaker = false;
-                while (breaker == false) {
-                    location = currentwalk.get(currentwalk.size() - 1); //reset the location
+                int count = 0;
+                boolean breaker = true;
+                while (breaker == true) {
+                    location = lastloc; //reset the location
                     step = Math.floorMod(step + 1, 4); //increment the step and try again
                     if (step == 0) { //go up
                         if (location[1] != 0) {
                             location[1]--;
                         }
                     } else if (step == 1) { //go down
-                        if (location[1] != mazeSize()[1]) {
+                        if (location[1] != mazeSize()[1] - 1) {
                             location[1]++;
                         }
                     } else if (step == 2) { //go left
@@ -293,19 +303,41 @@ public class Maze implements MazeOutline{
                             location[0]--;
                         }
                     } else { //go right
-                        if (location[0] != mazeSize()[0]) {
+                        if (location[0] != mazeSize()[0] - 1) {
                             location[0]++;
                         }
                     }
                     breaker = mazeTile(location[0], location[1]).getVisited(); //check if new cell has been visited
                     count++;
-                    if (count == 4) { //tried all options
+                    if (count > 3) { //tried all options
                         location = currentwalk.get(0);
                         currentwalk.remove(0); //pop from front of queue
-                        breaker = true;
+                        System.out.println("reverted: "+location[0]+", "+location[1]);
+                        break;
+
                     }
                 }
+                if(!breaker){
+                    if(step == 0){ //gone up
+                        mazeTile(location[0],location[1]).setBottomWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setTopWall(false);
+                    }else if(step == 1){ //gone down
+                        mazeTile(location[0],location[1]).setTopWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setBottomWall(false);
+                    }else if(step == 2){ //gone left
+                        mazeTile(location[0],location[1]).setRightWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setLeftWall(false);
+                    }else{ //gone right
+                        mazeTile(location[0],location[1]).setLeftWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setRightWall(false);
+                    }
+                    mazeTile(location[0],location[1]).setVisited(true);
+                    currentwalk.add(new int[]{location[0],location[1]});
+                    visited++;
+                    System.out.println(location[0]+", "+location[1]);
+                }
             }
+            int out = 0;
         }
 
 

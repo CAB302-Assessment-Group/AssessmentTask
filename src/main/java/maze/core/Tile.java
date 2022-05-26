@@ -14,6 +14,7 @@ public class Tile {
         topWall = walls[1];
         leftWall = walls[2];
         bottomWall = walls[3];
+        visited = false;
     }
 
     public void setStartImage(byte[] startImage){

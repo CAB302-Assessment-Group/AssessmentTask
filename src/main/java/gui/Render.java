@@ -55,6 +55,9 @@ public class Render {
 
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
         myMaze = new Maze(mazeSize); //need to pass child maze param
+
+        myMaze.generateMaze();
+
         for (int x = 0; x < myMaze.mazeSize()[0]; x++) {
             for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
                 // border styling
@@ -64,12 +67,19 @@ public class Render {
                 int finalY = y;
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
                 tempBTN.setBackground(y == 0 ? Color.BLACK : Color.WHITE);
+
+                tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).BottomWall() ? Color.BLACK : Color.WHITE);
+
+
                 window.add(tempBTN);
 
                 JButton tempBTN2 = new JButton("");
                 tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
                 tempBTN2.setBackground(x == 0 ? Color.BLACK : Color.WHITE);
+                tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).RightWall() ? Color.BLACK : Color.WHITE);
+
+
                 window.add(tempBTN2);
             }
         }
@@ -127,7 +137,8 @@ public class Render {
         }
 
         //Prints the coords of the button pressed
-        System.out.println();
+        System.out.println(x+", "+y);
+
 
     }
 

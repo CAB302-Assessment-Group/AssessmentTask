@@ -24,6 +24,8 @@ public class TestSolver {
         //TODO Add in call to automatically generate or manually make one so we can test solvability
         int[] size = {10,10};
         testMaze = new Maze(size);
+        //testMaze.generateMaze();
+
         mySolver = new Solver();
 
         testMaze.setStart(STARTLOC);

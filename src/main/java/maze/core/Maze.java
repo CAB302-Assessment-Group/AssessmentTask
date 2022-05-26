@@ -340,10 +340,38 @@ public class Maze implements MazeOutline{
             int out = 0;
         }
 
-
-
-
-
         return false;
+    }
+
+    /**
+     * counts the number of dead end tiles, (potentially includes solution tile though)
+     *
+     * @author Jayden
+     *
+     */
+    public int numDeadEnds(){
+        int out = 0;
+        for(int i=0; i<mazeSize()[0]; i++){
+            for(int j=0; j<mazeSize()[1];j++){
+                int countdeadends = 0;
+                if(mazeTile(i,j).BottomWall()){
+                    countdeadends++;
+                }
+                if(mazeTile(i,j).LeftWall()){
+                    countdeadends++;
+                }
+                if(mazeTile(i,j).RightWall()){
+                    countdeadends++;
+                }
+                if(mazeTile(i,j).TopWall()){
+                    countdeadends++;
+                }
+
+                if(countdeadends==3){
+                    out++;
+                }
+            }
+        }
+        return out;
     }
 }

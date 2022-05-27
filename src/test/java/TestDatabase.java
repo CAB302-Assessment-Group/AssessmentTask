@@ -6,7 +6,6 @@ import src.main.java.exceptions.MazeException;
 import maze.core.Database;
 import maze.core.Maze;
 import maze.core.solver.Solver;
-import src.main.java.util;
 
 public class TestDatabase {
     Database testDatabase = (Database) Database.getInstance();

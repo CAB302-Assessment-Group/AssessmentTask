@@ -1,21 +1,11 @@
 package maze.core;
 
-import src.main.java.util.statusCodes;
-
 // file reader
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 // for javadocs and report
@@ -102,6 +92,22 @@ public class Database {
      */
     public statusCodes.dbStatus exportMaze(Maze myMaze) {
         try {
+            Connection myDBInstance = getInstance();
+
+            String sql = "INSERT INTO warehouses(name,creator,last_editor,create_timestamp,maze_obj) VALUES(?,?,?,?,?)";
+
+            try {
+                PreparedStatement pstmt = myDBInstance.prepareStatement(sql);
+                pstmt.setString(1, myMaze.getMazeName());
+                pstmt.setString(2, myMaze.getAuthor());
+                pstmt.setString(3, myMaze.GetLastEditor());
+                pstmt.setString(4, myMaze.getDateCreated());
+                pstmt.setBlob(5, );
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+
             return statusCodes.dbStatus.OK;
         } catch(Exception e) {
             return statusCodes.dbStatus.FAILED;

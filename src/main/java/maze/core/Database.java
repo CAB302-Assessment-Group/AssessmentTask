@@ -1,21 +1,13 @@
 package maze.core;
 
-import src.main.java.util.statusCodes;
+import maze.core.util.statusCodes;
 
 // file reader
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 // for javadocs and report
@@ -31,17 +23,20 @@ public class Database {
     private static Connection dbInstance = null;
 
     public static final String CREATE_TABLE =
-            "CREATE TABLE IF NOT EXISTS address ("
+            "CREATE TABLE IF NOT EXISTS mazes ("
                     + "idx INTEGER PRIMARY KEY /*!40101 AUTO_INCREMENT */ NOT NULL UNIQUE,"
                     + "name VARCHAR(30),"
                     + "creator VARCHAR(30),"
                     + "last_editor VARCHAR(20),"
                     + "create_timestamp VARCHAR(10),"
-                    + "logoOne VARCHAR(30)" + ");";
+                    + "maze_obj BLOB" + ");";
 
     protected Database() {
         connect();
         System.out.println("Initiated database instance");
+        try {
+            statusCodes.dbStatus _ = CreateSchema();
+        } catch(Exception e) {}
     }
 
     private statusCodes.dbStatus CreateSchema() throws SQLException {
@@ -91,9 +86,6 @@ public class Database {
         return dbInstance;
     }
 
-//    private SerialBlob generateThumbnail(Maze myMaze) {
-//    }
-
     /**
      * Validates user input for sizing maze
      * @author Hudson
@@ -101,15 +93,56 @@ public class Database {
      * @return The status/success code of the function
      */
     public statusCodes.dbStatus exportMaze(Maze myMaze) {
-        return statusCodes.dbStatus.FAILED;
+        try {
+            Connection myDBInstance = getInstance();
+
+            String sql = "INSERT INTO mazes(name,creator,last_editor,create_timestamp,maze_obj) VALUES(?,?,?,?,?)";
+
+            try {
+                PreparedStatement pstmt = myDBInstance.prepareStatement(sql);
+                pstmt.setString(1, myMaze.getMazeName());
+                pstmt.setString(2, myMaze.getAuthor());
+                pstmt.setString(3, myMaze.GetLastEditor());
+                pstmt.setString(4, myMaze.getDateCreated());
+                pstmt.setBlob(5, util.serialize(myMaze));
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+                return statusCodes.dbStatus.INVALID_ARGUMENTS;
+            }
+
+            return statusCodes.dbStatus.OK;
+        } catch(Exception e) {
+            return statusCodes.dbStatus.FAILED;
+        }
     }
 
     /**
      * Loads a maze object from a DB record
      * @author Hudson
-     * @param mazeName The maze name/unique indentifyer of the maze
+     * @param mazeName The maze name/unique identifier of the maze
      */
-    public statusCodes.dbStatus loadMaze(String mazeName) {
-        return statusCodes.dbStatus.FAILED;
+    public Maze loadMaze(String mazeName) {
+        Connection myDBInstance = getInstance();
+        ResultSet rs = null;
+
+        String SQL = "SELECT * FROM mazes WHERE mazeName = '" + mazeName + "'";
+
+        try {
+            PreparedStatement SQLselection = myDBInstance.prepareStatement(SQL);
+            rs = SQLselection.executeQuery();
+            rs.next();
+            Blob blob = rs.getBlob("maze_obj");
+
+            int blobLength = (int) blob.length();
+            byte[] blobAsBytes = blob.getBytes(1, blobLength);
+
+            //release the blob and free up memory. (since JDBC 4.0)
+            blob.free();
+
+            return util.deserialize(blobAsBytes);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

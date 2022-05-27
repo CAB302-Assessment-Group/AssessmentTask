@@ -1,11 +1,11 @@
 package maze.core;
 
-
 import src.main.java.exceptions.MazeException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Maze implements MazeOutline{
+public class Maze implements MazeOutline, Serializable {
     private String Author;
     private String MazeName;
     private int id;
@@ -38,9 +38,11 @@ public class Maze implements MazeOutline{
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
+
+    public String GetLastEditor() { return null; }
+
+    public void SetLastEditor(String name) { assert(false) : "Function SetLastEditor() is not implemented"; }
 
     public String getDateEdited() {
         return DateEdited;

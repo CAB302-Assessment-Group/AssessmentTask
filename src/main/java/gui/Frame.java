@@ -411,7 +411,7 @@ public class Frame {
         //window.add(MazePropertiesPanel);
         //window.add(MazeTypePanel);
         //window.add(MazeDifficultyPanel);
-        //window.add(MazeGenerationPanel);
+        window.add(MazeGenerationPanel);
 
 
         //setSize.addActionListener(action -> Render.setButtonPressed(inputx.getText(), inputy.getText()));
@@ -441,7 +441,7 @@ public class Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //creates the maze based on width and length inputs
-                Render.setButtonPressed("4","5");
+                Render.setButtonPressed("5","4");
             }
         });
 

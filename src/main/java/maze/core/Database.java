@@ -106,7 +106,7 @@ public class Database {
                 pstmt.setString(4, myMaze.getDateCreated());
                 pstmt.setBlob(5, util.serialize(myMaze));
                 pstmt.executeUpdate();
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
 

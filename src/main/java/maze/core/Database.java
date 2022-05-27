@@ -23,7 +23,7 @@ public class Database {
     private static Connection dbInstance = null;
 
     public static final String CREATE_TABLE =
-            "CREATE TABLE IF NOT EXISTS address ("
+            "CREATE TABLE IF NOT EXISTS mazes ("
                     + "idx INTEGER PRIMARY KEY /*!40101 AUTO_INCREMENT */ NOT NULL UNIQUE,"
                     + "name VARCHAR(30),"
                     + "creator VARCHAR(30),"
@@ -96,7 +96,7 @@ public class Database {
         try {
             Connection myDBInstance = getInstance();
 
-            String sql = "INSERT INTO warehouses(name,creator,last_editor,create_timestamp,maze_obj) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO mazes(name,creator,last_editor,create_timestamp,maze_obj) VALUES(?,?,?,?,?)";
 
             try {
                 PreparedStatement pstmt = myDBInstance.prepareStatement(sql);
@@ -108,6 +108,7 @@ public class Database {
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
+                return statusCodes.dbStatus.INVALID_ARGUMENTS;
             }
 
             return statusCodes.dbStatus.OK;
@@ -119,9 +120,29 @@ public class Database {
     /**
      * Loads a maze object from a DB record
      * @author Hudson
-     * @param mazeName The maze name/unique indentifyer of the maze
+     * @param mazeName The maze name/unique identifier of the maze
      */
-    public statusCodes.dbStatus loadMaze(String mazeName) {
-        return statusCodes.dbStatus.FAILED;
+    public Maze loadMaze(String mazeName) {
+        Connection myDBInstance = getInstance();
+        ResultSet rs = null;
+
+        String SQL = "SELECT * FROM mazes WHERE mazeName = '" + mazeName + "'";
+
+        try {
+            PreparedStatement SQLselection = myDBInstance.prepareStatement(SQL);
+            rs = SQLselection.executeQuery();
+            rs.next();
+            Blob blob = rs.getBlob("maze_obj");
+
+            int blobLength = (int) blob.length();
+            byte[] blobAsBytes = blob.getBytes(1, blobLength);
+
+            //release the blob and free up memory. (since JDBC 4.0)
+            blob.free();
+
+            return util.deserialize(blobAsBytes);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

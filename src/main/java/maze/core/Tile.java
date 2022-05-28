@@ -1,18 +1,22 @@
-package src.main.java.maze.core;
+package maze.core;
 
-public class Tile {
+import java.io.*;
+
+public class Tile implements Serializable {
     private boolean leftWall;
     private boolean rightWall;
     private boolean topWall;
     private boolean bottomWall;
     private byte[] startIm;
     private byte[] endIm;
+    private boolean visited;
 
     public Tile(boolean[] walls){
         rightWall = walls[0];
         topWall = walls[1];
         leftWall = walls[2];
         bottomWall = walls[3];
+        visited = false;
     }
 
     public void setStartImage(byte[] startImage){
@@ -59,4 +63,7 @@ public class Tile {
     public boolean BottomWall() {
         return bottomWall;
     }
+
+    public boolean getVisited(){ return visited;}
+    public void setVisited(boolean visited){this.visited = visited;}
 }

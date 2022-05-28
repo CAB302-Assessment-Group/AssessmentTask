@@ -1,15 +1,16 @@
-package src.tests.java;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import maze.core.util;
 import org.junit.jupiter.api.*;
 import src.main.java.exceptions.MazeException;
-import src.main.java.maze.core.Database;
-import src.main.java.maze.core.Maze;
-import src.main.java.maze.core.solver.Solver;
-import src.main.java.util;
+import maze.core.Database;
+import maze.core.Maze;
+import maze.core.solver.Solver;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestDatabase {
-    Database testDatabase = Database.getInstance();
+    Database testDatabase = (Database) Database.getInstance();
     Maze testChildMaze;
     Solver testSolver;
     final String MAZENAME ="Test";

@@ -1,4 +1,4 @@
-package src.main.java.maze.core;
+package maze.core;
 
 import src.main.java.exceptions.MazeException;
 

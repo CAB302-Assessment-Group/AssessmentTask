@@ -1,11 +1,10 @@
-package src.tests.java;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
-import org.opentest4j.AssertionFailedError;
 import src.main.java.exceptions.MazeException;
-import src.main.java.maze.core.Maze;
-import src.main.java.maze.core.solver.Solver;
+import maze.core.Maze;
+import maze.core.solver.Solver;
 
 import java.util.ArrayList;
 
@@ -25,6 +24,8 @@ public class TestSolver {
         //TODO Add in call to automatically generate or manually make one so we can test solvability
         int[] size = {10,10};
         testMaze = new Maze(size);
+        //testMaze.generateMaze();
+
         mySolver = new Solver();
 
         testMaze.setStart(STARTLOC);

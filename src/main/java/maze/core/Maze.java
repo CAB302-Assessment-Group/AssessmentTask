@@ -1,9 +1,11 @@
-package src.main.java.maze.core;
-
+package maze.core;
 
 import src.main.java.exceptions.MazeException;
 
-public class Maze implements MazeOutline{
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Maze implements MazeOutline, Serializable {
     private String Author;
     private String MazeName;
     private int id;
@@ -36,9 +38,11 @@ public class Maze implements MazeOutline{
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
+
+    public String GetLastEditor() { return null; }
+
+    public void SetLastEditor(String name) { assert(false) : "Function SetLastEditor() is not implemented"; }
 
     public String getDateEdited() {
         return DateEdited;
@@ -208,5 +212,179 @@ public class Maze implements MazeOutline{
 
     public byte[] getStartImage() {
         return this.mazeTile(startLoc[0],startLoc[1]).getStartImage();
+    }
+
+    /**
+     * Automatically generates the maze between the start and end tiles
+     * Utilises Wilson's Algorithm
+     * @author Jayden
+     *
+     */
+    public boolean generateMaze() {
+        int[] location = new int[]{0,0};
+
+
+        for(int i = 0; i<mazeSize()[0]; i++){ //set all walls to be true
+            for(int j = 0; j<mazeSize()[1]; j++){
+                mazeTile(i,j).setLeftWall(true);
+                mazeTile(i,j).setRightWall(true);
+                mazeTile(i,j).setTopWall(true);
+                mazeTile(i,j).setBottomWall(true);
+            }
+        }
+
+        ArrayList<int[]> currentwalk = new ArrayList<>();
+        currentwalk.add(new int[]{location[0],location[1]});
+        int visited = 1;
+        mazeTile(location[0],location[1]).setVisited(true);
+        int step;
+        int max = mazeSize()[0] * mazeSize()[1];
+
+        int[] lastloc = new int[]{location[0],location[1]};
+
+        while(visited < max){
+
+            while(true){ //pick a valid step
+                step = (int)Math.round(Math.random() * 4);
+
+                if(step == 0){ //go up
+                    if(location[1] != 0){
+                        location[1]--;
+                        break;
+                    }
+                }else if(step == 1){ //go down
+                    if(location[1] != mazeSize()[1] - 1){
+                        location[1]++;
+                        break;
+                    }
+                }else if(step == 2){ //go left
+                    if(location[0] != 0){
+                        location[0]--;
+                        break;
+                    }
+                }else{ //go right
+                    if(location[0] != mazeSize()[0] - 1){
+                        location[0]++;
+                        break;
+                    }
+                }
+            }
+
+            if(mazeTile(location[0],location[1]).getVisited() == false){ //location has not been visited
+                if(step == 0){ //gone up
+                    mazeTile(location[0],location[1]).setBottomWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setTopWall(false);
+                }else if(step == 1){ //gone down
+                    mazeTile(location[0],location[1]).setTopWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setBottomWall(false);
+                }else if(step == 2){ //gone left
+                    mazeTile(location[0],location[1]).setRightWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setLeftWall(false);
+                }else{ //gone right
+                    mazeTile(location[0],location[1]).setLeftWall(false);
+                    mazeTile(lastloc[0],lastloc[1]).setRightWall(false);
+                }
+                mazeTile(location[0],location[1]).setVisited(true);
+                currentwalk.add(new int[]{location[0],location[1]});
+                visited++;
+                //System.out.println(location[0]+", "+location[1]);
+            }else { //cell has already been visited, try all other possibilities from
+
+                int count = 0;
+                boolean breaker = true;
+                while (breaker == true) {
+                    location = new int[] {lastloc[0],lastloc[1]}; //reset the location
+                    step = Math.floorMod(step + 1, 4); //increment the step and try again
+                    if (step == 0) { //go up
+                        if (location[1] != 0) {
+                            location[1]--;
+                        }
+                    } else if (step == 1) { //go down
+                        if (location[1] != mazeSize()[1] - 1) {
+                            location[1]++;
+                        }
+                    } else if (step == 2) { //go left
+                        if (location[0] != 0) {
+                            location[0]--;
+                        }
+                    } else { //go right
+                        if (location[0] != mazeSize()[0] - 1) {
+                            location[0]++;
+                        }
+                    }
+                    breaker = mazeTile(location[0], location[1]).getVisited(); //check if new cell has been visited
+                    count++;
+                    if (count > 3) { //tried all options
+                        location = currentwalk.get(0);
+                        currentwalk.remove(0); //pop from front of queue
+                        //System.out.println("reverted: "+location[0]+", "+location[1]);
+                        break;
+
+                    }
+                }
+                if(!breaker){
+                    if(step == 0){ //gone up
+                        mazeTile(location[0],location[1]).setBottomWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setTopWall(false);
+                    }else if(step == 1){ //gone down
+                        mazeTile(location[0],location[1]).setTopWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setBottomWall(false);
+                    }else if(step == 2){ //gone left
+                        mazeTile(location[0],location[1]).setRightWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setLeftWall(false);
+                    }else{ //gone right
+                        mazeTile(location[0],location[1]).setLeftWall(false);
+                        mazeTile(lastloc[0],lastloc[1]).setRightWall(false);
+                    }
+                    mazeTile(location[0],location[1]).setVisited(true);
+                    currentwalk.add(new int[]{location[0],location[1]});
+                    visited++;
+                    //System.out.println(location[0]+", "+location[1]);
+                }
+            }
+            int out = 0;
+            System.out.println("Last: "+lastloc[0]+", "+lastloc[1]);
+            System.out.println("Current: " + location[0]+", "+location[1]);
+            System.out.println(step);
+
+
+            int x = location[0];
+            int y = location[1];
+            lastloc = new int[]{x,y};
+        }
+
+        return false;
+    }
+
+    /**
+     * counts the number of dead end tiles, (potentially includes solution tile though)
+     *
+     * @author Jayden
+     *
+     */
+    public int numDeadEnds(){
+        int out = 0;
+        for(int i=0; i<mazeSize()[0]; i++){
+            for(int j=0; j<mazeSize()[1];j++){
+                int countdeadends = 0;
+                if(mazeTile(i,j).BottomWall()){
+                    countdeadends++;
+                }
+                if(mazeTile(i,j).LeftWall()){
+                    countdeadends++;
+                }
+                if(mazeTile(i,j).RightWall()){
+                    countdeadends++;
+                }
+                if(mazeTile(i,j).TopWall()){
+                    countdeadends++;
+                }
+
+                if(countdeadends==3){
+                    out++;
+                }
+            }
+        }
+        return out;
     }
 }

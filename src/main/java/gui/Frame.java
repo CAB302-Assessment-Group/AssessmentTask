@@ -122,7 +122,7 @@ public class Frame {
         // on CreateNewMaze button press move to SelectOption Screen
         CreateNewMaze.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { initialise("","");}
+            public void actionPerformed(ActionEvent e) { initialise();}
         });
 
         // on OpenExistingMaze button press open file chooser
@@ -225,10 +225,9 @@ public class Frame {
     }
     /**
      * Intialises the new blank maze GUI
-     * @param xvar Suitable screen width
-     * @param yvar Suitable screen height
+     *
      */
-    public static void initialise(String xvar, String yvar){
+    public static void initialise(){
         window.getContentPane().removeAll();
         window.getContentPane().repaint();
 
@@ -244,15 +243,17 @@ public class Frame {
         labelx.setBounds(20,100,50,20);
 
 
-        JTextArea inputx = new JTextArea(xvar);
+        JTextArea inputx = new JTextArea();
         inputx.setBounds(70, 100, 30, 20);
+        //take inputs from text box for width, "inputx.getText()"
 
 
         JLabel labely = new JLabel("Height:");
         labely.setBounds(20,130,50,20);
 
-        JTextArea inputy = new JTextArea(yvar);
+        JTextArea inputy = new JTextArea();
         inputy.setBounds(70, 130, 30, 20);
+        //take inputs from text box for height, "inputy.getText()"
 
 
         JLabel LogoCellSizeLabel = new JLabel("Logo Cell Size:");

@@ -53,7 +53,7 @@ public class Render {
             return;
         }
 
-        initialise(width.trim(), height.trim());
+        //initialise(width.trim(), height.trim());
 
         //System.out.println(width.trim()+", "+height.trim());
 

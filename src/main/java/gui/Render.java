@@ -45,6 +45,8 @@ public class Render {
      */
     public static void setButtonPressed(String width, String height){
         String[] inputs = {width, height};
+        //System.out.println(width);
+        //System.out.println(height);
 
         if (!validateInput(inputs)) {
             System.out.println("[ERROR] Invalid maze size...");

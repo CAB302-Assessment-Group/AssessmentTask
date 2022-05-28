@@ -243,6 +243,7 @@ public class Frame {
         JLabel labelx = new JLabel("Width:");
         labelx.setBounds(20,100,50,20);
 
+
         JTextArea inputx = new JTextArea(xvar);
         inputx.setBounds(70, 100, 30, 20);
 
@@ -441,7 +442,10 @@ public class Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //creates the maze based on width and length inputs
-                Render.setButtonPressed("5","4");
+                //take inputs from text box, "inputx.getText()"
+                Render.setButtonPressed(inputx.getText(),inputy.getText());
+
+
             }
         });
 

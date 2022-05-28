@@ -1,6 +1,8 @@
 package maze.core;
 
-public class Tile {
+import java.io.*;
+
+public class Tile implements Serializable {
     private boolean leftWall;
     private boolean rightWall;
     private boolean topWall;

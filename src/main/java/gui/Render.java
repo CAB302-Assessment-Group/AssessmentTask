@@ -14,6 +14,8 @@ import static gui.Frame.initialise;
 
 public class Render {
     private static JFrame window = Frame.getInstance().window;
+    //tried to add maze generation panel, not sure how to take panel from frame class
+    private static JPanel MazeGenerationPanel;
     private static int[] mazeSize = Frame.getInstance().mazeSize;
     private static Maze myMaze = Frame.getInstance().myMaze;
     /**
@@ -43,13 +45,15 @@ public class Render {
      */
     public static void setButtonPressed(String width, String height){
         String[] inputs = {width, height};
+        //System.out.println(width);
+        //System.out.println(height);
 
         if (!validateInput(inputs)) {
             System.out.println("[ERROR] Invalid maze size...");
             return;
         }
 
-        initialise(width.trim(), height.trim());
+        //initialise(width.trim(), height.trim());
 
         //System.out.println(width.trim()+", "+height.trim());
 
@@ -68,7 +72,12 @@ public class Render {
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
                 tempBTN.setBackground(y == 0 ? Color.BLACK : Color.WHITE);
 
-                tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).TopWall() ? Color.BLACK : Color.WHITE);
+                // change contianer from window to MazeGenerationPanel
+                //MazeGenerationPanel.add(tempBTN);
+
+                //Jayden's update
+                //tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).TopWall() ? Color.BLACK : Color.WHITE);
+
 
 
                 window.add(tempBTN);
@@ -77,7 +86,13 @@ public class Render {
                 tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
                 tempBTN2.setBackground(x == 0 ? Color.BLACK : Color.WHITE);
-                tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).LeftWall() ? Color.BLACK : Color.WHITE);
+
+                // change contianer from window to MazeGenerationPanel
+                //MazeGenerationPanel.add(tempBTN2);
+
+                //Jayden's update
+                //tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).LeftWall() ? Color.BLACK : Color.WHITE);
+
 
 
                 window.add(tempBTN2);
@@ -91,6 +106,8 @@ public class Render {
             int finalY = i;
             tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
             tempBTN2.setBackground(Color.BLACK);
+            // change contianer from window to MazeGenerationPanel
+            //MazeGenerationPanel.add(tempBTN2);
             window.add(tempBTN2);
         }
 
@@ -101,11 +118,14 @@ public class Render {
             int finalY = myMaze.mazeSize()[1];
             tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
             tempBTN.setBackground(Color.BLACK);
+            // change contianer from window to MazeGenerationPanel
+            //MazeGenerationPanel.add(tempBTN);
             window.add(tempBTN);
         }
 
 
         SwingUtilities.updateComponentTreeUI(window);
+        //SwingUtilities.updateComponentTreeUI(MazeGenerationPanel);
     }
 
     /**

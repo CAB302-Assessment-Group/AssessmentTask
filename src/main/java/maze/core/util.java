@@ -1,4 +1,12 @@
+package maze.core;
+
 import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Scanner;
+import javax.sql.rowset.serial.SerialBlob;
 
 public class util {
     public static class statusCodes {
@@ -31,16 +39,18 @@ public class util {
         return a1;
     }
 
-    // grabbed from https://stackoverflow.com/questions/3736058/java-object-to-byte-and-byte-to-object-converter-for-tokyo-cabinet
-    public static byte[] serialize(Object obj) throws IOException {
+    // grabbed from
+    // https://stackoverflow.com/questions/3736058/java-object-to-byte-and-byte-to-object-converter-for-tokyo-cabinet
+    public static Blob serialize(Object obj) throws IOException, SQLException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ObjectOutputStream os = new ObjectOutputStream(out);
         os.writeObject(obj);
-        return out.toByteArray();
+        return new SerialBlob(out.toByteArray());
     }
-    public static Object deserialize(byte[] data) throws IOException, ClassNotFoundException {
+
+    public static Maze deserialize(byte[] data) throws IOException, ClassNotFoundException {
         ByteArrayInputStream in = new ByteArrayInputStream(data);
         ObjectInputStream is = new ObjectInputStream(in);
-        return is.readObject();
+        return (Maze) is.readObject();
     }
 }

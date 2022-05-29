@@ -1,6 +1,8 @@
 package maze.core;
 
-public class Tile {
+import java.io.*;
+
+public class Tile implements Serializable {
     private boolean leftWall;
     private boolean rightWall;
     private boolean topWall;
@@ -14,6 +16,7 @@ public class Tile {
         topWall = walls[1];
         leftWall = walls[2];
         bottomWall = walls[3];
+        visited = false;
     }
 
     public void setStartImage(byte[] startImage){

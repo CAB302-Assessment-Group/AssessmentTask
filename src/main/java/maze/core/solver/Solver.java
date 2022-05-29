@@ -13,6 +13,9 @@ public class Solver {
     private ArrayList<Integer[]> myTree = new ArrayList<Integer[]>();
     private ArrayList<Integer[]> visited = new ArrayList<Integer[]>();
 
+    private int totalTilesVisited = -1;
+    private Maze myMaze;
+
     // getter for the solution
     public ArrayList<Integer[]> Solution() { return myTree; }
 
@@ -75,6 +78,9 @@ public class Solver {
      */
 
     public Integer[] DFS(Maze gb, Integer[] position) {
+        myMaze = gb;
+        totalTilesVisited++;
+
         boolean[] tileN = neighbours(position[0], position[1], gb);
 
         // adds the current position to the solution tree
@@ -147,6 +153,7 @@ public class Solver {
         myTree.remove(myTree.size());
 
         // return to the last node with possible options
+        totalTilesVisited--;
         return null;
     }
 
@@ -158,6 +165,10 @@ public class Solver {
         }
 
         return false;
+    }
+
+    public int tilesVisited() {
+        return (totalTilesVisited == -1) ? (myMaze.mazeSize()[0] + myMaze.mazeSize()[1]) / totalTilesVisited : totalTilesVisited;
     }
 
     /**

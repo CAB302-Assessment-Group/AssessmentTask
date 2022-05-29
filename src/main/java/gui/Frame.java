@@ -9,6 +9,8 @@ import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 import gui.Render;
 public class Frame {
@@ -60,8 +62,9 @@ public class Frame {
         window2 = new JFrame("Maze Generation Window");
         window2.setSize(700, 600);
         window2.setLocationRelativeTo(null);
+        //window2.setVisible(true);
         //window2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        window2.setVisible(true);
+
 
 
 
@@ -426,9 +429,18 @@ public class Frame {
                 //take inputs from text box, "inputx.getText()"
                 //window.getContentPane().removeAll();
                 //window.getContentPane().repaint();
-                initialise();
+                //initialise();
+
+
+                window2.setVisible(true);
+
+                //window2.getContentPane().removeAll();
+                //window2.getContentPane().repaint();
+                window2.getContentPane().removeAll();
+
                 Render.setButtonPressed(inputx.getText(),inputy.getText());
 
+                window2.getContentPane().repaint();
 
 
             }

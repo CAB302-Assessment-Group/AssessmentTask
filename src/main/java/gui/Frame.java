@@ -63,6 +63,7 @@ public class Frame {
         window2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window2.setVisible(true);
 
+
         /*// menu bar
         JMenuBar menubar = new JMenuBar();
         JMenu fileMenuItem = new JMenu("File");
@@ -425,7 +426,7 @@ public class Frame {
         //window.add(MazePropertiesPanel);
         //window.add(MazeTypePanel);
         //window.add(MazeDifficultyPanel);
-        window.add(MazeGenerationPanel);
+        //window.add(MazeGenerationPanel);
 
 
 

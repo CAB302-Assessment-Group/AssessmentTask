@@ -12,9 +12,8 @@ import java.awt.event.ActionListener;
 
 import static gui.Frame.initialise;
 
-public class Render {
-    private static JFrame window = Frame.getInstance().window;
-    //private static JFrame window2 = Frame.getInstance().window2;
+public class Render2 {
+    private static JFrame window2 = Frame.getInstance().window2;
     //tried to add maze generation panel, not sure how to take panel from frame class
     //private static JPanel MazeGenerationPanel = new JPanel();
     private static int[] mazeSize = Frame.getInstance().mazeSize;
@@ -63,16 +62,11 @@ public class Render {
 
         myMaze.generateMaze();
 
-        //maze generation starting position on frame
-        int xposition = 20;
-        int yposition = 225;
-
         for (int x = 0; x < myMaze.mazeSize()[0]; x++) {
             for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
                 // border styling
                 JButton tempBTN = new JButton("");
-                //tempBTN.setBounds(10 + x * 50, 75 + y * 50, 40, 10);
-                tempBTN.setBounds(10+xposition + x * 50, yposition + y * 50, 40, 10);
+                tempBTN.setBounds(10 + x * 50, 75 + y * 50, 40, 10);
                 int finalX = x;
                 int finalY = y;
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
@@ -87,12 +81,11 @@ public class Render {
 
 
                 //MazeGenerationPanel.add(tempBTN);
-                window.add(tempBTN);
-                //window2.add(tempBTN);
+
+                window2.add(tempBTN);
 
                 JButton tempBTN2 = new JButton("");
-                //tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
-                tempBTN2.setBounds(xposition + x * 50, 10+yposition + y * 50, 10, 40);
+                tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
                 tempBTN2.setBackground(x == 0 ? Color.BLACK : Color.WHITE);
 
@@ -105,41 +98,36 @@ public class Render {
 
                 //MazeGenerationPanel.add(tempBTN2);
 
-                window.add(tempBTN2);
-                //window2.add(tempBTN2);
+                window2.add(tempBTN2);
             }
         }
 
         for(int i = 0; i < myMaze.mazeSize()[1]; i++){
             JButton tempBTN2 = new JButton("");
-            //tempBTN2.setBounds(myMaze.mazeSize()[0] * 50, 10+75 + i * 50, 10, 40);
-            tempBTN2.setBounds(xposition + myMaze.mazeSize()[0] * 50, 10+yposition + i * 50, 10, 40);
+            tempBTN2.setBounds(myMaze.mazeSize()[0] * 50, 10+75 + i * 50, 10, 40);
             int finalX = myMaze.mazeSize()[0];
             int finalY = i;
             tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
             tempBTN2.setBackground(Color.BLACK);
             // change contianer from window to MazeGenerationPanel
             //MazeGenerationPanel.add(tempBTN2);
-            window.add(tempBTN2);
-            //window2.add(tempBTN2);
+            window2.add(tempBTN2);
         }
 
         for(int i = 0; i < myMaze.mazeSize()[0]; i++){
             JButton tempBTN = new JButton("");
-            //tempBTN.setBounds(10 + i * 50, 75 + myMaze.mazeSize()[1] * 50, 40, 10);
-            tempBTN.setBounds(10+xposition + i * 50, yposition + myMaze.mazeSize()[1] * 50, 40, 10);
+            tempBTN.setBounds(10 + i * 50, 75 + myMaze.mazeSize()[1] * 50, 40, 10);
             int finalX = i;
             int finalY = myMaze.mazeSize()[1];
             tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
             tempBTN.setBackground(Color.BLACK);
-            // change container from window to MazeGenerationPanel
+            // change contianer from window to MazeGenerationPanel
             //MazeGenerationPanel.add(tempBTN);
-            window.add(tempBTN);
-            //window2.add(tempBTN);
+            window2.add(tempBTN);
         }
 
         //window.add(MazeGenerationPanel);
-        SwingUtilities.updateComponentTreeUI(window);
+        SwingUtilities.updateComponentTreeUI(window2);
         //SwingUtilities.updateComponentTreeUI(MazeGenerationPanel);
     }
 

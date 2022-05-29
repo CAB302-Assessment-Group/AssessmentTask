@@ -57,45 +57,13 @@ public class Frame {
 
 
         //Maze Generation window
-        /*window2 = new JFrame("Maze Generation Window");
+        window2 = new JFrame("Maze Generation Window");
         window2.setSize(700, 600);
         window2.setLocationRelativeTo(null);
-        window2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        window2.setVisible(true);*/
+        //window2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        window2.setVisible(true);
 
 
-        /*// menu bar
-        JMenuBar menubar = new JMenuBar();
-        JMenu fileMenuItem = new JMenu("File");
-
-        // sub menus
-        JMenuItem quitMenuItem = new JMenuItem("Quit");
-
-        fileMenuItem.add(quitMenuItem);
-
-        JMenu editMenuItem = new JMenu("Edit");
-
-        // sub menus
-        JMenuItem undoMenuItem = new JMenuItem("Undo");
-        JMenuItem redoMenuItem = new JMenuItem("Redo");
-
-        editMenuItem.add(undoMenuItem);
-        editMenuItem.add(redoMenuItem);
-
-        JMenu mazeMenuItem = new JMenu("My Maze");
-
-        // sub menus
-        JMenuItem exportMenuItem = new JMenuItem("Export Maze");
-        JMenuItem importMenuItem = new JMenuItem("Export Maze");
-
-        mazeMenuItem.add(exportMenuItem);
-        mazeMenuItem.add(importMenuItem);
-
-        menubar.add(fileMenuItem);
-        menubar.add(editMenuItem);
-        menubar.add(mazeMenuItem);
-
-        window.setJMenuBar(menubar);*/
 
 
 
@@ -460,6 +428,7 @@ public class Frame {
                 //window.getContentPane().repaint();
                 initialise();
                 Render.setButtonPressed(inputx.getText(),inputy.getText());
+
 
 
             }

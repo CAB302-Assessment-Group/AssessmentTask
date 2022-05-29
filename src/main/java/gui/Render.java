@@ -14,6 +14,10 @@ import static gui.Frame.initialise;
 
 public class Render {
     private static JFrame window = Frame.getInstance().window;
+    private static JFrame window2 = Frame.getInstance().window2;
+
+
+
     //private static JFrame window2 = Frame.getInstance().window2;
     //tried to add maze generation panel, not sure how to take panel from frame class
     //private static JPanel MazeGenerationPanel = new JPanel();
@@ -45,7 +49,8 @@ public class Render {
      * @param height Height specified by the user
      */
     public static void setButtonPressed(String width, String height){
-
+        window2.getContentPane().removeAll();
+        window2.getContentPane().repaint();
 
         String[] inputs = {width, height};
         //System.out.println(width);
@@ -90,8 +95,8 @@ public class Render {
 
                 //MazeGenerationPanel.add(tempBTN);
 
-                window.add(tempBTN);
-                //window2.add(tempBTN);
+                //window.add(tempBTN);
+                window2.add(tempBTN);
 
                 JButton tempBTN2 = new JButton("");
                 //tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
@@ -110,8 +115,8 @@ public class Render {
 
 
 
-                window.add(tempBTN2);
-                //window2.add(tempBTN2);
+                //window.add(tempBTN2);
+                window2.add(tempBTN2);
             }
         }
 
@@ -126,8 +131,8 @@ public class Render {
             // change contianer from window to MazeGenerationPanel
             //MazeGenerationPanel.add(tempBTN2);
 
-            window.add(tempBTN2);
-            //window2.add(tempBTN2);
+            //window.add(tempBTN2);
+            window2.add(tempBTN2);
         }
 
         for(int i = 0; i < myMaze.mazeSize()[0]; i++){
@@ -141,8 +146,8 @@ public class Render {
             // change container from window to MazeGenerationPanel
             //MazeGenerationPanel.add(tempBTN);
 
-            window.add(tempBTN);
-            //window2.add(tempBTN);
+            //window.add(tempBTN);
+            window2.add(tempBTN);
         }
 
         //window.add(MazeGenerationPanel);

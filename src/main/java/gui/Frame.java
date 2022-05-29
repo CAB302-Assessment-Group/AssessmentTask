@@ -9,12 +9,15 @@ import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 import gui.Render;
 public class Frame {
     public int[] mazeSize = new int[2];
     public Maze myMaze = new Maze(new int[]{100, 100}); //init as adult maze
     public static JFrame window;
+    public static JFrame window2;
 
     public int WELCOMEFRAME = 1;
     public int MAZETYPEFRAME = 2;
@@ -48,44 +51,24 @@ public class Frame {
         // set frame location to center of screen
         window.setLocationRelativeTo(null);
 
-        /*// menu bar
-        JMenuBar menubar = new JMenuBar();
-        JMenu fileMenuItem = new JMenu("File");
-
-        // sub menus
-        JMenuItem quitMenuItem = new JMenuItem("Quit");
-
-        fileMenuItem.add(quitMenuItem);
-
-        JMenu editMenuItem = new JMenu("Edit");
-
-        // sub menus
-        JMenuItem undoMenuItem = new JMenuItem("Undo");
-        JMenuItem redoMenuItem = new JMenuItem("Redo");
-
-        editMenuItem.add(undoMenuItem);
-        editMenuItem.add(redoMenuItem);
-
-        JMenu mazeMenuItem = new JMenu("My Maze");
-
-        // sub menus
-        JMenuItem exportMenuItem = new JMenuItem("Export Maze");
-        JMenuItem importMenuItem = new JMenuItem("Export Maze");
-
-        mazeMenuItem.add(exportMenuItem);
-        mazeMenuItem.add(importMenuItem);
-
-        menubar.add(fileMenuItem);
-        menubar.add(editMenuItem);
-        menubar.add(mazeMenuItem);
-
-        window.setJMenuBar(menubar);*/
-
         window.setLayout(null);
-
 
         // make the program process close when the main window is closed
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        window.setVisible(true);
+
+
+        //Maze Generation window
+        window2 = new JFrame("Maze Generation Window");
+        window2.setSize(700, 600);
+        window2.setLocationRelativeTo(null);
+        window2.setVisible(true);
+        window2.setVisible(false);
+
+
+
+
+
 
         MainMenu();
         // initialise("","");
@@ -95,7 +78,7 @@ public class Frame {
         // needs to be put into seperate "render" class
 
 
-        window.setVisible(true);
+
     }
 
     public void MainMenu(){
@@ -236,9 +219,6 @@ public class Frame {
         /*JScrollPane pane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         window.setContentPane(pane);*/
 
-
-
-
         JLabel labelx = new JLabel("Width:");
         labelx.setBounds(20,100,50,20);
 
@@ -333,7 +313,7 @@ public class Frame {
 
 
 
-        /*JPanel MazePropertiesPanel = new JPanel(new GridBagLayout());
+/*        JPanel MazePropertiesPanel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
         constraints.gridwidth = 3;
@@ -349,29 +329,27 @@ public class Frame {
 
         MazePropertiesPanel.add(labelx, constraints);
 
-        *//*constraints.gridx = 1;
+        constraints.gridx = 1;
         constraints.gridy = 0;
-        MazePropertiesPanel.add(inputx, constraints);*//*
+        MazePropertiesPanel.add(inputx, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 1;
         //c.weighty = 0.01;
         MazePropertiesPanel.add(labely, constraints);
 
-        *//*c.gridx = 2;
-        c.gridy = 1;
+        constraints.gridx = 2;
+        constraints.gridy = 1;
         //c.weighty = 0.01;
-        MazePropertiesPanel.add(inputy, c);*//*
+        MazePropertiesPanel.add(inputy, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 2;
-        //c.weighty = 0.01;*/
-        /*MazePropertiesPanel.add(LogoCellSizeLabel, constraints);*/
-
-        /*c.gridx = 2;
-        c.gridy = 2;
         //c.weighty = 0.01;
-        MazePropertiesPanel.add(LogoCellSizeInput, c);*/
+        MazePropertiesPanel.add(LogoCellSizeLabel, constraints);*/
+
+
+        //MazePropertiesPanel.add(LogoCellSizeInput, constraints);
 
         JPanel MazeTypePanel = new JPanel();
         MazeTypePanel.setBounds(190, 100, 150,125);
@@ -396,6 +374,7 @@ public class Frame {
 
 
 
+
         //window.add(exportBTN);
         //window.add(Back);
         //window.add(setSize);
@@ -409,11 +388,12 @@ public class Frame {
         window.add(AutoGenerateMazeButton);
 
 
-        window.add(MenuBarPanel);
+        //window.add(MenuBarPanel);
         //window.add(MazePropertiesPanel);
         //window.add(MazeTypePanel);
         //window.add(MazeDifficultyPanel);
-        window.add(MazeGenerationPanel);
+        //window.add(MazeGenerationPanel);
+
 
 
         //setSize.addActionListener(action -> Render.setButtonPressed(inputx.getText(), inputy.getText()));
@@ -444,11 +424,25 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 //creates the maze based on width and length inputs
                 //take inputs from text box, "inputx.getText()"
+                //window.getContentPane().removeAll();
+                //window.getContentPane().repaint();
+                //initialise();
+
+                window2.getContentPane().removeAll();
+                window2.getContentPane().repaint();
+
+                window2.setVisible(true);
+
+
                 Render.setButtonPressed(inputx.getText(),inputy.getText());
+
+
+
 
 
             }
         });
+
 
 
     }

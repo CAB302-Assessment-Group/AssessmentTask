@@ -11,9 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static gui.Frame.initialise;
+import static gui.Frame.window;
 
 public class Render {
-    private static JFrame window = Frame.getInstance().window;
+    //private static JFrame window = Frame.getInstance().window;
     private static JFrame window2 = Frame.getInstance().window2;
 
 
@@ -49,8 +50,7 @@ public class Render {
      * @param height Height specified by the user
      */
     public static void setButtonPressed(String width, String height){
-        window2.getContentPane().removeAll();
-        window2.getContentPane().repaint();
+
 
         String[] inputs = {width, height};
         //System.out.println(width);
@@ -117,7 +117,7 @@ public class Render {
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
                 tempBTN2.setBackground(x == 0 ? Color.BLACK : Color.WHITE);
 
-                // change contianer from window to MazeGenerationPanel
+                // change container from window to MazeGenerationPanel
                 //MazeGenerationPanel.add(tempBTN2);
 
                 //Jayden's update

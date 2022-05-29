@@ -62,8 +62,8 @@ public class Frame {
         window2 = new JFrame("Maze Generation Window");
         window2.setSize(700, 600);
         window2.setLocationRelativeTo(null);
-        //window2.setVisible(true);
-        //window2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        window2.setVisible(true);
+        window2.setVisible(false);
 
 
 
@@ -218,9 +218,6 @@ public class Frame {
         // maze needs to be drawn inside a pane for scrollbars to work and for other buttons to stay constant
         /*JScrollPane pane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         window.setContentPane(pane);*/
-
-
-
 
         JLabel labelx = new JLabel("Width:");
         labelx.setBounds(20,100,50,20);
@@ -431,16 +428,16 @@ public class Frame {
                 //window.getContentPane().repaint();
                 //initialise();
 
+                window2.getContentPane().removeAll();
+                window2.getContentPane().repaint();
 
                 window2.setVisible(true);
 
-                //window2.getContentPane().removeAll();
-                //window2.getContentPane().repaint();
-                window2.getContentPane().removeAll();
 
                 Render.setButtonPressed(inputx.getText(),inputy.getText());
 
-                window2.getContentPane().repaint();
+
+
 
 
             }

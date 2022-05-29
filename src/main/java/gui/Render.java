@@ -13,9 +13,9 @@ import java.awt.event.ActionListener;
 import static gui.Frame.initialise;
 
 public class Render {
-    private static JFrame window = Frame.getInstance().window;
+    private static JFrame window2 = Frame.getInstance().window2;
     //tried to add maze generation panel, not sure how to take panel from frame class
-    private static JPanel MazeGenerationPanel;
+    //private static JPanel MazeGenerationPanel = new JPanel();
     private static int[] mazeSize = Frame.getInstance().mazeSize;
     private static Maze myMaze = Frame.getInstance().myMaze;
     /**
@@ -72,7 +72,7 @@ public class Render {
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
                 tempBTN.setBackground(y == 0 ? Color.BLACK : Color.WHITE);
 
-                // change contianer from window to MazeGenerationPanel
+                // change container from window to MazeGenerationPanel
                 //MazeGenerationPanel.add(tempBTN);
 
                 //Jayden's update
@@ -80,7 +80,9 @@ public class Render {
 
 
 
-                window.add(tempBTN);
+                //MazeGenerationPanel.add(tempBTN);
+
+                window2.add(tempBTN);
 
                 JButton tempBTN2 = new JButton("");
                 tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
@@ -94,8 +96,9 @@ public class Render {
                 //tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).LeftWall() ? Color.BLACK : Color.WHITE);
 
 
+                //MazeGenerationPanel.add(tempBTN2);
 
-                window.add(tempBTN2);
+                window2.add(tempBTN2);
             }
         }
 
@@ -108,7 +111,7 @@ public class Render {
             tempBTN2.setBackground(Color.BLACK);
             // change contianer from window to MazeGenerationPanel
             //MazeGenerationPanel.add(tempBTN2);
-            window.add(tempBTN2);
+            window2.add(tempBTN2);
         }
 
         for(int i = 0; i < myMaze.mazeSize()[0]; i++){
@@ -120,11 +123,11 @@ public class Render {
             tempBTN.setBackground(Color.BLACK);
             // change contianer from window to MazeGenerationPanel
             //MazeGenerationPanel.add(tempBTN);
-            window.add(tempBTN);
+            window2.add(tempBTN);
         }
 
-
-        SwingUtilities.updateComponentTreeUI(window);
+        //window.add(MazeGenerationPanel);
+        SwingUtilities.updateComponentTreeUI(window2);
         //SwingUtilities.updateComponentTreeUI(MazeGenerationPanel);
     }
 
@@ -160,6 +163,10 @@ public class Render {
         System.out.println(x+", "+y);
 
 
+
     }
+
+
+
 
 }

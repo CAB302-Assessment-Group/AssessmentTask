@@ -15,6 +15,7 @@ public class Frame {
     public int[] mazeSize = new int[2];
     public Maze myMaze = new Maze(new int[]{100, 100}); //init as adult maze
     public static JFrame window;
+    public static JFrame window2;
 
     public int WELCOMEFRAME = 1;
     public int MAZETYPEFRAME = 2;
@@ -47,6 +48,20 @@ public class Frame {
 
         // set frame location to center of screen
         window.setLocationRelativeTo(null);
+
+        window.setLayout(null);
+
+        // make the program process close when the main window is closed
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        window.setVisible(true);
+
+
+        //Maze Generation window
+        window2 = new JFrame("Maze Generation Window");
+        window2.setSize(700, 600);
+        window2.setLocationRelativeTo(null);
+        window2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        window2.setVisible(true);
 
         /*// menu bar
         JMenuBar menubar = new JMenuBar();
@@ -81,11 +96,7 @@ public class Frame {
 
         window.setJMenuBar(menubar);*/
 
-        window.setLayout(null);
 
-
-        // make the program process close when the main window is closed
-        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         MainMenu();
         // initialise("","");
@@ -95,7 +106,7 @@ public class Frame {
         // needs to be put into seperate "render" class
 
 
-        window.setVisible(true);
+
     }
 
     public void MainMenu(){
@@ -396,6 +407,7 @@ public class Frame {
 
 
 
+
         //window.add(exportBTN);
         //window.add(Back);
         //window.add(setSize);
@@ -409,11 +421,12 @@ public class Frame {
         window.add(AutoGenerateMazeButton);
 
 
-        window.add(MenuBarPanel);
+        //window.add(MenuBarPanel);
         //window.add(MazePropertiesPanel);
         //window.add(MazeTypePanel);
         //window.add(MazeDifficultyPanel);
         window.add(MazeGenerationPanel);
+
 
 
         //setSize.addActionListener(action -> Render.setButtonPressed(inputx.getText(), inputy.getText()));

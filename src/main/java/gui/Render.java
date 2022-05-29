@@ -45,6 +45,8 @@ public class Render {
      * @param height Height specified by the user
      */
     public static void setButtonPressed(String width, String height){
+
+
         String[] inputs = {width, height};
         //System.out.println(width);
         //System.out.println(height);
@@ -87,6 +89,7 @@ public class Render {
 
 
                 //MazeGenerationPanel.add(tempBTN);
+
                 window.add(tempBTN);
                 //window2.add(tempBTN);
 
@@ -105,6 +108,8 @@ public class Render {
 
                 //MazeGenerationPanel.add(tempBTN2);
 
+
+
                 window.add(tempBTN2);
                 //window2.add(tempBTN2);
             }
@@ -120,6 +125,7 @@ public class Render {
             tempBTN2.setBackground(Color.BLACK);
             // change contianer from window to MazeGenerationPanel
             //MazeGenerationPanel.add(tempBTN2);
+
             window.add(tempBTN2);
             //window2.add(tempBTN2);
         }
@@ -134,6 +140,7 @@ public class Render {
             tempBTN.setBackground(Color.BLACK);
             // change container from window to MazeGenerationPanel
             //MazeGenerationPanel.add(tempBTN);
+
             window.add(tempBTN);
             //window2.add(tempBTN);
         }

@@ -57,11 +57,11 @@ public class Frame {
 
 
         //Maze Generation window
-        window2 = new JFrame("Maze Generation Window");
+        /*window2 = new JFrame("Maze Generation Window");
         window2.setSize(700, 600);
         window2.setLocationRelativeTo(null);
         window2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        window2.setVisible(true);
+        window2.setVisible(true);*/
 
 
         /*// menu bar
@@ -345,7 +345,7 @@ public class Frame {
 
 
 
-        /*JPanel MazePropertiesPanel = new JPanel(new GridBagLayout());
+/*        JPanel MazePropertiesPanel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
         constraints.gridwidth = 3;
@@ -361,29 +361,27 @@ public class Frame {
 
         MazePropertiesPanel.add(labelx, constraints);
 
-        *//*constraints.gridx = 1;
+        constraints.gridx = 1;
         constraints.gridy = 0;
-        MazePropertiesPanel.add(inputx, constraints);*//*
+        MazePropertiesPanel.add(inputx, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 1;
         //c.weighty = 0.01;
         MazePropertiesPanel.add(labely, constraints);
 
-        *//*c.gridx = 2;
-        c.gridy = 1;
+        constraints.gridx = 2;
+        constraints.gridy = 1;
         //c.weighty = 0.01;
-        MazePropertiesPanel.add(inputy, c);*//*
+        MazePropertiesPanel.add(inputy, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 2;
-        //c.weighty = 0.01;*/
-        /*MazePropertiesPanel.add(LogoCellSizeLabel, constraints);*/
-
-        /*c.gridx = 2;
-        c.gridy = 2;
         //c.weighty = 0.01;
-        MazePropertiesPanel.add(LogoCellSizeInput, c);*/
+        MazePropertiesPanel.add(LogoCellSizeLabel, constraints);*/
+
+
+        //MazePropertiesPanel.add(LogoCellSizeInput, constraints);
 
         JPanel MazeTypePanel = new JPanel();
         MazeTypePanel.setBounds(190, 100, 150,125);
@@ -458,11 +456,15 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 //creates the maze based on width and length inputs
                 //take inputs from text box, "inputx.getText()"
+                //window.getContentPane().removeAll();
+                //window.getContentPane().repaint();
+                initialise();
                 Render.setButtonPressed(inputx.getText(),inputy.getText());
 
 
             }
         });
+
 
 
     }

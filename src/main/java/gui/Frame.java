@@ -18,6 +18,7 @@ public class Frame {
     public Maze myMaze = new Maze(new int[]{100, 100}); //init as adult maze
     public static JFrame window;
     public static JFrame window2;
+    public static JFrame window3;
 
     public static int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -68,6 +69,10 @@ public class Frame {
         //DON'T REMOVE!! THIS FIXES THE MAZE REDRAWING ISSUE WHEN YOU PRESS GENERATE BUTTON*/
 
         window2.setVisible(false);
+
+
+        window3 = new JFrame("Search Results");
+        window3.setVisible(false);
 
 
 
@@ -189,6 +194,7 @@ public class Frame {
         Back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                window3.setVisible(false);
                 MainMenu();
             }
         });
@@ -196,12 +202,55 @@ public class Frame {
         Search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainMenu();
+                SearchResults();
             }
         });
     }
 
-    
+
+
+    public void SearchResults() {
+        window3.setLayout(null);
+
+        window3.getContentPane().removeAll();
+        window3.getContentPane().repaint();
+
+        // set frame location to center of screen
+        window3.setLocation(screenWidth/2 -(500/2), screenHeight/16+300);
+        window3.setSize(500, 300);
+
+        window3.setVisible(true);
+
+        JLabel SearchResultsTitle = new JLabel("Search Results");
+        SearchResultsTitle.setBounds((500/2) - (100/2),10,100,20);
+
+        JTable SearchResultsTable = new JTable();
+        SearchResultsTable.setBounds((500/2) - (200/2),60,200,60);
+
+        JButton OpenSelectedMazesButton = new JButton("Open");
+        OpenSelectedMazesButton.setBounds((500/2) - (80/2), 200, 80, 20);
+
+
+
+
+
+
+        window3.add(SearchResultsTitle);
+        window3.add(SearchResultsTable);
+        window3.add(OpenSelectedMazesButton);
+
+
+        OpenSelectedMazesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                initialise();
+                window3.setVisible(false);
+            }
+        });
+
+    }
+
+
 
 
 
@@ -214,6 +263,8 @@ public class Frame {
      *
      */
     public static void initialise(){
+        window.setLayout(null);
+
         window.getContentPane().removeAll();
         window.getContentPane().repaint();
 
@@ -308,49 +359,6 @@ public class Frame {
 
 
 
-        /*JPanel MenuBarPanel = new JPanel();
-        MenuBarPanel.setBounds(10, 10, 500, 75);
-        MenuBarPanel.setBorder(BorderFactory.createTitledBorder("Menu Bar"));
-        MenuBarPanel.add(BackButton);
-        MenuBarPanel.add(SaveButton);
-        //MenuBarPanel.add(ExportMazeButton);
-
-
-        JPanel MazePropertiesPanel = new JPanel();
-
-        MazePropertiesPanel.setBounds(10,10,175,125);
-        MazePropertiesPanel.setBorder(BorderFactory.createTitledBorder("Maze Properties"));
-
-
-        MazePropertiesPanel.add(labelx);
-        MazePropertiesPanel.add(inputx);
-        MazePropertiesPanel.add(labely);
-        MazePropertiesPanel.add(inputy);
-        MazePropertiesPanel.add(LogoCellSizeLabel);
-        MazePropertiesPanel.add(LogoCellSizeInput);
-
-
-        JPanel MazeTypePanel = new JPanel();
-        MazeTypePanel.setBounds(190, 100, 150,125);
-        MazeTypePanel.setBorder(BorderFactory.createTitledBorder("Maze Type"));
-        MazeTypePanel.add(StandardMazeButton);
-        MazeTypePanel.add(ChildrensMazeButton);
-
-        JPanel MazeDifficultyPanel = new JPanel();
-        MazeDifficultyPanel.setBounds(345, 100, 125, 125);
-        MazeDifficultyPanel.setBorder(BorderFactory.createTitledBorder("Maze Difficulty"));
-        MazeDifficultyPanel.add(EasyDifficultyButton);
-        MazeDifficultyPanel.add(MediumDifficultyButton);
-        MazeDifficultyPanel.add(HardDifficultyButton);
-
-        JPanel MazeGenerationPanel = new JPanel();
-        //MazeGenerationPanel.setBounds(10, 225, 500, 400);
-        MazeGenerationPanel.setBorder(BorderFactory.createTitledBorder("Maze Generation Preview"));*/
-
-
-
-
-
         window.add(BackButton);
         window.add(SaveButton);
         window.add(ExportMazeButton);
@@ -377,18 +385,6 @@ public class Frame {
         window.add(MediumDifficultyButton);
         window.add(HardDifficultyButton);
 
-
-
-
-        //window.add(MenuBarPanel);
-        //window.add(MazePropertiesPanel);
-        //window.add(MazeTypePanel);
-        //window.add(MazeDifficultyPanel);
-        //window.add(MazeGenerationPanel);
-
-
-
-        //setSize.addActionListener(action -> Render.setButtonPressed(inputx.getText(), inputy.getText()));
 
         BackButton.addActionListener(new ActionListener() {
             @Override

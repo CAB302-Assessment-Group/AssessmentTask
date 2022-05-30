@@ -401,7 +401,11 @@ public class Frame {
 
         BackButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { Frame.getInstance().MainMenu();}
+            public void actionPerformed(ActionEvent e) {
+                window2.setVisible(false);
+                Frame.getInstance().MainMenu();
+
+            }
         });
 
         ImportStartingLogo.addActionListener(new ActionListener() {

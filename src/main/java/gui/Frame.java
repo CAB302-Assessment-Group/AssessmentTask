@@ -91,7 +91,7 @@ public class Frame {
         window.getContentPane().repaint();
 
         // set frame location to center of screen
-        window.setLocation(screenWidth/2 -(250/2), screenHeight/2 -(300/2));
+        window.setLocation(screenWidth/2 -(250/2), screenHeight/16);
         window.setSize(250, 300);
 
 
@@ -140,74 +140,51 @@ public class Frame {
         window.getContentPane().removeAll();
         window.getContentPane().repaint();
 
-        JLabel OpenExistingMaze = new JLabel("Search for a Maze to edit");
-        OpenExistingMaze.setBounds(10,10,200,20);
-
-        JLabel SearchByName = new JLabel("Search By: Name");
-        SearchByName.setBounds(50,50,150,20);
-        JCheckBox CheckSearchByName = new JCheckBox();
-        CheckSearchByName.setBounds(150,50,20,20);
-
-        JLabel DateTime = new JLabel("Date/Time");
-        DateTime.setBounds(200,50,100,20);
-        JCheckBox CheckDateTime = new JCheckBox();
-        CheckDateTime.setBounds(275,50,20,20);
-
-        JLabel CreatedBy = new JLabel("Created By");
-        CreatedBy.setBounds(325,50,100,20);
-        JCheckBox CheckCreatedBy = new JCheckBox();
-        CheckCreatedBy.setBounds(425,50,20,20);
+        // set frame location to center of screen
+        window.setLocation(screenWidth/2 -(500/2), screenHeight/16);
+        window.setSize(500, 300);
 
 
-        JLabel NameOfMaze = new JLabel("Name of Maze");
-        NameOfMaze.setBounds(50,100,200,20);
-        JTextArea TextNameOfMaze = new JTextArea();
-        TextNameOfMaze.setBounds(150,100,300,20);
+        JLabel SearchForMazeTitle = new JLabel("Search for a Maze");
+        SearchForMazeTitle.setBounds((500/2)-(105/2),10,105,20);
 
-        JLabel CreatedByMenu = new JLabel("Created By:");
-        CreatedByMenu.setBounds(50,150,100,20);
-        JComboBox<String> CreatedByDrop = new JComboBox<>();
-        CreatedByDrop.setBounds(150,150,300,20);
+        JLabel MazeName = new JLabel("Name:");
+        MazeName.setBounds(50,50,150,20);
+        JTextArea MazeNameInput = new JTextArea();
+        MazeNameInput.setBounds(150,50, 150,20);
 
-        JLabel AccessedCreatedDate = new JLabel("Accessed/Created Date");
-        AccessedCreatedDate.setBounds(50,200,200,20);
-        JTextArea TextAccessedCreatedDate = new JTextArea();
-        TextAccessedCreatedDate.setBounds(200,200,300,20);
+        JLabel DateCreated = new JLabel("Date Created:");
+        DateCreated.setBounds(50,80,150,20);
+        JTextArea DateCreatedInput = new JTextArea();
+        DateCreatedInput.setBounds(150, 80, 150, 20);
 
+        JLabel DateModified = new JLabel("Date Modified:");
+        DateModified.setBounds(50,110,150,20);
+        JTextArea DateModifiedInput = new JTextArea();
+        DateModifiedInput.setBounds(150, 110, 150,20);
+
+        JLabel Author = new JLabel("Author:");
+        Author.setBounds(50,140,150,20);
+        JTextArea AuthorInput = new JTextArea();
+        AuthorInput.setBounds(150,140, 150,20);
 
         JButton Search = new JButton("Search");
-        Search.setBounds(50, 250, 150, 20);
-
-        JLabel Results = new JLabel("Results");
-        Results.setBounds(50,300,100,20);
-        JComboBox<String> ResultsDrop = new JComboBox<>();
-        ResultsDrop.setBounds(50,350,300,20);
-
-
-        JButton SelectMaze = new JButton(("SelectMaze"));
-        SelectMaze.setBounds(50,400,150,20);
+        Search.setBounds(50, 170, 75, 20);
 
         JButton Back = new JButton(("Back"));
-        Back.setBounds(50,450,150,20);
+        Back.setBounds(10,10,75,20);
 
-        window.add(OpenExistingMaze);
-        window.add(SearchByName);
-        window.add(CheckSearchByName);
-        window.add(DateTime);
-        window.add(CheckDateTime);
-        window.add(CreatedBy);
-        window.add(CheckCreatedBy);
-        window.add(NameOfMaze);
-        window.add(TextNameOfMaze);
-        window.add(CreatedByMenu);
-        window.add(CreatedByDrop);
-        window.add(AccessedCreatedDate);
-        window.add(TextAccessedCreatedDate);
-        window.add(Search);
-        window.add(Results);
-        window.add(ResultsDrop);
-        window.add(SelectMaze);
         window.add(Back);
+        window.add(SearchForMazeTitle);
+        window.add(MazeName);
+        window.add(MazeNameInput);
+        window.add(DateCreated);
+        window.add(DateCreatedInput);
+        window.add(DateModified);
+        window.add(DateModifiedInput);
+        window.add(Author);
+        window.add(AuthorInput);
+        window.add(Search);
 
         Back.addActionListener(new ActionListener() {
             @Override
@@ -215,7 +192,23 @@ public class Frame {
                 MainMenu();
             }
         });
+
+        Search.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainMenu();
+            }
+        });
     }
+
+    
+
+
+
+
+
+
+
     /**
      * Intialises the new blank maze GUI
      *
@@ -226,8 +219,6 @@ public class Frame {
 
         window.setLocation((screenWidth / 2 - (850/2)),screenHeight/16);
         window.setSize(850, 250);
-
-
 
 
         // maze needs to be drawn inside a pane for scrollbars to work and for other buttons to stay constant
@@ -289,7 +280,7 @@ public class Frame {
 
 
         JButton BackButton = new JButton("Back");
-        BackButton.setBounds(10, 20, 80, 20);
+        BackButton.setBounds(10, 20, 75, 20);
 
         JButton SaveButton = new JButton("Save");
         SaveButton.setBounds(100, 20, 150, 20);

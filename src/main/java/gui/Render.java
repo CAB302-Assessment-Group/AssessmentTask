@@ -49,7 +49,7 @@ public class Render {
      * @param width Width specified by the user
      * @param height Height specified by the user
      */
-    public static void setButtonPressed(String width, String height){
+    public static void setButtonPressed(String width, String height, boolean generated){
 
 
         String[] inputs = {width, height};
@@ -68,7 +68,10 @@ public class Render {
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
         myMaze = new Maze(mazeSize); //need to pass child maze param
 
-        myMaze.generateMaze();
+
+
+        if(generated)
+            myMaze.generateMaze(false);
 
         int scale_factor = 1;
         //maze generation starting position on frame
@@ -102,8 +105,8 @@ public class Render {
                 //MazeGenerationPanel.add(tempBTN);
 
                 //Jayden's update
-                //tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).TopWall() ? Color.BLACK : Color.WHITE);
-
+                tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).TopWall() ? Color.BLACK : Color.WHITE);
+                System.out.println(finalX + ","+finalY + myMaze.mazeTile(finalX,finalY).TopWall());
 
 
                 //MazeGenerationPanel.add(tempBTN);
@@ -121,7 +124,7 @@ public class Render {
                 //MazeGenerationPanel.add(tempBTN2);
 
                 //Jayden's update
-                //tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).LeftWall() ? Color.BLACK : Color.WHITE);
+                tempBTN2.setBackground(myMaze.mazeTile(finalX,finalY).LeftWall() ? Color.BLACK : Color.WHITE);
 
 
                 //MazeGenerationPanel.add(tempBTN2);

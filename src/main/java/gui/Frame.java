@@ -24,13 +24,6 @@ public class Frame {
 
 
 
-    public int WELCOMEFRAME = 1;
-    public int MAZETYPEFRAME = 2;
-    public int SIZEFRAME = 3;
-    public int ERRORFRAME = 4;
-    public int EDITFRAME = 5;
-    public int MAZECREATEFRAME = 6;
-
 
     private static class FrameHolder{
         private final static Frame INSTANCE = new Frame();
@@ -442,10 +435,26 @@ public class Frame {
                 window2.setVisible(true);
 
 
-                Render.setButtonPressed(inputx.getText(),inputy.getText());
+                Render.setButtonPressed(inputx.getText(),inputy.getText(),false);
             }
         });
 
+        AutoGenerateMazeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window2.setLayout(null);
+
+
+                window2.getContentPane().removeAll();
+                window2.getContentPane().repaint();
+                window2.setLocation((screenWidth / 2 - (850/2)),screenHeight/2 - 230);
+                window2.setSize(850, 650);
+
+                window2.setVisible(true);
+                Render.setButtonPressed(inputx.getText(),inputy.getText(),true);
+
+            }
+        });
 
 
     }

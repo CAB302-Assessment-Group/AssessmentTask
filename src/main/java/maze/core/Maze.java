@@ -240,7 +240,7 @@ public class Maze implements MazeOutline, Serializable {
      * @author Jayden
      *
      */
-    public boolean generateMaze() {
+    public boolean generateMaze(boolean hasIm) {
         int[] location = new int[]{0,0};
 
 
@@ -253,6 +253,7 @@ public class Maze implements MazeOutline, Serializable {
             }
         }
 
+
         ArrayList<int[]> currentwalk = new ArrayList<>();
         currentwalk.add(new int[]{location[0],location[1]});
         int visited = 1;
@@ -261,6 +262,11 @@ public class Maze implements MazeOutline, Serializable {
         int max = mazeSize()[0] * mazeSize()[1];
 
         int[] lastloc = new int[]{location[0],location[1]};
+
+        if(hasIm){
+
+            //mazeTile(mazeSize()[0] / 2,mazeSize()[1] / 2)
+        }
 
         while(visited < max){
 

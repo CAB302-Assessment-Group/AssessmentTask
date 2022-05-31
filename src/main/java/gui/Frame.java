@@ -1,5 +1,6 @@
 package gui;
 
+import maze.core.Database;
 import org.junit.jupiter.api.Test;
 import maze.core.Maze;
 import maze.core.Tile;
@@ -333,8 +334,9 @@ public class Frame {
         JButton BackButton = new JButton("Back");
         BackButton.setBounds(10, 20, 75, 20);
 
-        JButton SaveButton = new JButton("Save");
+        JButton SaveButton = new JButton("Export Maze");
         SaveButton.setBounds(100, 20, 150, 20);
+        SaveButton.addActionListener(action -> Database.exportMaze(Render.currentMaze));
 
         JButton ExportMazeButton = new JButton("Export Maze Image");
         ExportMazeButton.setBounds(100, 50, 150, 20);

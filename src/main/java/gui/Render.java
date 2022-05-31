@@ -2,15 +2,10 @@ package gui;
 
 
 import maze.core.Maze;
-import gui.Frame;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import static gui.Frame.initialise;
 import static gui.Frame.window;
 
 public class Render {
@@ -23,7 +18,7 @@ public class Render {
     //tried to add maze generation panel, not sure how to take panel from frame class
     //private static JPanel MazeGenerationPanel = new JPanel();
     private static int[] mazeSize = Frame.getInstance().mazeSize;
-    private static Maze myMaze = Frame.getInstance().myMaze;
+    public static Maze currentMaze = Frame.getInstance().myMaze;
     /**
      * Validates user input for sizing maze
      * @author Hudson
@@ -66,9 +61,9 @@ public class Render {
         //System.out.println(width.trim()+", "+height.trim());
 
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
-        myMaze = new Maze(mazeSize); //need to pass child maze param
+        currentMaze = new Maze(mazeSize); //need to pass child maze param
 
-        myMaze.generateMaze();
+        currentMaze.generateMaze();
 
         int scale_factor = 1;
         //maze generation starting position on frame
@@ -87,8 +82,8 @@ public class Render {
         int xdistance_between_vertical_walls = 50;
         int ydistance_between_vertical_walls = 50;
 
-        for (int x = 0; x < myMaze.mazeSize()[0]; x++) {
-            for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
+        for (int x = 0; x < currentMaze.mazeSize()[0]; x++) {
+            for (int y = 0; y < currentMaze.mazeSize()[1]; y++) {
                 // border styling
                 JButton tempBTN = new JButton("");
                 //tempBTN.setBounds(10 + x * 50, 75 + y * 50, 40, 10);
@@ -133,11 +128,11 @@ public class Render {
             }
         }
 
-        for(int i = 0; i < myMaze.mazeSize()[1]; i++){
+        for(int i = 0; i < currentMaze.mazeSize()[1]; i++){
             JButton tempBTN2 = new JButton("");
             //tempBTN2.setBounds(myMaze.mazeSize()[0] * 50, 10+75 + i * 50, 10, 40);
-            tempBTN2.setBounds(xposition + myMaze.mazeSize()[0] * xdistance_between_vertical_walls * scale_factor, 10+yposition + i * ydistance_between_vertical_walls * scale_factor, vertical_wall_width, vertical_wall_length * scale_factor);
-            int finalX = myMaze.mazeSize()[0];
+            tempBTN2.setBounds(xposition + currentMaze.mazeSize()[0] * xdistance_between_vertical_walls * scale_factor, 10+yposition + i * ydistance_between_vertical_walls * scale_factor, vertical_wall_width, vertical_wall_length * scale_factor);
+            int finalX = currentMaze.mazeSize()[0];
             int finalY = i;
             tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
             tempBTN2.setBackground(Color.BLACK);
@@ -148,12 +143,12 @@ public class Render {
             window2.add(tempBTN2);
         }
 
-        for(int i = 0; i < myMaze.mazeSize()[0]; i++){
+        for(int i = 0; i < currentMaze.mazeSize()[0]; i++){
             JButton tempBTN = new JButton("");
             //tempBTN.setBounds(10 + i * 50, 75 + myMaze.mazeSize()[1] * 50, 40, 10);
-            tempBTN.setBounds(10+xposition + i * xdistance_between_horizontal_walls * scale_factor, yposition + myMaze.mazeSize()[1] * ydistance_between_horizontal_walls * scale_factor, horizontal_wall_length * scale_factor, horizontal_wall_width);
+            tempBTN.setBounds(10+xposition + i * xdistance_between_horizontal_walls * scale_factor, yposition + currentMaze.mazeSize()[1] * ydistance_between_horizontal_walls * scale_factor, horizontal_wall_length * scale_factor, horizontal_wall_width);
             int finalX = i;
-            int finalY = myMaze.mazeSize()[1];
+            int finalY = currentMaze.mazeSize()[1];
             tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
             tempBTN.setBackground(Color.BLACK);
             // change container from window to MazeGenerationPanel
@@ -187,12 +182,12 @@ public class Render {
 
         if(Top){
             if(y == 0){
-                myMaze.mazeTile(x,y).setTopWall(set);
+                currentMaze.mazeTile(x,y).setTopWall(set);
             }else if(y==mazeSize[1]){
-                myMaze.mazeTile(x,y).setBottomWall(set);
+                currentMaze.mazeTile(x,y).setBottomWall(set);
             }else{
-                myMaze.mazeTile(x,y).setTopWall(set);
-                myMaze.mazeTile(x,y-1).setBottomWall(set);
+                currentMaze.mazeTile(x,y).setTopWall(set);
+                currentMaze.mazeTile(x,y-1).setBottomWall(set);
             }
         }
 

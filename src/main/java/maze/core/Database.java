@@ -92,7 +92,7 @@ public class Database {
      * @param myMaze An instance of a maze object which to export to the database
      * @return The status/success code of the function
      */
-    public statusCodes.dbStatus exportMaze(Maze myMaze) {
+    public static statusCodes.dbStatus exportMaze(Maze myMaze) {
         try {
             Connection myDBInstance = getInstance();
 

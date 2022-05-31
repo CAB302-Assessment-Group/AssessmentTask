@@ -1,18 +1,17 @@
 package gui;
 
-import org.junit.jupiter.api.Test;
 import maze.core.Maze;
-import maze.core.Tile;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.TimeUnit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-import gui.Render;
 public class Frame {
     public int[] mazeSize = new int[2];
     public Maze myMaze = new Maze(new int[]{100, 100}); //init as adult maze
@@ -394,6 +393,20 @@ public class Frame {
 
             }
         });
+        ExportMazeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO add support for file picker to find a location
+                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                try {
+                    ExportMaze(window2,"");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+
+            }
+        });
 
         ImportStartingLogo.addActionListener(new ActionListener() {
             @Override
@@ -435,5 +448,22 @@ public class Frame {
 
 
 
+    }
+
+    /**
+     * Obtained fromhttps://stackoverflow.com/questions/30335787/take-snapshot-of-full-jframe-and-jframe-only
+     * Takes a picture output of the JFrame and converts to png format
+     * @param mazeBox the JFrame to screenshot
+     * @throws IOException
+     *
+     */
+    public static void ExportMaze(JFrame mazeBox, String location) throws IOException {
+        //TODO
+        //Add in support for different locations on computer to store
+        //Add in naming of maze
+        BufferedImage img = new BufferedImage(mazeBox.getWidth(), mazeBox.getHeight(), BufferedImage.TYPE_INT_RGB);
+        mazeBox.paint(img.getGraphics());
+        File outputfile = new File("mazeOutput.png");
+        ImageIO.write(img, "png", outputfile);
     }
 }

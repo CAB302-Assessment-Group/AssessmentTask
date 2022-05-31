@@ -19,7 +19,6 @@ public class TestMaze {
     }
     /**
      * Test 1 and 2: Testing for Maze class constructor and important attributes such as Maze sizing.
-     *
      * @author JackFFFFFF, Jayden
      */
     @Test
@@ -75,7 +74,7 @@ public class TestMaze {
         assertEquals(STARTLOC,testMaze.getStart());
         assertEquals(ENDLOC,testMaze.getEnd());
         assertEquals(startImage,testMaze.getStartImage());
-        assertEquals(endImage,testMaze.getEndImage());
+        assertEquals(null,testMaze.getEndImage());
 
     }
     /**
@@ -306,10 +305,6 @@ public class TestMaze {
             testMaze.setStart(STARTLOC);
             testMaze.setEnd(ENDLOC);
         });
-        assertThrows(MazeException.class, () ->{
-            testMaze.setStart(STARTLOC);
-        });
-
         //Bottom left corner
         STARTLOC[0]=0;
         STARTLOC[1]=4;

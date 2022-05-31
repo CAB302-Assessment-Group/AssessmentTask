@@ -49,7 +49,7 @@ public class Render {
      * @param width Width specified by the user
      * @param height Height specified by the user
      */
-    public static void setButtonPressed(String width, String height, boolean generated){
+    public static void setButtonPressed(String width, String height, String logoSize, boolean generated){
 
 
         String[] inputs = {width, height};
@@ -64,14 +64,28 @@ public class Render {
         //initialise(width.trim(), height.trim());
 
         //System.out.println(width.trim()+", "+height.trim());
+        int logoSizeInt = -1;
+        try{
+            logoSizeInt = Integer.parseInt(logoSize);
+        }catch(Exception e){
+            System.out.println("[ERROR] Invalid logo size...");
+            return;
+        }
 
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
         myMaze = new Maze(mazeSize); //need to pass child maze param
 
-
+        if(logoSizeInt >= Integer.parseInt(width.trim())-1 || logoSizeInt >= Integer.parseInt(height.trim())-1){
+            System.out.println("[ERROR] Invalid logo size...");
+            return;
+        }
+        int hasIm = 0;
+        if(logoSizeInt > 0){
+            hasIm = logoSizeInt;
+        }
 
         if(generated)
-            myMaze.generateMaze(false);
+            myMaze.generateMaze(hasIm);
 
         int scale_factor = 1;
         //maze generation starting position on frame
@@ -106,7 +120,7 @@ public class Render {
 
                 //Jayden's update
                 tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).TopWall() ? Color.BLACK : Color.WHITE);
-                System.out.println(finalX + ","+finalY + myMaze.mazeTile(finalX,finalY).TopWall());
+                //System.out.println(finalX + ","+finalY + myMaze.mazeTile(finalX,finalY).TopWall());
 
 
                 //MazeGenerationPanel.add(tempBTN);

@@ -437,7 +437,7 @@ public class Frame {
                 window2.setVisible(true);
 
 
-                Render.setButtonPressed(inputx.getText(),inputy.getText(),false);
+                Render.setButtonPressed(inputx.getText(),inputy.getText(), LogoCellSizeInput.getText(),false);
             }
         });
 
@@ -453,7 +453,7 @@ public class Frame {
                 window2.setSize(850, 650);
 
                 window2.setVisible(true);
-                Render.setButtonPressed(inputx.getText(),inputy.getText(),true);
+                Render.setButtonPressed(inputx.getText(),inputy.getText(), LogoCellSizeInput.getText(),true);
 
             }
         });

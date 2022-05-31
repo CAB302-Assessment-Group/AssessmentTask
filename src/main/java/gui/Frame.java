@@ -374,11 +374,11 @@ public class Frame {
 
         window.add(ChildrensMazeButton);
         window.add(StandardMazeButton);
-
+        /*
         window.add(EasyDifficultyButton);
         window.add(MediumDifficultyButton);
         window.add(HardDifficultyButton);
-
+        */
 
         BackButton.addActionListener(new ActionListener() {
             @Override

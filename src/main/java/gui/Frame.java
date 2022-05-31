@@ -303,7 +303,7 @@ public class Frame {
         MazeTypeSelection.add(StandardMazeButton);
         MazeTypeSelection.add(ChildrensMazeButton);
 
-        JRadioButton EasyDifficultyButton = new JRadioButton("Easy");
+        /* JRadioButton EasyDifficultyButton = new JRadioButton("Easy");
         EasyDifficultyButton.setActionCommand("Easy Difficulty Action");
         EasyDifficultyButton.setBounds(420,   100, 100, 20);
 
@@ -319,6 +319,8 @@ public class Frame {
         DifficultySelection.add(EasyDifficultyButton);
         DifficultySelection.add(MediumDifficultyButton);
         DifficultySelection.add(HardDifficultyButton);
+
+        */
 
 
 

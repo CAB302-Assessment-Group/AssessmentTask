@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Frame {
     public int[] mazeSize = new int[2];
@@ -229,6 +230,8 @@ public class Frame {
         JTable SearchResultsTable = new JTable();
         SearchResultsTable.setBounds((500/2) - (200/2),60,200,60);
 
+        ArrayList<Maze> loadedMazes = new ArrayList<Maze>();
+
         JButton OpenSelectedMazesButton = new JButton("Open");
         OpenSelectedMazesButton.setBounds((500/2) - (80/2), 200, 80, 20);
 
@@ -360,7 +363,21 @@ public class Frame {
         JButton SolveMazeButton = new JButton("Solve Maze");
         SolveMazeButton.setBounds(580, 20, 150, 20);
 
+        JLabel authorLabel = new JLabel("Author");
+        authorLabel.setBounds(580, 40, 150, 20);
+        JTextField mazeAuthor = new JTextField();
+        mazeAuthor.setBounds(580, 60, 150, 20);
 
+        JLabel mazeNameLabel = new JLabel("Maze Name");
+        mazeNameLabel.setBounds(580, 100, 150, 20);
+        JTextField mazeName = new JTextField();
+        mazeName.setBounds(580, 120, 150, 20);
+
+        window.add(mazeAuthor);
+        window.add(authorLabel);
+
+        window.add(mazeName);
+        window.add(mazeNameLabel);
 
         window.add(BackButton);
         window.add(SaveButton);

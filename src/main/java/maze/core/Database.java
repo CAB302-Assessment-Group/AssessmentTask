@@ -8,6 +8,7 @@ import java.sql.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 // for javadocs and report
@@ -84,6 +85,12 @@ public class Database {
         if (dbInstance == null) new Database();
 
         return dbInstance;
+    }
+
+    public static ArrayList<Maze> loadByQuery(String query) {
+        ArrayList<Maze> myMazes = new ArrayList<Maze>();
+
+        return new ArrayList<Maze>();
     }
 
     /**

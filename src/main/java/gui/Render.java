@@ -64,8 +64,13 @@ public class Render {
         //initialise(width.trim(), height.trim());
 
         //System.out.println(width.trim()+", "+height.trim());
+        logoSize+="";
         int logoSizeInt = -1;
         try{
+            System.out.println(logoSize.trim()=="");
+            if(logoSize.trim()==""){
+                logoSize = "0";
+            }
             logoSizeInt = Integer.parseInt(logoSize);
         }catch(Exception e){
             System.out.println("[ERROR] Invalid logo size...");
@@ -76,7 +81,7 @@ public class Render {
         myMaze = new Maze(mazeSize); //need to pass child maze param
 
         if(logoSizeInt >= Integer.parseInt(width.trim())-1 || logoSizeInt >= Integer.parseInt(height.trim())-1){
-            System.out.println("[ERROR] Invalid logo size...");
+            System.out.println("[ERROR] Logo size too large...");
             return;
         }
         int hasIm = 0;
@@ -114,7 +119,9 @@ public class Render {
                 int finalY = y;
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
                 tempBTN.setBackground(y == 0 ? Color.BLACK : Color.WHITE);
-
+                if(y==0){
+                    myMaze.mazeTile(finalX,finalY).setTopWall(true);
+                }
                 // change container from window to MazeGenerationPanel
                 //MazeGenerationPanel.add(tempBTN);
 
@@ -133,7 +140,9 @@ public class Render {
                 tempBTN2.setBounds(xposition + x * xdistance_between_vertical_walls * scale_factor, 10+yposition + y * ydistance_between_vertical_walls * scale_factor, vertical_wall_width, vertical_wall_length * scale_factor);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
                 tempBTN2.setBackground(x == 0 ? Color.BLACK : Color.WHITE);
-
+                if(x==0){
+                    myMaze.mazeTile(finalX,finalY).setLeftWall(true);
+                }
                 // change container from window to MazeGenerationPanel
                 //MazeGenerationPanel.add(tempBTN2);
 
@@ -206,10 +215,19 @@ public class Render {
             if(y == 0){
                 myMaze.mazeTile(x,y).setTopWall(set);
             }else if(y==mazeSize[1]){
-                myMaze.mazeTile(x,y).setBottomWall(set);
+                myMaze.mazeTile(x,y-1).setBottomWall(set);
             }else{
                 myMaze.mazeTile(x,y).setTopWall(set);
                 myMaze.mazeTile(x,y-1).setBottomWall(set);
+            }
+        }else{
+            if(x == 0){
+                myMaze.mazeTile(x,y).setLeftWall(set);
+            }else if(x==mazeSize[0]){
+                myMaze.mazeTile(x-1,y).setRightWall(set);
+            }else{
+                myMaze.mazeTile(x,y).setLeftWall(set);
+                myMaze.mazeTile(x,y-1).setRightWall(set);
             }
         }
 

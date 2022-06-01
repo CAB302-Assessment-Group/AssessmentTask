@@ -428,18 +428,14 @@ public class Frame {
         SaveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Maze tempMaze = new Maze(new int[] {Frame.getInstance().mazeSize[0], Frame.getInstance().mazeSize[1]} );
-
                 String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
 
-                tempMaze.setMazeTiles(Frame.getInstance().myMaze.getMazeTiles());
-
-                tempMaze.setAuthor(MazeAuthorInput.getText());
-                tempMaze.setMazeName(MazeNameInput.getText());
-                tempMaze.setDateCreated(timeStamp);
-                tempMaze.setDateEdited(timeStamp);
-                tempMaze.SetLastEditor(MazeAuthorInput.getText());
-                Database.exportMaze(tempMaze);
+                Frame.getInstance().myMaze.setAuthor(MazeAuthorInput.getText());
+                Frame.getInstance().myMaze.setMazeName(MazeNameInput.getText());
+                Frame.getInstance().myMaze.setDateCreated(timeStamp);
+                Frame.getInstance().myMaze.setDateEdited(timeStamp);
+                Frame.getInstance().myMaze.SetLastEditor(MazeAuthorInput.getText());
+                Database.exportMaze(Frame.getInstance().myMaze);
             }
         });
 

@@ -1,18 +1,21 @@
 package gui;
 
+import maze.core.Database;
+import maze.core.solver.Solver;
+import org.junit.jupiter.api.Test;
+
 import maze.core.Maze;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Frame {
     public int[] mazeSize = new int[2];
@@ -221,6 +224,8 @@ public class Frame {
         JTable SearchResultsTable = new JTable();
         SearchResultsTable.setBounds((500/2) - (200/2),60,200,60);
 
+        ArrayList<Maze> loadedMazes = new ArrayList<Maze>();
+
         JButton OpenSelectedMazesButton = new JButton("Open");
         OpenSelectedMazesButton.setBounds((500/2) - (80/2), 200, 80, 20);
 
@@ -332,8 +337,8 @@ public class Frame {
         JButton BackButton = new JButton("Back");
         BackButton.setBounds(10, 10, 75, 20);
 
-        JButton SaveButton = new JButton("Save");
-        SaveButton.setBounds(10, 40, 150, 30);
+        JButton SaveButton = new JButton("Export Maze");
+        SaveButton.setBounds(100, 20, 150, 20);
 
         JButton ExportMazeButton = new JButton("Export Image");
         ExportMazeButton.setBounds(160, 40, 150, 30);
@@ -361,8 +366,6 @@ public class Frame {
 
         JCheckBox ShowSolutionCheckBox = new JCheckBox();
         ShowSolutionCheckBox.setBounds(270,630,20,20);
-
-
 
         window.add(BackButton);
         window.add(SaveButton);
@@ -410,10 +413,9 @@ public class Frame {
 
             }
         });
-        ExportMazeButton.addActionListener(new ActionListener() {
+		ExportMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 JFileChooser exportFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
                 // From https://stackoverflow.com/questions/10621687/how-to-get-full-path-directory-from-file-chooser
                 exportFile.setCurrentDirectory(new java.io.File("."));
@@ -436,6 +438,20 @@ public class Frame {
                 }
 
 
+            }
+        });
+
+        SaveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+
+                Frame.getInstance().myMaze.setAuthor(MazeAuthorInput.getText());
+                Frame.getInstance().myMaze.setMazeName(MazeNameInput.getText());
+                Frame.getInstance().myMaze.setDateCreated(timeStamp);
+                Frame.getInstance().myMaze.setDateEdited(timeStamp);
+                Frame.getInstance().myMaze.SetLastEditor(MazeAuthorInput.getText());
+                Database.exportMaze(Frame.getInstance().myMaze);
             }
         });
 
@@ -503,6 +519,7 @@ public class Frame {
      * Obtained fromhttps://stackoverflow.com/questions/30335787/take-snapshot-of-full-jframe-and-jframe-only
      * Takes a picture output of the JFrame and converts to png format
      * @param mazeBox the JFrame to screenshot
+     * @author Hudson
      * @throws IOException
      *
      */
@@ -515,4 +532,6 @@ public class Frame {
         File outputfile = new File(path);
         ImageIO.write(img, "png", outputfile);
     }
+
+
 }

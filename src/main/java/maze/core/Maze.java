@@ -15,6 +15,7 @@ public class Maze implements MazeOutline, Serializable {
     private int[] startLoc;
     private int[] endLoc;
     private boolean OneLocSet;
+    private String lastEditor;
 
 
 
@@ -40,9 +41,9 @@ public class Maze implements MazeOutline, Serializable {
 
     public void setId(int id) { this.id = id; }
 
-    public String GetLastEditor() { return null; }
+    public String GetLastEditor() { return lastEditor; }
 
-    public void SetLastEditor(String name) { assert(false) : "Function SetLastEditor() is not implemented"; }
+    public void SetLastEditor(String name) { lastEditor = name; }
 
     public String getDateEdited() {
         return DateEdited;
@@ -240,8 +241,17 @@ public class Maze implements MazeOutline, Serializable {
      * @author Jayden
      *
      */
-    public boolean generateMaze(int hasIm) {
+    public void generateMaze(int hasIm) {
         int[] location = new int[]{0,0};
+        int[] start = new int[]{0,0};
+        int[] end = new int[]{mazeSize()[0] - 1, mazeSize()[1] - 1};
+
+        try{
+            this.setStart(start);
+            this.setEnd(end);
+        }catch(Exception e){
+
+        }
 
 
         for(int i = 0; i<mazeSize()[0]; i++){ //set all walls to be true
@@ -415,8 +425,8 @@ public class Maze implements MazeOutline, Serializable {
             int y = location[1];
             lastloc = new int[]{x,y};
         }
-
-        return false;
+        mazeTile(start[0],start[1]).setTopWall(false);
+        mazeTile(end[0],end[1]).setBottomWall(false);
     }
 
     /**

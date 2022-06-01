@@ -187,6 +187,7 @@ public class Render {
         //window.add(MazeGenerationPanel);
         SwingUtilities.updateComponentTreeUI(window);
         //SwingUtilities.updateComponentTreeUI(MazeGenerationPanel);
+        Frame.getInstance().myMaze = currentMaze;
     }
 
     /**
@@ -230,7 +231,7 @@ public class Render {
         System.out.println(x+", "+y);
 
 
-
+        Frame.getInstance().myMaze = currentMaze;
     }
 
 

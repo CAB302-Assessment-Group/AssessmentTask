@@ -1,6 +1,7 @@
 package gui;
 
 import maze.core.Database;
+import maze.core.solver.Solver;
 import org.junit.jupiter.api.Test;
 
 import maze.core.Maze;
@@ -410,6 +411,17 @@ public class Frame {
                 window2.setVisible(false);
                 Frame.getInstance().MainMenu();
 
+            }
+        });
+
+        // solve maze button
+        SolveMazeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Solver mazeSolver = new Solver();
+
+                Integer[] mazeSolution = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
+                mazeSolver.outputSolution();
             }
         });
 

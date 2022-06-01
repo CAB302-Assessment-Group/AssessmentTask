@@ -41,11 +41,11 @@ public class util {
 
     // grabbed from
     // https://stackoverflow.com/questions/3736058/java-object-to-byte-and-byte-to-object-converter-for-tokyo-cabinet
-    public static Blob serialize(Object obj) throws IOException, SQLException {
+    public static byte[] serialize(Object obj) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ObjectOutputStream os = new ObjectOutputStream(out);
         os.writeObject(obj);
-        return new SerialBlob(out.toByteArray());
+        return out.toByteArray();
     }
 
     public static Maze deserialize(byte[] data) throws IOException, ClassNotFoundException {

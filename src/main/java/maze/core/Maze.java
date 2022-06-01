@@ -15,6 +15,7 @@ public class Maze implements MazeOutline, Serializable {
     private int[] startLoc;
     private int[] endLoc;
     private boolean OneLocSet;
+    private String lastEditor;
 
 
 
@@ -40,9 +41,9 @@ public class Maze implements MazeOutline, Serializable {
 
     public void setId(int id) { this.id = id; }
 
-    public String GetLastEditor() { return null; }
+    public String GetLastEditor() { return lastEditor; }
 
-    public void SetLastEditor(String name) { assert(false) : "Function SetLastEditor() is not implemented"; }
+    public void SetLastEditor(String name) { lastEditor = name; }
 
     public String getDateEdited() {
         return DateEdited;

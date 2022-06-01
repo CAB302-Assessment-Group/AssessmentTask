@@ -10,6 +10,7 @@ public class Tile implements Serializable {
     private byte[] startIm;
     private byte[] endIm;
     private boolean visited;
+    private boolean active = false;
 
     public Tile(boolean[] walls){
         rightWall = walls[0];
@@ -50,6 +51,10 @@ public class Tile implements Serializable {
     public void setBottomWall(boolean wall){
         this.bottomWall = wall;
     }
+
+    public void setState(boolean state) { active = state; }
+
+    public boolean GetState() { return active; }
 
     public boolean LeftWall() {
         return leftWall;

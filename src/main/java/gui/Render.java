@@ -5,6 +5,7 @@ import maze.core.Maze;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 import static gui.Frame.window;
 
@@ -35,6 +36,22 @@ public class Render {
         }
 
         return true;
+    }
+
+    /**
+     * Draws the optimal solution
+     * @author Hudson
+     * @param solution the solution steps (found by calling solution.DFS(<Maze>))
+     */
+    public static void drawSolution(ArrayList<Integer[]> solution) {
+        // using Frame.getInstance().myMaze; as maze object
+
+        for (int i = 0; i < solution.size(); i++) {
+            Integer[] activateTileCords = solution.get(i);
+            Frame.getInstance().myMaze.mazeTile(activateTileCords[0], activateTileCords[1]).setState(true);
+        }
+
+        
     }
 
 

@@ -420,8 +420,11 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 Solver mazeSolver = new Solver();
 
-                Integer[] mazeSolution = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
-                mazeSolver.outputSolution();
+                Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
+
+                ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
+
+                Render.drawSolution(mazeSolution);
             }
         });
 

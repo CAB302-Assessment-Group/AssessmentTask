@@ -119,9 +119,11 @@ public class Render {
                 int finalY = y;
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
                 tempBTN.setBackground(y == 0 ? Color.BLACK : Color.WHITE);
-                if(y==0){
+                /*if(y==0){
                     myMaze.mazeTile(finalX,finalY).setTopWall(true);
                 }
+
+                 */
                 // change container from window to MazeGenerationPanel
                 //MazeGenerationPanel.add(tempBTN);
 
@@ -140,9 +142,12 @@ public class Render {
                 tempBTN2.setBounds(xposition + x * xdistance_between_vertical_walls * scale_factor, 10+yposition + y * ydistance_between_vertical_walls * scale_factor, vertical_wall_width, vertical_wall_length * scale_factor);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
                 tempBTN2.setBackground(x == 0 ? Color.BLACK : Color.WHITE);
+                /*
                 if(x==0){
                     myMaze.mazeTile(finalX,finalY).setLeftWall(true);
                 }
+
+                 */
                 // change container from window to MazeGenerationPanel
                 //MazeGenerationPanel.add(tempBTN2);
 
@@ -166,7 +171,7 @@ public class Render {
             int finalX = myMaze.mazeSize()[0];
             int finalY = i;
             tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
-            tempBTN2.setBackground(Color.BLACK);
+            tempBTN2.setBackground(myMaze.mazeTile(finalX - 1,finalY).RightWall() ? Color.BLACK : Color.WHITE);
             // change contianer from window to MazeGenerationPanel
             //MazeGenerationPanel.add(tempBTN2);
 
@@ -181,7 +186,7 @@ public class Render {
             int finalX = i;
             int finalY = myMaze.mazeSize()[1];
             tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
-            tempBTN.setBackground(Color.BLACK);
+            tempBTN.setBackground(myMaze.mazeTile(finalX,finalY - 1).BottomWall() ? Color.BLACK : Color.WHITE);
             // change container from window to MazeGenerationPanel
             //MazeGenerationPanel.add(tempBTN);
 

@@ -44,7 +44,7 @@ public class Render {
      * @param width Width specified by the user
      * @param height Height specified by the user
      */
-    public static void setButtonPressed(String width, String height){
+    public static void setButtonPressed(String width, String height, String logoSize, boolean generated){
 
 
         String[] inputs = {width, height};
@@ -59,11 +59,33 @@ public class Render {
         //initialise(width.trim(), height.trim());
 
         //System.out.println(width.trim()+", "+height.trim());
+        logoSize+="";
+        int logoSizeInt = -1;
+        try{
+            System.out.println(logoSize.trim()=="");
+            if(logoSize.trim()==""){
+                logoSize = "0";
+            }
+            logoSizeInt = Integer.parseInt(logoSize);
+        }catch(Exception e){
+            System.out.println("[ERROR] Invalid logo size...");
+            return;
+        }
 
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
         currentMaze = new Maze(mazeSize); //need to pass child maze param
 
-        currentMaze.generateMaze();
+        if(logoSizeInt >= Integer.parseInt(width.trim())-1 || logoSizeInt >= Integer.parseInt(height.trim())-1){
+            System.out.println("[ERROR] Logo size too large...");
+            return;
+        }
+        int hasIm = 0;
+        if(logoSizeInt > 0){
+            hasIm = logoSizeInt;
+        }
+
+        if(generated)
+            currentMaze.generateMaze(hasIm);
 
         int scale_factor = 1;
         //maze generation starting position on frame
@@ -92,13 +114,15 @@ public class Render {
                 int finalY = y;
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
                 tempBTN.setBackground(y == 0 ? Color.BLACK : Color.WHITE);
-
+                if(y==0){
+                    currentMaze.mazeTile(finalX,finalY).setTopWall(true);
+                }
                 // change container from window to MazeGenerationPanel
                 //MazeGenerationPanel.add(tempBTN);
 
                 //Jayden's update
-                //tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).TopWall() ? Color.BLACK : Color.WHITE);
-
+                tempBTN.setBackground(currentMaze.mazeTile(finalX,finalY).TopWall() ? Color.BLACK : Color.WHITE);
+                //System.out.println(finalX + ","+finalY + myMaze.mazeTile(finalX,finalY).TopWall());
 
 
                 //MazeGenerationPanel.add(tempBTN);
@@ -111,12 +135,14 @@ public class Render {
                 tempBTN2.setBounds(xposition + x * xdistance_between_vertical_walls * scale_factor, 10+yposition + y * ydistance_between_vertical_walls * scale_factor, vertical_wall_width, vertical_wall_length * scale_factor);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
                 tempBTN2.setBackground(x == 0 ? Color.BLACK : Color.WHITE);
-
+                if(x==0){
+                    currentMaze.mazeTile(finalX,finalY).setLeftWall(true);
+                }
                 // change container from window to MazeGenerationPanel
                 //MazeGenerationPanel.add(tempBTN2);
 
                 //Jayden's update
-                //tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).LeftWall() ? Color.BLACK : Color.WHITE);
+                tempBTN2.setBackground(currentMaze.mazeTile(finalX,finalY).LeftWall() ? Color.BLACK : Color.WHITE);
 
 
                 //MazeGenerationPanel.add(tempBTN2);
@@ -184,10 +210,19 @@ public class Render {
             if(y == 0){
                 currentMaze.mazeTile(x,y).setTopWall(set);
             }else if(y==mazeSize[1]){
-                currentMaze.mazeTile(x,y).setBottomWall(set);
+                currentMaze.mazeTile(x,y-1).setBottomWall(set);
             }else{
                 currentMaze.mazeTile(x,y).setTopWall(set);
                 currentMaze.mazeTile(x,y-1).setBottomWall(set);
+            }
+        }else{
+            if(x == 0){
+                currentMaze.mazeTile(x,y).setLeftWall(set);
+            }else if(x==mazeSize[0]){
+                currentMaze.mazeTile(x-1,y).setRightWall(set);
+            }else{
+                currentMaze.mazeTile(x,y).setLeftWall(set);
+                currentMaze.mazeTile(x,y-1).setRightWall(set);
             }
         }
 

@@ -240,7 +240,7 @@ public class Maze implements MazeOutline, Serializable {
      * @author Jayden
      *
      */
-    public boolean generateMaze() {
+    public boolean generateMaze(int hasIm) {
         int[] location = new int[]{0,0};
 
 
@@ -253,6 +253,7 @@ public class Maze implements MazeOutline, Serializable {
             }
         }
 
+
         ArrayList<int[]> currentwalk = new ArrayList<>();
         currentwalk.add(new int[]{location[0],location[1]});
         int visited = 1;
@@ -261,6 +262,48 @@ public class Maze implements MazeOutline, Serializable {
         int max = mazeSize()[0] * mazeSize()[1];
 
         int[] lastloc = new int[]{location[0],location[1]};
+
+        if(hasIm > 0){
+            int diffX = mazeSize()[0] - hasIm;
+            int diffY = mazeSize()[1] - hasIm;
+            System.out.println(diffX/2+","+diffY/2);
+            for(int x = 0;x<hasIm;x++){
+                for(int y = 0; y<hasIm;y++){
+                    visited++;
+                    mazeTile(diffX/2 + x,diffY/2 + y).setVisited(true);
+                    mazeTile(diffX/2 + x,diffY/2 + y).setTopWall(false);
+                    mazeTile(diffX/2 + x,diffY/2 + y).setLeftWall(false);
+                    mazeTile(diffX/2 + x,diffY/2 + y).setRightWall(false);
+                    mazeTile(diffX/2 + x,diffY/2 + y).setBottomWall(false);
+                }
+            }
+            if(hasIm == 1){
+                mazeTile(diffX/2,diffY/2).setTopWall(true);
+                mazeTile(diffX/2,diffY/2).setLeftWall(true);
+                mazeTile(diffX/2,diffY/2).setRightWall(true);
+                mazeTile(diffX/2,diffY/2).setBottomWall(true);
+            }else{
+                for(int i = 0; i < hasIm;i++){ //top row
+                    mazeTile(diffX/2 + i,diffY/2).setTopWall(true);
+                    mazeTile(diffX/2 + i,diffY/2).setBottomWall(false);
+                }
+                for(int i = 0; i < hasIm;i++){ //right row
+                    mazeTile(diffX/2 + hasIm - 1,diffY/2 + i).setRightWall(true);
+                    mazeTile(diffX/2 + hasIm - 1,diffY/2 + i).setLeftWall(false);
+                }
+                for(int i = 0; i < hasIm;i++){ //bottom row
+                    mazeTile(diffX/2 + i,diffY/2 + hasIm - 1).setBottomWall(true);
+                    mazeTile(diffX/2 + i,diffY/2 + hasIm - 1).setTopWall(false);
+                }
+                for(int i = 0; i < hasIm;i++){ //left row
+                    mazeTile(diffX/2,diffY/2 + i).setLeftWall(true);
+                    mazeTile(diffX/2,diffY/2 + i).setRightWall(false);
+                }
+            }
+
+
+
+        }
 
         while(visited < max){
 
@@ -363,9 +406,9 @@ public class Maze implements MazeOutline, Serializable {
                 }
             }
             int out = 0;
-            System.out.println("Last: "+lastloc[0]+", "+lastloc[1]);
-            System.out.println("Current: " + location[0]+", "+location[1]);
-            System.out.println(step);
+            //System.out.println("Last: "+lastloc[0]+", "+lastloc[1]);
+            //System.out.println("Current: " + location[0]+", "+location[1]);
+            //System.out.println(step);
 
 
             int x = location[0];

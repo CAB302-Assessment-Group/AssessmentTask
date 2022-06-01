@@ -24,13 +24,6 @@ public class Frame {
 
 
 
-    public int WELCOMEFRAME = 1;
-    public int MAZETYPEFRAME = 2;
-    public int SIZEFRAME = 3;
-    public int ERRORFRAME = 4;
-    public int EDITFRAME = 5;
-    public int MAZECREATEFRAME = 6;
-
 
     private static class FrameHolder{
         private final static Frame INSTANCE = new Frame();
@@ -314,7 +307,7 @@ public class Frame {
         MazeTypeSelection.add(StandardMazeButton);
         MazeTypeSelection.add(ChildrensMazeButton);
 
-        JRadioButton EasyDifficultyButton = new JRadioButton("Easy");
+        /* JRadioButton EasyDifficultyButton = new JRadioButton("Easy");
         EasyDifficultyButton.setActionCommand("Easy Difficulty Action");
         EasyDifficultyButton.setBounds(10,   260, 100, 20);
 
@@ -330,6 +323,8 @@ public class Frame {
         DifficultySelection.add(EasyDifficultyButton);
         DifficultySelection.add(MediumDifficultyButton);
         DifficultySelection.add(HardDifficultyButton);
+
+        */
 
 
         JButton BackButton = new JButton("Back");
@@ -390,15 +385,19 @@ public class Frame {
 
         window.add(ChildrensMazeButton);
         window.add(StandardMazeButton);
-
+        /*
         window.add(EasyDifficultyButton);
         window.add(MediumDifficultyButton);
         window.add(HardDifficultyButton);
+
+        */
+
 
         window.add(MazeName);
         window.add(MazeNameInput);
         window.add(MazeAuthor);
         window.add(MazeAuthorInput);
+
 
 
         BackButton.addActionListener(new ActionListener() {
@@ -458,10 +457,30 @@ public class Frame {
                 window2.setVisible(true);
 
 
+
+                Render.setButtonPressed(inputx.getText(),inputy.getText(), LogoCellSizeInput.getText(),false);
+
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText());
+
             }
         });
 
+        AutoGenerateMazeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window2.setLayout(null);
+
+
+                window2.getContentPane().removeAll();
+                window2.getContentPane().repaint();
+                window2.setLocation((screenWidth / 2 - (850/2)),screenHeight/2 - 230);
+                window2.setSize(850, 650);
+
+                window2.setVisible(true);
+                Render.setButtonPressed(inputx.getText(),inputy.getText(), LogoCellSizeInput.getText(),true);
+
+            }
+        });
 
 
     }

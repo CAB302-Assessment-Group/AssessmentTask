@@ -413,15 +413,43 @@ public class Frame {
 
             }
         });
-
-        // solve maze button
-        SolveMazeButton.addActionListener(new ActionListener() {
+		ExportMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Solver mazeSolver = new Solver();
 
-                Integer[] mazeSolution = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
-                mazeSolver.outputSolution();
+                // Save to database first
+
+                String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+
+                Frame.getInstance().myMaze.setAuthor(MazeAuthorInput.getText());
+                Frame.getInstance().myMaze.setMazeName(MazeNameInput.getText());
+                Frame.getInstance().myMaze.setDateCreated(timeStamp);
+                Frame.getInstance().myMaze.setDateEdited(timeStamp);
+                Frame.getInstance().myMaze.SetLastEditor(MazeAuthorInput.getText());
+                Database.exportMaze(Frame.getInstance().myMaze);
+
+                JFileChooser exportFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                // From https://stackoverflow.com/questions/10621687/how-to-get-full-path-directory-from-file-chooser
+                exportFile.setCurrentDirectory(new java.io.File("."));
+                exportFile.setDialogTitle("Export Maze");
+                exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                exportFile.setAcceptAllFileFilterUsed(false);
+                String fileLocation ="";
+                if (exportFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    fileLocation = exportFile.getCurrentDirectory().toString();
+                } else {
+                    System.out.println("No Selection ");
+                }
+                try {
+                    if(MazeNameInput.getText()!="" ){
+                        ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                    }
+
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+
             }
         });
 
@@ -507,15 +535,16 @@ public class Frame {
      * @throws IOException
      *
      */
-    public static void ExportMaze(JFrame mazeBox, String location) throws IOException {
+    public static void ExportImage(JFrame mazeBox, String location, String name) throws IOException {
         //TODO
-        //Add in support for different locations on computer to store
-        //Add in naming of maze
+        //Save the maze to database and make sure all fields are matching object
         BufferedImage img = new BufferedImage(mazeBox.getWidth(), mazeBox.getHeight(), BufferedImage.TYPE_INT_RGB);
         mazeBox.paint(img.getGraphics());
-        File outputfile = new File("mazeOutput.png");
+        String path = location+"/"+name+".png";
+        File outputfile = new File(path);
         ImageIO.write(img, "png", outputfile);
     }
+
 
 
 }

@@ -9,11 +9,11 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Frame {
@@ -338,7 +338,6 @@ public class Frame {
 
         JButton SaveButton = new JButton("Export Maze");
         SaveButton.setBounds(100, 20, 150, 20);
-        SaveButton.addActionListener(action -> Database.exportMaze(Render.currentMaze));
 
         JButton ExportMazeButton = new JButton("Export Image");
         ExportMazeButton.setBounds(160, 40, 150, 30);
@@ -366,22 +365,6 @@ public class Frame {
 
         JCheckBox ShowSolutionCheckBox = new JCheckBox();
         ShowSolutionCheckBox.setBounds(270,630,20,20);
-
-        JLabel authorLabel = new JLabel("Author");
-        authorLabel.setBounds(580, 40, 150, 20);
-        JTextField mazeAuthor = new JTextField();
-        mazeAuthor.setBounds(580, 60, 150, 20);
-
-        JLabel mazeNameLabel = new JLabel("Maze Name");
-        mazeNameLabel.setBounds(580, 100, 150, 20);
-        JTextField mazeName = new JTextField();
-        mazeName.setBounds(580, 120, 150, 20);
-
-        window.add(mazeAuthor);
-        window.add(authorLabel);
-
-        window.add(mazeName);
-        window.add(mazeNameLabel);
 
         window.add(BackButton);
         window.add(SaveButton);
@@ -429,18 +412,22 @@ public class Frame {
 
             }
         });
-        ExportMazeButton.addActionListener(new ActionListener() {
+
+        SaveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO add support for file picker to find a location
-                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
-                try {
-                    ExportMaze(window2,"");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Maze tempMaze = new Maze(new int[] {Frame.getInstance().mazeSize[0], Frame.getInstance().mazeSize[1]} );
 
+                String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
 
+                tempMaze.setMazeTiles(Frame.getInstance().myMaze.getMazeTiles());
+
+                tempMaze.setAuthor(MazeAuthorInput.getText());
+                tempMaze.setMazeName(MazeNameInput.getText());
+                tempMaze.setDateCreated(timeStamp);
+                tempMaze.setDateEdited(timeStamp);
+                tempMaze.SetLastEditor(MazeAuthorInput.getText());
+                Database.exportMaze(tempMaze);
             }
         });
 

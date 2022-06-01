@@ -1,8 +1,10 @@
 package maze.core;
 
+import gui.Frame;
 import maze.core.util.statusCodes;
 
 // file reader
+import java.io.ByteArrayInputStream;
 import java.sql.*;
 
 import java.io.FileInputStream;
@@ -103,6 +105,7 @@ public class Database {
         try {
             Connection myDBInstance = getInstance();
 
+            // get the maze instance
             String sql = "INSERT INTO mazes(name,creator,last_editor,create_timestamp,maze_obj) VALUES(?,?,?,?,?)";
 
             try {
@@ -111,7 +114,9 @@ public class Database {
                 pstmt.setString(2, myMaze.getAuthor());
                 pstmt.setString(3, myMaze.GetLastEditor());
                 pstmt.setString(4, myMaze.getDateCreated());
-                pstmt.setBlob(5, util.serialize(myMaze));
+
+                byte[] myByteArray = util.serialize(myMaze);
+                pstmt.setBinaryStream(5, new ByteArrayInputStream(myByteArray), myByteArray.length);
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 System.out.println(e.getMessage());

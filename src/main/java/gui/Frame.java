@@ -416,7 +416,6 @@ public class Frame {
 		ExportMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 // Save to database first
 
                 String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
@@ -448,8 +447,6 @@ public class Frame {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-
-
             }
         });
 
@@ -501,8 +498,8 @@ public class Frame {
                 window2.setVisible(true);
 
 
-
-                Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false);
+                boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false, shouldAutoSolve);
 
             }
         });
@@ -519,7 +516,8 @@ public class Frame {
                 window2.setSize(850, 650);
 
                 window2.setVisible(true);
-                Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true);
+                boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
 
             }
         });

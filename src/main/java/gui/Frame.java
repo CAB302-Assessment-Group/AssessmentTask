@@ -460,8 +460,6 @@ public class Frame {
 
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false);
 
-                //Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText());
-
             }
         });
 

@@ -39,10 +39,10 @@ public class Solver {
                 selectedTile.TopWall()
         };
 
-        returnArray[0] = (!walls[0] && tileLocationX != (myMaze.mazeSize()[0] - 1));
-        returnArray[1] = (!walls[1] && tileLocationY != (myMaze.mazeSize()[1] - 1));
-        returnArray[2] = (!walls[2] && tileLocationX != 0);
-        returnArray[3] = (!walls[3] && tileLocationY != 0);
+        returnArray[0] = (!walls[0] && tileLocationX != (myMaze.mazeSize()[0]) && !(inList(visited, new Integer[] { tileLocationX + 1, tileLocationY })) );
+        returnArray[1] = (!walls[1] && tileLocationY != (myMaze.mazeSize()[1]) && !(inList(visited, new Integer[] { tileLocationX, tileLocationY + 1 })) );
+        returnArray[2] = (!walls[2] && tileLocationX != 0 && !(inList(visited, new Integer[] { tileLocationX - 1, tileLocationY })));
+        returnArray[3] = (!walls[3] && tileLocationY != 0 && !(inList(visited, new Integer[] { tileLocationX, tileLocationY - 1 })));
 
         return returnArray;
     }
@@ -86,6 +86,10 @@ public class Solver {
 
         // adds the current position to the solution tree
         myTree.add(position);
+
+        // add the current tile to the "visited" position
+        // this is so we don't revisit it
+        visited.add(position);
 
         // checks to see if the current position is winning
 
@@ -145,13 +149,9 @@ public class Solver {
             }
         }
 
-        // add the current tile to the "visited" position
-        // this is so we don't revisit it
-        visited.add(position);
-
         // since the tile has had all possible children computed and they are dead ends
         // remove it from the solution
-        myTree.remove(myTree.size());
+        myTree.remove(myTree.size() - 1);
 
         // return to the last node with possible options
         totalTilesVisited--;
@@ -160,7 +160,8 @@ public class Solver {
 
     private boolean inList(ArrayList<Integer[]> array, Integer[] element) {
         for (int i = 0; i < array.size(); i++) {
-            if (array.get(i) == element) {
+            Integer[] compareList = array.get(i);
+            if (compareList[0] == element[0] && compareList[1] == element[1]) {
                 return true;
             }
         }

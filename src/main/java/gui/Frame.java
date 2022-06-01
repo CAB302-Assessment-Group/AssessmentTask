@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Frame {
     public int[] mazeSize = new int[2];
@@ -411,10 +413,24 @@ public class Frame {
         ExportMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO add support for file picker to find a location
-                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+
+                JFileChooser exportFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                // From https://stackoverflow.com/questions/10621687/how-to-get-full-path-directory-from-file-chooser
+                exportFile.setCurrentDirectory(new java.io.File("."));
+                exportFile.setDialogTitle("Export Maze");
+                exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                exportFile.setAcceptAllFileFilterUsed(false);
+                String fileLocation ="";
+                if (exportFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    fileLocation = exportFile.getCurrentDirectory().toString();
+                } else {
+                    System.out.println("No Selection ");
+                }
                 try {
-                    ExportMaze(window2,"");
+                    if(MazeNameInput.getText()!="" ){
+                        ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                    }
+
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -490,13 +506,13 @@ public class Frame {
      * @throws IOException
      *
      */
-    public static void ExportMaze(JFrame mazeBox, String location) throws IOException {
+    public static void ExportImage(JFrame mazeBox, String location, String name) throws IOException {
         //TODO
-        //Add in support for different locations on computer to store
-        //Add in naming of maze
+        //Save the maze to database and make sure all fields are matching object
         BufferedImage img = new BufferedImage(mazeBox.getWidth(), mazeBox.getHeight(), BufferedImage.TYPE_INT_RGB);
         mazeBox.paint(img.getGraphics());
-        File outputfile = new File("mazeOutput.png");
+        String path = location+"/"+name+".png";
+        File outputfile = new File(path);
         ImageIO.write(img, "png", outputfile);
     }
 }

@@ -416,6 +416,18 @@ public class Frame {
 		ExportMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                // Save to database first
+
+                String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+
+                Frame.getInstance().myMaze.setAuthor(MazeAuthorInput.getText());
+                Frame.getInstance().myMaze.setMazeName(MazeNameInput.getText());
+                Frame.getInstance().myMaze.setDateCreated(timeStamp);
+                Frame.getInstance().myMaze.setDateEdited(timeStamp);
+                Frame.getInstance().myMaze.SetLastEditor(MazeAuthorInput.getText());
+                Database.exportMaze(Frame.getInstance().myMaze);
+
                 JFileChooser exportFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
                 // From https://stackoverflow.com/questions/10621687/how-to-get-full-path-directory-from-file-chooser
                 exportFile.setCurrentDirectory(new java.io.File("."));
@@ -532,6 +544,7 @@ public class Frame {
         File outputfile = new File(path);
         ImageIO.write(img, "png", outputfile);
     }
+
 
 
 }

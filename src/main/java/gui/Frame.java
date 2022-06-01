@@ -476,8 +476,8 @@ public class Frame {
                 window2.setVisible(true);
 
 
-
-                Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false);
+                boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false, shouldAutoSolve);
 
             }
         });
@@ -494,7 +494,8 @@ public class Frame {
                 window2.setSize(850, 650);
 
                 window2.setVisible(true);
-                Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true);
+                boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
 
             }
         });

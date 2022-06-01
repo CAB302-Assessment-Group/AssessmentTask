@@ -2,6 +2,7 @@ package gui;
 
 
 import maze.core.Maze;
+import maze.core.solver.Solver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,13 +57,18 @@ public class Render {
     }
 
 
+    // overload the previous notation of the calling function as not to break it
+    public static void setButtonPressed(String width, String height, String logoSize, boolean generated) {
+        setButtonPressed(width, height, logoSize, generated, false);
+    }
+
     /**
      * @author Jayden and Hudson
      * Actions that take place after the user has clicked the 'Generate Maze' button
      * @param width Width specified by the user
      * @param height Height specified by the user
      */
-    public static void setButtonPressed(String width, String height, String logoSize, boolean generated){
+    public static void setButtonPressed(String width, String height, String logoSize, boolean generated, boolean autoSolve){
 
 
         String[] inputs = {width, height};
@@ -105,10 +111,12 @@ public class Render {
         if(generated)
             currentMaze.generateMaze(hasIm);
 
-        renderMazeOBJ(currentMaze, generated);
+        renderMazeOBJ(currentMaze, generated, autoSolve);
     }
 
-    public static void renderMazeOBJ(Maze myMaze, boolean generated) {
+    public static void renderMazeOBJ(Maze myMaze, boolean generated) { renderMazeOBJ(myMaze, generated, false); }
+
+    public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution) {
         int scale_factor = 1;
         //maze generation starting position on frame
         int xposition = 0;
@@ -232,6 +240,17 @@ public class Render {
         SwingUtilities.updateComponentTreeUI(window);
         //SwingUtilities.updateComponentTreeUI(MazeGenerationPanel);
         Frame.getInstance().myMaze = myMaze;
+
+        if (showSolution) {
+//            System.out.println("Got here");
+            Solver mazeSolver = new Solver();
+
+            Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
+
+            ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
+
+            Render.drawSolution(mazeSolution);
+        }
 
         window2.setVisible(false);
         window2.setVisible(true);

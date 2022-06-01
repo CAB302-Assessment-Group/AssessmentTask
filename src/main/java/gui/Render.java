@@ -113,6 +113,9 @@ public class Render {
                 int finalX = x;
                 int finalY = y;
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
+                if(!generated && y==0){
+                    currentMaze.mazeTile(finalX,finalY).setTopWall(true);
+                }
                 tempBTN.setBackground(y == 0 ? Color.BLACK : Color.WHITE);
 
                 /*if(y==0){
@@ -138,12 +141,11 @@ public class Render {
                 tempBTN2.setBounds(xposition + x * xdistance_between_vertical_walls * scale_factor, 10+yposition + y * ydistance_between_vertical_walls * scale_factor, vertical_wall_width, vertical_wall_length * scale_factor);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
                 tempBTN2.setBackground(x == 0 ? Color.BLACK : Color.WHITE);
-                /*
-                if(x==0){
+                if(!generated && x==0){
                     currentMaze.mazeTile(finalX,finalY).setLeftWall(true);
                 }
 
-                 */
+
                 // change container from window to MazeGenerationPanel
                 //MazeGenerationPanel.add(tempBTN2);
 
@@ -166,6 +168,9 @@ public class Render {
             tempBTN2.setBounds(xposition + currentMaze.mazeSize()[0] * xdistance_between_vertical_walls * scale_factor, 10+yposition + i * ydistance_between_vertical_walls * scale_factor, vertical_wall_width, vertical_wall_length * scale_factor);
             int finalX = currentMaze.mazeSize()[0];
             int finalY = i;
+            if(!generated){
+                currentMaze.mazeTile(finalX - 1,finalY).setRightWall(true);
+            }
             tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
             tempBTN2.setBackground(currentMaze.mazeTile(finalX - 1,finalY).RightWall() ? Color.BLACK : Color.WHITE);
             // change contianer from window to MazeGenerationPanel
@@ -181,6 +186,9 @@ public class Render {
             tempBTN.setBounds(10+xposition + i * xdistance_between_horizontal_walls * scale_factor, yposition + currentMaze.mazeSize()[1] * ydistance_between_horizontal_walls * scale_factor, horizontal_wall_length * scale_factor, horizontal_wall_width);
             int finalX = i;
             int finalY = currentMaze.mazeSize()[1];
+            if(!generated){
+                currentMaze.mazeTile(finalX,finalY - 1).setBottomWall(true);
+            }
             tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
             tempBTN.setBackground(currentMaze.mazeTile(finalX,finalY - 1).BottomWall() ? Color.BLACK : Color.WHITE);
             // change container from window to MazeGenerationPanel

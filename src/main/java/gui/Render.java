@@ -171,13 +171,20 @@ public class Render {
 
                 // Render wall colours
                 // left-right
-                tempBTN2.setBackground(myMaze.mazeTile(finalX,finalY).LeftWall() ? Color.BLACK : Color.WHITE);
 
                 // up-down
                 tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).TopWall() ? Color.BLACK : Color.WHITE);
 
                 //MazeGenerationPanel.add(tempBTN2);
+                tempBTN2.setBackground(myMaze.mazeTile(finalX, finalY).LeftWall() ? Color.BLACK : Color.WHITE);
 
+                boolean tileStae = myMaze.mazeTile(finalX, finalY).GetState();
+                if (tileStae) {
+                    JButton solveStep = new JButton("o");
+                    solveStep.setBounds(((x - 1) * (horizontal_wall_length + horizontal_wall_width)) + (horizontal_wall_length / 2) + 5, ((y - 1) * (vertical_wall_length + vertical_wall_width)) + (vertical_wall_length / 2) + 5, 10, 10);
+                    solveStep.setBackground(Color.RED);
+                    window2.add(solveStep);
+                }
 
 
                 //window.add(tempBTN2);
@@ -225,6 +232,9 @@ public class Render {
         SwingUtilities.updateComponentTreeUI(window);
         //SwingUtilities.updateComponentTreeUI(MazeGenerationPanel);
         Frame.getInstance().myMaze = myMaze;
+
+        window2.setVisible(false);
+        window2.setVisible(true);
     }
 
     /**

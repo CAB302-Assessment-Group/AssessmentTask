@@ -181,7 +181,7 @@ public class Render {
                 boolean tileStae = myMaze.mazeTile(finalX, finalY).GetState();
                 if (tileStae) {
                     JButton solveStep = new JButton("o");
-                    solveStep.setBounds(((x - 1) * (horizontal_wall_length + horizontal_wall_width)) + (horizontal_wall_length / 2) + 5, ((y - 1) * (vertical_wall_length + vertical_wall_width)) + (vertical_wall_length / 2) + 5, 10, 10);
+                    solveStep.setBounds((x * (horizontal_wall_length + horizontal_wall_width)) + (horizontal_wall_length / 2) + 5, (y * (vertical_wall_length + vertical_wall_width)) + (vertical_wall_length / 2) + 5, 10, 10);
                     solveStep.setBackground(Color.RED);
                     window2.add(solveStep);
                 }

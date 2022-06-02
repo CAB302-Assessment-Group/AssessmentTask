@@ -1,5 +1,6 @@
 package gui;
 
+
 import maze.core.Database;
 import maze.core.solver.Solver;
 import org.junit.jupiter.api.Test;
@@ -421,7 +422,25 @@ public class Frame {
         window.add(MazeAuthor);
         window.add(MazeAuthorInput);
 
+        JLabel CellsVisited = new JLabel("Number of Cells Visited in Optimal Solution:");
+        CellsVisited.setBounds(0, 0, 230, 40);
 
+        JLabel DeadEnds = new JLabel("Number of Dead End Cells:");
+        DeadEnds.setBounds(0, 60, 230, 40);
+
+
+        JFrame MetricsWindow = new JFrame();
+        MetricsWindow.setLayout(null);
+
+        MetricsWindow.getContentPane().removeAll();
+        MetricsWindow.getContentPane().repaint();
+
+        MetricsWindow.setLocation((screenWidth / 6),730+screenHeight/16);
+        MetricsWindow.setSize(330, 160);
+        MetricsWindow.setName("Maze Metrics");
+
+        MetricsWindow.add(CellsVisited);
+        MetricsWindow.add(DeadEnds);
 
         BackButton.addActionListener(new ActionListener() {
             @Override
@@ -529,12 +548,13 @@ public class Frame {
                 window2.setLocation((screenWidth /6 + 330),screenHeight/16);
                 window2.setSize(850, 710);
 
-                window2.setVisible(true);
 
 
                 boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false, shouldAutoSolve);
-
+                SetMetrics(MetricsWindow);
+                window2.setVisible(true);
+                MetricsWindow.setVisible(true);
             }
         });
 
@@ -549,14 +569,37 @@ public class Frame {
                 window2.setLocation((screenWidth / 2 - (850/2)),screenHeight/2 - 230);
                 window2.setSize(850, 650);
 
-                window2.setVisible(true);
+
+
                 boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
 
+                window2.setVisible(true);
+                SetMetrics(MetricsWindow);
+                MetricsWindow.setVisible(true);
             }
         });
 
 
+    }
+
+    public static void SetMetrics(JFrame MetricsWindow){
+        Solver solver = new Solver();
+        //solver.DFS(Frame.getInstance().myMaze,new Integer[]{Frame.getInstance().myMaze.getStart()[0],Frame.getInstance().myMaze.getStart()[1]});
+
+
+        JLabel CellsVisitedNum = new JLabel(solver.tilesVisited()+"");
+        CellsVisitedNum.setBounds(250, 0, 230, 40);
+        System.out.println(solver.tilesVisited()+"");
+
+        JLabel DeadEndsNum = new JLabel(Frame.getInstance().myMaze.numDeadEnds()+"");
+        DeadEndsNum.setBounds(250, 60, 230, 40);
+        System.out.println(Frame.getInstance().myMaze.numDeadEnds()+"");
+        MetricsWindow.add(CellsVisitedNum);
+
+        MetricsWindow.add(DeadEndsNum);
+
+        MetricsWindow.getContentPane().repaint();
     }
 
     /**

@@ -34,7 +34,7 @@ public class Database {
                     + "create_timestamp VARCHAR(10),"
                     + "maze_obj BLOB" + ");";
 
-    protected Database() {
+    public Database() {
         connect();
         System.out.println("Initiated database instance");
         try {
@@ -134,27 +134,56 @@ public class Database {
      * @author Hudson
      * @param mazeName The maze name/unique identifier of the maze
      */
-    public Maze loadMaze(String mazeName) {
-        Connection myDBInstance = getInstance();
-        ResultSet rs = null;
+//    public Maze loadMaze(String mazeName) {
+//        Connection myDBInstance = getInstance();
+//        ResultSet rs = null;
+//
+//        String SQL = "SELECT * FROM mazes WHERE mazeName = '" + mazeName + "'";
+//
+//        try {
+//            PreparedStatement SQLselection = myDBInstance.prepareStatement(SQL);
+//            rs = SQLselection.executeQuery();
+//            rs.next();
+//            Blob blob = rs.getBlob("maze_obj");
+//
+//            int blobLength = (int) blob.length();
+//            byte[] blobAsBytes = blob.getBytes(1, blobLength);
+//
+//            //release the blob and free up memory. (since JDBC 4.0)
+//            blob.free();
+//
+//            return util.deserialize(blobAsBytes);
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
 
-        String SQL = "SELECT * FROM mazes WHERE mazeName = '" + mazeName + "'";
+    public ArrayList<Maze> loadMaze(String mazeName)
+    {
+        Connection connection = getInstance();
 
-        try {
-            PreparedStatement SQLselection = myDBInstance.prepareStatement(SQL);
-            rs = SQLselection.executeQuery();
-            rs.next();
-            Blob blob = rs.getBlob("maze_obj");
+        ArrayList<Maze> mazeList = new ArrayList<Maze>();
+        try
+        {
+            String query = "SELECT * from mazes where name = '" + mazeName + "'";
+            PreparedStatement SQLselection = connection.prepareStatement(query);
+//            ps.setString(1, mazeName);
+            ResultSet rs = SQLselection.executeQuery();
+            while(rs.next())
+            {
+                byte[] blobAsBytes = rs.getBytes(6);
 
-            int blobLength = (int) blob.length();
-            byte[] blobAsBytes = blob.getBytes(1, blobLength);
+                Maze myMaze = new Maze(new int[] { 100, 100 });
+                myMaze = util.deserialize(blobAsBytes);
+                mazeList.add(myMaze);
 
-            //release the blob and free up memory. (since JDBC 4.0)
-            blob.free();
-
-            return util.deserialize(blobAsBytes);
-        } catch (Exception e) {
-            return null;
+            }
         }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return mazeList;
     }
 }

@@ -199,14 +199,14 @@ public class Frame {
         Search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SearchResults();
+                SearchResults(MazeNameInput.getText());
             }
         });
     }
 
 
 
-    public void SearchResults() {
+    public void SearchResults(String query) {
         window3.setLayout(null);
 
         window3.getContentPane().removeAll();
@@ -218,35 +218,46 @@ public class Frame {
 
         window3.setVisible(true);
 
+        Database db = new Database();
+        db.getInstance();
+        ArrayList<Maze> loadedMazes =  db.loadMaze(query);
+
         JLabel SearchResultsTitle = new JLabel("Search Results");
         SearchResultsTitle.setBounds((500/2) - (100/2),10,100,20);
 
         JTable SearchResultsTable = new JTable();
-        SearchResultsTable.setBounds((500/2) - (200/2),60,200,60);
+        SearchResultsTable.setBounds(50,30,400,120);
 
-        ArrayList<Maze> loadedMazes = new ArrayList<Maze>();
+        // render the mazes that have been loaded from the database in a list
+        for (int i = 0; i < loadedMazes.size(); i++) {
+            Maze loadingMaze = loadedMazes.get(i);
 
-        JButton OpenSelectedMazesButton = new JButton("Open");
-        OpenSelectedMazesButton.setBounds((500/2) - (80/2), 200, 80, 20);
+            JPanel loadMazeContainer = new JPanel();
+            loadMazeContainer.setBounds(0, 35 * i - 30, 400, 30);
 
+            JButton loadBTN = new JButton("Load");
+            loadBTN.setBounds(0, 0, 200, 30);
 
+            JLabel loadMazeName = new JLabel("Maze Name: " + loadingMaze.getMazeName());
+            loadMazeName.setBounds(200, 0, 100, 30);
 
+            JLabel loadMazeAuthor = new JLabel("Author: " + loadingMaze.getAuthor());
+            loadMazeAuthor.setBounds(300, 0, 200, 30);
 
+            loadBTN.addActionListener(action -> {
+                Render.renderMazeOBJ(loadingMaze, true);
+                window2.setSize(850, 710);
+            });
 
+            loadMazeContainer.add(loadBTN);
+            loadMazeContainer.add(loadMazeName);
+            loadMazeContainer.add(loadMazeAuthor);
+
+            SearchResultsTable.add(loadMazeContainer);
+        }
 
         window3.add(SearchResultsTitle);
         window3.add(SearchResultsTable);
-        window3.add(OpenSelectedMazesButton);
-
-
-        OpenSelectedMazesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                initialise();
-                window3.setVisible(false);
-            }
-        });
-
     }
 
 
@@ -413,6 +424,22 @@ public class Frame {
 
             }
         });
+
+
+        SolveMazeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Solver mazeSolver = new Solver();
+
+                Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
+
+                ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
+
+                Render.drawSolution(mazeSolution);
+            }
+        });
+
+
 		ExportMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

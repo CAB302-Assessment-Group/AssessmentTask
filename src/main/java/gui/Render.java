@@ -290,7 +290,7 @@ public class Render {
                 currentMaze.mazeTile(x-1,y).setRightWall(set);
             }else{
                 currentMaze.mazeTile(x,y).setLeftWall(set);
-                currentMaze.mazeTile(x,y-1).setRightWall(set);
+                currentMaze.mazeTile(x-1,y).setRightWall(set);
             }
         }
 

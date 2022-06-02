@@ -118,7 +118,8 @@ public class Render {
 
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution) {
         int scale_factor = 1;
-        //maze generation starting position on frame
+        //maze generation starting
+        // on frame
         int xposition = 0;
         int yposition = 0;
 

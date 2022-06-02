@@ -199,14 +199,19 @@ public class Frame {
         Search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SearchResults(MazeNameInput.getText());
+                SearchResults(
+                        MazeNameInput.getText(),
+                        AuthorInput.getText(),
+                        DateCreatedInput.getText(),
+                        DateModifiedInput.getText()
+                );
             }
         });
     }
 
 
 
-    public void SearchResults(String query) {
+    public void SearchResults(String mazeName, String author, String dateCreated, String dateModified) {
         window3.setLayout(null);
 
         window3.getContentPane().removeAll();
@@ -220,7 +225,7 @@ public class Frame {
 
         Database db = new Database();
         db.getInstance();
-        ArrayList<Maze> loadedMazes =  db.loadMaze(query);
+        ArrayList<Maze> loadedMazes =  db.loadMaze(mazeName, author, dateCreated, dateModified);
 
         JLabel SearchResultsTitle = new JLabel("Search Results");
         SearchResultsTitle.setBounds((500/2) - (100/2),10,100,20);
@@ -231,6 +236,8 @@ public class Frame {
         // render the mazes that have been loaded from the database in a list
         for (int i = 0; i < loadedMazes.size(); i++) {
             Maze loadingMaze = loadedMazes.get(i);
+
+            System.out.println(loadingMaze.getMazeName());
 
             JPanel loadMazeContainer = new JPanel();
             loadMazeContainer.setBounds(0, 35 * i - 30, 400, 30);

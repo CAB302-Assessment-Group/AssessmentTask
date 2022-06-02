@@ -30,8 +30,8 @@ public class Database {
                     + "idx INTEGER PRIMARY KEY /*!40101 AUTO_INCREMENT */ NOT NULL UNIQUE,"
                     + "name VARCHAR(30),"
                     + "creator VARCHAR(30),"
-                    + "last_editor VARCHAR(20),"
-                    + "create_timestamp VARCHAR(10),"
+                    + "dateCreated VARCHAR(20),"
+                    + "dateModified VARCHAR(20),"
                     + "maze_obj BLOB" + ");";
 
     public Database() {
@@ -106,14 +106,14 @@ public class Database {
             Connection myDBInstance = getInstance();
 
             // get the maze instance
-            String sql = "INSERT INTO mazes(name,creator,last_editor,create_timestamp,maze_obj) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO mazes(name,creator,dateCreated,dateModified,maze_obj) VALUES(?,?,?,?,?)";
 
             try {
                 PreparedStatement pstmt = myDBInstance.prepareStatement(sql);
                 pstmt.setString(1, myMaze.getMazeName());
                 pstmt.setString(2, myMaze.getAuthor());
-                pstmt.setString(3, myMaze.GetLastEditor());
-                pstmt.setString(4, myMaze.getDateCreated());
+                pstmt.setString(3, myMaze.getDateCreated());
+                pstmt.setString(4, myMaze.getDateEdited());
 
                 byte[] myByteArray = util.serialize(myMaze);
                 pstmt.setBinaryStream(5, new ByteArrayInputStream(myByteArray), myByteArray.length);
@@ -158,14 +158,38 @@ public class Database {
 //        }
 //    }
 
-    public ArrayList<Maze> loadMaze(String mazeName)
+    private String constructQuery(String mazeName, String author, String dateCreated, String dateModified) {
+        String baseQuery = "SELECT * from mazes where ";
+
+        String[] queryMatch = {"name", "creator", "dateCreated", "dateModified"};
+        String[] queryElements = { mazeName, author, dateCreated, dateModified };
+
+        int appendedNum = 0;
+        for (int i = 0; i < queryElements.length; i++) {
+            if (queryElements[i].isEmpty()) continue;
+
+            if (appendedNum != 0) {
+                baseQuery += " AND ";
+            }
+
+            baseQuery += queryMatch[i] + "= '" + queryElements[i] + "'";
+
+            appendedNum++;
+        }
+
+        return baseQuery;
+    }
+
+    public ArrayList<Maze> loadMaze(String mazeName) { return loadMaze(mazeName, "", "", ""); }
+
+    public ArrayList<Maze> loadMaze(String mazeName, String author, String dateCreated, String dateModified)
     {
         Connection connection = getInstance();
 
         ArrayList<Maze> mazeList = new ArrayList<Maze>();
         try
         {
-            String query = "SELECT * from mazes where name = '" + mazeName + "'";
+            String query = constructQuery(mazeName, author, dateCreated, dateModified);
             PreparedStatement SQLselection = connection.prepareStatement(query);
 //            ps.setString(1, mazeName);
             ResultSet rs = SQLselection.executeQuery();

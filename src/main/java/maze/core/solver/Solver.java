@@ -169,8 +169,8 @@ public class Solver {
         return false;
     }
 
-    public int tilesVisited() {
-        return (totalTilesVisited == -1) ? (myMaze.mazeSize()[0] + myMaze.mazeSize()[1]) / totalTilesVisited : totalTilesVisited;
+    public double tilesVisited() {
+        return (totalTilesVisited != -1) ?  (totalTilesVisited+0.0) / (0.0 + myMaze.mazeSize()[0] * myMaze.mazeSize()[1]) : totalTilesVisited;
     }
 
     /**

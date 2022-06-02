@@ -240,32 +240,28 @@ public class Frame {
 
             System.out.println(loadingMaze.getMazeName());
 
-            JPanel loadMazeContainer = new JPanel();
-            loadMazeContainer.setBounds(0, 35 * i - 30, 400, 30);
-
             JButton loadBTN = new JButton("Load");
-            loadBTN.setBounds(0, 0, 200, 30);
+            loadBTN.setBounds(0, i * 30, 100, 30);
 
             JLabel loadMazeName = new JLabel("Maze Name: " + loadingMaze.getMazeName());
-            loadMazeName.setBounds(200, 0, 100, 30);
+            loadMazeName.setBounds(100, i * 30, 100, 30);
 
             JLabel loadMazeAuthor = new JLabel("Author: " + loadingMaze.getAuthor());
-            loadMazeAuthor.setBounds(300, 0, 200, 30);
+            loadMazeAuthor.setBounds(200, i * 30, 200, 30);
 
             loadBTN.addActionListener(action -> {
                 Render.renderMazeOBJ(loadingMaze, true);
-                window2.setSize(850, 710);
             });
 
-            loadMazeContainer.add(loadBTN);
-            loadMazeContainer.add(loadMazeName);
-            loadMazeContainer.add(loadMazeAuthor);
-
-            SearchResultsTable.add(loadMazeContainer);
+            SearchResultsTable.add(loadBTN);
+            SearchResultsTable.add(loadMazeName);
+            SearchResultsTable.add(loadMazeAuthor);
         }
 
-        window3.add(SearchResultsTitle);
         window3.add(SearchResultsTable);
+
+        window3.setVisible(false);
+        window3.setVisible(true);
     }
 
 

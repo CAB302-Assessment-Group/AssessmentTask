@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Frame {
     public int[] mazeSize = new int[2];
@@ -508,6 +509,17 @@ public class Frame {
                 Frame.getInstance().myMaze.setDateEdited(timeStamp);
                 Frame.getInstance().myMaze.SetLastEditor(MazeAuthorInput.getText());
                 Database.exportMaze(Frame.getInstance().myMaze);
+
+                SaveButton.setText("Export Complete!");
+                SaveButton.setBackground(Color.green);
+
+                new Thread(() -> {
+                    try { TimeUnit.SECONDS.sleep(2); } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                    SaveButton.setText("Export Maze");
+                    SaveButton.setBackground(null);
+                }).start();
             }
         });
 

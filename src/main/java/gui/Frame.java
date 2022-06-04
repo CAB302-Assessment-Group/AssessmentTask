@@ -24,6 +24,7 @@ public class Frame {
     public static JFrame window;
     public static JFrame window2;
     public static JFrame window3;
+    public static JFrame MetricsWindow;
 
     public static int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -418,14 +419,10 @@ public class Frame {
         window.add(MazeAuthor);
         window.add(MazeAuthorInput);
 
-        JLabel CellsVisited = new JLabel("Number of Cells Visited in Optimal Solution:");
-        CellsVisited.setBounds(0, 0, 230, 40);
-
-        JLabel DeadEnds = new JLabel("Number of Dead End Cells:");
-        DeadEnds.setBounds(0, 60, 230, 40);
 
 
-        JFrame MetricsWindow = new JFrame();
+
+        MetricsWindow = new JFrame();
         MetricsWindow.setLayout(null);
 
         MetricsWindow.getContentPane().removeAll();
@@ -435,8 +432,7 @@ public class Frame {
         MetricsWindow.setSize(330, 160);
         MetricsWindow.setName("Maze Metrics");
 
-        MetricsWindow.add(CellsVisited);
-        MetricsWindow.add(DeadEnds);
+
 
         BackButton.addActionListener(new ActionListener() {
             @Override
@@ -458,6 +454,8 @@ public class Frame {
                 ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
 
                 Render.drawSolution(mazeSolution);
+                SetMetrics(MetricsWindow);
+                MetricsWindow.setVisible(true);
             }
         });
 
@@ -581,11 +579,24 @@ public class Frame {
 
     public static void SetMetrics(JFrame MetricsWindow){
         Solver solver = new Solver();
-        //solver.DFS(Frame.getInstance().myMaze,new Integer[]{Frame.getInstance().myMaze.getStart()[0],Frame.getInstance().myMaze.getStart()[1]});
+        try{
+            solver.DFS(Frame.getInstance().myMaze,new Integer[]{Frame.getInstance().myMaze.getStart()[0],Frame.getInstance().myMaze.getStart()[1]});
+        }catch(Exception e){
+            solver.DFS(Frame.getInstance().myMaze,new Integer[]{0,0});
+        }
 
+        MetricsWindow.getContentPane().removeAll();
+
+        JLabel CellsVisited = new JLabel("Number of Cells Visited in Solution:");
+        CellsVisited.setBounds(0, 0, 230, 40);
+
+        JLabel DeadEnds = new JLabel("Number of Dead End Cells:");
+        DeadEnds.setBounds(0, 60, 230, 40);
+        MetricsWindow.add(CellsVisited);
+        MetricsWindow.add(DeadEnds);
 
         JLabel CellsVisitedNum = new JLabel(solver.tilesVisited()+"");
-        CellsVisitedNum.setBounds(250, 0, 230, 40);
+        CellsVisitedNum.setBounds(250, 0, 40, 40);
         System.out.println(solver.tilesVisited()+"");
 
         JLabel DeadEndsNum = new JLabel(Frame.getInstance().myMaze.numDeadEnds()+"");
@@ -596,6 +607,7 @@ public class Frame {
         MetricsWindow.add(DeadEndsNum);
 
         MetricsWindow.getContentPane().repaint();
+        MetricsWindow.setVisible(true);
     }
 
     /**

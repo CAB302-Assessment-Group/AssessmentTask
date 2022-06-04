@@ -16,6 +16,7 @@ public class Render {
 
 
 
+
     //private static JFrame window2 = Frame.getInstance().window2;
     //tried to add maze generation panel, not sure how to take panel from frame class
     //private static JPanel MazeGenerationPanel = new JPanel();
@@ -299,6 +300,7 @@ public class Render {
 
 
         Frame.getInstance().myMaze = currentMaze;
+        Frame.SetMetrics(Frame.getInstance().MetricsWindow);
     }
 
 

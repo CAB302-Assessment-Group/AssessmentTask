@@ -560,8 +560,8 @@ public class Frame {
 
                 window2.getContentPane().removeAll();
                 window2.getContentPane().repaint();
-                window2.setLocation((screenWidth / 2 - (850/2)),screenHeight/2 - 230);
-                window2.setSize(850, 650);
+                window2.setLocation((screenWidth /6 + 330),screenHeight/16);
+                window2.setSize(850, 710);
 
 
 

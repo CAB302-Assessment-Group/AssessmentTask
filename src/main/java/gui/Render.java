@@ -124,12 +124,11 @@ public class Render {
         }else{
             largerdim = myMaze.mazeSize()[0];
         }
-        double scale_factor = 12.0/largerdim;
+        double scale_factor = 15.0/largerdim;
         System.out.println(scale_factor);
         //maze generation starting
         // on frame
 
-        int screensize = 600;
 
         int xposition = 0;
         int yposition = 0;

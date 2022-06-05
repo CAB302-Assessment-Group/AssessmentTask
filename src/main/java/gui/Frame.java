@@ -447,17 +447,10 @@ public class Frame {
             }
         });
 
-
         SolveMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Solver mazeSolver = new Solver();
-
-                Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
-
-                ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
-
-                Render.drawSolution(mazeSolution);
+                solveMyMaze();
             }
         });
 
@@ -547,6 +540,8 @@ public class Frame {
 
 
                 boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                Render.autoSolveMaze = shouldAutoSolve;
+
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false, shouldAutoSolve);
                 SetMetrics(MetricsWindow);
                 window2.setVisible(true);
@@ -568,6 +563,8 @@ public class Frame {
 
 
                 boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                Render.autoSolveMaze = shouldAutoSolve;
+
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
 
                 window2.setVisible(true);
@@ -577,6 +574,17 @@ public class Frame {
         });
 
 
+    }
+
+    public static void solveMyMaze() {
+        // solve the maze with the solver object
+        Solver mazeSolver = new Solver();
+
+        Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
+
+        ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
+
+        Render.drawSolution(mazeSolution);
     }
 
     public static void SetMetrics(JFrame MetricsWindow){

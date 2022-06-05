@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import static gui.Frame.window;
 
 public class Render {
+
+    public static boolean autoSolveMaze = false;
+
     //private static JFrame window = Frame.getInstance().window;
     private static JFrame window2 = Frame.getInstance().window2;
 
@@ -47,6 +50,14 @@ public class Render {
     public static void drawSolution(ArrayList<Integer[]> solution) {
         // using Frame.getInstance().myMaze; as maze object
 
+        // reset states of maze object
+        for (int x = 0; x < Frame.getInstance().myMaze.mazeSize()[0]; x++) {
+            for (int y = 0; y < Frame.getInstance().myMaze.mazeSize()[1]; y++) {
+                Frame.getInstance().myMaze.mazeTile(x, y).setState(false);
+            }
+        }
+
+        // set states of maze object to solution
         for (int i = 0; i < solution.size(); i++) {
             Integer[] activateTileCords = solution.get(i);
             Frame.getInstance().myMaze.mazeTile(activateTileCords[0], activateTileCords[1]).setState(true);
@@ -299,6 +310,8 @@ public class Render {
 
 
         Frame.getInstance().myMaze = currentMaze;
+
+        if (autoSolveMaze) Frame.solveMyMaze();
     }
 
 

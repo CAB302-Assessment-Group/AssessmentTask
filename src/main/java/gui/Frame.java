@@ -391,6 +391,7 @@ public class Frame {
 
         JCheckBox showSolutionCHKBOX = new JCheckBox();
         showSolutionCHKBOX.setBounds(290,650,20,20);
+        showSolutionCHKBOX.setSelected(true);
 
         window.add(showSolutionLBL);
         window.add(showSolutionCHKBOX);

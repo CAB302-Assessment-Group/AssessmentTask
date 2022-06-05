@@ -13,6 +13,7 @@ import static gui.Frame.window;
 public class Render {
 
     public static boolean autoSolveMaze = false;
+    private static boolean shouldRenderSolution = true;
 
     //private static JFrame window = Frame.getInstance().window;
     private static JFrame window2 = Frame.getInstance().window2;
@@ -72,7 +73,7 @@ public class Render {
         window2.getContentPane().repaint();
 
         // render the solution
-        renderMazeOBJ(Frame.getInstance().myMaze, true, false, true);
+        renderMazeOBJ(Frame.getInstance().myMaze, true, false, shouldRenderSolution);
     }
 
     public static void toggleSolutionVisualisation(boolean state) {
@@ -86,6 +87,8 @@ public class Render {
             window2.getContentPane().repaint();
             renderMazeOBJ(Frame.getInstance().myMaze, true);
         }
+
+        shouldRenderSolution = state;
     }
 
 

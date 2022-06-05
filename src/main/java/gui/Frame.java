@@ -379,10 +379,10 @@ public class Frame {
         SolveMazeButton.setBounds(10, 630, 150, 30);
 
         JLabel ShowSolution = new JLabel("Automatically Solve");
-        ShowSolution.setBounds(180,630,150,20);
+        ShowSolution.setBounds(170,630,140,20);
 
         JCheckBox ShowSolutionCheckBox = new JCheckBox();
-        ShowSolutionCheckBox.setBounds(270,630,20,20);
+        ShowSolutionCheckBox.setBounds(290,630,20,20);
 
         window.add(BackButton);
         window.add(SaveButton);
@@ -448,6 +448,12 @@ public class Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 solveMyMaze();
+            }
+        });
+
+        ShowSolutionCheckBox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                Render.autoSolveMaze = ShowSolutionCheckBox.isSelected();
             }
         });
 

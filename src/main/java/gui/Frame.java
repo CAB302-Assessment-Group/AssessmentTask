@@ -19,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import maze.core.image.ImageProcessing;
+
 public class Frame {
     public int[] mazeSize = new int[2];
     public Maze myMaze = new Maze(new int[]{100, 100}); //init as adult maze
@@ -285,7 +287,7 @@ public class Frame {
         window.getContentPane().repaint();
 
         window.setLocation((screenWidth / 6),screenHeight/16);
-        window.setSize(330, 710);
+        window.setSize(330, 720);
 
 
         // maze needs to be drawn inside a pane for scrollbars to work and for other buttons to stay constant
@@ -378,11 +380,21 @@ public class Frame {
         JButton SolveMazeButton = new JButton("Solve Maze");
         SolveMazeButton.setBounds(10, 630, 150, 30);
 
-        JLabel ShowSolution = new JLabel("Show Solution");
-        ShowSolution.setBounds(180,630,150,20);
+        JLabel autoSolveLBL = new JLabel("Automatically Solve");
+        autoSolveLBL.setBounds(170,630,140,20);
 
-        JCheckBox ShowSolutionCheckBox = new JCheckBox();
-        ShowSolutionCheckBox.setBounds(270,630,20,20);
+        JCheckBox autoSolveCHKBOX = new JCheckBox();
+        autoSolveCHKBOX.setBounds(290,630,20,20);
+
+        JLabel showSolutionLBL = new JLabel("Show Solution");
+        showSolutionLBL.setBounds(170,650,140,20);
+
+        JCheckBox showSolutionCHKBOX = new JCheckBox();
+        showSolutionCHKBOX.setBounds(290,650,20,20);
+        showSolutionCHKBOX.setSelected(true);
+
+        window.add(showSolutionLBL);
+        window.add(showSolutionCHKBOX);
 
         window.add(BackButton);
         window.add(SaveButton);
@@ -390,8 +402,8 @@ public class Frame {
         window.add(AutoGenerateMazeButton);
         window.add(GenerateBlankMazeButton);
         window.add(SolveMazeButton);
-        window.add(ShowSolution);
-        window.add(ShowSolutionCheckBox);
+        window.add(autoSolveLBL);
+        window.add(autoSolveCHKBOX);
 
         window.add(ImportStartingLogo);
         window.add(ImportFinishingLogo);
@@ -444,20 +456,21 @@ public class Frame {
             }
         });
 
-
         SolveMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Solver mazeSolver = new Solver();
-
-                Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
-
-                ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
-
-                Render.drawSolution(mazeSolution);
-                SetMetrics(MetricsWindow);
-                MetricsWindow.setVisible(true);
+                solveMyMaze();
             }
+        });
+
+        autoSolveCHKBOX.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                Render.autoSolveMaze = autoSolveCHKBOX.isSelected();
+            }
+        });
+
+        showSolutionCHKBOX.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) { Render.toggleSolutionVisualisation( showSolutionCHKBOX.isSelected() ); }
         });
 
 
@@ -489,7 +502,7 @@ public class Frame {
                 }
                 try {
                     if(MazeNameInput.getText()!="" ){
-                        ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                        ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
                     }
 
                 } catch (IOException ex) {
@@ -556,7 +569,9 @@ public class Frame {
 
 
 
-                boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                boolean shouldAutoSolve = autoSolveCHKBOX.isSelected();
+                Render.autoSolveMaze = shouldAutoSolve;
+
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false, shouldAutoSolve);
                 SetMetrics(MetricsWindow);
                 window2.setVisible(true);
@@ -577,7 +592,9 @@ public class Frame {
 
 
 
-                boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                boolean shouldAutoSolve = autoSolveCHKBOX.isSelected();
+                Render.autoSolveMaze = shouldAutoSolve;
+
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
 
                 window2.setVisible(true);
@@ -587,6 +604,17 @@ public class Frame {
         });
 
 
+    }
+
+    public static void solveMyMaze() {
+        // solve the maze with the solver object
+        Solver mazeSolver = new Solver();
+
+        Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
+
+        ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
+
+        Render.drawSolution(mazeSolution);
     }
 
     public static void SetMetrics(JFrame MetricsWindow){
@@ -607,7 +635,7 @@ public class Frame {
         MetricsWindow.add(CellsVisited);
         MetricsWindow.add(DeadEnds);
 
-        JLabel CellsVisitedNum = new JLabel(solver.tilesVisited()+"");
+        JLabel CellsVisitedNum = new JLabel(solver.tilesVisited()*100+"%");
         CellsVisitedNum.setBounds(250, 0, 40, 40);
         System.out.println(solver.tilesVisited()+"");
 
@@ -622,23 +650,7 @@ public class Frame {
         MetricsWindow.setVisible(true);
     }
 
-    /**
-     * Obtained fromhttps://stackoverflow.com/questions/30335787/take-snapshot-of-full-jframe-and-jframe-only
-     * Takes a picture output of the JFrame and converts to png format
-     * @param mazeBox the JFrame to screenshot
-     * @author Hudson
-     * @throws IOException
-     *
-     */
-    public static void ExportImage(JFrame mazeBox, String location, String name) throws IOException {
-        //TODO
-        //Save the maze to database and make sure all fields are matching object
-        BufferedImage img = new BufferedImage(mazeBox.getWidth(), mazeBox.getHeight(), BufferedImage.TYPE_INT_RGB);
-        mazeBox.paint(img.getGraphics());
-        String path = location+"/"+name+".png";
-        File outputfile = new File(path);
-        ImageIO.write(img, "png", outputfile);
-    }
+
 
 
 

@@ -378,7 +378,7 @@ public class Frame {
         JButton SolveMazeButton = new JButton("Solve Maze");
         SolveMazeButton.setBounds(10, 630, 150, 30);
 
-        JLabel ShowSolution = new JLabel("Show Solution");
+        JLabel ShowSolution = new JLabel("Automatically Solve");
         ShowSolution.setBounds(180,630,150,20);
 
         JCheckBox ShowSolutionCheckBox = new JCheckBox();

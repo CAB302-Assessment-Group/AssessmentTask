@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import src.main.java.maze.core.image.ImageProcessing;
+import maze.core.image.ImageProcessing;
 
 public class Frame {
     public int[] mazeSize = new int[2];
@@ -635,7 +635,7 @@ public class Frame {
         MetricsWindow.add(CellsVisited);
         MetricsWindow.add(DeadEnds);
 
-        JLabel CellsVisitedNum = new JLabel(solver.tilesVisited()+"");
+        JLabel CellsVisitedNum = new JLabel(solver.tilesVisited()*100+"%");
         CellsVisitedNum.setBounds(250, 0, 40, 40);
         System.out.println(solver.tilesVisited()+"");
 

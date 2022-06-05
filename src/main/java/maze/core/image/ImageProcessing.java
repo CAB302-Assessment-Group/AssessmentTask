@@ -1,4 +1,4 @@
-package src.main.java.maze.core.image;
+package maze.core.image;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

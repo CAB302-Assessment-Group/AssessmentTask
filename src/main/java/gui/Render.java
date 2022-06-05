@@ -112,6 +112,7 @@ public class Render {
 
         if (!validateInput(inputs)) {
             System.out.println("[ERROR] Invalid maze size...");
+            PopUp errorMessage = new PopUp("[ERROR] Invalid maze size...");
             return;
         }
 
@@ -128,6 +129,7 @@ public class Render {
             logoSizeInt = Integer.parseInt(logoSize);
         }catch(Exception e){
             System.out.println("[ERROR] Invalid logo size...");
+            PopUp errorMessage = new PopUp("[ERROR] Invalid logo size...");
             return;
         }
 

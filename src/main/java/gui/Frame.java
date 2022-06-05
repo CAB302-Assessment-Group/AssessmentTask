@@ -380,11 +380,11 @@ public class Frame {
         JButton SolveMazeButton = new JButton("Solve Maze");
         SolveMazeButton.setBounds(10, 630, 150, 30);
 
-        JLabel ShowSolution = new JLabel("Show Solution");
-        ShowSolution.setBounds(180,630,150,20);
+        JLabel ShowSolution = new JLabel("Automatically Solve");
+        ShowSolution.setBounds(170,630,140,20);
 
         JCheckBox ShowSolutionCheckBox = new JCheckBox();
-        ShowSolutionCheckBox.setBounds(270,630,20,20);
+        ShowSolutionCheckBox.setBounds(290,630,20,20);
 
         window.add(BackButton);
         window.add(SaveButton);
@@ -446,19 +446,16 @@ public class Frame {
             }
         });
 
-
         SolveMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Solver mazeSolver = new Solver();
+                solveMyMaze();
+            }
+        });
 
-                Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
-
-                ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
-
-                Render.drawSolution(mazeSolution);
-                SetMetrics(MetricsWindow);
-                MetricsWindow.setVisible(true);
+        ShowSolutionCheckBox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                Render.autoSolveMaze = ShowSolutionCheckBox.isSelected();
             }
         });
 
@@ -559,6 +556,8 @@ public class Frame {
 
 
                 boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                Render.autoSolveMaze = shouldAutoSolve;
+
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false, shouldAutoSolve);
                 SetMetrics(MetricsWindow);
                 window2.setVisible(true);
@@ -580,6 +579,8 @@ public class Frame {
 
 
                 boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                Render.autoSolveMaze = shouldAutoSolve;
+
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
 
                 window2.setVisible(true);
@@ -589,6 +590,17 @@ public class Frame {
         });
 
 
+    }
+
+    public static void solveMyMaze() {
+        // solve the maze with the solver object
+        Solver mazeSolver = new Solver();
+
+        Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
+
+        ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
+
+        Render.drawSolution(mazeSolution);
     }
 
     public static void SetMetrics(JFrame MetricsWindow){

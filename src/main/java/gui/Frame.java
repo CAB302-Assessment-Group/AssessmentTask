@@ -552,7 +552,7 @@ public class Frame {
                 window2.getContentPane().removeAll();
                 window2.getContentPane().repaint();
                 window2.setLocation((screenWidth /6 + 330),screenHeight/16);
-                window2.setSize(850, 710);
+                window2.setSize(800, 800);
 
 
 
@@ -573,7 +573,7 @@ public class Frame {
                 window2.getContentPane().removeAll();
                 window2.getContentPane().repaint();
                 window2.setLocation((screenWidth /6 + 330),screenHeight/16);
-                window2.setSize(800, 800);
+                window2.setSize(1600, 1600);
 
 
 

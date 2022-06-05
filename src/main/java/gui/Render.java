@@ -122,9 +122,9 @@ public class Render {
         if(myMaze.mazeSize()[0] > myMaze.mazeSize()[1]){
             largerdim = myMaze.mazeSize()[0];
         }else{
-            largerdim = myMaze.mazeSize()[0];
+            largerdim = myMaze.mazeSize()[1];
         }
-        double scale_factor = 15.0/largerdim;
+        double scale_factor = 25.0/largerdim;
         System.out.println(scale_factor);
         //maze generation starting
         // on frame

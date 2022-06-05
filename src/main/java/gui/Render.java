@@ -72,7 +72,20 @@ public class Render {
         window2.getContentPane().repaint();
 
         // render the solution
-        renderMazeOBJ(Frame.getInstance().myMaze, true);
+        renderMazeOBJ(Frame.getInstance().myMaze, true, false, true);
+    }
+
+    public static void toggleSolutionVisualisation(boolean state) {
+        if (state) {
+            resetSolution();
+            Frame.solveMyMaze();
+        } else {
+            window2.setLayout(null);
+
+            window2.getContentPane().removeAll();
+            window2.getContentPane().repaint();
+            renderMazeOBJ(Frame.getInstance().myMaze, true);
+        }
     }
 
 
@@ -133,9 +146,10 @@ public class Render {
         renderMazeOBJ(currentMaze, generated, autoSolve);
     }
 
-    public static void renderMazeOBJ(Maze myMaze, boolean generated) { renderMazeOBJ(myMaze, generated, false); }
+    public static void renderMazeOBJ(Maze myMaze, boolean generated) { renderMazeOBJ(myMaze, generated, false, false); }
+    public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution) { renderMazeOBJ(myMaze, generated, showSolution, false); }
 
-    public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution) {
+    public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution, boolean renderSolution) {
         int largerdim;
         if(myMaze.mazeSize()[0] > myMaze.mazeSize()[1]){
             largerdim = myMaze.mazeSize()[0];
@@ -240,7 +254,7 @@ public class Render {
                 tempBTN2.setBackground(myMaze.mazeTile(finalX, finalY).LeftWall() ? Color.BLACK : Color.WHITE);
 
                 boolean tileState = myMaze.mazeTile(finalX, finalY).GetState();
-                if (tileState) {
+                if (tileState && renderSolution) {
                     JButton solveStep = new JButton("");
                     solveStep.setBounds((int) Math.floor(((x * (wallLength + wallWidth)) + (wallLength / 2) + 5)*scale_factor), (int) Math.floor(((y * (wallLength + wallWidth)) + (wallLength / 2) + 5)*scale_factor), (int) Math.floor(10 * scale_factor), (int) Math.floor(10 * scale_factor));
                     solveStep.setBackground(Color.RED);

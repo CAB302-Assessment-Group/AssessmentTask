@@ -468,6 +468,10 @@ public class Frame {
             }
         });
 
+        showSolutionCHKBOX.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) { Render.toggleSolutionVisualisation( showSolutionCHKBOX.isSelected() ); }
+        });
+
 
 		ExportMazeButton.addActionListener(new ActionListener() {
             @Override

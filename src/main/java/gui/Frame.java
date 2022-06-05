@@ -287,7 +287,7 @@ public class Frame {
         window.getContentPane().repaint();
 
         window.setLocation((screenWidth / 6),screenHeight/16);
-        window.setSize(330, 710);
+        window.setSize(330, 720);
 
 
         // maze needs to be drawn inside a pane for scrollbars to work and for other buttons to stay constant
@@ -380,11 +380,20 @@ public class Frame {
         JButton SolveMazeButton = new JButton("Solve Maze");
         SolveMazeButton.setBounds(10, 630, 150, 30);
 
-        JLabel ShowSolution = new JLabel("Automatically Solve");
-        ShowSolution.setBounds(170,630,140,20);
+        JLabel autoSolveLBL = new JLabel("Automatically Solve");
+        autoSolveLBL.setBounds(170,630,140,20);
 
-        JCheckBox ShowSolutionCheckBox = new JCheckBox();
-        ShowSolutionCheckBox.setBounds(290,630,20,20);
+        JCheckBox autoSolveCHKBOX = new JCheckBox();
+        autoSolveCHKBOX.setBounds(290,630,20,20);
+
+        JLabel showSolutionLBL = new JLabel("Show Solution");
+        showSolutionLBL.setBounds(170,650,140,20);
+
+        JCheckBox showSolutionCHKBOX = new JCheckBox();
+        showSolutionCHKBOX.setBounds(290,650,20,20);
+
+        window.add(showSolutionLBL);
+        window.add(showSolutionCHKBOX);
 
         window.add(BackButton);
         window.add(SaveButton);
@@ -392,8 +401,8 @@ public class Frame {
         window.add(AutoGenerateMazeButton);
         window.add(GenerateBlankMazeButton);
         window.add(SolveMazeButton);
-        window.add(ShowSolution);
-        window.add(ShowSolutionCheckBox);
+        window.add(autoSolveLBL);
+        window.add(autoSolveCHKBOX);
 
         window.add(ImportStartingLogo);
         window.add(ImportFinishingLogo);
@@ -453,9 +462,9 @@ public class Frame {
             }
         });
 
-        ShowSolutionCheckBox.addItemListener(new ItemListener() {
+        autoSolveCHKBOX.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
-                Render.autoSolveMaze = ShowSolutionCheckBox.isSelected();
+                Render.autoSolveMaze = autoSolveCHKBOX.isSelected();
             }
         });
 
@@ -555,7 +564,7 @@ public class Frame {
 
 
 
-                boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                boolean shouldAutoSolve = autoSolveCHKBOX.isSelected();
                 Render.autoSolveMaze = shouldAutoSolve;
 
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false, shouldAutoSolve);
@@ -578,7 +587,7 @@ public class Frame {
 
 
 
-                boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                boolean shouldAutoSolve = autoSolveCHKBOX.isSelected();
                 Render.autoSolveMaze = shouldAutoSolve;
 
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);

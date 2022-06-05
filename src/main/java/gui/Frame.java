@@ -296,30 +296,30 @@ public class Frame {
 
         JLabel MazeName = new JLabel("Maze Name:");
         MazeName.setBounds(10,80,100,20);
-        JTextArea MazeNameInput = new JTextArea();
+        JTextField MazeNameInput = new JTextField();
         MazeNameInput.setBounds(160,80,100,20);
 
         JLabel MazeAuthor = new JLabel("Author:");
         MazeAuthor.setBounds(10, 110, 100,20);
-        JTextArea MazeAuthorInput = new JTextArea();
+        JTextField MazeAuthorInput = new JTextField();
         MazeAuthorInput.setBounds(160, 110, 100,20);
 
         JLabel MazeWidth = new JLabel("Width:");
         MazeWidth.setBounds(10,140,50,20);
-        JTextArea MazeWidthInput = new JTextArea();
+        JTextField MazeWidthInput = new JTextField();
         MazeWidthInput.setBounds(160, 140, 30, 20);
         //take inputs from text box for width, "inputx.getText()"
 
         JLabel MazeHeight = new JLabel("Height:");
         MazeHeight.setBounds(10,170,50,20);
-        JTextArea MazeHeightInput = new JTextArea();
+        JTextField MazeHeightInput = new JTextField();
         MazeHeightInput.setBounds(160, 170, 30, 20);
         //take inputs from text box for height, "inputy.getText()"
 
         JLabel LogoCellSizeLabel = new JLabel("Logo Cell Size:");
         LogoCellSizeLabel.setBounds(10,200,100,20);
-        JTextArea LogoCellSizeInput = new JTextArea();
-        LogoCellSizeInput.setBounds(160,200, 50,20);
+        JTextField LogoCellSizeInput = new JTextField();
+        LogoCellSizeInput.setBounds(160,200, 30,20);
 
         JRadioButton StandardMazeButton = new JRadioButton("Standard Maze");
         StandardMazeButton.setBounds(10, 230, 110, 20);
@@ -357,7 +357,7 @@ public class Frame {
         BackButton.setBounds(10, 10, 75, 20);
 
         JButton SaveButton = new JButton("Export Maze");
-        SaveButton.setBounds(100, 20, 150, 20);
+        SaveButton.setBounds(10, 40, 150, 30);
 
         JButton ExportMazeButton = new JButton("Export Image");
         ExportMazeButton.setBounds(160, 40, 150, 30);
@@ -444,6 +444,7 @@ public class Frame {
         MetricsWindow.setLocation((screenWidth / 6),730+screenHeight/16);
         MetricsWindow.setSize(330, 160);
         MetricsWindow.setName("Maze Metrics");
+
 
 
 

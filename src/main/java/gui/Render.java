@@ -16,6 +16,7 @@ public class Render {
 
 
 
+
     //private static JFrame window2 = Frame.getInstance().window2;
     //tried to add maze generation panel, not sure how to take panel from frame class
     //private static JPanel MazeGenerationPanel = new JPanel();
@@ -117,29 +118,36 @@ public class Render {
     public static void renderMazeOBJ(Maze myMaze, boolean generated) { renderMazeOBJ(myMaze, generated, false); }
 
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution) {
-        int scale_factor = 1;
-        //maze generation starting position on frame
+        int largerdim;
+        if(myMaze.mazeSize()[0] > myMaze.mazeSize()[1]){
+            largerdim = myMaze.mazeSize()[0];
+        }else{
+            largerdim = myMaze.mazeSize()[1];
+        }
+        double scale_factor = 25.0/largerdim;
+        System.out.println(scale_factor);
+        //maze generation starting
+        // on frame
+
+
         int xposition = 0;
         int yposition = 0;
 
-        int horizontal_wall_length = 40;
-        int horizontal_wall_width = 10;
 
-        int vertical_wall_length = 40;
-        int vertical_wall_width = 10;
 
-        int xdistance_between_horizontal_walls = 50;
-        int ydistance_between_horizontal_walls = 50;
 
-        int xdistance_between_vertical_walls = 50;
-        int ydistance_between_vertical_walls = 50;
+        int wallLength = 40;
+        int wallWidth = 10;
+
+        int between_walls = wallLength+wallWidth;
+
 
         for (int x = 0; x < myMaze.mazeSize()[0]; x++) {
             for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
                 // border styling
                 JButton tempBTN = new JButton("");
                 //tempBTN.setBounds(10 + x * 50, 75 + y * 50, 40, 10);
-                tempBTN.setBounds(10+xposition + x * (xdistance_between_horizontal_walls) * (scale_factor), yposition + y * ydistance_between_horizontal_walls * scale_factor, horizontal_wall_length * scale_factor, horizontal_wall_width);
+                tempBTN.setBounds((int) Math.floor(10 * scale_factor + xposition + x * (between_walls) * (scale_factor)), (int) Math.floor(yposition + y * between_walls * scale_factor), (int) Math.floor(wallLength * scale_factor), (int) Math.floor(wallWidth * scale_factor));
                 int finalX = x;
                 int finalY = y;
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
@@ -166,7 +174,7 @@ public class Render {
 
                 JButton tempBTN2 = new JButton("");
                 //tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
-                tempBTN2.setBounds(xposition + x * xdistance_between_vertical_walls * scale_factor, 10+yposition + y * ydistance_between_vertical_walls * scale_factor, vertical_wall_width, vertical_wall_length * scale_factor);
+                tempBTN2.setBounds((int) Math.floor(xposition + x * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + y * between_walls * scale_factor), (int) Math.floor(wallWidth * scale_factor), (int) Math.floor(wallLength * scale_factor));
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
 
                 if(!generated && x==0){
@@ -188,8 +196,8 @@ public class Render {
 
                 boolean tileStae = myMaze.mazeTile(finalX, finalY).GetState();
                 if (tileStae) {
-                    JButton solveStep = new JButton("o");
-                    solveStep.setBounds((x * (horizontal_wall_length + horizontal_wall_width)) + (horizontal_wall_length / 2) + 5, (y * (vertical_wall_length + vertical_wall_width)) + (vertical_wall_length / 2) + 5, 10, 10);
+                    JButton solveStep = new JButton("");
+                    solveStep.setBounds((int) Math.floor(((x * (wallLength + wallWidth)) + (wallLength / 2) + 5)*scale_factor), (int) Math.floor(((y * (wallLength + wallWidth)) + (wallLength / 2) + 5)*scale_factor), (int) Math.floor(10 * scale_factor), (int) Math.floor(10 * scale_factor));
                     solveStep.setBackground(Color.RED);
                     window2.add(solveStep);
                 }
@@ -203,7 +211,7 @@ public class Render {
         for(int i = 0; i < myMaze.mazeSize()[1]; i++){
             JButton tempBTN2 = new JButton("");
             //tempBTN2.setBounds(myMaze.mazeSize()[0] * 50, 10+75 + i * 50, 10, 40);
-            tempBTN2.setBounds(xposition + myMaze.mazeSize()[0] * xdistance_between_vertical_walls * scale_factor, 10+yposition + i * ydistance_between_vertical_walls * scale_factor, vertical_wall_width, vertical_wall_length * scale_factor);
+            tempBTN2.setBounds((int) Math.floor(xposition + myMaze.mazeSize()[0] * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + i * between_walls * scale_factor), (int) Math.floor(wallWidth * scale_factor), (int) Math.floor(wallLength * scale_factor));
             int finalX = myMaze.mazeSize()[0];
             int finalY = i;
             if(!generated){
@@ -221,7 +229,7 @@ public class Render {
         for(int i = 0; i < myMaze.mazeSize()[0]; i++){
             JButton tempBTN = new JButton("");
             //tempBTN.setBounds(10 + i * 50, 75 + myMaze.mazeSize()[1] * 50, 40, 10);
-            tempBTN.setBounds(10+xposition + i * xdistance_between_horizontal_walls * scale_factor, yposition + myMaze.mazeSize()[1] * ydistance_between_horizontal_walls * scale_factor, horizontal_wall_length * scale_factor, horizontal_wall_width);
+            tempBTN.setBounds((int) Math.floor(10 *scale_factor+xposition + i * between_walls * scale_factor), (int) Math.floor(yposition + myMaze.mazeSize()[1] * between_walls * scale_factor),(int) Math.floor( wallLength * scale_factor),(int) Math.floor( wallWidth * scale_factor));
             int finalX = i;
             int finalY = myMaze.mazeSize()[1];
             if(!generated){
@@ -253,6 +261,7 @@ public class Render {
         }
 
         window2.setVisible(false);
+
         window2.setVisible(true);
     }
 
@@ -289,7 +298,7 @@ public class Render {
                 currentMaze.mazeTile(x-1,y).setRightWall(set);
             }else{
                 currentMaze.mazeTile(x,y).setLeftWall(set);
-                currentMaze.mazeTile(x,y-1).setRightWall(set);
+                currentMaze.mazeTile(x-1,y).setRightWall(set);
             }
         }
 
@@ -298,6 +307,7 @@ public class Render {
 
 
         Frame.getInstance().myMaze = currentMaze;
+        Frame.SetMetrics(Frame.getInstance().MetricsWindow);
     }
 
 

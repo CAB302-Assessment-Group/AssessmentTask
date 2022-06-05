@@ -96,6 +96,7 @@ public class Render {
 
         if (!validateInput(inputs)) {
             System.out.println("[ERROR] Invalid maze size...");
+            PopUp errorMessage = new PopUp("[ERROR] Invalid maze size...");
             return;
         }
 
@@ -112,6 +113,7 @@ public class Render {
             logoSizeInt = Integer.parseInt(logoSize);
         }catch(Exception e){
             System.out.println("[ERROR] Invalid logo size...");
+            PopUp errorMessage = new PopUp("[ERROR] Invalid logo size...");
             return;
         }
 
@@ -133,7 +135,9 @@ public class Render {
         renderMazeOBJ(currentMaze, generated, autoSolve);
     }
 
-    public static void renderMazeOBJ(Maze myMaze, boolean generated) { renderMazeOBJ(myMaze, generated, false); }
+    public static void renderMazeOBJ(Maze myMaze, boolean generated) {
+        renderMazeOBJ(myMaze, generated, false);
+    }
 
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution) {
         int largerdim;
@@ -240,6 +244,8 @@ public class Render {
                 tempBTN2.setBackground(myMaze.mazeTile(finalX, finalY).LeftWall() ? Color.BLACK : Color.WHITE);
 
                 boolean tileState = myMaze.mazeTile(finalX, finalY).GetState();
+                int[] start = myMaze.getStart();
+                int[] end = myMaze.getStart();
                 if (tileState) {
                     JButton solveStep = new JButton("");
                     solveStep.setBounds((int) Math.floor(((x * (wallLength + wallWidth)) + (wallLength / 2) + 5)*scale_factor), (int) Math.floor(((y * (wallLength + wallWidth)) + (wallLength / 2) + 5)*scale_factor), (int) Math.floor(10 * scale_factor), (int) Math.floor(10 * scale_factor));

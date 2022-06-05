@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import src.main.java.maze.core.image.ImageProcessing;
+import maze.core.image.ImageProcessing;
 
 public class Frame {
     public int[] mazeSize = new int[2];

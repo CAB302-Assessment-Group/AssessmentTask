@@ -68,7 +68,7 @@ public class Render {
         }
 
         window2.setLayout(null);
-        
+
         window2.getContentPane().removeAll();
         window2.getContentPane().repaint();
 
@@ -191,8 +191,8 @@ public class Render {
             window2.setSize(1300, 1300);
             scale_factor = 25.0 / largerdim;
         } else if (largerdim>=75 && largerdim<85) {
-                window2.setSize(1500, 1500);
-                scale_factor = 26.0 / largerdim;
+            window2.setSize(1500, 1500);
+            scale_factor = 26.0 / largerdim;
         } else {
             window2.setSize(1600,1600);
             scale_factor = 27.0/largerdim;
@@ -243,6 +243,7 @@ public class Render {
                 //MazeGenerationPanel.add(tempBTN);
 
                 //window.add(tempBTN);
+                tempBTN.setBorderPainted(false);
                 window2.add(tempBTN);
 
                 JButton tempBTN2 = new JButton("");
@@ -262,21 +263,26 @@ public class Render {
                 // left-right
 
                 // up-down
+
                 tempBTN.setBackground(myMaze.mazeTile(finalX,finalY).TopWall() ? Color.BLACK : Color.WHITE);
 
                 //MazeGenerationPanel.add(tempBTN2);
+
                 tempBTN2.setBackground(myMaze.mazeTile(finalX, finalY).LeftWall() ? Color.BLACK : Color.WHITE);
 
                 boolean tileState = myMaze.mazeTile(finalX, finalY).GetState();
                 if (tileState && renderSolution) {
                     JButton solveStep = new JButton("");
-                    solveStep.setBounds((int) Math.floor(((x * (wallLength + wallWidth)) + (wallLength / 2) + 5)*scale_factor), (int) Math.floor(((y * (wallLength + wallWidth)) + (wallLength / 2) + 5)*scale_factor), (int) Math.floor(10 * scale_factor), (int) Math.floor(10 * scale_factor));
+                    solveStep.setBounds((int) Math.floor(((x * (wallLength + wallWidth)) + (wallLength/4))*scale_factor), (int) Math.floor(((y * (wallLength + wallWidth)) + (wallLength/4))*scale_factor), (int) Math.floor(40 * scale_factor), (int) Math.floor(40 * scale_factor));
                     solveStep.setBackground(Color.RED);
+
+                    solveStep.setBorderPainted(false);
                     window2.add(solveStep);
                 }
 
 
                 //window.add(tempBTN2);
+                tempBTN2.setBorderPainted(false);
                 window2.add(tempBTN2);
             }
         }
@@ -296,6 +302,7 @@ public class Render {
             //MazeGenerationPanel.add(tempBTN2);
 
             //window.add(tempBTN2);
+            tempBTN2.setBorderPainted(false);
             window2.add(tempBTN2);
         }
 
@@ -314,6 +321,7 @@ public class Render {
             //MazeGenerationPanel.add(tempBTN);
 
             //window.add(tempBTN);
+            tempBTN.setBorderPainted(false);
             window2.add(tempBTN);
         }
 

@@ -3,6 +3,7 @@ package maze.core.image;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -25,8 +26,23 @@ public class ImageProcessing {
         ImageIO.write(img, "png", outputfile);
     }
 
-    public static JLabel GetLogo(String location){
-        JLabel logo = new JLabel(new ImageIcon(location));
-        return logo;
+    public static BufferedImage GetLogo(String location) throws IOException {
+        BufferedImage image = ImageIO.read(new File(location));
+        return image;
+    }
+
+    /**
+     * Obtained from https://mkyong.com/java/how-to-convert-bufferedimage-to-byte-in-java/
+     * @param bi
+     * @return
+     * @throws IOException
+     */
+    public static byte[] toByteArray(BufferedImage bi) throws IOException {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bi, "png", baos);
+        byte[] bytes = baos.toByteArray();
+        return bytes;
+
     }
 }

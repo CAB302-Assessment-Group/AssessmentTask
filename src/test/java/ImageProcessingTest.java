@@ -13,7 +13,7 @@ class ImageProcessingTest {
     public String location;
     @BeforeEach
     void setUp() {
-         location = "ExampleImages/StandardLogo.PNG";
+         location = "ExampleImages/StandardLogo.png";
     }
 
     @Test
@@ -23,7 +23,7 @@ class ImageProcessingTest {
 
     @Test
     void getLogo() {
-        ImageIcon icon = new ImageIcon(location);
+        ImageIcon icon = new ImageIcon("ExampleImages/StandardLogo.png");
         JLabel label = new JLabel(icon);
         label.setSize(50,50);
         Path path = Paths.get(location);
@@ -34,6 +34,7 @@ class ImageProcessingTest {
         frame.add(label);
         frame.setLocation(0,0);
         frame.setVisible(true);
+        frame.repaint();
         frame.setVisible(false);
     }
 }

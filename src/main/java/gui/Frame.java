@@ -585,9 +585,18 @@ public class Frame {
                 JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
                 importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 importFile.showOpenDialog(null);
+                String fileLocation ="";
+                String format ="png";
                 if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                    String fileLocation = importFile.getCurrentDirectory().toString();
+                    fileLocation = importFile.getCurrentDirectory().toString();
                 }
+                try {
+                    BufferedImage logo = ImageProcessing.GetLogo(fileLocation);
+                    Frame.getInstance().myMaze.mazeTile(0,0).setEndImage(ImageProcessing.toByteArray(logo));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
 
             }
         });

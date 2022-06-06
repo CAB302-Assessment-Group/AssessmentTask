@@ -21,6 +21,8 @@ import java.util.concurrent.TimeUnit;
 
 import maze.core.image.ImageProcessing;
 
+import static java.lang.Math.floor;
+
 public class Frame {
     public int[] mazeSize = new int[2];
     public Maze myMaze = new Maze(new int[]{100, 100}); //init as adult maze
@@ -28,6 +30,7 @@ public class Frame {
     public static JFrame window2;
     public static JFrame window3;
     public static JFrame MetricsWindow;
+    public static Solver solver = new Solver();
 
     public static int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -478,10 +481,10 @@ public class Frame {
 		ExportMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Save to database first
+                //Todo refactor as a method
 
+                // Save to database first (make method)
                 String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
-
                 Frame.getInstance().myMaze.setAuthor(MazeAuthorInput.getText());
                 Frame.getInstance().myMaze.setMazeName(MazeNameInput.getText());
                 Frame.getInstance().myMaze.setDateCreated(timeStamp);
@@ -489,37 +492,58 @@ public class Frame {
                 Frame.getInstance().myMaze.SetLastEditor(MazeAuthorInput.getText());
                 Database.exportMaze(Frame.getInstance().myMaze);
 
-                JFileChooser exportFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
-                // From https://stackoverflow.com/questions/10621687/how-to-get-full-path-directory-from-file-chooser
-                exportFile.setCurrentDirectory(new java.io.File("."));
-                exportFile.setDialogTitle("Export Maze");
-                exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                exportFile.setAcceptAllFileFilterUsed(false);
-                String fileLocation ="";
-                if (exportFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                    fileLocation = exportFile.getCurrentDirectory().toString();
-                } else {
-                    System.out.println("No Selection ");
-                    PopUp popUp = new PopUp("Please select a location");
+
+                Solver solver2 = new Solver();
+                try{
+                    solver2.DFS(Frame.getInstance().myMaze,
+                            new Integer[]{Frame.getInstance().myMaze.getStart()[0],
+                                    Frame.getInstance().myMaze.getStart()[1]});
+                }catch(Exception solverError){
+                    solver2.DFS(Frame.getInstance().myMaze,new Integer[]{0,0});
                 }
-                try {
-                    if(MazeNameInput.getText()!="" ){
-                        if(showSolutionCHKBOX.isSelected()){
-                            ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName()+"Solution");
-                            showSolutionCHKBOX.doClick();
-                            ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
-                            showSolutionCHKBOX.doClick();
-                            Frame.solveMyMaze();
 
-                        }
-                        ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                if(solver2.tilesVisited()>0) {
+                    JFileChooser exportFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                    // From https://stackoverflow.com/questions/10621687/how-to-get-full-path-directory-from-file-chooser
+                    exportFile.setCurrentDirectory(new java.io.File("."));
+                    exportFile.setDialogTitle("Export Maze");
+                    exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    exportFile.setAcceptAllFileFilterUsed(false);
 
-
+                    String fileLocation ="";
+                    if (exportFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                        fileLocation = exportFile.getCurrentDirectory().toString();
+                    } else {
+                        System.out.println("No Selection ");
+                        PopUp popUp = new PopUp("Please select a location");
                     }
+                    try {
+                        if(MazeNameInput.getText()!=""){
+                            if(showSolutionCHKBOX.isSelected()){
+                                //Generate solution + unsolved maze
 
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                                System.out.println(solver2.tilesVisited());
+
+                                ImageProcessing.ExportImage(window2,fileLocation,
+                                        Frame.getInstance().myMaze.getMazeName()+"Solution");
+                                showSolutionCHKBOX.doClick();
+                                ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                                showSolutionCHKBOX.doClick();
+                                Frame.solveMyMaze();
+                            } else {
+                                //Generate just unsolved maze
+                                ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                            }
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } else {
+                    System.out.println("Maze is not solvable");
+                    PopUp popUp = new PopUp("Maze is not solvable");
                 }
+
+
             }
         });
 
@@ -608,9 +632,21 @@ public class Frame {
                 Render.autoSolveMaze = shouldAutoSolve;
 
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
+                SetMetrics(MetricsWindow);
+                try {
+                    if(solver.tilesVisited()<=0){
+                        int count = 0;
+                        while(solver.tilesVisited()<=0 && count<100){
+                            Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
+                            SetMetrics(MetricsWindow);
+                            count++;
+                        }
+                    }
+                } catch (Exception generationError){
+                    PopUp popUp= new PopUp(generationError.getMessage());
+                }
 
                 window2.setVisible(true);
-                SetMetrics(MetricsWindow);
                 MetricsWindow.setVisible(true);
             }
         });
@@ -630,7 +666,7 @@ public class Frame {
     }
 
     public static void SetMetrics(JFrame MetricsWindow){
-        Solver solver = new Solver();
+
         try{
             solver.DFS(Frame.getInstance().myMaze,new Integer[]{Frame.getInstance().myMaze.getStart()[0],Frame.getInstance().myMaze.getStart()[1]});
         }catch(Exception e){
@@ -647,7 +683,7 @@ public class Frame {
         MetricsWindow.add(CellsVisited);
         MetricsWindow.add(DeadEnds);
 
-        JLabel CellsVisitedNum = new JLabel(solver.tilesVisited()*100+"%");
+        JLabel CellsVisitedNum = new JLabel((int)(solver.tilesVisited()*100)+"%");
         CellsVisitedNum.setBounds(250, 0, 40, 40);
         System.out.println(solver.tilesVisited()+"");
 

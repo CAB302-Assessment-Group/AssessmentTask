@@ -17,6 +17,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import maze.core.image.ImageProcessing;
 
 public class Frame {
     public int[] mazeSize = new int[2];
@@ -24,6 +27,7 @@ public class Frame {
     public static JFrame window;
     public static JFrame window2;
     public static JFrame window3;
+    public static JFrame MetricsWindow;
 
     public static int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -240,32 +244,28 @@ public class Frame {
 
             System.out.println(loadingMaze.getMazeName());
 
-            JPanel loadMazeContainer = new JPanel();
-            loadMazeContainer.setBounds(0, 35 * i - 30, 400, 30);
-
             JButton loadBTN = new JButton("Load");
-            loadBTN.setBounds(0, 0, 200, 30);
+            loadBTN.setBounds(0, i * 30, 100, 30);
 
             JLabel loadMazeName = new JLabel("Maze Name: " + loadingMaze.getMazeName());
-            loadMazeName.setBounds(200, 0, 100, 30);
+            loadMazeName.setBounds(100, i * 30, 100, 30);
 
             JLabel loadMazeAuthor = new JLabel("Author: " + loadingMaze.getAuthor());
-            loadMazeAuthor.setBounds(300, 0, 200, 30);
+            loadMazeAuthor.setBounds(200, i * 30, 200, 30);
 
             loadBTN.addActionListener(action -> {
                 Render.renderMazeOBJ(loadingMaze, true);
-                window2.setSize(850, 710);
             });
 
-            loadMazeContainer.add(loadBTN);
-            loadMazeContainer.add(loadMazeName);
-            loadMazeContainer.add(loadMazeAuthor);
-
-            SearchResultsTable.add(loadMazeContainer);
+            SearchResultsTable.add(loadBTN);
+            SearchResultsTable.add(loadMazeName);
+            SearchResultsTable.add(loadMazeAuthor);
         }
 
-        window3.add(SearchResultsTitle);
         window3.add(SearchResultsTable);
+
+        window3.setVisible(false);
+        window3.setVisible(true);
     }
 
 
@@ -287,7 +287,7 @@ public class Frame {
         window.getContentPane().repaint();
 
         window.setLocation((screenWidth / 6),screenHeight/16);
-        window.setSize(330, 710);
+        window.setSize(330, 720);
 
 
         // maze needs to be drawn inside a pane for scrollbars to work and for other buttons to stay constant
@@ -296,30 +296,30 @@ public class Frame {
 
         JLabel MazeName = new JLabel("Maze Name:");
         MazeName.setBounds(10,80,100,20);
-        JTextArea MazeNameInput = new JTextArea();
+        JTextField MazeNameInput = new JTextField();
         MazeNameInput.setBounds(160,80,100,20);
 
         JLabel MazeAuthor = new JLabel("Author:");
         MazeAuthor.setBounds(10, 110, 100,20);
-        JTextArea MazeAuthorInput = new JTextArea();
+        JTextField MazeAuthorInput = new JTextField();
         MazeAuthorInput.setBounds(160, 110, 100,20);
 
         JLabel MazeWidth = new JLabel("Width:");
         MazeWidth.setBounds(10,140,50,20);
-        JTextArea MazeWidthInput = new JTextArea();
+        JTextField MazeWidthInput = new JTextField();
         MazeWidthInput.setBounds(160, 140, 30, 20);
         //take inputs from text box for width, "inputx.getText()"
 
         JLabel MazeHeight = new JLabel("Height:");
         MazeHeight.setBounds(10,170,50,20);
-        JTextArea MazeHeightInput = new JTextArea();
+        JTextField MazeHeightInput = new JTextField();
         MazeHeightInput.setBounds(160, 170, 30, 20);
         //take inputs from text box for height, "inputy.getText()"
 
         JLabel LogoCellSizeLabel = new JLabel("Logo Cell Size:");
         LogoCellSizeLabel.setBounds(10,200,100,20);
-        JTextArea LogoCellSizeInput = new JTextArea();
-        LogoCellSizeInput.setBounds(160,200, 50,20);
+        JTextField LogoCellSizeInput = new JTextField();
+        LogoCellSizeInput.setBounds(160,200, 30,20);
 
         JRadioButton StandardMazeButton = new JRadioButton("Standard Maze");
         StandardMazeButton.setBounds(10, 230, 110, 20);
@@ -357,7 +357,7 @@ public class Frame {
         BackButton.setBounds(10, 10, 75, 20);
 
         JButton SaveButton = new JButton("Export Maze");
-        SaveButton.setBounds(100, 20, 150, 20);
+        SaveButton.setBounds(10, 40, 150, 30);
 
         JButton ExportMazeButton = new JButton("Export Image");
         ExportMazeButton.setBounds(160, 40, 150, 30);
@@ -380,11 +380,21 @@ public class Frame {
         JButton SolveMazeButton = new JButton("Solve Maze");
         SolveMazeButton.setBounds(10, 630, 150, 30);
 
-        JLabel ShowSolution = new JLabel("Show Solution");
-        ShowSolution.setBounds(180,630,150,20);
+        JLabel autoSolveLBL = new JLabel("Automatically Solve");
+        autoSolveLBL.setBounds(170,630,140,20);
 
-        JCheckBox ShowSolutionCheckBox = new JCheckBox();
-        ShowSolutionCheckBox.setBounds(270,630,20,20);
+        JCheckBox autoSolveCHKBOX = new JCheckBox();
+        autoSolveCHKBOX.setBounds(290,630,20,20);
+
+        JLabel showSolutionLBL = new JLabel("Show Solution");
+        showSolutionLBL.setBounds(170,650,140,20);
+
+        JCheckBox showSolutionCHKBOX = new JCheckBox();
+        showSolutionCHKBOX.setBounds(290,650,20,20);
+        showSolutionCHKBOX.setSelected(true);
+
+        window.add(showSolutionLBL);
+        window.add(showSolutionCHKBOX);
 
         window.add(BackButton);
         window.add(SaveButton);
@@ -392,8 +402,8 @@ public class Frame {
         window.add(AutoGenerateMazeButton);
         window.add(GenerateBlankMazeButton);
         window.add(SolveMazeButton);
-        window.add(ShowSolution);
-        window.add(ShowSolutionCheckBox);
+        window.add(autoSolveLBL);
+        window.add(autoSolveCHKBOX);
 
         window.add(ImportStartingLogo);
         window.add(ImportFinishingLogo);
@@ -422,14 +432,10 @@ public class Frame {
         window.add(MazeAuthor);
         window.add(MazeAuthorInput);
 
-        JLabel CellsVisited = new JLabel("Number of Cells Visited in Optimal Solution:");
-        CellsVisited.setBounds(0, 0, 230, 40);
-
-        JLabel DeadEnds = new JLabel("Number of Dead End Cells:");
-        DeadEnds.setBounds(0, 60, 230, 40);
 
 
-        JFrame MetricsWindow = new JFrame();
+
+        MetricsWindow = new JFrame();
         MetricsWindow.setLayout(null);
 
         MetricsWindow.getContentPane().removeAll();
@@ -439,8 +445,8 @@ public class Frame {
         MetricsWindow.setSize(330, 160);
         MetricsWindow.setName("Maze Metrics");
 
-        MetricsWindow.add(CellsVisited);
-        MetricsWindow.add(DeadEnds);
+
+
 
         BackButton.addActionListener(new ActionListener() {
             @Override
@@ -451,18 +457,21 @@ public class Frame {
             }
         });
 
-
         SolveMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Solver mazeSolver = new Solver();
-
-                Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
-
-                ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
-
-                Render.drawSolution(mazeSolution);
+                solveMyMaze();
             }
+        });
+
+        autoSolveCHKBOX.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                Render.autoSolveMaze = autoSolveCHKBOX.isSelected();
+            }
+        });
+
+        showSolutionCHKBOX.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) { Render.toggleSolutionVisualisation( showSolutionCHKBOX.isSelected() ); }
         });
 
 
@@ -494,7 +503,7 @@ public class Frame {
                 }
                 try {
                     if(MazeNameInput.getText()!="" ){
-                        ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                        ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
                     }
 
                 } catch (IOException ex) {
@@ -514,6 +523,17 @@ public class Frame {
                 Frame.getInstance().myMaze.setDateEdited(timeStamp);
                 Frame.getInstance().myMaze.SetLastEditor(MazeAuthorInput.getText());
                 Database.exportMaze(Frame.getInstance().myMaze);
+
+                SaveButton.setText("Export Complete!");
+                SaveButton.setBackground(Color.green);
+
+                new Thread(() -> {
+                    try { TimeUnit.SECONDS.sleep(2); } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                    SaveButton.setText("Export Maze");
+                    SaveButton.setBackground(null);
+                }).start();
             }
         });
 
@@ -546,11 +566,13 @@ public class Frame {
                 window2.getContentPane().removeAll();
                 window2.getContentPane().repaint();
                 window2.setLocation((screenWidth /6 + 330),screenHeight/16);
-                window2.setSize(850, 710);
+                window2.setSize(800, 800);
 
 
 
-                boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                boolean shouldAutoSolve = autoSolveCHKBOX.isSelected();
+                Render.autoSolveMaze = shouldAutoSolve;
+
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),false, shouldAutoSolve);
                 SetMetrics(MetricsWindow);
                 window2.setVisible(true);
@@ -566,12 +588,14 @@ public class Frame {
 
                 window2.getContentPane().removeAll();
                 window2.getContentPane().repaint();
-                window2.setLocation((screenWidth / 2 - (850/2)),screenHeight/2 - 230);
-                window2.setSize(850, 650);
+                window2.setLocation((screenWidth /6 + 330),screenHeight/16);
+                window2.setSize(1600, 1600);
 
 
 
-                boolean shouldAutoSolve = ShowSolutionCheckBox.isSelected();
+                boolean shouldAutoSolve = autoSolveCHKBOX.isSelected();
+                Render.autoSolveMaze = shouldAutoSolve;
+
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
 
                 window2.setVisible(true);
@@ -583,13 +607,37 @@ public class Frame {
 
     }
 
+    public static void solveMyMaze() {
+        // solve the maze with the solver object
+        Solver mazeSolver = new Solver();
+
+        Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
+
+        ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
+
+        Render.drawSolution(mazeSolution);
+    }
+
     public static void SetMetrics(JFrame MetricsWindow){
         Solver solver = new Solver();
-        //solver.DFS(Frame.getInstance().myMaze,new Integer[]{Frame.getInstance().myMaze.getStart()[0],Frame.getInstance().myMaze.getStart()[1]});
+        try{
+            solver.DFS(Frame.getInstance().myMaze,new Integer[]{Frame.getInstance().myMaze.getStart()[0],Frame.getInstance().myMaze.getStart()[1]});
+        }catch(Exception e){
+            solver.DFS(Frame.getInstance().myMaze,new Integer[]{0,0});
+        }
 
+        MetricsWindow.getContentPane().removeAll();
 
-        JLabel CellsVisitedNum = new JLabel(solver.tilesVisited()+"");
-        CellsVisitedNum.setBounds(250, 0, 230, 40);
+        JLabel CellsVisited = new JLabel("Number of Cells Visited in Solution:");
+        CellsVisited.setBounds(0, 0, 230, 40);
+
+        JLabel DeadEnds = new JLabel("Number of Dead End Cells:");
+        DeadEnds.setBounds(0, 60, 230, 40);
+        MetricsWindow.add(CellsVisited);
+        MetricsWindow.add(DeadEnds);
+
+        JLabel CellsVisitedNum = new JLabel(solver.tilesVisited()*100+"%");
+        CellsVisitedNum.setBounds(250, 0, 40, 40);
         System.out.println(solver.tilesVisited()+"");
 
         JLabel DeadEndsNum = new JLabel(Frame.getInstance().myMaze.numDeadEnds()+"");
@@ -600,25 +648,10 @@ public class Frame {
         MetricsWindow.add(DeadEndsNum);
 
         MetricsWindow.getContentPane().repaint();
+        MetricsWindow.setVisible(true);
     }
 
-    /**
-     * Obtained fromhttps://stackoverflow.com/questions/30335787/take-snapshot-of-full-jframe-and-jframe-only
-     * Takes a picture output of the JFrame and converts to png format
-     * @param mazeBox the JFrame to screenshot
-     * @author Hudson
-     * @throws IOException
-     *
-     */
-    public static void ExportImage(JFrame mazeBox, String location, String name) throws IOException {
-        //TODO
-        //Save the maze to database and make sure all fields are matching object
-        BufferedImage img = new BufferedImage(mazeBox.getWidth(), mazeBox.getHeight(), BufferedImage.TYPE_INT_RGB);
-        mazeBox.paint(img.getGraphics());
-        String path = location+"/"+name+".png";
-        File outputfile = new File(path);
-        ImageIO.write(img, "png", outputfile);
-    }
+
 
 
 

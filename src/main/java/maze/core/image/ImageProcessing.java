@@ -26,7 +26,7 @@ public class ImageProcessing {
     }
 
     public static JLabel GetLogo(String location){
-        JLabel logo = new JLabel(new ImageIcon("location"));
+        JLabel logo = new JLabel(new ImageIcon(location));
         return logo;
     }
 }

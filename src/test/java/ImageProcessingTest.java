@@ -10,15 +10,13 @@ class ImageProcessingTest {
     void setUp() {
     }
 
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     void exportImage() {
+
     }
 
     @Test
     void getLogo() {
+        
     }
 }

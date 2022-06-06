@@ -8,10 +8,10 @@ import java.io.IOException;
 
 public class ImageProcessing {
     /**
-     * Obtained fromhttps://stackoverflow.com/questions/30335787/take-snapshot-of-full-jframe-and-jframe-only
+     * Obtained from https://stackoverflow.com/questions/30335787/take-snapshot-of-full-jframe-and-jframe-only
      * Takes a picture output of the JFrame and converts to png format
      * @param mazeBox the JFrame to screenshot
-     * @author Hudson
+     * @author Jack
      * @throws IOException
      *
      */
@@ -23,5 +23,10 @@ public class ImageProcessing {
         String path = location+"/"+name+".png";
         File outputfile = new File(path);
         ImageIO.write(img, "png", outputfile);
+    }
+
+    public static JLabel GetLogo(String location){
+        JLabel logo = new JLabel(new ImageIcon("location"));
+        return logo;
     }
 }

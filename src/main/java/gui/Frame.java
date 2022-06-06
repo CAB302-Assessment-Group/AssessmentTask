@@ -218,7 +218,14 @@ public class Frame {
     }
 
 
-
+    /**
+     * Sets up the window for importing mazes from the SQLite db
+     * @param mazeName Name of maze loaded
+     * @param author Author of maze to load
+     * @param dateCreated
+     * @param dateModified
+     * @author Vim and Hudson
+     */
     public void SearchResults(String mazeName, String author, String dateCreated, String dateModified) {
         window3.setLayout(null);
 
@@ -281,7 +288,7 @@ public class Frame {
 
     /**
      * Intialises the new blank maze GUI
-     *
+     * @author Vim
      */
     public static void initialise(){
         window.setLayout(null);
@@ -576,7 +583,12 @@ public class Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 importFile.showOpenDialog(null);
+                if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    String fileLocation = importFile.getCurrentDirectory().toString();
+                }
+
             }
         });
 
@@ -654,6 +666,10 @@ public class Frame {
 
     }
 
+    /**
+     * Attempts to solve maze and draw it on
+     * @author Hudson
+     */
     public static void solveMyMaze() {
         // solve the maze with the solver object
         Solver mazeSolver = new Solver();
@@ -665,6 +681,11 @@ public class Frame {
         Render.drawSolution(mazeSolution);
     }
 
+    /**
+     * Draws on the metrics for the solved maze including number of tiles visited and dead ends
+     * @param MetricsWindow The JFrame which sits below the editor window to draw upon
+     * @author Jayden
+     */
     public static void SetMetrics(JFrame MetricsWindow){
 
         try{

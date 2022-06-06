@@ -154,6 +154,14 @@ public class Render {
     public static void renderMazeOBJ(Maze myMaze, boolean generated) { renderMazeOBJ(myMaze, generated, false, false); }
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution) { renderMazeOBJ(myMaze, generated, showSolution, false); }
 
+    /**
+     * Render the maze object in the JFrame window with correct scaling and solution if requested
+     * @param myMaze
+     * @param generated
+     * @param showSolution
+     * @param renderSolution
+     * @author Jayden and Jack
+     */
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution, boolean renderSolution) {
         int largerdim;
         if(myMaze.mazeSize()[0] > myMaze.mazeSize()[1]){
@@ -163,6 +171,7 @@ public class Render {
         }
         double scale_factor = 25.0/largerdim;
 
+        //Scaling logic which is also suitable for exporting as an image
         if(largerdim<=10){
             window2.setSize(300,300);
             scale_factor = 5.0/largerdim;

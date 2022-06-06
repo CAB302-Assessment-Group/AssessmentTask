@@ -500,10 +500,21 @@ public class Frame {
                     fileLocation = exportFile.getCurrentDirectory().toString();
                 } else {
                     System.out.println("No Selection ");
+                    PopUp popUp = new PopUp("Please select a location");
                 }
                 try {
                     if(MazeNameInput.getText()!="" ){
+                        if(showSolutionCHKBOX.isSelected()){
+                            ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName()+"Solution");
+                            showSolutionCHKBOX.doClick();
+                            ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                            showSolutionCHKBOX.doClick();
+                            Frame.solveMyMaze();
+
+                        }
                         ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+
+
                     }
 
                 } catch (IOException ex) {

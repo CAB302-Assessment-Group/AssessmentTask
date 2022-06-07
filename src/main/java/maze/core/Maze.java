@@ -241,10 +241,11 @@ public class Maze implements MazeOutline, Serializable {
      * @author Jayden
      *
      */
-    public void generateMaze(int hasIm) {
+    public void generateMaze(int hasIm, boolean child) {
         int[] location = new int[]{0,0};
         int[] start = new int[]{0,0};
         int[] end = new int[]{mazeSize()[0] - 1, mazeSize()[1] - 1};
+        int visited = 1;
 
         try{
             this.setStart(start);
@@ -262,11 +263,45 @@ public class Maze implements MazeOutline, Serializable {
                 mazeTile(i,j).setBottomWall(true);
             }
         }
+        if(child){
+            mazeTile(mazeSize()[0] - 1,mazeSize()[1] - 1).setVisited(true); // visit all cells at end
+            mazeTile(mazeSize()[0] - 1,mazeSize()[1] - 2).setVisited(true);
+            mazeTile(mazeSize()[0] - 2,mazeSize()[1] - 1).setVisited(true);
+            mazeTile(mazeSize()[0] - 2,mazeSize()[1] - 2).setVisited(true);
 
+            mazeTile(mazeSize()[0] - 1,mazeSize()[1] - 1).setTopWall(false); // clear the internal space at end
+            mazeTile(mazeSize()[0] - 1,mazeSize()[1] - 1).setLeftWall(false);
+            mazeTile(mazeSize()[0] - 1,mazeSize()[1] - 2).setBottomWall(false);
+            mazeTile(mazeSize()[0] - 1,mazeSize()[1] - 2).setLeftWall(false);
+            mazeTile(mazeSize()[0] - 2,mazeSize()[1] - 1).setTopWall(false);
+            mazeTile(mazeSize()[0] - 2,mazeSize()[1] - 1).setRightWall(false);
+            mazeTile(mazeSize()[0] - 2,mazeSize()[1] - 2).setBottomWall(false);
+            mazeTile(mazeSize()[0] - 2,mazeSize()[1] - 2).setRightWall(false);
+            mazeTile(mazeSize()[0] - 2,mazeSize()[1] - 1).setLeftWall(false);
+
+            mazeTile(0,0).setVisited(true); // visit all cells at start
+            mazeTile(0,1).setVisited(true);
+            mazeTile(1,0).setVisited(true);
+            mazeTile(1,1).setVisited(true);
+
+            mazeTile(0,0).setBottomWall(false); // clear the internal space at start
+            mazeTile(0,0).setRightWall(false);
+            mazeTile(0,1).setTopWall(false);
+            mazeTile(0,1).setRightWall(false);
+            mazeTile(1,0).setBottomWall(false);
+            mazeTile(1,0).setLeftWall(false);
+            mazeTile(1,1).setTopWall(false);
+            mazeTile(1,1).setLeftWall(false);
+
+            visited = 8;
+
+            location = new int[]{0,1}; //should move downwards
+
+        }
 
         ArrayList<int[]> currentwalk = new ArrayList<>();
         currentwalk.add(new int[]{location[0],location[1]});
-        int visited = 1;
+
         mazeTile(location[0],location[1]).setVisited(true);
         int step;
         int max = mazeSize()[0] * mazeSize()[1];
@@ -310,6 +345,8 @@ public class Maze implements MazeOutline, Serializable {
                     mazeTile(diffX/2,diffY/2 + i).setRightWall(false);
                 }
             }
+
+
 
 
 

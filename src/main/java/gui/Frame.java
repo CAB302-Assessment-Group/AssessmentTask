@@ -32,6 +32,7 @@ public class Frame {
     public static JFrame MetricsWindow;
     public static Solver solver = new Solver();
     public static BufferedImage logo;
+    public static boolean childMaze = false;
 
     public static int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -336,32 +337,18 @@ public class Frame {
         StandardMazeButton.setBounds(10, 230, 110, 20);
         StandardMazeButton.setActionCommand("Standard Maze Action");
 
+
         JRadioButton ChildrensMazeButton = new JRadioButton("Childrens Maze");
         ChildrensMazeButton.setBounds(160, 230, 120, 20);
         ChildrensMazeButton.setActionCommand("Childrens Maze Action");
 
         ButtonGroup MazeTypeSelection = new ButtonGroup();
+
         MazeTypeSelection.add(StandardMazeButton);
         MazeTypeSelection.add(ChildrensMazeButton);
+        StandardMazeButton.doClick();
 
-        /* JRadioButton EasyDifficultyButton = new JRadioButton("Easy");
-        EasyDifficultyButton.setActionCommand("Easy Difficulty Action");
-        EasyDifficultyButton.setBounds(10,   260, 100, 20);
 
-        JRadioButton MediumDifficultyButton = new JRadioButton("Medium");
-        MediumDifficultyButton.setActionCommand("Medium Difficulty Action");
-        MediumDifficultyButton.setBounds(110, 260, 100, 20);
-
-        JRadioButton HardDifficultyButton = new JRadioButton("Hard");
-        HardDifficultyButton.setActionCommand("Hard Difficulty Action");
-        HardDifficultyButton.setBounds(210, 260, 100, 20);
-
-        ButtonGroup DifficultySelection = new ButtonGroup();
-        DifficultySelection.add(EasyDifficultyButton);
-        DifficultySelection.add(MediumDifficultyButton);
-        DifficultySelection.add(HardDifficultyButton);
-
-        */
 
 
         JButton BackButton = new JButton("Back");
@@ -457,7 +444,20 @@ public class Frame {
         MetricsWindow.setName("Maze Metrics");
 
 
+        ChildrensMazeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                childMaze = ChildrensMazeButton.isSelected();
 
+            }
+        });
+        StandardMazeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                childMaze = !StandardMazeButton.isSelected();
+
+            }
+        });
 
         BackButton.addActionListener(new ActionListener() {
             @Override

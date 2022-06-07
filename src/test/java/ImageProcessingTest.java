@@ -1,9 +1,15 @@
+import gui.Frame;
 import maze.core.image.ImageProcessing;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -13,7 +19,7 @@ class ImageProcessingTest {
     public String location;
     @BeforeEach
     void setUp() {
-         location = "ExampleImages/StandardLogo.png";
+         location = "D:\\Documents\\2022\\CAB302\\Assignment\\AssessmentTask\\src\\test\\java\\ExampleImages\\StandardLogo.PNG";
     }
 
     @Test
@@ -22,19 +28,19 @@ class ImageProcessingTest {
     }
 
     @Test
-    void getLogo() {
-        ImageIcon icon = new ImageIcon("ExampleImages/StandardLogo.png");
-        JLabel label = new JLabel(icon);
-        label.setSize(50,50);
-        Path path = Paths.get(location);
-        label.setLocation(0,0);
-        System.out.println(path);
+    void getLogo() throws IOException {
+        JLabel label = new JLabel();
+        File file = new File(location);
+        BufferedImage img = ImageIO.read(file);
         JFrame frame = new JFrame();
-        frame.setSize(200,200);
-        frame.add(label);
-        frame.setLocation(0,0);
+        frame.setSize(1000,1000);
+        ImageIcon icon=new ImageIcon(img);
+        label.setIcon(icon);
+
+        Dimension size = label.getPreferredSize();
+        label.setBounds(50, 30, size.width, size.height);
+        Container c = frame.getContentPane(); //Gets the content layer
+        c.add(label);
         frame.setVisible(true);
-        frame.repaint();
-        frame.setVisible(false);
     }
 }

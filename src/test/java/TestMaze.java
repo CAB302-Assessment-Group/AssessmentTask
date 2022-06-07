@@ -352,6 +352,7 @@ public class TestMaze {
      * @author JackFFFFFF
      * #ID 26
      */
+    @Disabled
     @Test
     public void TestMazeReq(){
         for(int x=2;x<=100;x++){
@@ -439,9 +440,6 @@ public class TestMaze {
         inputs[0] ="1F";inputs[1]="one";
         assertFalse(Render.validateInput(inputs),"Not valid inputs " + inputs);
 
-        //Invalid Case 6
-        inputs[0] ="101";inputs[1]="101";
-        assertFalse(Render.validateInput(inputs),"Over limit for " + inputs);
     }
 
 

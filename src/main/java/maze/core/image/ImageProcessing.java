@@ -26,8 +26,8 @@ public class ImageProcessing {
         ImageIO.write(img, "png", outputfile);
     }
 
-    public static BufferedImage GetLogo(String location) throws IOException {
-        BufferedImage image = ImageIO.read(new File(location));
+    public static BufferedImage GetLogo(File file) throws IOException {
+        BufferedImage image = ImageIO.read(file);
         return image;
     }
 

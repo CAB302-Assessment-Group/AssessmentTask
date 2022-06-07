@@ -171,7 +171,7 @@ public class Solver {
     }
 
     public double tilesVisited() {
-        System.out.println(totalTilesVisited);
+
         return (totalTilesVisited != -1) ?  (totalTilesVisited+0.0) / (0.0 + myMaze.mazeSize()[0] * myMaze.mazeSize()[1]) : totalTilesVisited;
     }
 

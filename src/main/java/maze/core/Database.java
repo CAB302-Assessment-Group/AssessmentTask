@@ -164,6 +164,8 @@ public class Database {
         String[] queryMatch = {"name", "creator", "dateCreated", "dateModified"};
         String[] queryElements = { mazeName, author, dateCreated, dateModified };
 
+        boolean foundQueryStatement = false;
+
         int appendedNum = 0;
         for (int i = 0; i < queryElements.length; i++) {
             if (queryElements[i].isEmpty()) continue;
@@ -175,9 +177,11 @@ public class Database {
             baseQuery += queryMatch[i] + "= '" + queryElements[i] + "'";
 
             appendedNum++;
+
+            foundQueryStatement = true;
         }
 
-        return baseQuery;
+        return foundQueryStatement ? baseQuery : "SELECT * FROM mazes";
     }
 
     public ArrayList<Maze> loadMaze(String mazeName) { return loadMaze(mazeName, "", "", ""); }

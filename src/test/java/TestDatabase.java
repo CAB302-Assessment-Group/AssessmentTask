@@ -8,7 +8,7 @@ import maze.core.Maze;
 import maze.core.solver.Solver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+@Disabled
 public class TestDatabase {
     Database testDatabase = (Database) Database.getInstance();
     Maze testChildMaze;
@@ -17,6 +17,7 @@ public class TestDatabase {
     final String AUTHOR ="Test";
     public final int[] STARTLOC = {0,0};
     public final int[] ENDLOC= {9,9};
+    @Disabled
     @BeforeEach
     public void Before() throws MazeException {
 
@@ -30,19 +31,13 @@ public class TestDatabase {
 
     }
 
-    /**
-     * TODO: Not sure if we should test this as we can test it by proxy in the testUpdate
-     */
-    @Test
-    public void TestConnection() {
-
-    }
 
     /**
-     * Test 2: Export a children's maze and have it be stored on the database successfully
+     * Test 1: Export a children's maze and have it be stored on the database successfully
      * #ID 9
      * @author Jack
      */
+    @Disabled
     @Test
     public void TestUpdateChildren() {
         //Test positive case
@@ -55,6 +50,7 @@ public class TestDatabase {
      * not be able to be stored
      * @author Jack
      */
+    @Disabled
     @Test
     public void TestFailUpdateChildren() {
         //Test with everything null
@@ -118,6 +114,7 @@ public class TestDatabase {
      * @author Jack
      * #ID 10
      */
+    @Disabled
     @Test
     public void TestDownload() {
         util.statusCodes.dbStatus result = testDatabase.exportMaze(testChildMaze);
@@ -134,6 +131,7 @@ public class TestDatabase {
      * Test 5: Download maze by author or name that is not in the db and have it return a fail
      * @author Jack
      */
+    @Disabled
     @Test
     public void TestFailDownload() {
         //Search by Name
@@ -147,6 +145,7 @@ public class TestDatabase {
      * @author Jack
      * #ID 12
      */
+    @Disabled
     @Test
     public void TestDownloadSolution() {
         util.statusCodes.dbStatus result = testDatabase.exportMaze(testChildMaze);

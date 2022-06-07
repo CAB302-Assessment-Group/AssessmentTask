@@ -28,6 +28,7 @@ public class Solver {
      * @author Hudson
      */
     public boolean[] neighbours(int tileLocationX, int tileLocationY, Maze myMaze) {
+
         Tile selectedTile = myMaze.mazeTile(tileLocationX, tileLocationY);
 
         boolean[] returnArray = {false, false, false, false};
@@ -170,6 +171,7 @@ public class Solver {
     }
 
     public double tilesVisited() {
+
         return (totalTilesVisited != -1) ?  (totalTilesVisited+0.0) / (0.0 + myMaze.mazeSize()[0] * myMaze.mazeSize()[1]) : totalTilesVisited;
     }
 

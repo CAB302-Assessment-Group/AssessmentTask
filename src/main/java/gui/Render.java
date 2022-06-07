@@ -175,7 +175,7 @@ public class Render {
         double resolution_scale=1;
         //Scaling logic which is also suitable for exporting as an image
         if(Frame.screenHeight<1100){
-            resolution_scale=2;
+            resolution_scale=1.5;
         }
         if(largerdim<=10){
             window2.setSize(300,300);

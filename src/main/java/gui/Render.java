@@ -6,6 +6,7 @@ import maze.core.solver.Solver;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import static gui.Frame.window;
@@ -149,6 +150,7 @@ public class Render {
             currentMaze.generateMaze(hasIm);
 
         renderMazeOBJ(currentMaze, generated, autoSolve);
+
     }
 
     public static void renderMazeOBJ(Maze myMaze, boolean generated) { renderMazeOBJ(myMaze, generated, false, false); }
@@ -227,6 +229,21 @@ public class Render {
                 if(!generated && y==0){
                     myMaze.mazeTile(finalX,finalY).setTopWall(true);
                 }
+                JLabel label=new JLabel();
+                if(Frame.logo!=null){
+                    ImageIcon icon=new ImageIcon(Frame.logo);
+                    label.setIcon(icon);
+
+                    Dimension imageSize = new Dimension(icon.getIconWidth(),icon.getIconHeight());
+                    label.setPreferredSize(imageSize);
+                    label.revalidate();
+                    label.repaint();
+                    label.setLocation(0,0);
+                    window2.add(label);
+                }
+
+
+
 
                 /*if(y==0){
                     myMaze.mazeTile(finalX,finalY).setTopWall(true);

@@ -31,6 +31,7 @@ public class Frame {
     public static JFrame window3;
     public static JFrame MetricsWindow;
     public static Solver solver = new Solver();
+    public static BufferedImage logo;
 
     public static int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -516,10 +517,11 @@ public class Frame {
                     exportFile.setDialogTitle("Export Maze");
                     exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                     exportFile.setAcceptAllFileFilterUsed(false);
+                    
 
                     String fileLocation ="";
-                    if (exportFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                        fileLocation = exportFile.getCurrentDirectory().toString();
+                    if (exportFile.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+                        fileLocation = exportFile.getSelectedFile().getAbsolutePath();
                     } else {
                         System.out.println("No Selection ");
                         PopUp popUp = new PopUp("Please select a location");
@@ -582,20 +584,21 @@ public class Frame {
         ImportStartingLogo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView());
                 importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 importFile.showOpenDialog(null);
-                String fileLocation ="";
-                String format ="png";
+                String location = "D:\\Documents\\2022\\CAB302\\Assignment\\AssessmentTask\\src\\test\\java\\ExampleImages\\StandardLogo.PNG";
+
+                File file = new File(importFile.getCurrentDirectory().toString());
                 if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                    fileLocation = importFile.getCurrentDirectory().toString();
+                    try {
+                        logo = ImageProcessing.GetLogo(file);
+                        Frame.getInstance().myMaze.mazeTile(0,0).setEndImage(ImageProcessing.toByteArray(logo));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
-                try {
-                    BufferedImage logo = ImageProcessing.GetLogo(fileLocation);
-                    Frame.getInstance().myMaze.mazeTile(0,0).setEndImage(ImageProcessing.toByteArray(logo));
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+
 
 
             }
@@ -713,7 +716,7 @@ public class Frame {
         MetricsWindow.add(CellsVisited);
         MetricsWindow.add(DeadEnds);
 
-        JLabel CellsVisitedNum = new JLabel((int)(solver.tilesVisited()*100)+"%");
+        JLabel CellsVisitedNum = new JLabel(((solver.tilesVisited()*100.0)+"%"));
         CellsVisitedNum.setBounds(250, 0, 40, 40);
         System.out.println(solver.tilesVisited()+"");
 

@@ -131,7 +131,7 @@ public class TestSolver {
     @Test
     public void TestValidSolverRandom(){
         //Small test maze
-        testMaze.generateMaze(1);
+        testMaze.generateMaze(1,false);
         mySolver.DFS(testMaze,START);
         int l = mySolver.Solution().size();
         assertEquals(START,mySolver.Solution().get(0),"First position in solver is " +
@@ -142,7 +142,7 @@ public class TestSolver {
                         + mySolver.Solution().get(l-1)[1] + " instead of "+ END[0] + ", " + END[1]);
 
         //Large Maze
-        largeMaze.generateMaze(5);
+        largeMaze.generateMaze(5,false);
         Solver solver = new Solver();
         solver.DFS(largeMaze,START);
         l = solver.Solution().size();
@@ -154,7 +154,7 @@ public class TestSolver {
                         + solver.Solution().get(l-1)[1] + " instead of "+ 44 + ", " + 61);
 
         //Max size maze
-        massiveMaze.generateMaze(10);
+        massiveMaze.generateMaze(10,false);
         mySolver = new Solver();
         mySolver.DFS(massiveMaze,START);
         l = mySolver.Solution().size();
@@ -175,14 +175,14 @@ public class TestSolver {
     @Test
     public void TestTilesVisited(){
         //Small test maze
-        testMaze.generateMaze(1);
+        testMaze.generateMaze(1,false);
         mySolver.DFS(testMaze,START);
         int l = mySolver.Solution().size();
         assertTrue(mySolver.tilesVisited()>0);
         assertTrue(mySolver.tilesVisited()<=(l*l));
         assertTrue(mySolver.tilesVisited()<=100);
         //Large Maze
-        largeMaze.generateMaze(5);
+        largeMaze.generateMaze(5,false);
         Solver solver = new Solver();
         solver.DFS(largeMaze,START);
         l = solver.Solution().size();
@@ -191,7 +191,7 @@ public class TestSolver {
         assertTrue(solver.tilesVisited()<=100);
 
         //Max size maze
-        massiveMaze.generateMaze(10);
+        massiveMaze.generateMaze(10,false);
         mySolver = new Solver();
         mySolver.DFS(massiveMaze,START);
         assertTrue(mySolver.tilesVisited()>0);
@@ -210,7 +210,7 @@ public class TestSolver {
             testMaze = new Maze(size1);
             testMaze.setStart(STARTLOC);
             testMaze.setEnd(ENDLOC);
-            testMaze.generateMaze(1);
+            testMaze.generateMaze(1,false);
             mySolver = new Solver();
             mySolver.DFS(testMaze,START);
             l = mySolver.Solution().size();
@@ -227,7 +227,7 @@ public class TestSolver {
         for (int i=0;i<10;i++){
             mySolver = new Solver();
             largeMaze = new Maze(size2);
-            largeMaze.generateMaze(5);
+            largeMaze.generateMaze(5,false);
             largeMaze.setStart(STARTLOC);
             largeMaze.setEnd(new int[]{44, 61});
             mySolver.DFS(largeMaze,START);
@@ -247,7 +247,7 @@ public class TestSolver {
             massiveMaze = new Maze(size3);
             massiveMaze.setStart(STARTLOC);
             massiveMaze.setEnd(new int[]{99, 99});
-            massiveMaze.generateMaze(10);
+            massiveMaze.generateMaze(10,false);
             mySolver = new Solver();
             mySolver.DFS(massiveMaze,START);
             l = mySolver.Solution().size();

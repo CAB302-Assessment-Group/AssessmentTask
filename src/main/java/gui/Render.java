@@ -146,8 +146,10 @@ public class Render {
             hasIm = logoSizeInt;
         }
 
-        if(generated)
-            currentMaze.generateMaze(hasIm);
+        if(generated){
+            currentMaze.generateMaze(hasIm, Frame.childMaze);
+        }
+
 
         renderMazeOBJ(currentMaze, generated, autoSolve);
 
@@ -219,7 +221,10 @@ public class Render {
 
         int between_walls = wallLength+wallWidth;
 
-
+        if(Frame.childMaze){
+            myMaze.mazeTile(0,0).setTopWall(true);
+            myMaze.mazeTile(myMaze.mazeSize()[0] - 1,myMaze.mazeSize()[1] - 1).setBottomWall(true);
+        }
         for (int x = 0; x < myMaze.mazeSize()[0]; x++) {
             for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
                 // border styling
@@ -345,6 +350,16 @@ public class Render {
             window2.add(tempBTN);
         }
 
+        int[] start = new int[]{0,0};
+        int[] end = new int[]{mazeSize[0]-1,mazeSize[1]-1};
+
+        try {
+            
+            myMaze.setStart(start);
+            myMaze.setEnd(end);
+        }catch (Exception e){
+
+        }
         //window.add(MazeGenerationPanel);
         SwingUtilities.updateComponentTreeUI(window);
         //SwingUtilities.updateComponentTreeUI(MazeGenerationPanel);

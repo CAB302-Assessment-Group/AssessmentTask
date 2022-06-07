@@ -228,7 +228,7 @@ public class Maze implements MazeOutline, Serializable {
      * @return
      */
     public byte[] getEndImage() {
-        return null;
+        return this.mazeTile(startLoc[0],startLoc[1]).getEndImage();
     }
 
     public byte[] getStartImage() {

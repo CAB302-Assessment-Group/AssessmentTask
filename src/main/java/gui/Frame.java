@@ -517,11 +517,11 @@ public class Frame {
                     exportFile.setDialogTitle("Export Maze");
                     exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                     exportFile.setAcceptAllFileFilterUsed(false);
-                    exportFile.showSaveDialog(null);
+                    
 
                     String fileLocation ="";
-                    if (exportFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                        fileLocation = exportFile.getCurrentDirectory().toString();
+                    if (exportFile.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+                        fileLocation = exportFile.getSelectedFile().getAbsolutePath();
                     } else {
                         System.out.println("No Selection ");
                         PopUp popUp = new PopUp("Please select a location");

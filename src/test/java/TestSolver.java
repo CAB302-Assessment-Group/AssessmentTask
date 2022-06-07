@@ -24,18 +24,18 @@ public class TestSolver {
     public final int[] ENDLOC= {9,9};
     public final Integer[] START = {1,1};
     public final Integer[] END= {9,9};
+    public int[] size2 = {45,62};
+    public int[] size3 = {100,100};
+    public int[] size1 = {10,10};
     @BeforeEach
     public void ConstructMaze() throws MazeException {
-        int[] size1 = {10,10};
-        int[] size2 = {45,62};
-        int[] size3 = {100,100};
+
 
         testMaze = new Maze(size1);
         largeMaze = new Maze(size2);
         massiveMaze = new Maze(size3);
         //testMaze.generateMaze();
 
-        mySolver = new Solver();
 
         testMaze.setStart(STARTLOC);
         testMaze.setEnd(ENDLOC);
@@ -125,7 +125,7 @@ public class TestSolver {
     }
     /**
      * Test 5: Test to see if the solver returns a valid search where the search starts at the starting location
-     * and finishes at the end location
+     * and finishes at the end location for randomly generated mazes
      * @author Jack
      */
     @Test
@@ -164,6 +164,98 @@ public class TestSolver {
         assertEquals(99 + ", " + 99,mySolver.Solution().get(l-1)[0] + ", " +mySolver.Solution().get(l-1)[1]
                 ,"Last position in solver is " + mySolver.Solution().get(l-1)[0] + ", "
                         + mySolver.Solution().get(l-1)[1] + " instead of "+ 99 + ", " + 99);
+
+
+    }
+    /**
+     * Test 6: Test to see if tiles visited is returning a valid number of tiles visited (i.e. greater than
+     * 0 and less than x*y)
+     * @author Jack
+     */
+    @Test
+    public void TestTilesVisited(){
+        //Small test maze
+        testMaze.generateMaze(1);
+        mySolver.DFS(testMaze,START);
+        int l = mySolver.Solution().size();
+        assertTrue(mySolver.tilesVisited()>0);
+        assertTrue(mySolver.tilesVisited()<=(l*l));
+        //Large Maze
+        largeMaze.generateMaze(5);
+        Solver solver = new Solver();
+        solver.DFS(largeMaze,START);
+        l = solver.Solution().size();
+        assertTrue(solver.tilesVisited()>0);
+        assertTrue(solver.tilesVisited()<=(l*l));
+
+        //Max size maze
+        massiveMaze.generateMaze(10);
+        mySolver = new Solver();
+        mySolver.DFS(massiveMaze,START);
+        assertTrue(mySolver.tilesVisited()>0);
+        assertTrue(mySolver.tilesVisited()<=(l*l));
+    }
+    /**
+     * Test 7: Same as test 5 but on repeat to see what happens when regenerating maze occurs + solver solving again
+     * @author Jack
+     */
+    @Test
+    public void TestValidSolverRandomRepeat() throws MazeException {
+        //Small test maze
+        int l =0;
+        for (int i=0;i<10;i++){
+            testMaze = new Maze(size1);
+            testMaze.setStart(STARTLOC);
+            testMaze.setEnd(ENDLOC);
+            testMaze.generateMaze(1);
+            mySolver = new Solver();
+            mySolver.DFS(testMaze,START);
+            l = mySolver.Solution().size();
+            assertEquals(START,mySolver.Solution().get(0),"First position in solver is " +
+                    mySolver.Solution().get(l-1)[0] + ", " + mySolver.Solution().get(l-1)[1] + " instead of "+
+                    END[0] + ", " + END[1]);
+            assertEquals(END[0] + ", " + END[1],mySolver.Solution().get(l-1)[0] + ", " +mySolver.Solution().get(l-1)[1]
+                    ,"Last position in solver is " + mySolver.Solution().get(l-1)[0] + ", "
+                            + mySolver.Solution().get(l-1)[1] + " instead of "+ END[0] + ", " + END[1]);
+        }
+
+
+        //Large Maze
+        for (int i=0;i<10;i++){
+            Solver solver = new Solver();
+            largeMaze = new Maze(size2);
+            largeMaze.generateMaze(5);
+            largeMaze.setStart(STARTLOC);
+            largeMaze.setEnd(new int[]{44, 61});
+            solver.DFS(largeMaze,START);
+            l = solver.Solution().size();
+            assertEquals(START,solver.Solution().get(0),"First position in solver is " +
+                    solver.Solution().get(l-1)[0] + ", " + solver.Solution().get(l-1)[1] + " instead of "+
+                    44 + ", " + 61);
+            assertEquals(44 + ", " + 61,solver.Solution().get(l-1)[0] + ", " +solver.Solution().get(l-1)[1]
+                    ,"Last position in solver is " + solver.Solution().get(l-1)[0] + ", "
+                            + solver.Solution().get(l-1)[1] + " instead of "+ 44 + ", " + 61);
+        }
+
+
+        //Max size maze
+        for (int i=0;i<10;i++){
+            mySolver = new Solver();
+            massiveMaze = new Maze(size3);
+            massiveMaze.setStart(STARTLOC);
+            massiveMaze.setEnd(new int[]{99, 99});
+            massiveMaze.generateMaze(10);
+            mySolver = new Solver();
+            mySolver.DFS(massiveMaze,START);
+            l = mySolver.Solution().size();
+            assertEquals(START,mySolver.Solution().get(0),"First position in solver is " +
+                    mySolver.Solution().get(l-1)[0] + ", " + mySolver.Solution().get(l-1)[1] + " instead of "+
+                    99 + ", " + 99);
+            assertEquals(99 + ", " + 99,mySolver.Solution().get(l-1)[0] + ", " +mySolver.Solution().get(l-1)[1]
+                    ,"Last position in solver is " + mySolver.Solution().get(l-1)[0] + ", "
+                            + mySolver.Solution().get(l-1)[1] + " instead of "+ 99 + ", " + 99);
+        }
+
 
 
     }

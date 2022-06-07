@@ -517,7 +517,7 @@ public class Frame {
                     exportFile.setDialogTitle("Export Maze");
                     exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                     exportFile.setAcceptAllFileFilterUsed(false);
-                    
+
 
                     String fileLocation ="";
                     if (exportFile.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {

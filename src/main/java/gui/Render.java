@@ -174,6 +174,7 @@ public class Render {
         double scale_factor = 25.0/largerdim;
 
         //Scaling logic which is also suitable for exporting as an image
+        window2.setLocation((Frame.screenWidth /6 + 330),Frame.screenHeight/16);
         if(largerdim<=10){
             window2.setSize(300,300);
             scale_factor = 5.0/largerdim;
@@ -194,9 +195,11 @@ public class Render {
             scale_factor = 25.0 / largerdim;
         } else if (largerdim>=75 && largerdim<85) {
             window2.setSize(1500, 1500);
+            window2.setLocation(window2.getLocation().x,window2.getLocation().y-900);
             scale_factor = 26.0 / largerdim;
         } else {
             window2.setSize(1600,1600);
+            window2.setLocation(window2.getLocation().x,window2.getLocation().y-900);
             scale_factor = 27.0/largerdim;
         }
 

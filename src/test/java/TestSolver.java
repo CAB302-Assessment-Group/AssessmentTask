@@ -1,6 +1,9 @@
 
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import gui.Frame;
+import gui.Render;
 import org.junit.jupiter.api.*;
 import src.main.java.exceptions.MazeException;
 import maze.core.Maze;
@@ -10,6 +13,8 @@ import java.util.ArrayList;
 
 public class TestSolver {
     Maze testMaze;
+    Maze largeMaze;
+    Maze massiveMaze;
     Solver mySolver;
 
     /**
@@ -17,19 +22,30 @@ public class TestSolver {
      */
     public final int[] STARTLOC = {0,0};
     public final int[] ENDLOC= {9,9};
-    public final Integer[] START = {0,0};
+    public final Integer[] START = {1,1};
     public final Integer[] END= {9,9};
     @BeforeEach
     public void ConstructMaze() throws MazeException {
-        //TODO Add in call to automatically generate or manually make one so we can test solvability
-        int[] size = {10,10};
-        testMaze = new Maze(size);
+        int[] size1 = {10,10};
+        int[] size2 = {45,62};
+        int[] size3 = {100,100};
+
+        testMaze = new Maze(size1);
+        largeMaze = new Maze(size2);
+        massiveMaze = new Maze(size3);
         //testMaze.generateMaze();
 
         mySolver = new Solver();
 
         testMaze.setStart(STARTLOC);
         testMaze.setEnd(ENDLOC);
+
+        largeMaze.setStart(STARTLOC);
+        largeMaze.setEnd(new int[]{44, 61});
+
+        massiveMaze.setStart(STARTLOC);
+        massiveMaze.setEnd(new int[]{99, 99});
+
     }
     /**
      * Test 1: Test to see if the neighbours functions returns values adjacent to the cell
@@ -58,6 +74,7 @@ public class TestSolver {
      */
     @Test
     public void TestSolverTime(){
+        mySolver = new Solver();
         long startTime = System.nanoTime();
         mySolver.DFS(testMaze,START);
         long endTime = System.nanoTime();
@@ -84,7 +101,6 @@ public class TestSolver {
     }
     /**
      * Test 4: Tests to see if it follows the fastest path for a blank maze from top left to bottom right.
-     * This should be a diagonal path
      * #ID 28
      * @author Jack
      */
@@ -106,6 +122,50 @@ public class TestSolver {
         Integer[] pos = {9,9};
         Solution1.add(pos);
         assertEquals(mySolver.outputSolution(Solution1),mySolver.outputSolution(),"Maze solver is not optimal");
+    }
+    /**
+     * Test 5: Test to see if the solver returns a valid search where the search starts at the starting location
+     * and finishes at the end location
+     * @author Jack
+     */
+    @Test
+    public void TestValidSolverRandom(){
+        //Small test maze
+        testMaze.generateMaze(1);
+        mySolver.DFS(testMaze,START);
+        int l = mySolver.Solution().size();
+        assertEquals(START,mySolver.Solution().get(0),"First position in solver is " +
+                mySolver.Solution().get(l-1)[0] + ", " + mySolver.Solution().get(l-1)[1] + " instead of "+
+                END[0] + ", " + END[1]);
+        assertEquals(END[0] + ", " + END[1],mySolver.Solution().get(l-1)[0] + ", " +mySolver.Solution().get(l-1)[1]
+                ,"Last position in solver is " + mySolver.Solution().get(l-1)[0] + ", "
+                        + mySolver.Solution().get(l-1)[1] + " instead of "+ END[0] + ", " + END[1]);
+
+        //Large Maze
+        largeMaze.generateMaze(5);
+        Solver solver = new Solver();
+        solver.DFS(largeMaze,START);
+        l = solver.Solution().size();
+        assertEquals(START,solver.Solution().get(0),"First position in solver is " +
+                solver.Solution().get(l-1)[0] + ", " + solver.Solution().get(l-1)[1] + " instead of "+
+                44 + ", " + 61);
+        assertEquals(44 + ", " + 61,solver.Solution().get(l-1)[0] + ", " +solver.Solution().get(l-1)[1]
+                ,"Last position in solver is " + solver.Solution().get(l-1)[0] + ", "
+                        + solver.Solution().get(l-1)[1] + " instead of "+ 44 + ", " + 61);
+
+        //Max size maze
+        massiveMaze.generateMaze(10);
+        mySolver = new Solver();
+        mySolver.DFS(massiveMaze,START);
+        l = mySolver.Solution().size();
+        assertEquals(START,mySolver.Solution().get(0),"First position in solver is " +
+                mySolver.Solution().get(l-1)[0] + ", " + mySolver.Solution().get(l-1)[1] + " instead of "+
+                99 + ", " + 99);
+        assertEquals(99 + ", " + 99,mySolver.Solution().get(l-1)[0] + ", " +mySolver.Solution().get(l-1)[1]
+                ,"Last position in solver is " + mySolver.Solution().get(l-1)[0] + ", "
+                        + mySolver.Solution().get(l-1)[1] + " instead of "+ 99 + ", " + 99);
+
+
     }
 
 }

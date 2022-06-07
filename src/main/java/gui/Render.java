@@ -172,35 +172,35 @@ public class Render {
             largerdim = myMaze.mazeSize()[1];
         }
         double scale_factor = 25.0/largerdim;
-
+        double resolution_scale=1;
         //Scaling logic which is also suitable for exporting as an image
-        window2.setLocation((Frame.screenWidth /6 + 330),Frame.screenHeight/16);
+        if(Frame.screenHeight<1100){
+            resolution_scale=2;
+        }
         if(largerdim<=10){
             window2.setSize(300,300);
-            scale_factor = 5.0/largerdim;
+            scale_factor = 5.0/largerdim/resolution_scale;
         } else if (largerdim>10 && largerdim<15) {
             window2.setSize(500,500);
-            scale_factor = 7.5/largerdim;
+            scale_factor = 7.5/largerdim/resolution_scale;
         } else if (largerdim>=15 && largerdim<30){
             window2.setSize(575,575);
-            scale_factor = 10.0/largerdim;
+            scale_factor = 10.0/largerdim/resolution_scale;
         } else if (largerdim>=30 && largerdim<50){
             window2.setSize(800,800);
-            scale_factor = 15.0/largerdim;
+            scale_factor = 15.0/largerdim/resolution_scale;
         } else if (largerdim>=50 && largerdim<60) {
             window2.setSize(1050, 1050);
-            scale_factor = 20.0 / largerdim;
+            scale_factor = 20.0 / largerdim/resolution_scale;
         } else if (largerdim>=60 && largerdim<75) {
             window2.setSize(1300, 1300);
-            scale_factor = 25.0 / largerdim;
+            scale_factor = 25.0 / largerdim/resolution_scale;
         } else if (largerdim>=75 && largerdim<85) {
             window2.setSize(1500, 1500);
-            window2.setLocation(window2.getLocation().x,window2.getLocation().y-900);
-            scale_factor = 26.0 / largerdim;
+            scale_factor = 26.0 / largerdim/resolution_scale;
         } else {
             window2.setSize(1600,1600);
-            window2.setLocation(window2.getLocation().x,window2.getLocation().y-900);
-            scale_factor = 27.0/largerdim;
+            scale_factor = 27.0/largerdim/resolution_scale;
         }
 
         System.out.println(scale_factor);

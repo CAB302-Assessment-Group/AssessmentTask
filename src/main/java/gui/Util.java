@@ -10,7 +10,7 @@ public class Util {
      * @return Scale factor as a double that can be used for making adjustments to the components
      * @author Jayden and Jack
      */
-    public static double scaleFactor(int largerDim, int resolution_scale){
+    public static double scaleFactor(int largerDim, double resolution_scale){
         double scale_factor = 25.0/largerDim;
         if(largerDim<=10){
             scale_factor = 5.0/largerDim/resolution_scale;
@@ -32,8 +32,38 @@ public class Util {
         return scale_factor;
 
     }
-    public static int[] windowScaledSize(int largerDim, int resolution_scale){
-        return null;
+    public static int[] windowScaledSize(int largerDim, boolean scaleFactor){
+        int[] size = new int[2];
+        double scaling =1;
+        if(scaleFactor){
+            scaling=1.25;
+        }
+        if(largerDim<=10){
+            int dimension = (int) (300/scaling);
+            size = new int[]{dimension, dimension};
+        } else if (largerDim>10 && largerDim<15) {
+            int dimension = (int) (500/scaling);
+            size = new int[]{dimension, dimension};
+        } else if (largerDim>=15 && largerDim<30){
+            int dimension = (int) (575/scaling);
+            size = new int[]{dimension, dimension};
+        } else if (largerDim>=30 && largerDim<50){
+            int dimension = (int) (800/scaling);
+            size = new int[]{dimension, dimension};
+        } else if (largerDim>=50 && largerDim<60) {
+            int dimension = (int) (1050/scaling);
+            size = new int[]{dimension, dimension};
+        } else if (largerDim>=60 && largerDim<75) {
+            int dimension = (int) (1300/scaling);
+            size = new int[]{dimension, dimension};
+        } else if (largerDim>=75 && largerDim<85) {
+            int dimension = (int) (1500/scaling);
+            size = new int[]{dimension, dimension};
+        } else if (largerDim>=85){
+            int dimension = (int) (1600/scaling);
+            size = new int[]{dimension, dimension};
+        }
+        return size;
     }
 
     /**

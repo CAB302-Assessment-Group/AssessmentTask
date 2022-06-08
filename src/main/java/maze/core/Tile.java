@@ -7,8 +7,7 @@ public class Tile implements Serializable {
     private boolean rightWall;
     private boolean topWall;
     private boolean bottomWall;
-    private byte[] startIm;
-    private byte[] endIm;
+    private byte[] image;
     private boolean visited;
     private boolean active = false;
 
@@ -20,21 +19,15 @@ public class Tile implements Serializable {
         visited = false;
     }
 
-    public void setStartImage(byte[] startImage){
-        this.startIm = startImage;
+    public void setImage(byte[] Image){
+        this.image = Image;
     }
 
-    public byte[] getStartImage(){
-        return this.startIm;
+    public byte[] getImage(){
+        return this.image;
     }
 
-    public void setEndImage(byte[] endImage){
-        this.endIm = endImage;
-    }
 
-    public byte[] getEndImage(){
-        return this.endIm;
-    }
 
     public void setLeftWall(boolean wall){
         this.leftWall = wall;

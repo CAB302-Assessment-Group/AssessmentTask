@@ -40,8 +40,8 @@ public class Solver {
                 selectedTile.TopWall()
         };
 
-        returnArray[0] = (!walls[0] && tileLocationX != (myMaze.mazeSize()[0]) && !(inList(visited, new Integer[] { tileLocationX + 1, tileLocationY })) );
-        returnArray[1] = (!walls[1] && tileLocationY != (myMaze.mazeSize()[1]) && !(inList(visited, new Integer[] { tileLocationX, tileLocationY + 1 })) );
+        returnArray[0] = (!walls[0] && tileLocationX != (myMaze.mazeSize()[0] - 1) && !(inList(visited, new Integer[] { tileLocationX + 1, tileLocationY })) );
+        returnArray[1] = (!walls[1] && tileLocationY != (myMaze.mazeSize()[1] - 1) && !(inList(visited, new Integer[] { tileLocationX, tileLocationY + 1 })) );
         returnArray[2] = (!walls[2] && tileLocationX != 0 && !(inList(visited, new Integer[] { tileLocationX - 1, tileLocationY })));
         returnArray[3] = (!walls[3] && tileLocationY != 0 && !(inList(visited, new Integer[] { tileLocationX, tileLocationY - 1 })));
 
@@ -64,7 +64,7 @@ public class Solver {
         //if (position[1] == gb.mazeSize()[1]) return true;
         //if (position[1] == 0) return true;
 
-        if (position[0] == gb.mazeSize()[0] - 1 && position[1] == gb.mazeSize()[1] - 1) return true;
+        if (position[0] == gb.getEnd()[0] && position[1] == gb.getEnd()[1]) return true;
 //        if (position[0] == gb.getEnd()[0] - 1 && position[1] == gb.getEnd()[1] - 1) return true;
 
         return false;

@@ -3,6 +3,7 @@ package maze.core.image;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class ImageProcessing {
     }
 
     public static BufferedImage GetLogo(File file) throws IOException {
+        System.out.println(file.toString());
         BufferedImage image = ImageIO.read(file);
         return image;
     }
@@ -45,4 +47,13 @@ public class ImageProcessing {
         return bytes;
 
     }
+
+    public static BufferedImage fromByteArray(byte[] data) throws Exception {
+
+        ByteArrayInputStream bis = new ByteArrayInputStream(data);
+        BufferedImage bImage2 = ImageIO.read(bis);
+
+        return bImage2;
+    }
+
 }

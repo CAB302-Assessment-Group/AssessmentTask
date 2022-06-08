@@ -40,8 +40,8 @@ public class Solver {
                 selectedTile.TopWall()
         };
 
-        returnArray[0] = (!walls[0] && tileLocationX != (myMaze.mazeSize()[0]) && !(inList(visited, new Integer[] { tileLocationX + 1, tileLocationY })) );
-        returnArray[1] = (!walls[1] && tileLocationY != (myMaze.mazeSize()[1]) && !(inList(visited, new Integer[] { tileLocationX, tileLocationY + 1 })) );
+        returnArray[0] = (!walls[0] && tileLocationX != (myMaze.mazeSize()[0] - 1) && !(inList(visited, new Integer[] { tileLocationX + 1, tileLocationY })) );
+        returnArray[1] = (!walls[1] && tileLocationY != (myMaze.mazeSize()[1] - 1) && !(inList(visited, new Integer[] { tileLocationX, tileLocationY + 1 })) );
         returnArray[2] = (!walls[2] && tileLocationX != 0 && !(inList(visited, new Integer[] { tileLocationX - 1, tileLocationY })));
         returnArray[3] = (!walls[3] && tileLocationY != 0 && !(inList(visited, new Integer[] { tileLocationX, tileLocationY - 1 })));
 

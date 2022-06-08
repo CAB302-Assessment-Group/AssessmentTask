@@ -163,6 +163,7 @@ public class Render {
             for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
                 // border styling
                 JButton tempBTN = new JButton("");
+                //TODO: Replace this with overload method
                 tempBTN.setBounds(10 + x * 50, 75 + y * 50, 40, 10);
                 tempBTN.setBounds((int) Math.floor(10 * scale_factor + xposition + x * (between_walls) * (scale_factor)), (int) Math.floor(yposition + y * between_walls * scale_factor), (int) Math.floor(wallLength * scale_factor), (int) Math.floor(wallWidth * scale_factor));
                 int finalX = x;
@@ -207,7 +208,7 @@ public class Render {
 
                 JButton tempBTN2 = new JButton("");
                 //tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
-                tempBTN2.setBounds((int) Math.floor(xposition + x * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + y * between_walls * scale_factor), (int) Math.floor(wallWidth * scale_factor), (int) Math.floor(wallLength * scale_factor));
+                //tempBTN2.setBounds((int) Math.floor(xposition + x * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + y * between_walls * scale_factor), (int) Math.floor(wallWidth * scale_factor), (int) Math.floor(wallLength * scale_factor));
                 int[] bounds = Util.generateBounds(xposition,x,between_walls,scale_factor,yposition,y,wallWidth,wallLength);
                 tempBTN2.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
@@ -234,7 +235,7 @@ public class Render {
                 boolean tileState = myMaze.mazeTile(finalX, finalY).GetState();
                 if (tileState && renderSolution) {
                     JButton solveStep = new JButton("");
-                    solveStep.setBounds((int) Math.floor(((x * (wallLength + wallWidth)) + (wallLength/4))*scale_factor), (int) Math.floor(((y * (wallLength + wallWidth)) + (wallLength/4))*scale_factor), (int) Math.floor(40 * scale_factor), (int) Math.floor(40 * scale_factor));
+                    //solveStep.setBounds((int) Math.floor(((x * (wallLength + wallWidth)) + (wallLength/4))*scale_factor), (int) Math.floor(((y * (wallLength + wallWidth)) + (wallLength/4))*scale_factor), (int) Math.floor(40 * scale_factor), (int) Math.floor(40 * scale_factor));
                     bounds = Util.generateBounds(x,wallLength,wallWidth,y,scale_factor);
                     solveStep.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
                     solveStep.setBackground(Color.RED);

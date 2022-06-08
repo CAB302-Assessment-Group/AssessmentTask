@@ -497,4 +497,17 @@ public class Maze implements MazeOutline, Serializable {
         }
         return out;
     }
+
+    /**
+     * Finds the largest dimension so it can be used to dictate scaling
+     * @return either the width or height of the maze (whichever is bigger)
+     * @author Jayden and Jack
+     */
+    public int largestDimension(){
+        if(this.mazeSize()[0] > this.mazeSize()[1]){
+            return this.mazeSize()[0];
+        }else{
+            return this.mazeSize()[1];
+        }
+    }
 }

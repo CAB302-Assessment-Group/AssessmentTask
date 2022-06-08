@@ -81,12 +81,6 @@ public class Frame {
         window3 = new JFrame("Search Results");
         window3.setVisible(false);
 
-
-
-
-
-
-
         MainMenu();
         // initialise("","");
 
@@ -530,9 +524,7 @@ public class Frame {
                         if(MazeNameInput.getText()!=""){
                             if(showSolutionCHKBOX.isSelected()){
                                 //Generate solution + unsolved maze
-
                                 System.out.println(solver2.tilesVisited());
-
                                 ImageProcessing.ExportImage(window2,fileLocation,
                                         Frame.getInstance().myMaze.getMazeName()+"Solution");
                                 showSolutionCHKBOX.doClick();

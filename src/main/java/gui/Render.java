@@ -28,39 +28,12 @@ public class Render {
     private static int[] mazeSize = Frame.getInstance().mazeSize;
     public static Maze currentMaze = Frame.getInstance().myMaze;
     /**
-     * Validates user input for sizing maze
-     * @author Hudson
-     * @param inputs The width and height specified by the user
-     * @return True if input is a number and not less than or equal to 0. False if not
-     */
-    public static boolean validateInput(String[] inputs) {
-        for (int i = 0; i < inputs.length; i++) {
-            try {
-                if (Integer.parseInt(inputs[i]) <= 0) return false;
-            } catch(Exception e) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public static void resetSolution() {
-        // reset states of maze object
-        for (int x = 0; x < Frame.getInstance().myMaze.mazeSize()[0]; x++) {
-            for (int y = 0; y < Frame.getInstance().myMaze.mazeSize()[1]; y++) {
-                Frame.getInstance().myMaze.mazeTile(x, y).setState(false);
-            }
-        }
-    }
-
-    /**
      * Draws the optimal solution
      * @author Hudson
      * @param solution the solution steps (found by calling solution.DFS(<Maze>))
      */
     public static void drawSolution(ArrayList<Integer[]> solution) {
-        resetSolution();
+        Util.resetSolution();
 
         // set states of maze object to solution
         for (int i = 0; i < solution.size(); i++) {
@@ -79,7 +52,7 @@ public class Render {
 
     public static void toggleSolutionVisualisation(boolean state) {
         if (state) {
-            resetSolution();
+            Util.resetSolution();
             Frame.solveMyMaze();
         } else {
             window2.setLayout(null);
@@ -111,7 +84,7 @@ public class Render {
         //System.out.println(width);
         //System.out.println(height);
 
-        if (!validateInput(inputs)) {
+        if (!Util.validateInput(inputs)) {
             System.out.println("[ERROR] Invalid maze size...");
             PopUp errorMessage = new PopUp("[ERROR] Invalid maze size...");
             return;
@@ -121,18 +94,9 @@ public class Render {
 
         //System.out.println(width.trim()+", "+height.trim());
         logoSize+="";
-        int logoSizeInt = -1;
-        try{
-            System.out.println(logoSize.trim()=="");
-            if(logoSize.trim()==""){
-                logoSize = "0";
-            }
-            logoSizeInt = Integer.parseInt(logoSize);
-        }catch(Exception e){
-            System.out.println("[ERROR] Invalid logo size...");
-            PopUp errorMessage = new PopUp("[ERROR] Invalid logo size...");
-            return;
-        }
+        int logoSizeInt = Util.getLogoSize(logoSize);
+
+
 
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
         currentMaze = new Maze(mazeSize); //need to pass child maze param
@@ -167,12 +131,8 @@ public class Render {
      * @author Jayden and Jack
      */
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution, boolean renderSolution) {
-        int largerdim;
-        if(myMaze.mazeSize()[0] > myMaze.mazeSize()[1]){
-            largerdim = myMaze.mazeSize()[0];
-        }else{
-            largerdim = myMaze.mazeSize()[1];
-        }
+        int largerdim = myMaze.largestDimension();
+
         double scale_factor = 25.0/largerdim;
         double resolution_scale=1;
         //Scaling logic which is also suitable for exporting as an image
@@ -205,7 +165,6 @@ public class Render {
             scale_factor = 27.0/largerdim/resolution_scale;
         }
 
-        System.out.println(scale_factor);
         //maze generation starting
         // on frame
 

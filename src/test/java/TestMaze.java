@@ -401,44 +401,26 @@ public class TestMaze {
         },"Invalid size " + size[0] + ", " + size[1]);
 
     }
+
     /**
      * Test 11:
-     * Validates the validateInput is working for frame class
+     * Tests that largest dimension is returned for a maze
      * @author Jack
      */
     @Test
-    public void TestValidateInput(){
-        //Valid Case 1
-        String[] inputs = {"1", "1"};
-        assertTrue(Render.validateInput(inputs));
+    public void TestLargestDimension(){
+        int[] size1 = {6,5};
+        int[] size2 = {5,6};
 
-        //Valid Case 2
-        inputs[0] ="1";inputs[1]="100";
-        assertTrue(Render.validateInput(inputs));
+        assertEquals(5,testMaze.largestDimension());
 
-        //Valid Case 3
-        inputs[0] ="100";inputs[1]="1";
-        assertTrue(Render.validateInput(inputs));
+        testMaze = new Maze(size1);
+        assertEquals(6,testMaze.largestDimension());
+        assertNotEquals(5, testMaze.largestDimension());
 
-        //Valid Case 4
-        inputs[0] ="100";inputs[1]="100";
-        assertTrue(Render.validateInput(inputs));
-
-        //Invalid Case 1
-        inputs[0] ="1 2";inputs[1]="1 0 0";
-        assertFalse(Render.validateInput(inputs), "Not valid inputs " + inputs);
-
-        //Invalid Case 2
-        inputs[0] ="0";inputs[1]="1";
-        assertFalse(Render.validateInput(inputs), "Under limit for " + inputs);
-
-        //Invalid Case 4
-        inputs[0] ="-1";inputs[1]="0";
-        assertFalse(Render.validateInput(inputs), "Under limit for " + inputs);
-
-        //Invalid Case 5
-        inputs[0] ="1F";inputs[1]="one";
-        assertFalse(Render.validateInput(inputs),"Not valid inputs " + inputs);
+        testMaze = new Maze(size2);
+        assertEquals(6,testMaze.largestDimension());
+        assertNotEquals(5, testMaze.largestDimension());
 
     }
 

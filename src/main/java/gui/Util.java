@@ -33,7 +33,7 @@ public class Util {
 
     }
     public static int[] windowScaledSize(int largerDim, int resolution_scale){
-
+        return null;
     }
 
     /**

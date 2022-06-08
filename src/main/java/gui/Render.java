@@ -139,46 +139,16 @@ public class Render {
         int largerdim = myMaze.largestDimension();
 
         double scale_factor = 25.0/largerdim;
-        double resolution_scale=1;
         //Scaling logic which is also suitable for exporting as an image
-        if(Frame.screenHeight<1100){
-            resolution_scale=1.5;
-        }
-        if(largerdim<=10){
-            window2.setSize(300,300);
-            scale_factor = 5.0/largerdim/resolution_scale;
-        } else if (largerdim>10 && largerdim<15) {
-            window2.setSize(500,500);
-            scale_factor = 7.5/largerdim/resolution_scale;
-        } else if (largerdim>=15 && largerdim<30){
-            window2.setSize(575,575);
-            scale_factor = 10.0/largerdim/resolution_scale;
-        } else if (largerdim>=30 && largerdim<50){
-            window2.setSize(800,800);
-            scale_factor = 15.0/largerdim/resolution_scale;
-        } else if (largerdim>=50 && largerdim<60) {
-            window2.setSize(1050, 1050);
-            scale_factor = 20.0 / largerdim/resolution_scale;
-        } else if (largerdim>=60 && largerdim<75) {
-            window2.setSize(1300, 1300);
-            scale_factor = 25.0 / largerdim/resolution_scale;
-        } else if (largerdim>=75 && largerdim<85) {
-            window2.setSize(1500, 1500);
-            scale_factor = 26.0 / largerdim/resolution_scale;
-        } else {
-            window2.setSize(1600,1600);
-            scale_factor = 27.0/largerdim/resolution_scale;
-        }
+        scale_factor = Util.scaleFactor(largerdim,screenHeight);
+        int[] screenSize = Util.windowScaledSize(largerdim, screenHeight);
+        window2.setSize(screenSize[0],screenSize[1]);
 
         //maze generation starting
         // on frame
 
-
         int xposition = 0;
         int yposition = 0;
-
-
-
 
         int wallLength = 40;
         int wallWidth = 10;
@@ -330,14 +300,7 @@ public class Render {
         Frame.getInstance().myMaze = myMaze;
 
         if (showSolution) {
-//            System.out.println("Got here");
-            Solver mazeSolver = new Solver();
-
-            Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
-
-            ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
-
-            Render.drawSolution(mazeSolution);
+            Util.drawSolution();
         }
 
         window2.setVisible(false);

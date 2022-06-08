@@ -1,7 +1,12 @@
 package gui;
 
+import maze.core.Database;
+import maze.core.solver.Solver;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Util {
     /**
@@ -10,8 +15,12 @@ public class Util {
      * @return Scale factor as a double that can be used for making adjustments to the components
      * @author Jayden and Jack
      */
-    public static double scaleFactor(int largerDim, double resolution_scale){
+    public static double scaleFactor(int largerDim, int windowHeight){
         double scale_factor = 25.0/largerDim;
+        double resolution_scale = 1.0;
+        if(windowHeight<1050){
+            resolution_scale=1.25;
+        }
         if(largerDim<=10){
             scale_factor = 5.0/largerDim/resolution_scale;
         } else if (largerDim>10 && largerDim<15) {
@@ -32,10 +41,17 @@ public class Util {
         return scale_factor;
 
     }
-    public static int[] windowScaledSize(int largerDim, boolean scaleFactor){
+
+    /**
+     *
+     * @param largerDim
+     * @param windowHeight
+     * @return
+     */
+    public static int[] windowScaledSize(int largerDim, int windowHeight){
         int[] size = new int[2];
         double scaling =1;
-        if(scaleFactor){
+        if(windowHeight<1050){
             scaling=1.25;
         }
         if(largerDim<=10){
@@ -72,8 +88,24 @@ public class Util {
      * false if crucial things are missing or errors occur
      * @author Jack
      */
-    public static boolean updateCurrentMaze(){
-        return false;
+    public static boolean UpdateMazeFromInput(String author, String name){
+        boolean updating = true;
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+        if(author=="" || name == ""){
+            updating = false;
+        }
+        if(Frame.getInstance().myMaze.getAuthor()!=null || Frame.getInstance().myMaze.getAuthor()!=author){
+            Frame.getInstance().myMaze.setAuthor(author);
+        }
+
+        Frame.getInstance().myMaze.setMazeName(name);
+        if(Frame.getInstance().myMaze.getDateCreated()!=null){
+            Frame.getInstance().myMaze.setDateCreated(timeStamp);
+        }
+        Frame.getInstance().myMaze.setDateEdited(timeStamp);
+        Frame.getInstance().myMaze.SetLastEditor(author);
+        Database.exportMaze(Frame.getInstance().myMaze);
+        return updating;
     }
 
     /**
@@ -147,5 +179,20 @@ public class Util {
         }
         return logoSizeInt;
     }
+
+    /**
+     * If requested, the maze is drawn using the render method
+     * @author Hudson and Jack
+     */
+    public static void drawSolution(){
+        Solver mazeSolver = new Solver();
+
+        Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
+
+        ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
+
+        Render.drawSolution(mazeSolution);
+    }
+
 
 }

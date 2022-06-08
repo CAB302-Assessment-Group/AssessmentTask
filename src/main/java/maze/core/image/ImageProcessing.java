@@ -18,8 +18,6 @@ public class ImageProcessing {
      *
      */
     public static void ExportImage(JFrame mazeBox, String location, String name) throws IOException {
-        //TODO
-        //Save the maze to database and make sure all fields are matching object
         BufferedImage img = new BufferedImage(mazeBox.getWidth(), mazeBox.getHeight(), BufferedImage.TYPE_INT_RGB);
         mazeBox.paint(img.getGraphics());
         String path = location+"/"+name+".png";

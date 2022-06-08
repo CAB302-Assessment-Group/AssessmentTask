@@ -490,66 +490,63 @@ public class Frame {
 		ExportMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Todo refactor as a method
 
-                // Save to database first (make method)
-                String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
-                Frame.getInstance().myMaze.setAuthor(MazeAuthorInput.getText());
-                Frame.getInstance().myMaze.setMazeName(MazeNameInput.getText());
-                Frame.getInstance().myMaze.setDateCreated(timeStamp);
-                Frame.getInstance().myMaze.setDateEdited(timeStamp);
-                Frame.getInstance().myMaze.SetLastEditor(MazeAuthorInput.getText());
-                Database.exportMaze(Frame.getInstance().myMaze);
+                // Save to database first
+                if(Util.UpdateMazeFromInput(MazeAuthorInput.getText(),MazeNameInput.getText())){
 
 
-                Solver solver2 = new Solver();
-                try{
-                    solver2.DFS(Frame.getInstance().myMaze,
-                            new Integer[]{Frame.getInstance().myMaze.getStart()[0],
-                                    Frame.getInstance().myMaze.getStart()[1]});
-                }catch(Exception solverError){
-                    solver2.DFS(Frame.getInstance().myMaze,new Integer[]{0,0});
-                }
-
-                if(solver2.tilesVisited()>0) {
-                    JFileChooser exportFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
-                    // From https://stackoverflow.com/questions/10621687/how-to-get-full-path-directory-from-file-chooser
-                    exportFile.setCurrentDirectory(new java.io.File("."));
-                    exportFile.setDialogTitle("Export Maze");
-                    exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                    exportFile.setAcceptAllFileFilterUsed(false);
-
-
-                    String fileLocation ="";
-                    if (exportFile.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-                        fileLocation = exportFile.getSelectedFile().getAbsolutePath();
-                    } else {
-                        System.out.println("No Selection ");
-                        PopUp popUp = new PopUp("Please select a location");
+                    Solver solver2 = new Solver();
+                    try{
+                        solver2.DFS(Frame.getInstance().myMaze,
+                                new Integer[]{Frame.getInstance().myMaze.getStart()[0],
+                                        Frame.getInstance().myMaze.getStart()[1]});
+                    }catch(Exception solverError){
+                        solver2.DFS(Frame.getInstance().myMaze,new Integer[]{0,0});
                     }
-                    try {
-                        if(MazeNameInput.getText()!=""){
-                            if(showSolutionCHKBOX.isSelected()){
-                                //Generate solution + unsolved maze
-                                System.out.println(solver2.tilesVisited());
-                                ImageProcessing.ExportImage(window2,fileLocation,
-                                        Frame.getInstance().myMaze.getMazeName()+"Solution");
-                                showSolutionCHKBOX.doClick();
-                                ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
-                                showSolutionCHKBOX.doClick();
-                                Frame.solveMyMaze();
-                            } else {
-                                //Generate just unsolved maze
-                                ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
-                            }
+
+                    if(solver2.tilesVisited()>0) {
+                        JFileChooser exportFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                        // From https://stackoverflow.com/questions/10621687/how-to-get-full-path-directory-from-file-chooser
+                        exportFile.setCurrentDirectory(new java.io.File("."));
+                        exportFile.setDialogTitle("Export Maze");
+                        exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                        exportFile.setAcceptAllFileFilterUsed(false);
+
+
+                        String fileLocation ="";
+                        if (exportFile.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+                            fileLocation = exportFile.getSelectedFile().getAbsolutePath();
+                        } else {
+                            System.out.println("No Selection ");
+                            PopUp popUp = new PopUp("Please select a location");
                         }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
+                        try {
+                            if(MazeNameInput.getText()!=""){
+                                if(showSolutionCHKBOX.isSelected()){
+                                    //Generate solution + unsolved maze
+                                    System.out.println(solver2.tilesVisited());
+                                    ImageProcessing.ExportImage(window2,fileLocation,
+                                            Frame.getInstance().myMaze.getMazeName()+"Solution");
+                                    showSolutionCHKBOX.doClick();
+                                    ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                                    showSolutionCHKBOX.doClick();
+                                    Frame.solveMyMaze();
+                                } else {
+                                    //Generate just unsolved maze
+                                    ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                                }
+                            }
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Maze is not solvable");
+                        PopUp popUp = new PopUp("Maze is not solvable");
                     }
                 } else {
-                    System.out.println("Maze is not solvable");
-                    PopUp popUp = new PopUp("Maze is not solvable");
+                    PopUp popUp = new PopUp("Could not export");
                 }
+
 
 
             }

@@ -19,6 +19,7 @@ public class Maze implements MazeOutline, Serializable {
     private int[] logoTopCorner;
 
     public int[] getLogoTopCorner(){return logoTopCorner;}
+    public void setLogoTopCorner(int[] loc){this.logoTopCorner = loc;}
 
     public String getAuthor() {
         return Author;

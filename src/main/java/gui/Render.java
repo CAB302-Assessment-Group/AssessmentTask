@@ -149,6 +149,10 @@ public class Render {
 
         if(generated){
             currentMaze.generateMaze(hasIm, Frame.childMaze);
+        }else{
+            int diffX = currentMaze.mazeSize()[0] - hasIm;
+            int diffY = currentMaze.mazeSize()[1] - hasIm;
+            currentMaze.setLogoTopCorner(new int[]{diffX/2,diffY/2});
         }
 
 

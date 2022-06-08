@@ -655,7 +655,7 @@ public class Frame {
                 window2.setLocation((screenWidth /6 + 330),screenHeight/16);
                 window2.setSize(800, 800);
 
-
+                logoCellSize = LogoCellSizeInput.getText();
 
                 boolean shouldAutoSolve = autoSolveCHKBOX.isSelected();
                 Render.autoSolveMaze = shouldAutoSolve;
@@ -664,6 +664,10 @@ public class Frame {
                 SetMetrics(MetricsWindow);
                 window2.setVisible(true);
                 MetricsWindow.setVisible(true);
+
+                Startlogo = null;
+                Endlogo = null;
+                Centerlogo = null;
             }
         });
 

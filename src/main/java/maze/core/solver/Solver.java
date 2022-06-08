@@ -64,7 +64,7 @@ public class Solver {
         //if (position[1] == gb.mazeSize()[1]) return true;
         //if (position[1] == 0) return true;
 
-        if (position[0] == gb.mazeSize()[0] - 1 && position[1] == gb.mazeSize()[1] - 1) return true;
+        if (position[0] == gb.getEnd()[0] && position[1] == gb.getEnd()[1]) return true;
 //        if (position[0] == gb.getEnd()[0] - 1 && position[1] == gb.getEnd()[1] - 1) return true;
 
         return false;

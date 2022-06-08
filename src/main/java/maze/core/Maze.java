@@ -16,8 +16,9 @@ public class Maze implements MazeOutline, Serializable {
     private int[] endLoc;
     private boolean OneLocSet;
     private String lastEditor;
+    private int[] logoTopCorner;
 
-
+    public int[] getLogoTopCorner(){return logoTopCorner;}
 
     public String getAuthor() {
         return Author;
@@ -155,7 +156,7 @@ public class Maze implements MazeOutline, Serializable {
                 throw new MazeException("Start and End Locations are the Same");
             } else {
                 this.startLoc=start;
-                this.mazeTile(startLoc[0], startLoc[1]).setStartImage(StartImage);
+                this.mazeTile(startLoc[0], startLoc[1]).setImage(StartImage);
             }
             this.OneLocSet = true;
 
@@ -207,7 +208,7 @@ public class Maze implements MazeOutline, Serializable {
                 throw new MazeException("Start and End Locations are the Same");
             else {
                 this.endLoc=end;
-                this.mazeTile(endLoc[0], endLoc[1]).setStartImage(EndImage);
+                this.mazeTile(endLoc[0], endLoc[1]).setImage(EndImage);
             }
 
         }
@@ -228,11 +229,11 @@ public class Maze implements MazeOutline, Serializable {
      * @return
      */
     public byte[] getEndImage() {
-        return this.mazeTile(startLoc[0],startLoc[1]).getEndImage();
+        return this.mazeTile(startLoc[0],startLoc[1]).getImage();
     }
 
     public byte[] getStartImage() {
-        return this.mazeTile(startLoc[0],startLoc[1]).getStartImage();
+        return this.mazeTile(startLoc[0],startLoc[1]).getImage();
     }
 
     /**
@@ -311,6 +312,7 @@ public class Maze implements MazeOutline, Serializable {
         if(hasIm > 0){
             int diffX = mazeSize()[0] - hasIm;
             int diffY = mazeSize()[1] - hasIm;
+            logoTopCorner = new int[]{diffX/2,diffY/2};
             System.out.println(diffX/2+","+diffY/2);
             for(int x = 0;x<hasIm;x++){
                 for(int y = 0; y<hasIm;y++){

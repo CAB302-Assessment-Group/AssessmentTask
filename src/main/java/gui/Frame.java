@@ -3,11 +3,9 @@ package gui;
 
 import maze.core.Database;
 import maze.core.solver.Solver;
-import org.junit.jupiter.api.Test;
 
 import maze.core.Maze;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
@@ -21,8 +19,6 @@ import java.util.concurrent.TimeUnit;
 
 import maze.core.image.ImageProcessing;
 
-import static java.lang.Math.floor;
-
 public class Frame {
     public int[] mazeSize = new int[2];
     public Maze myMaze = new Maze(new int[]{100, 100}); //init as adult maze
@@ -31,8 +27,11 @@ public class Frame {
     public static JFrame window3;
     public static JFrame MetricsWindow;
     public static Solver solver = new Solver();
-    public static BufferedImage logo;
+    public static BufferedImage Startlogo;
+    public static BufferedImage Endlogo;
+    public static BufferedImage Centerlogo;
     public static boolean childMaze = false;
+    public static String logoCellSize;
 
     public static int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -581,19 +580,38 @@ public class Frame {
             }
         });
 
+        ImportStandardLogo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView());
+                importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                importFile.showOpenDialog(null);
+
+                File file = new File(importFile.getSelectedFile().toString());
+                if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        Centerlogo = ImageProcessing.GetLogo(file);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
+
+
+            }
+        });
+
         ImportStartingLogo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView());
                 importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 importFile.showOpenDialog(null);
-                String location = "D:\\Documents\\2022\\CAB302\\Assignment\\AssessmentTask\\src\\test\\java\\ExampleImages\\StandardLogo.PNG";
 
-                File file = new File(importFile.getCurrentDirectory().toString());
+                File file = new File(importFile.getSelectedFile().toString());
                 if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                     try {
-                        logo = ImageProcessing.GetLogo(file);
-                        Frame.getInstance().myMaze.mazeTile(0,0).setEndImage(ImageProcessing.toByteArray(logo));
+                        Startlogo = ImageProcessing.GetLogo(file);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -607,8 +625,18 @@ public class Frame {
         ImportFinishingLogo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView());
+                importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 importFile.showOpenDialog(null);
+
+                File file = new File(importFile.getSelectedFile().toString());
+                if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        Endlogo = ImageProcessing.GetLogo(file);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
         });
 
@@ -654,7 +682,7 @@ public class Frame {
 
                 boolean shouldAutoSolve = autoSolveCHKBOX.isSelected();
                 Render.autoSolveMaze = shouldAutoSolve;
-
+                logoCellSize = LogoCellSizeInput.getText();
                 Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
                 SetMetrics(MetricsWindow);
                 try {

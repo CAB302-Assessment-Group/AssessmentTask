@@ -2,6 +2,7 @@ package gui;
 
 
 import maze.core.Maze;
+import maze.core.image.ImageProcessing;
 import maze.core.solver.Solver;
 
 import javax.swing.*;
@@ -9,7 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import static gui.Frame.window;
+import static gui.Frame.*;
 
 public class Render {
 
@@ -238,8 +239,8 @@ public class Render {
                     myMaze.mazeTile(finalX,finalY).setTopWall(true);
                 }
                 JLabel label=new JLabel();
-                if(Frame.logo!=null){
-                    ImageIcon icon=new ImageIcon(Frame.logo);
+                if(Frame.Startlogo !=null){
+                    ImageIcon icon=new ImageIcon(Frame.Startlogo);
                     label.setIcon(icon);
 
                     Dimension imageSize = new Dimension(icon.getIconWidth(),icon.getIconHeight());
@@ -378,6 +379,65 @@ public class Render {
 
         window2.setVisible(false);
 
+        if(Startlogo != null && childMaze){
+            System.out.println("Found im");
+            try{
+                Frame.getInstance().myMaze.mazeTile(0,0).setImage(ImageProcessing.toByteArray(Startlogo));
+                System.out.println(Frame.getInstance().myMaze.mazeTile(0,0).getImage());
+                BufferedImage bi = ImageProcessing.fromByteArray(myMaze.mazeTile(0,0).getImage());
+
+                ImageIcon imageIcon = new ImageIcon(bi);
+                JLabel startim = new JLabel(imageIcon);
+
+                startim.setBounds((int) Math.floor(xposition + 0 * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + 0 * between_walls * scale_factor), (int) Math.floor(2*between_walls*scale_factor), (int) Math.floor(2*between_walls*scale_factor));
+
+                startim.setVisible(true);
+                window2.add(startim);
+                System.out.println("added im");
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+
+        }
+        if(Endlogo != null && childMaze){
+            System.out.println("Found im");
+            try{
+                Frame.getInstance().myMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1 ).setImage(ImageProcessing.toByteArray(Endlogo));
+                System.out.println(Frame.getInstance().myMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1).getImage());
+                BufferedImage bi = ImageProcessing.fromByteArray(myMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1).getImage());
+
+                ImageIcon imageIcon = new ImageIcon(bi);
+                JLabel endim = new JLabel(imageIcon);
+
+                endim.setBounds((int) Math.floor(xposition + (mazeSize[0]-2) * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + (mazeSize[1]-2) * between_walls * scale_factor), (int) Math.floor(2*between_walls*scale_factor), (int) Math.floor(2*between_walls*scale_factor));
+
+                endim.setVisible(true);
+                window2.add(endim);
+                System.out.println("added im");
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        if(Centerlogo != null){
+            System.out.println("Found im");
+            try{
+                Frame.getInstance().myMaze.mazeTile(Frame.getInstance().myMaze.getLogoTopCorner()[0], Frame.getInstance().myMaze.getLogoTopCorner()[1]).setImage(ImageProcessing.toByteArray(Centerlogo));
+                System.out.println(Frame.getInstance().myMaze.mazeTile(Frame.getInstance().myMaze.getLogoTopCorner()[0], Frame.getInstance().myMaze.getLogoTopCorner()[1]).getImage());
+                BufferedImage bi = ImageProcessing.fromByteArray(myMaze.mazeTile(Frame.getInstance().myMaze.getLogoTopCorner()[0], Frame.getInstance().myMaze.getLogoTopCorner()[1]).getImage());
+
+                ImageIcon imageIcon = new ImageIcon(bi);
+                JLabel centreim = new JLabel(imageIcon);
+
+                centreim.setBounds((int) Math.floor(xposition + (Frame.getInstance().myMaze.getLogoTopCorner()[0]) * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + (Frame.getInstance().myMaze.getLogoTopCorner()[1]) * between_walls * scale_factor), (int) Math.floor(Integer.parseInt(logoCellSize)*between_walls*scale_factor), (int) Math.floor(Integer.parseInt(logoCellSize)*between_walls*scale_factor));
+
+                centreim.setVisible(true);
+                window2.add(centreim);
+                System.out.println("added im");
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        SwingUtilities.updateComponentTreeUI(window2);
         window2.setVisible(true);
     }
 

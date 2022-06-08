@@ -15,7 +15,7 @@ public class ChildrenMaze extends Maze {
     }
     @Override
     public byte[] getEndImage() {
-        return this.mazeTile(this.getEnd()[0],this.getEnd()[1]).getEndImage();
+        return this.mazeTile(this.getEnd()[0],this.getEnd()[1]).getImage();
     }
 
 }

@@ -193,6 +193,31 @@ public class Util {
 
         Render.drawSolution(mazeSolution);
     }
+    /**
+     * Generate a bounding area for a JButton to enable appropriate scaling based on a variety of inputs
+     * Overloaded to compensate
+     * @author Jayden and Jack
+     */
+    public static int[] generateBounds(int xposition, int x, int between_walls, double scale_factor, int yposition, int y, int wallWidth, int wallLength){
+        int[] bounds = {(int) Math.floor(xposition + x * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + y * between_walls * scale_factor), (int) Math.floor(wallWidth * scale_factor), (int) Math.floor(wallLength * scale_factor)};
+        return bounds;
+    }
+
+    public static int[] generateBounds(int x, int wallLength, int wallWidth, int y, double scale_factor){
+        int[] bounds={(int) Math.floor(((x * (wallLength + wallWidth)) + (wallLength/4))*scale_factor), (int) Math.floor(((y * (wallLength + wallWidth)) + (wallLength/4))*scale_factor), (int) Math.floor(40 * scale_factor), (int) Math.floor(40 * scale_factor)};
+        return bounds;
+    }
+
+    public static int[] generateBounds(double scale_factor, int xposition, int i, int between_walls, int yposition, int y, int wallLength, int wallWidth){
+        int[] bounds = {(int) Math.floor(10 *scale_factor+xposition + i * between_walls * scale_factor), (int) Math.floor(yposition + y * between_walls * scale_factor),(int) Math.floor( wallLength * scale_factor),(int) Math.floor( wallWidth * scale_factor)};
+        return bounds;
+    }
+
+    public static int[] generateBoundsLoop(int xposition,int x, int between_walls, double scale_factor, int yposition, int i, int wallWidth, int wallLength){
+        int[] bounds= { (int) Math.floor(xposition + x * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + i * between_walls * scale_factor), (int) Math.floor(wallWidth * scale_factor), (int) Math.floor(wallLength * scale_factor)};
+        return bounds;
+    }
+
 
 
 }

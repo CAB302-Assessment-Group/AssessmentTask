@@ -700,6 +700,10 @@ public class Frame {
 
                 window2.setVisible(true);
                 MetricsWindow.setVisible(true);
+
+                Startlogo = null;
+                Endlogo = null;
+                Centerlogo = null;
             }
         });
 

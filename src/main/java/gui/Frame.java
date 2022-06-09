@@ -396,7 +396,7 @@ public class Frame {
         showSolutionCHKBOX.setSelected(true);
 
         JButton clearAllIm = new JButton("Clear All Images");
-        clearAllIm.setBounds( 10,490,150,20);
+        clearAllIm.setBounds( 160,490,150,20);
 
         window.add(showSolutionLBL);
         window.add(showSolutionCHKBOX);

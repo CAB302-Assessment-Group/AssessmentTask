@@ -46,6 +46,10 @@ public class Render {
         return true;
     }
 
+    /**
+     * @author Hudson
+     * resets the solution for a given maze
+     */
     public static void resetSolution() {
         // reset states of maze object
         for (int x = 0; x < Frame.getInstance().myMaze.mazeSize()[0]; x++) {
@@ -169,7 +173,7 @@ public class Render {
      * @param generated
      * @param showSolution
      * @param renderSolution
-     * @author Jayden and Jack
+     * @author Hudson, Jayden, and Jack
      */
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution, boolean renderSolution) {
         window2.getContentPane().removeAll();
@@ -186,31 +190,16 @@ public class Render {
         if(Frame.screenHeight<1100){
             resolution_scale=1.5;
         }
-        if(largerdim<=10){
-            window2.setSize(300,300);
-            scale_factor = 5.0/largerdim/resolution_scale;
-        } else if (largerdim>10 && largerdim<15) {
-            window2.setSize(500,500);
-            scale_factor = 7.5/largerdim/resolution_scale;
-        } else if (largerdim>=15 && largerdim<30){
-            window2.setSize(575,575);
-            scale_factor = 10.0/largerdim/resolution_scale;
-        } else if (largerdim>=30 && largerdim<50){
-            window2.setSize(800,800);
-            scale_factor = 15.0/largerdim/resolution_scale;
-        } else if (largerdim>=50 && largerdim<60) {
-            window2.setSize(1050, 1050);
-            scale_factor = 20.0 / largerdim/resolution_scale;
-        } else if (largerdim>=60 && largerdim<75) {
-            window2.setSize(1300, 1300);
-            scale_factor = 25.0 / largerdim/resolution_scale;
-        } else if (largerdim>=75 && largerdim<85) {
-            window2.setSize(1500, 1500);
-            scale_factor = 26.0 / largerdim/resolution_scale;
-        } else {
-            window2.setSize(1600,1600);
-            scale_factor = 27.0/largerdim/resolution_scale;
-        }
+
+        // set the scaling factor
+        if(largerdim<=10) scale_factor = 5.0/largerdim/resolution_scale;
+        else if (largerdim>10 && largerdim<15) scale_factor = 7.5/largerdim/resolution_scale;
+        else if (largerdim>=15 && largerdim<30) scale_factor = 10.0/largerdim/resolution_scale;
+        else if (largerdim>=30 && largerdim<50) scale_factor = 15.0/largerdim/resolution_scale;
+        else if (largerdim>=50 && largerdim<60) scale_factor = 20.0 / largerdim/resolution_scale;
+        else if (largerdim>=60 && largerdim<75) scale_factor = 25.0 / largerdim/resolution_scale;
+        else if (largerdim>=75 && largerdim<85) scale_factor = 26.0 / largerdim/resolution_scale;
+        else scale_factor = 27.0/largerdim/resolution_scale;
 
         System.out.println(scale_factor);
         //maze generation starting
@@ -443,6 +432,18 @@ public class Render {
                 System.out.println(e.getMessage());
             }
         }
+        window2.pack();
+
+        // set the window size
+        if(largerdim<=10) window2.setSize(300,300);
+        else if (largerdim>10 && largerdim<15) window2.setSize(500,500);
+        else if (largerdim>=15 && largerdim<30) window2.setSize(575,575);
+        else if (largerdim>=30 && largerdim<50) window2.setSize(800,800);
+        else if (largerdim>=50 && largerdim<60) window2.setSize(1050, 1050);
+        else if (largerdim>=60 && largerdim<75) window2.setSize(1300, 1300);
+        else if (largerdim>=75 && largerdim<85) window2.setSize(1500, 1500);
+        else window2.setSize(1600,1600);
+
         window2.setVisible(true);
         SwingUtilities.updateComponentTreeUI(window2);
     }

@@ -265,13 +265,13 @@ public class Frame {
             loadMazeAuthor.setBounds(100, (i * 30) + 5, 300, 30);
 
             loadBTN.addActionListener(action -> {
-                try {
-                    Endlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.mazeSize()[0], loadingMaze.mazeSize()[0]).getImage());
-                    Startlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(0,0).getImage());
-                    Centerlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.getLogoTopCorner()[0],loadingMaze.getLogoTopCorner()[0]).getImage());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Endlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.mazeSize()[0], loadingMaze.mazeSize()[0]).getImage());
+//                    Startlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(0,0).getImage());
+//                    Centerlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.getLogoTopCorner()[0],loadingMaze.getLogoTopCorner()[0]).getImage());
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
                 SwingUtilities.updateComponentTreeUI(window2);
                 Render.renderMazeOBJ(loadingMaze, true);
 

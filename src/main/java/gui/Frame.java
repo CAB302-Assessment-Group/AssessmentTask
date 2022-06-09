@@ -395,6 +395,9 @@ public class Frame {
         showSolutionCHKBOX.setBounds(290,650,20,20);
         showSolutionCHKBOX.setSelected(true);
 
+        JButton clearAllIm = new JButton("Clear All Images");
+        clearAllIm.setBounds( 10,490,150,20);
+
         window.add(showSolutionLBL);
         window.add(showSolutionCHKBOX);
 
@@ -421,6 +424,7 @@ public class Frame {
 
         window.add(ChildrensMazeButton);
         window.add(StandardMazeButton);
+        window.add(clearAllIm);
         /*
         window.add(EasyDifficultyButton);
         window.add(MediumDifficultyButton);
@@ -639,7 +643,14 @@ public class Frame {
                 }
             }
         });
-
+        clearAllIm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Startlogo = null;
+                Endlogo = null;
+                Centerlogo = null;
+            }
+        });
         GenerateBlankMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -665,9 +676,7 @@ public class Frame {
                 window2.setVisible(true);
                 MetricsWindow.setVisible(true);
 
-                Startlogo = null;
-                Endlogo = null;
-                Centerlogo = null;
+
             }
         });
 
@@ -705,9 +714,7 @@ public class Frame {
                 window2.setVisible(true);
                 MetricsWindow.setVisible(true);
 
-                Startlogo = null;
-                Endlogo = null;
-                Centerlogo = null;
+
             }
         });
 

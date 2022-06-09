@@ -172,6 +172,8 @@ public class Render {
      * @author Jayden and Jack
      */
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution, boolean renderSolution) {
+        window2.getContentPane().removeAll();
+        window2.repaint();
         int largerdim;
         if(myMaze.mazeSize()[0] > myMaze.mazeSize()[1]){
             largerdim = myMaze.mazeSize()[0];
@@ -441,8 +443,8 @@ public class Render {
                 System.out.println(e.getMessage());
             }
         }
-        SwingUtilities.updateComponentTreeUI(window2);
         window2.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(window2);
     }
 
     /**

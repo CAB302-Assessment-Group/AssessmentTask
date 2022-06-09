@@ -272,6 +272,7 @@ public class Frame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                SwingUtilities.updateComponentTreeUI(window2);
                 Render.renderMazeOBJ(loadingMaze, true);
 
             });

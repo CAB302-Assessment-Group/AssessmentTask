@@ -13,11 +13,15 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import maze.core.image.ImageProcessing;
+import maze.core.util;
 
 public class Frame {
     public int[] mazeSize = new int[2];
@@ -115,12 +119,16 @@ public class Frame {
         JButton OpenExistingMaze = new JButton("Open Existing Maze");
         OpenExistingMaze.setBounds(50, 100, 150, 20);
 
+        JButton ExportMazes = new JButton("Mass Export Mazes");
+        ExportMazes.setBounds(50, 150, 150, 20);
+
         JButton Exit = new JButton(("Exit"));
-        Exit.setBounds(50,150,150,20);
+        Exit.setBounds(50,200,150,20);
 
         window.add(Title);
         window.add(CreateNewMaze);
         window.add(OpenExistingMaze);
+        window.add(ExportMazes);
         window.add(Exit);
 
         // on CreateNewMaze button press move to SelectOption Screen
@@ -137,6 +145,13 @@ public class Frame {
             }
         });
 
+        ExportMazes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ExportMazes();
+            }
+        });
+
         // on Exit button press close window
         Exit.addActionListener(new ActionListener() {
             @Override
@@ -146,6 +161,117 @@ public class Frame {
         });
     }
 
+    public void ExportMazes(){
+        window.getContentPane().removeAll();
+        window.getContentPane().repaint();
+
+        // set frame location to center of screen
+        window.setLocation(screenWidth/2 -(500/2), screenHeight/16);
+        window.setSize(500, 300);
+        JButton Back = new JButton(("Back"));
+        Back.setBounds(10,10,75,20);
+
+        showAll();
+
+        window.add(Back);
+        Back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window3.setVisible(false);
+                MainMenu();
+            }
+        });
+
+
+
+
+    }
+
+    public ArrayList<Maze> getAllMazes(){
+        Connection connection = Database.getInstance();
+
+        ArrayList<Maze> mazeList = new ArrayList<Maze>();
+        try
+        {
+            String query = "select * from mazes";
+            PreparedStatement SQLselection = connection.prepareStatement(query);
+//            ps.setString(1, mazeName);
+            ResultSet rs = SQLselection.executeQuery();
+            while(rs.next())
+            {
+                byte[] blobAsBytes = rs.getBytes(6);
+
+                Maze myMaze = new Maze(new int[] { 100, 100 });
+                myMaze = util.deserialize(blobAsBytes);
+                mazeList.add(myMaze);
+
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return mazeList;
+    }
+
+    public void showAll(){
+        window3.setLayout(null);
+
+        window3.getContentPane().removeAll();
+        window3.getContentPane().repaint();
+
+        // set frame location to center of screen
+        window3.setLocation(screenWidth/2 -(500/2), screenHeight/16+300);
+        window3.setSize(500, 300);
+
+        window3.setVisible(true);
+
+        Database db = new Database();
+        db.getInstance();
+        ArrayList<Maze> mazeList = getAllMazes();
+        JLabel SearchResultsTitle = new JLabel("Search Results");
+        SearchResultsTitle.setBounds((500/2) - (100/2),10,100,20);
+
+        JTable SearchResultsTable = new JTable();
+        SearchResultsTable.setBounds(50,30,400,120);
+
+        // render the mazes that have been loaded from the database in a list
+        for (int i = 0; i < mazeList.size(); i++) {
+            Maze loadingMaze = mazeList.get(i);
+
+            System.out.println(loadingMaze.getMazeName());
+
+            JButton loadBTN = new JButton("Load");
+            loadBTN.setBounds(0, i * 30, 100, 30);
+
+            JLabel loadMazeName = new JLabel("Maze Name: " + loadingMaze.getMazeName());
+            loadMazeName.setBounds(100, i * 30, 100, 30);
+
+            JLabel loadMazeAuthor = new JLabel("Author: " + loadingMaze.getAuthor());
+            loadMazeAuthor.setBounds(200, i * 30, 200, 30);
+
+            loadBTN.addActionListener(action -> {
+                try {
+                    Endlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.mazeSize()[0], loadingMaze.mazeSize()[0]).getImage());
+                    Startlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(0,0).getImage());
+                    Centerlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.getLogoTopCorner()[0],loadingMaze.getLogoTopCorner()[0]).getImage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Render.renderMazeOBJ(loadingMaze, true);
+
+            });
+
+            SearchResultsTable.add(loadBTN);
+            SearchResultsTable.add(loadMazeName);
+            SearchResultsTable.add(loadMazeAuthor);
+        }
+
+        window3.add(SearchResultsTable);
+
+        window3.setVisible(false);
+        window3.setVisible(true);
+    }
 
     public void OpenExistingMaze(){
         window.getContentPane().removeAll();

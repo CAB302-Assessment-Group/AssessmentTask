@@ -30,6 +30,13 @@ public class util {
         }
     }
 
+    /**
+     * Finds the union between two sets
+     * @author Hudson
+     * @param a1 array 1
+     * @param a2 array 2
+     * @return a union of the two sets
+     */
     public static boolean[] U(boolean[] a1, boolean[] a2) {
         for (int i = 0; i < a1.length; i++) {
             if (a1[i] != a2[i]) {

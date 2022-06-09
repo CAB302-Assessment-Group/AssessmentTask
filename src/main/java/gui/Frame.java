@@ -84,12 +84,6 @@ public class Frame {
         window3 = new JFrame("Search Results");
         window3.setVisible(false);
 
-
-
-
-
-
-
         MainMenu();
         // initialise("","");
 
@@ -385,19 +379,22 @@ public class Frame {
             loadBTN.setBounds(0, i * 30, 100, 30);
 
             JLabel loadMazeName = new JLabel("Maze Name: " + loadingMaze.getMazeName());
-            loadMazeName.setBounds(100, i * 30, 100, 30);
+            loadMazeName.setBounds(100, (i * 30) - 10, 300, 30);
 
             JLabel loadMazeAuthor = new JLabel("Author: " + loadingMaze.getAuthor());
-            loadMazeAuthor.setBounds(200, i * 30, 200, 30);
+            loadMazeAuthor.setBounds(100, (i * 30) + 5, 300, 30);
 
             loadBTN.addActionListener(action -> {
-                try {
-                    Endlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.mazeSize()[0], loadingMaze.mazeSize()[0]).getImage());
-                    Startlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(0,0).getImage());
-                    Centerlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.getLogoTopCorner()[0],loadingMaze.getLogoTopCorner()[0]).getImage());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Endlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.mazeSize()[0], loadingMaze.mazeSize()[0]).getImage());
+//                    Startlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(0,0).getImage());
+//                    Centerlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.getLogoTopCorner()[0],loadingMaze.getLogoTopCorner()[0]).getImage());
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+                Frame.initialise();
+                Frame.getInstance().myMaze = loadingMaze;
+                SwingUtilities.updateComponentTreeUI(window2);
                 Render.renderMazeOBJ(loadingMaze, true);
 
             });
@@ -622,68 +619,63 @@ public class Frame {
 		ExportMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Todo refactor as a method
 
-                // Save to database first (make method)
-                String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
-                Frame.getInstance().myMaze.setAuthor(MazeAuthorInput.getText());
-                Frame.getInstance().myMaze.setMazeName(MazeNameInput.getText());
-                Frame.getInstance().myMaze.setDateCreated(timeStamp);
-                Frame.getInstance().myMaze.setDateEdited(timeStamp);
-                Frame.getInstance().myMaze.SetLastEditor(MazeAuthorInput.getText());
-                Database.exportMaze(Frame.getInstance().myMaze);
+                // Save to database first
+                if(Util.UpdateMazeFromInput(MazeAuthorInput.getText(),MazeNameInput.getText())){
 
 
-                Solver solver2 = new Solver();
-                try{
-                    solver2.DFS(Frame.getInstance().myMaze,
-                            new Integer[]{Frame.getInstance().myMaze.getStart()[0],
-                                    Frame.getInstance().myMaze.getStart()[1]});
-                }catch(Exception solverError){
-                    solver2.DFS(Frame.getInstance().myMaze,new Integer[]{0,0});
-                }
-
-                if(solver2.tilesVisited()>0) {
-                    JFileChooser exportFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
-                    // From https://stackoverflow.com/questions/10621687/how-to-get-full-path-directory-from-file-chooser
-                    exportFile.setCurrentDirectory(new java.io.File("."));
-                    exportFile.setDialogTitle("Export Maze");
-                    exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                    exportFile.setAcceptAllFileFilterUsed(false);
-
-
-                    String fileLocation ="";
-                    if (exportFile.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-                        fileLocation = exportFile.getSelectedFile().getAbsolutePath();
-                    } else {
-                        System.out.println("No Selection ");
-                        PopUp popUp = new PopUp("Please select a location");
+                    Solver solver2 = new Solver();
+                    try{
+                        solver2.DFS(Frame.getInstance().myMaze,
+                                new Integer[]{Frame.getInstance().myMaze.getStart()[0],
+                                        Frame.getInstance().myMaze.getStart()[1]});
+                    }catch(Exception solverError){
+                        solver2.DFS(Frame.getInstance().myMaze,new Integer[]{0,0});
                     }
-                    try {
-                        if(MazeNameInput.getText()!=""){
-                            if(showSolutionCHKBOX.isSelected()){
-                                //Generate solution + unsolved maze
 
-                                System.out.println(solver2.tilesVisited());
+                    if(solver2.tilesVisited()>0) {
+                        JFileChooser exportFile = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
+                        // From https://stackoverflow.com/questions/10621687/how-to-get-full-path-directory-from-file-chooser
+                        exportFile.setCurrentDirectory(new java.io.File("."));
+                        exportFile.setDialogTitle("Export Maze");
+                        exportFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                        exportFile.setAcceptAllFileFilterUsed(false);
 
-                                ImageProcessing.ExportImage(window2,fileLocation,
-                                        Frame.getInstance().myMaze.getMazeName()+"Solution");
-                                showSolutionCHKBOX.doClick();
-                                ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
-                                showSolutionCHKBOX.doClick();
-                                Frame.solveMyMaze();
-                            } else {
-                                //Generate just unsolved maze
-                                ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
-                            }
+
+                        String fileLocation ="";
+                        if (exportFile.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+                            fileLocation = exportFile.getSelectedFile().getAbsolutePath();
+                        } else {
+                            System.out.println("No Selection ");
+                            PopUp popUp = new PopUp("Please select a location");
                         }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
+                        try {
+                            if(MazeNameInput.getText()!=""){
+                                if(showSolutionCHKBOX.isSelected()){
+                                    //Generate solution + unsolved maze
+                                    System.out.println(solver2.tilesVisited());
+                                    ImageProcessing.ExportImage(window2,fileLocation,
+                                            Frame.getInstance().myMaze.getMazeName()+"Solution");
+                                    showSolutionCHKBOX.doClick();
+                                    ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                                    showSolutionCHKBOX.doClick();
+                                    Frame.solveMyMaze();
+                                } else {
+                                    //Generate just unsolved maze
+                                    ImageProcessing.ExportImage(window2,fileLocation,Frame.getInstance().myMaze.getMazeName());
+                                }
+                            }
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Maze is not solvable");
+                        PopUp popUp = new PopUp("Maze is not solvable");
                     }
                 } else {
-                    System.out.println("Maze is not solvable");
-                    PopUp popUp = new PopUp("Maze is not solvable");
+                    PopUp popUp = new PopUp("Could not export");
                 }
+
 
 
             }
@@ -719,10 +711,10 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView());
                 importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                importFile.showOpenDialog(null);
 
-                File file = new File(importFile.getSelectedFile().toString());
+
                 if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    File file = new File(importFile.getSelectedFile().toString());
                     try {
                         Centerlogo = ImageProcessing.GetLogo(file);
                     } catch (IOException ex) {
@@ -740,10 +732,10 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView());
                 importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                importFile.showOpenDialog(null);
 
-                File file = new File(importFile.getSelectedFile().toString());
+
                 if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    File file = new File(importFile.getSelectedFile().toString());
                     try {
                         Startlogo = ImageProcessing.GetLogo(file);
                     } catch (IOException ex) {
@@ -761,10 +753,10 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView());
                 importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                importFile.showOpenDialog(null);
 
-                File file = new File(importFile.getSelectedFile().toString());
+
                 if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    File file = new File(importFile.getSelectedFile().toString());
                     try {
                         Endlogo = ImageProcessing.GetLogo(file);
                     } catch (IOException ex) {
@@ -826,7 +818,7 @@ public class Frame {
                 try {
                     if(solver.tilesVisited()<=0){
                         int count = 0;
-                        while(solver.tilesVisited()<=0 && count<100){
+                        while(solver.tilesVisited()<=0 && count<5){
                             Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
                             SetMetrics(MetricsWindow);
                             count++;

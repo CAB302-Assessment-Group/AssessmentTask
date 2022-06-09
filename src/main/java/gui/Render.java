@@ -29,39 +29,13 @@ public class Render {
     private static int[] mazeSize = Frame.getInstance().mazeSize;
     public static Maze currentMaze = Frame.getInstance().myMaze;
     /**
-     * Validates user input for sizing maze
-     * @author Hudson
-     * @param inputs The width and height specified by the user
-     * @return True if input is a number and not less than or equal to 0. False if not
-     */
-    public static boolean validateInput(String[] inputs) {
-        for (int i = 0; i < inputs.length; i++) {
-            try {
-                if (Integer.parseInt(inputs[i]) <= 0) return false;
-            } catch(Exception e) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public static void resetSolution() {
-        // reset states of maze object
-        for (int x = 0; x < Frame.getInstance().myMaze.mazeSize()[0]; x++) {
-            for (int y = 0; y < Frame.getInstance().myMaze.mazeSize()[1]; y++) {
-                Frame.getInstance().myMaze.mazeTile(x, y).setState(false);
-            }
-        }
-    }
-
-    /**
+    
      * Draws the optimal solution
      * @author Hudson
      * @param solution the solution steps (found by calling solution.DFS(<Maze>))
      */
     public static void drawSolution(ArrayList<Integer[]> solution) {
-        resetSolution();
+        Util.resetSolution();
 
         // set states of maze object to solution
         for (int i = 0; i < solution.size(); i++) {
@@ -80,7 +54,7 @@ public class Render {
 
     public static void toggleSolutionVisualisation(boolean state) {
         if (state) {
-            resetSolution();
+            Util.resetSolution();
             Frame.solveMyMaze();
         } else {
             window2.setLayout(null);
@@ -112,7 +86,8 @@ public class Render {
         //System.out.println(width);
         //System.out.println(height);
 
-        if (!validateInput(inputs)) {
+        
+        if (!Util.validateInput(inputs)) {
             System.out.println("[ERROR] Invalid maze size...");
             PopUp errorMessage = new PopUp("[ERROR] Invalid maze size...");
             return;
@@ -122,18 +97,10 @@ public class Render {
 
         //System.out.println(width.trim()+", "+height.trim());
         logoSize+="";
-        int logoSizeInt = -1;
-        try{
-            System.out.println(logoSize.trim()=="");
-            if(logoSize.trim()==""){
-                logoSize = "0";
-            }
-            logoSizeInt = Integer.parseInt(logoSize);
-        }catch(Exception e){
-            System.out.println("[ERROR] Invalid logo size...");
-            PopUp errorMessage = new PopUp("[ERROR] Invalid logo size...");
-            return;
-        }
+
+        int logoSizeInt = Util.getLogoSize(logoSize);
+
+
 
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
         currentMaze = new Maze(mazeSize); //need to pass child maze param
@@ -169,57 +136,16 @@ public class Render {
      * @param generated
      * @param showSolution
      * @param renderSolution
-     * @author Jayden and Jack
+     * @author Hudson, Jayden, and Jack
      */
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution, boolean renderSolution) {
-        int largerdim;
-        if(myMaze.mazeSize()[0] > myMaze.mazeSize()[1]){
-            largerdim = myMaze.mazeSize()[0];
-        }else{
-            largerdim = myMaze.mazeSize()[1];
-        }
-        double scale_factor = 25.0/largerdim;
-        double resolution_scale=1;
-        //Scaling logic which is also suitable for exporting as an image
-        if(Frame.screenHeight<1100){
-            resolution_scale=1.5;
-        }
-        if(largerdim<=10){
-            window2.setSize(300,300);
-            scale_factor = 5.0/largerdim/resolution_scale;
-        } else if (largerdim>10 && largerdim<15) {
-            window2.setSize(500,500);
-            scale_factor = 7.5/largerdim/resolution_scale;
-        } else if (largerdim>=15 && largerdim<30){
-            window2.setSize(575,575);
-            scale_factor = 10.0/largerdim/resolution_scale;
-        } else if (largerdim>=30 && largerdim<50){
-            window2.setSize(800,800);
-            scale_factor = 15.0/largerdim/resolution_scale;
-        } else if (largerdim>=50 && largerdim<60) {
-            window2.setSize(1050, 1050);
-            scale_factor = 20.0 / largerdim/resolution_scale;
-        } else if (largerdim>=60 && largerdim<75) {
-            window2.setSize(1300, 1300);
-            scale_factor = 25.0 / largerdim/resolution_scale;
-        } else if (largerdim>=75 && largerdim<85) {
-            window2.setSize(1500, 1500);
-            scale_factor = 26.0 / largerdim/resolution_scale;
-        } else {
-            window2.setSize(1600,1600);
-            scale_factor = 27.0/largerdim/resolution_scale;
-        }
-
-        System.out.println(scale_factor);
+        
         //maze generation starting
         // on frame
 
-
         int xposition = 0;
         int yposition = 0;
-
-
-
+        double scale_factor = Util.scaleFactor(getInstance().myMaze.largestDimension(), screenHeight);
 
         int wallLength = 40;
         int wallWidth = 10;
@@ -234,8 +160,9 @@ public class Render {
             for (int y = 0; y < myMaze.mazeSize()[1]; y++) {
                 // border styling
                 JButton tempBTN = new JButton("");
-                //tempBTN.setBounds(10 + x * 50, 75 + y * 50, 40, 10);
-                tempBTN.setBounds((int) Math.floor(10 * scale_factor + xposition + x * (between_walls) * (scale_factor)), (int) Math.floor(yposition + y * between_walls * scale_factor), (int) Math.floor(wallLength * scale_factor), (int) Math.floor(wallWidth * scale_factor));
+                int [] bounds = Util.generateBounds(scale_factor,xposition,x,between_walls,yposition,y,wallLength,wallWidth);
+                tempBTN.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
+                //tempBTN.setBounds((int) Math.floor(10 * scale_factor + xposition + x * (between_walls) * (scale_factor)), (int) Math.floor(yposition + y * between_walls * scale_factor), (int) Math.floor(wallLength * scale_factor), (int) Math.floor(wallWidth * scale_factor));
                 int finalX = x;
                 int finalY = y;
                 tempBTN.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN, true));
@@ -254,31 +181,12 @@ public class Render {
                     label.setLocation(0,0);
                     window2.add(label);
                 }
-
-
-
-
-                /*if(y==0){
-                    myMaze.mazeTile(finalX,finalY).setTopWall(true);
-                }
-
-                 */
-                // change container from window to MazeGenerationPanel
-                //MazeGenerationPanel.add(tempBTN);
-
-
-                //System.out.println(finalX + ","+finalY + myMaze.mazeTile(finalX,finalY).TopWall());
-
-
-                //MazeGenerationPanel.add(tempBTN);
-
-                //window.add(tempBTN);
                 tempBTN.setBorderPainted(false);
                 window2.add(tempBTN);
 
                 JButton tempBTN2 = new JButton("");
-                //tempBTN2.setBounds(x * 50, 10+75 + y * 50, 10, 40);
-                tempBTN2.setBounds((int) Math.floor(xposition + x * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + y * between_walls * scale_factor), (int) Math.floor(wallWidth * scale_factor), (int) Math.floor(wallLength * scale_factor));
+                bounds = Util.generateBounds(xposition,x,between_walls,scale_factor,yposition,y,wallWidth,wallLength);
+                tempBTN2.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
                 tempBTN2.addActionListener(action -> mazeButtonPressed(finalX,finalY, tempBTN2, false));
 
                 if(!generated && x==0){
@@ -286,8 +194,6 @@ public class Render {
                 }
 
 
-                // change container from window to MazeGenerationPanel
-                //MazeGenerationPanel.add(tempBTN2);
 
                 // Render wall colours
                 // left-right
@@ -303,7 +209,8 @@ public class Render {
                 boolean tileState = myMaze.mazeTile(finalX, finalY).GetState();
                 if (tileState && renderSolution) {
                     JButton solveStep = new JButton("");
-                    solveStep.setBounds((int) Math.floor(((x * (wallLength + wallWidth)) + (wallLength/4))*scale_factor), (int) Math.floor(((y * (wallLength + wallWidth)) + (wallLength/4))*scale_factor), (int) Math.floor(40 * scale_factor), (int) Math.floor(40 * scale_factor));
+                    bounds = Util.generateBounds(x,wallLength,wallWidth,y,scale_factor);
+                    solveStep.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
                     solveStep.setBackground(Color.RED);
 
                     solveStep.setBorderPainted(false);
@@ -319,7 +226,8 @@ public class Render {
 
         for(int i = 0; i < myMaze.mazeSize()[1]; i++){
             JButton tempBTN2 = new JButton("");
-            //tempBTN2.setBounds(myMaze.mazeSize()[0] * 50, 10+75 + i * 50, 10, 40);
+            int[] bounds = Util.generateBoundsLoop(xposition, myMaze.mazeSize()[0], between_walls, scale_factor, yposition,i,wallWidth,wallWidth);
+            tempBTN2.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
             tempBTN2.setBounds((int) Math.floor(xposition + myMaze.mazeSize()[0] * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + i * between_walls * scale_factor), (int) Math.floor(wallWidth * scale_factor), (int) Math.floor(wallLength * scale_factor));
             int finalX = myMaze.mazeSize()[0];
             int finalY = i;
@@ -338,8 +246,10 @@ public class Render {
 
         for(int i = 0; i < myMaze.mazeSize()[0]; i++){
             JButton tempBTN = new JButton("");
-            //tempBTN.setBounds(10 + i * 50, 75 + myMaze.mazeSize()[1] * 50, 40, 10);
-            tempBTN.setBounds((int) Math.floor(10 *scale_factor+xposition + i * between_walls * scale_factor), (int) Math.floor(yposition + myMaze.mazeSize()[1] * between_walls * scale_factor),(int) Math.floor( wallLength * scale_factor),(int) Math.floor( wallWidth * scale_factor));
+            int[] bounds1 = Util.generateBounds(scale_factor,xposition,i,between_walls,yposition,myMaze.mazeSize()[1],wallLength,wallWidth);
+            tempBTN.setBounds(bounds1[0],bounds1[1],bounds1[2],bounds1[3]);
+            //tempBTN.setBounds((int) Math.floor(10 *scale_factor+xposition + i * between_walls * scale_factor), (int) Math.floor(yposition + myMaze.mazeSize()[1] * between_walls * scale_factor),(int) Math.floor( wallLength * scale_factor),(int) Math.floor( wallWidth * scale_factor));
+
             int finalX = i;
             int finalY = myMaze.mazeSize()[1];
             if(!generated){
@@ -371,78 +281,51 @@ public class Render {
         Frame.getInstance().myMaze = myMaze;
 
         if (showSolution) {
-//            System.out.println("Got here");
-            Solver mazeSolver = new Solver();
-
-            Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
-
-            ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
-
-            Render.drawSolution(mazeSolution);
+            Util.drawSolution();
         }
 
         window2.setVisible(false);
 
         if(Startlogo != null && childMaze){
-            System.out.println("Found im");
+            System.out.println("Found startim");
             try{
                 Frame.getInstance().myMaze.mazeTile(0,0).setImage(ImageProcessing.toByteArray(Startlogo));
-                System.out.println(Frame.getInstance().myMaze.mazeTile(0,0).getImage());
                 BufferedImage bi = ImageProcessing.fromByteArray(myMaze.mazeTile(0,0).getImage());
-
-                ImageIcon imageIcon = new ImageIcon(bi);
-                JLabel startim = new JLabel(imageIcon);
-
-                startim.setBounds((int) Math.floor(xposition + 0 * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + 0 * between_walls * scale_factor), (int) Math.floor(2*between_walls*scale_factor), (int) Math.floor(2*between_walls*scale_factor));
-
-                startim.setVisible(true);
-                window2.add(startim);
-                System.out.println("added im");
+                int bounds[] = Util.generateBounds(xposition,between_walls,scale_factor,yposition);
+                window2.add(ImageProcessing.drawLogo(bounds,bi));
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
 
         }
         if(Endlogo != null && childMaze){
-            System.out.println("Found im");
+            System.out.println("Found endim");
             try{
                 Frame.getInstance().myMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1 ).setImage(ImageProcessing.toByteArray(Endlogo));
-                System.out.println(Frame.getInstance().myMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1).getImage());
-                BufferedImage bi = ImageProcessing.fromByteArray(myMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1).getImage());
-
-                ImageIcon imageIcon = new ImageIcon(bi);
-                JLabel endim = new JLabel(imageIcon);
-
-                endim.setBounds((int) Math.floor(xposition + (mazeSize[0]-2) * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + (mazeSize[1]-2) * between_walls * scale_factor), (int) Math.floor(2*between_walls*scale_factor), (int) Math.floor(2*between_walls*scale_factor));
-
-                endim.setVisible(true);
-                window2.add(endim);
-                System.out.println("added im");
+                int[] bounds = Util.generateBounds(xposition,between_walls,scale_factor,yposition,mazeSize[0],mazeSize[1]);
+                window2.add(ImageProcessing.drawLogo(bounds, getInstance().myMaze,mazeSize[0],mazeSize[1]));
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
         }
         if(Centerlogo != null){
-            System.out.println("Found im");
+            System.out.println("Found centerim");
             try{
-                Frame.getInstance().myMaze.mazeTile(Frame.getInstance().myMaze.getLogoTopCorner()[0], Frame.getInstance().myMaze.getLogoTopCorner()[1]).setImage(ImageProcessing.toByteArray(Centerlogo));
-                System.out.println(Frame.getInstance().myMaze.mazeTile(Frame.getInstance().myMaze.getLogoTopCorner()[0], Frame.getInstance().myMaze.getLogoTopCorner()[1]).getImage());
-                BufferedImage bi = ImageProcessing.fromByteArray(myMaze.mazeTile(Frame.getInstance().myMaze.getLogoTopCorner()[0], Frame.getInstance().myMaze.getLogoTopCorner()[1]).getImage());
-
-                ImageIcon imageIcon = new ImageIcon(bi);
-                JLabel centreim = new JLabel(imageIcon);
-
-                centreim.setBounds((int) Math.floor(xposition + (Frame.getInstance().myMaze.getLogoTopCorner()[0]) * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + (Frame.getInstance().myMaze.getLogoTopCorner()[1]) * between_walls * scale_factor), (int) Math.floor(Integer.parseInt(logoCellSize)*between_walls*scale_factor), (int) Math.floor(Integer.parseInt(logoCellSize)*between_walls*scale_factor));
-
-                centreim.setVisible(true);
-                window2.add(centreim);
+                int bounds[] = Util.generateBounds(xposition,Frame.getInstance().myMaze.getLogoTopCorner()[0],between_walls,scale_factor,yposition);
+                window2.add(ImageProcessing.drawLogo(bounds, getInstance().myMaze));
                 System.out.println("added im");
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
         }
-        SwingUtilities.updateComponentTreeUI(window2);
+        window2.pack();
+
+        // set the window size
+        int [] size = Util.windowScaledSize(getInstance().myMaze.largestDimension(), screenHeight);
+        window2.setSize(size[0],size[1]);
+
         window2.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(window2);
     }
 
     /**

@@ -202,8 +202,10 @@ public class Database {
                 byte[] blobAsBytes = rs.getBytes(6);
 
                 Maze myMaze = new Maze(new int[] { 100, 100 });
-                myMaze = util.deserialize(blobAsBytes);
-                mazeList.add(myMaze);
+                try {
+                    myMaze = util.deserialize(blobAsBytes);
+                    mazeList.add(myMaze);
+                } catch(Exception e) {}
 
             }
         }

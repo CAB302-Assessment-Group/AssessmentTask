@@ -272,6 +272,8 @@ public class Frame {
 //                } catch (Exception e) {
 //                    e.printStackTrace();
 //                }
+                Frame.initialise();
+                Frame.getInstance().myMaze = loadingMaze;
                 SwingUtilities.updateComponentTreeUI(window2);
                 Render.renderMazeOBJ(loadingMaze, true);
 

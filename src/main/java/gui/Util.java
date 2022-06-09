@@ -24,7 +24,7 @@ public class Util {
             resolution_scale=1.25;
         }
         if(largerDim<=10){
-            scale_factor = 5.0/largerDim/resolution_scale;
+            scale_factor = 4.0/largerDim/resolution_scale;
         } else if (largerDim>10 && largerDim<15) {
             scale_factor = 7.5/largerDim/resolution_scale;
         } else if (largerDim>=15 && largerDim<30){
@@ -227,6 +227,11 @@ public class Util {
         int[] bounds= { (int) Math.floor(xposition + topCorner * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + (Frame.getInstance().myMaze.getLogoTopCorner()[1]) * between_walls * scale_factor), (int) Math.floor(Integer.parseInt(logoCellSize)*between_walls*scale_factor), (int) Math.floor(Integer.parseInt(logoCellSize)*between_walls*scale_factor)};
         return bounds;
     }
+    public static int[] generateBounds(int xposition, int between_walls, double scale_factor, int yposition, int mazeSize1, int mazeSize2){
+        int[] bounds= { (int) Math.floor(xposition + (mazeSize1-2) * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + (mazeSize2-2) * between_walls * scale_factor), (int) Math.floor(2*between_walls*scale_factor), (int) Math.floor(2*between_walls*scale_factor)};
+        return bounds;
+    }
+
 
 
 

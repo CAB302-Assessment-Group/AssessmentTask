@@ -81,14 +81,14 @@ public class ImageProcessing {
     }
 
     /**
-     * Draws logo image onto a JLabel
+     * Draws logo image onto a JLabel meant for the center
      * @param bounds Bounds of the box to draw
      * @param myMaze Maze to be drawn upon
      * @return
      * @throws Exception
      * @author Jayden and Jack
      */
-    public static JLabel drawCenterLogo(int[] bounds, Maze myMaze) throws Exception {
+    public static JLabel drawLogo(int[] bounds, Maze myMaze) throws Exception {
         gui.Frame.getInstance().myMaze.mazeTile(gui.Frame.getInstance().myMaze.getLogoTopCorner()[0], gui.Frame.getInstance().myMaze.getLogoTopCorner()[1]).setImage(ImageProcessing.toByteArray(Centerlogo));
         BufferedImage bi = ImageProcessing.fromByteArray(myMaze.mazeTile(gui.Frame.getInstance().myMaze.getLogoTopCorner()[0], gui.Frame.getInstance().myMaze.getLogoTopCorner()[1]).getImage());
 
@@ -101,5 +101,24 @@ public class ImageProcessing {
         centreim.setVisible(true);
         return centreim;
     }
+    public static JLabel drawLogo(int[] bounds, Maze myMaze, int mazeSize1, int mazeSize2) throws Exception {
+        BufferedImage bi = ImageProcessing.fromByteArray(myMaze.mazeTile(mazeSize1-1,mazeSize2-1).getImage());
+
+        ImageIcon imageIcon = new ImageIcon(bi);
+        JLabel endim = new JLabel(imageIcon);
+        endim.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
+        endim.setVisible(true);
+        return endim;
+    }
+    public static JLabel drawLogo(int[] bounds, BufferedImage bi) {
+        ImageIcon imageIcon = new ImageIcon(bi);
+        JLabel startim = new JLabel(imageIcon);
+
+        startim.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
+        startim.setVisible(true);
+        return startim;
+    }
+
+
 
 }

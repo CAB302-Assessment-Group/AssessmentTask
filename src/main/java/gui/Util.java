@@ -8,6 +8,8 @@ import javax.swing.filechooser.FileSystemView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import static gui.Frame.logoCellSize;
+
 public class Util {
     /**
      * Generates scale factor for sizing components within JFrame
@@ -194,7 +196,7 @@ public class Util {
         Render.drawSolution(mazeSolution);
     }
     /**
-     * Generate a bounding area for a JButton to enable appropriate scaling based on a variety of inputs
+     * Generate a bounding area for a JButton to enable appropriate scaling based on a variety of inputs.
      * Overloaded to compensate
      * @author Jayden and Jack
      */
@@ -215,6 +217,14 @@ public class Util {
 
     public static int[] generateBoundsLoop(int xposition,int x, int between_walls, double scale_factor, int yposition, int i, int wallWidth, int wallLength){
         int[] bounds= { (int) Math.floor(xposition + x * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + i * between_walls * scale_factor), (int) Math.floor(wallWidth * scale_factor), (int) Math.floor(wallLength * scale_factor)};
+        return bounds;
+    }
+    public static int[] generateBounds(int xposition, int between_walls, double scale_factor, int yposition){
+        int[] bounds= { (int) Math.floor(xposition + 0 * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + 0 * between_walls * scale_factor), (int) Math.floor(2*between_walls*scale_factor), (int) Math.floor(2*between_walls*scale_factor)};
+        return bounds;
+    }
+    public static int[] generateBounds(int xposition,int topCorner, int between_walls, double scale_factor, int yposition){
+        int[] bounds= { (int) Math.floor(xposition + topCorner * between_walls * scale_factor), (int) Math.floor(10 * scale_factor+yposition + (Frame.getInstance().myMaze.getLogoTopCorner()[1]) * between_walls * scale_factor), (int) Math.floor(Integer.parseInt(logoCellSize)*between_walls*scale_factor), (int) Math.floor(Integer.parseInt(logoCellSize)*between_walls*scale_factor)};
         return bounds;
     }
 

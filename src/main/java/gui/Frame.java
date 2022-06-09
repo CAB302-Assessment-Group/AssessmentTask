@@ -253,19 +253,22 @@ public class Frame {
             loadBTN.setBounds(0, i * 30, 100, 30);
 
             JLabel loadMazeName = new JLabel("Maze Name: " + loadingMaze.getMazeName());
-            loadMazeName.setBounds(100, i * 30, 100, 30);
+            loadMazeName.setBounds(100, (i * 30) - 10, 300, 30);
 
             JLabel loadMazeAuthor = new JLabel("Author: " + loadingMaze.getAuthor());
-            loadMazeAuthor.setBounds(200, i * 30, 200, 30);
+            loadMazeAuthor.setBounds(100, (i * 30) + 5, 300, 30);
 
             loadBTN.addActionListener(action -> {
-                try {
-                    Endlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.mazeSize()[0], loadingMaze.mazeSize()[0]).getImage());
-                    Startlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(0,0).getImage());
-                    Centerlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.getLogoTopCorner()[0],loadingMaze.getLogoTopCorner()[0]).getImage());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Endlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.mazeSize()[0], loadingMaze.mazeSize()[0]).getImage());
+//                    Startlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(0,0).getImage());
+//                    Centerlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.getLogoTopCorner()[0],loadingMaze.getLogoTopCorner()[0]).getImage());
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+                Frame.initialise();
+                Frame.getInstance().myMaze = loadingMaze;
+                SwingUtilities.updateComponentTreeUI(window2);
                 Render.renderMazeOBJ(loadingMaze, true);
 
             });

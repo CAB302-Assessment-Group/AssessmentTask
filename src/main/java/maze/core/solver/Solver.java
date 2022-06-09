@@ -54,6 +54,7 @@ public class Solver {
     /**
      * Checks to see if the current position is a winning position.
      * This is done by checking if the algorithm is on the edge of the board
+     * @author Hudson
      * @param position Current position determined by DFS
      * @param gb Maze to be solved
      * @return True if the position is a good value that is on the edge or is the end, else do not

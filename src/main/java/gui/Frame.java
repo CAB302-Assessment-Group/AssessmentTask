@@ -259,10 +259,10 @@ public class Frame {
             loadBTN.setBounds(0, i * 30, 100, 30);
 
             JLabel loadMazeName = new JLabel("Maze Name: " + loadingMaze.getMazeName());
-            loadMazeName.setBounds(100, i * 30, 100, 30);
+            loadMazeName.setBounds(100, (i * 30) - 10, 300, 30);
 
             JLabel loadMazeAuthor = new JLabel("Author: " + loadingMaze.getAuthor());
-            loadMazeAuthor.setBounds(200, i * 30, 200, 30);
+            loadMazeAuthor.setBounds(100, (i * 30) + 5, 300, 30);
 
             loadBTN.addActionListener(action -> {
                 try {

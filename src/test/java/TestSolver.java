@@ -279,5 +279,26 @@ public class TestSolver {
 
 
     }
+    @Test
+    public void testChildrenSolver() throws MazeException {
+        testMaze.setStart(STARTLOC);
+        testMaze.setEnd(ENDLOC);
+
+        int l =0;
+        for (int i=0;i<10;i++){
+            testMaze = new Maze(size1);
+            testMaze.generateMaze(1,true);
+            mySolver = new Solver();
+            mySolver.DFS(testMaze,START);
+            l = mySolver.Solution().size();
+                assertEquals(START,mySolver.Solution().get(0),"First position in solver is " +
+                        mySolver.Solution().get(l-1)[0] + ", " + mySolver.Solution().get(l-1)[1] + " instead of "+
+                        END[0] + ", " + END[1]);
+                assertEquals(END[0] + ", " + END[1],mySolver.Solution().get(l-1)[0] + ", " +mySolver.Solution().get(l-1)[1]
+                        ,"Last position in solver is " + mySolver.Solution().get(l-1)[0] + ", "
+                                + mySolver.Solution().get(l-1)[1] + " instead of "+ END[0] + ", " + END[1]);
+                System.out.println("Randomly failed for solution of maze size 10x10 with a solution of " + mySolver.outputSolution());
+        }
+    }
 
 }

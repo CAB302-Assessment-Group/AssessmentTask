@@ -585,10 +585,10 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView());
                 importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                importFile.showOpenDialog(null);
 
-                File file = new File(importFile.getSelectedFile().toString());
+
                 if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    File file = new File(importFile.getSelectedFile().toString());
                     try {
                         Centerlogo = ImageProcessing.GetLogo(file);
                     } catch (IOException ex) {
@@ -606,10 +606,10 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView());
                 importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                importFile.showOpenDialog(null);
 
-                File file = new File(importFile.getSelectedFile().toString());
+
                 if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    File file = new File(importFile.getSelectedFile().toString());
                     try {
                         Startlogo = ImageProcessing.GetLogo(file);
                     } catch (IOException ex) {
@@ -627,10 +627,10 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser importFile = new JFileChooser(FileSystemView.getFileSystemView());
                 importFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                importFile.showOpenDialog(null);
 
-                File file = new File(importFile.getSelectedFile().toString());
+
                 if (importFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    File file = new File(importFile.getSelectedFile().toString());
                     try {
                         Endlogo = ImageProcessing.GetLogo(file);
                     } catch (IOException ex) {
@@ -692,7 +692,7 @@ public class Frame {
                 try {
                     if(solver.tilesVisited()<=0){
                         int count = 0;
-                        while(solver.tilesVisited()<=0 && count<100){
+                        while(solver.tilesVisited()<=0 && count<5){
                             Render.setButtonPressed(MazeWidthInput.getText(),MazeHeightInput.getText(), LogoCellSizeInput.getText(),true, shouldAutoSolve);
                             SetMetrics(MetricsWindow);
                             count++;

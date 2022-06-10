@@ -1,6 +1,6 @@
-src.main.java
+unnamed package
+gui
+maze.core
+maze.core.image
+maze.core.solver
 src.main.java.exceptions
-src.main.java.gui
-src.main.java.maze.core
-src.main.java.maze.core.solver
-src.main.java.tests

@@ -266,6 +266,8 @@ public class Frame {
 //                } catch (Exception e) {
 //                    e.printStackTrace();
 //                }
+                window3.setVisible(false);
+                window2.setLayout(null);
                 Frame.initialise();
                 Frame.getInstance().myMaze = loadingMaze;
                 SwingUtilities.updateComponentTreeUI(window2);
@@ -280,8 +282,8 @@ public class Frame {
 
         window3.add(SearchResultsTable);
 
-        window3.setVisible(false);
-        window3.setVisible(true);
+        //window3.setVisible(false);
+        //window3.setVisible(true);
     }
 
 

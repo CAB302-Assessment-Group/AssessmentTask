@@ -20,9 +20,6 @@ public class Util {
     public static double scaleFactor(int largerDim, int windowHeight){
         double scale_factor = 25.0/largerDim;
         double resolution_scale = 1.0;
-        if(windowHeight<1050){
-            resolution_scale=1.25;
-        }
         if(largerDim<=10){
             scale_factor = 4.0/largerDim/resolution_scale;
         } else if (largerDim>10 && largerDim<15) {
@@ -54,7 +51,7 @@ public class Util {
         int[] size = new int[2];
         double scaling =1;
         if(windowHeight<1050){
-            scaling=1.25;
+            scaling=1.1;
         }
         if(largerDim<=10){
             int dimension = (int) (300/scaling);

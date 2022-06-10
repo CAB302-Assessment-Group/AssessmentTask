@@ -529,9 +529,8 @@ public class Frame {
                         }
                         try {
                             if(MazeNameInput.getText()!=""){
-                                if(showSolutionCHKBOX.isSelected()){
+                                if(showSolutionCHKBOX.isSelected() && autoSolveCHKBOX.isSelected()){
                                     //Generate solution + unsolved maze
-                                    System.out.println(solver2.tilesVisited());
                                     ImageProcessing.ExportImage(window2,fileLocation,
                                             Frame.getInstance().myMaze.getMazeName()+"Solution");
                                     showSolutionCHKBOX.doClick();

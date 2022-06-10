@@ -38,7 +38,7 @@ public class Database {
         connect();
         System.out.println("Initiated database instance");
         try {
-            statusCodes.dbStatus _ = CreateSchema();
+            statusCodes.dbStatus status = CreateSchema();
         } catch(Exception e) {}
     }
 

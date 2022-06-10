@@ -266,7 +266,7 @@ public class Frame {
 //                } catch (Exception e) {
 //                    e.printStackTrace();
 //                }
-                //window3.setVisible(false);
+                window3.setVisible(false);
                 window2.setLayout(null);
                 Frame.initialise();
                 Frame.getInstance().myMaze = loadingMaze;

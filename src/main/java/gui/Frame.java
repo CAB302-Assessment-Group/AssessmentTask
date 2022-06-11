@@ -759,6 +759,10 @@ public class Frame {
         // solve the maze with the solver object
         Solver mazeSolver = new Solver();
 
+        if (childMaze) {
+            Frame.getInstance().myMaze.mazeTile(Frame.getInstance().myMaze.mazeSize()[0] - 3, Frame.getInstance().myMaze.mazeSize()[1] - 1).setRightWall(false);
+        }
+
         Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
 
         ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();

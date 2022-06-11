@@ -268,6 +268,7 @@ public class Frame {
 //                }
                 window3.setVisible(false);
                 window2.setLayout(null);
+                window2.setLocation((screenWidth /6 + 330),screenHeight/16);
                 Frame.initialise();
                 Frame.getInstance().myMaze = loadingMaze;
                 SwingUtilities.updateComponentTreeUI(window2);

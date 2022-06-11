@@ -155,22 +155,22 @@ public class Frame {
 
         JLabel MazeName = new JLabel("Name:");
         MazeName.setBounds(50,50,150,20);
-        JTextArea MazeNameInput = new JTextArea();
+        JTextField MazeNameInput = new JTextField();
         MazeNameInput.setBounds(150,50, 150,20);
 
         JLabel DateCreated = new JLabel("Date Created:");
         DateCreated.setBounds(50,80,150,20);
-        JTextArea DateCreatedInput = new JTextArea();
+        JTextField DateCreatedInput = new JTextField();
         DateCreatedInput.setBounds(150, 80, 150, 20);
 
         JLabel DateModified = new JLabel("Date Modified:");
         DateModified.setBounds(50,110,150,20);
-        JTextArea DateModifiedInput = new JTextArea();
+        JTextField DateModifiedInput = new JTextField();
         DateModifiedInput.setBounds(150, 110, 150,20);
 
         JLabel Author = new JLabel("Author:");
         Author.setBounds(50,140,150,20);
-        JTextArea AuthorInput = new JTextArea();
+        JTextField AuthorInput = new JTextField();
         AuthorInput.setBounds(150,140, 150,20);
 
         JButton Search = new JButton("Search");
@@ -258,6 +258,10 @@ public class Frame {
             JLabel loadMazeAuthor = new JLabel("Author: " + loadingMaze.getAuthor());
             loadMazeAuthor.setBounds(100, (i * 30) + 5, 300, 30);
 
+            JLabel loadMazeDateCreated = new JLabel("Date Created: " + loadingMaze.getDateCreated());
+            loadMazeDateCreated.setBounds(100, (i * 30) + 5, 300, 30);
+
+
             loadBTN.addActionListener(action -> {
 //                try {
 //                    Endlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.mazeSize()[0], loadingMaze.mazeSize()[0]).getImage());
@@ -287,7 +291,6 @@ public class Frame {
         JScrollPane jsp = new JScrollPane(SearchPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jsp.setBounds(50,10,400,200);
         SearchPanel.add(SearchResultsTable);
-
 
         window3.add(jsp);
         //window3.add(SearchResultsTable);

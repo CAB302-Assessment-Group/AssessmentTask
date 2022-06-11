@@ -180,19 +180,6 @@ public class Util {
     }
 
     /**
-     * If requested, the maze is drawn using the render method
-     * @author Hudson and Jack
-     */
-    public static void drawSolution(){
-        Solver mazeSolver = new Solver();
-
-        Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
-
-        ArrayList<Integer[]> mazeSolution = mazeSolver.Solution();
-
-        Render.drawSolution(mazeSolution);
-    }
-    /**
      * Generate a bounding area for a JButton to enable appropriate scaling based on a variety of inputs.
      * Overloaded to compensate
      * @author Jayden and Jack

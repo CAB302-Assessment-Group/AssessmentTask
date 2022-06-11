@@ -142,6 +142,11 @@ public class Render {
         //maze generation starting
         // on frame
 
+        window2.setLayout(null);
+
+        window2.getContentPane().removeAll();
+        window2.getContentPane().repaint();
+
         int xposition = 0;
         int yposition = 0;
         double scale_factor = Util.scaleFactor(myMaze.largestDimension(), screenHeight);

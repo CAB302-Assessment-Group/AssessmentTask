@@ -49,7 +49,7 @@ public class Render {
         window2.getContentPane().repaint();
 
         // render the solution
-        renderMazeOBJ(Frame.getInstance().myMaze, true, false, shouldRenderSolution);
+        renderMazeOBJ(Frame.getInstance().myMaze, false, false, shouldRenderSolution);
     }
 
     public static void toggleSolutionVisualisation(boolean state) {
@@ -124,7 +124,7 @@ public class Render {
 
 
         renderMazeOBJ(currentMaze, generated, autoSolve);
-
+        getInstance().myMaze = currentMaze;z
     }
 
     public static void renderMazeOBJ(Maze myMaze, boolean generated) { renderMazeOBJ(myMaze, generated, false, false); }

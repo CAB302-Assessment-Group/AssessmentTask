@@ -229,7 +229,7 @@ public class Frame {
 
         // set frame location to center of screen
         window3.setLocation(screenWidth/2 -(500/2), screenHeight/16+300);
-        window3.setSize(500, 300);
+        window3.setSize(700, 300);
 
         window3.setVisible(true);
 
@@ -252,14 +252,17 @@ public class Frame {
             JButton loadBTN = new JButton("Load");
             loadBTN.setBounds(0, i * 30, 100, 30);
 
-            JLabel loadMazeName = new JLabel("Maze Name: " + loadingMaze.getMazeName());
-            loadMazeName.setBounds(100, (i * 30) - 10, 300, 30);
+            JLabel loadMazeName = new JLabel(loadingMaze.getMazeName());
+            loadMazeName.setBounds(100, i * 30, 100, 30);
 
-            JLabel loadMazeAuthor = new JLabel("Author: " + loadingMaze.getAuthor());
-            loadMazeAuthor.setBounds(100, (i * 30) + 5, 300, 30);
+            JLabel loadMazeAuthor = new JLabel(loadingMaze.getAuthor());
+            loadMazeAuthor.setBounds(200, i * 30, 100, 30);
 
-            JLabel loadMazeDateCreated = new JLabel("Date Created: " + loadingMaze.getDateCreated());
-            loadMazeDateCreated.setBounds(100, (i * 30) + 5, 300, 30);
+            JLabel loadMazeDateCreated = new JLabel(loadingMaze.getDateCreated());
+            loadMazeDateCreated.setBounds(300, i * 30, 200, 30);
+
+            JLabel loadMazeDateModified = new JLabel(loadingMaze.getDateEdited());
+            loadMazeDateModified.setBounds(500, i * 30, 200, 30);
 
 
             loadBTN.addActionListener(action -> {
@@ -283,13 +286,15 @@ public class Frame {
             SearchResultsTable.add(loadBTN);
             SearchResultsTable.add(loadMazeName);
             SearchResultsTable.add(loadMazeAuthor);
+            SearchResultsTable.add(loadMazeDateCreated);
+            SearchResultsTable.add(loadMazeDateModified);
         }
         //window3.add(SearchResultsTable);
         window3.setTitle("Search Results");
         JPanel SearchPanel = new JPanel();
         SearchPanel.setLayout(new BorderLayout());
         JScrollPane jsp = new JScrollPane(SearchPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jsp.setBounds(50,10,400,200);
+        jsp.setBounds(10,10,window3.getWidth()-30,window3.getHeight()-50);
         SearchPanel.add(SearchResultsTable);
 
         window3.add(jsp);

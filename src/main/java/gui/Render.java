@@ -144,12 +144,15 @@ public class Render {
 
         int xposition = 0;
         int yposition = 0;
-        double scale_factor = Util.scaleFactor(getInstance().myMaze.largestDimension(), screenHeight);
+        double scale_factor = Util.scaleFactor(myMaze.largestDimension(), screenHeight);
 
         int wallLength = 40;
         int wallWidth = 10;
 
         int between_walls = wallLength+wallWidth;
+
+        if (childMaze) myMaze.mazeTile(myMaze.mazeSize()[0] - 3, myMaze.mazeSize()[1] - 1).setRightWall(false);
+
 
         if(Frame.childMaze){
             myMaze.mazeTile(0,0).setTopWall(true);
@@ -280,7 +283,10 @@ public class Render {
         Frame.getInstance().myMaze = myMaze;
 
         if (showSolution) {
-            Util.drawSolution();
+            Solver tmpSolver = new Solver();
+            tmpSolver.DFS(myMaze, new Integer[] {0, 0});
+            ArrayList<Integer[]> solution = tmpSolver.Solution();
+            Render.drawSolution(solution);
         }
 
         window2.setVisible(false);
@@ -302,7 +308,7 @@ public class Render {
             try{
                 Frame.getInstance().myMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1 ).setImage(ImageProcessing.toByteArray(Endlogo));
                 int[] bounds = Util.generateBounds(xposition,between_walls,scale_factor,yposition,mazeSize[0],mazeSize[1]);
-                window2.add(ImageProcessing.drawLogo(bounds, getInstance().myMaze,mazeSize[0],mazeSize[1]));
+                window2.add(ImageProcessing.drawLogo(bounds, myMaze,mazeSize[0],mazeSize[1]));
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
@@ -310,8 +316,8 @@ public class Render {
         if(Centerlogo != null){
             System.out.println("Found centerim");
             try{
-                int bounds[] = Util.generateBounds(xposition,Frame.getInstance().myMaze.getLogoTopCorner()[0],between_walls,scale_factor,yposition);
-                window2.add(ImageProcessing.drawLogo(bounds, getInstance().myMaze));
+                int bounds[] = Util.generateBounds(xposition,myMaze.getLogoTopCorner()[0],between_walls,scale_factor,yposition);
+                window2.add(ImageProcessing.drawLogo(bounds, myMaze));
                 System.out.println("added im");
             }catch(Exception e){
                 System.out.println(e.getMessage());
@@ -320,7 +326,7 @@ public class Render {
         window2.pack();
 
         // set the window size
-        int [] size = Util.windowScaledSize(getInstance().myMaze.largestDimension(), screenHeight);
+        int [] size = Util.windowScaledSize(myMaze.largestDimension(), screenHeight);
         window2.setSize(size[0],size[1]);
 
         window2.setVisible(true);

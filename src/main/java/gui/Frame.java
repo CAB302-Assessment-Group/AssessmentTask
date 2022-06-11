@@ -120,7 +120,7 @@ public class Frame {
         // on CreateNewMaze button press move to SelectOption Screen
         CreateNewMaze.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { initialise();}
+            public void actionPerformed(ActionEvent e) { initialise(); }
         });
 
         // on OpenExistingMaze button press open file chooser
@@ -758,10 +758,6 @@ public class Frame {
     public static void solveMyMaze() {
         // solve the maze with the solver object
         Solver mazeSolver = new Solver();
-
-        if (childMaze) {
-            Frame.getInstance().myMaze.mazeTile(Frame.getInstance().myMaze.mazeSize()[0] - 3, Frame.getInstance().myMaze.mazeSize()[1] - 1).setRightWall(false);
-        }
 
         Integer[] tempDFS = mazeSolver.DFS(Frame.getInstance().myMaze, new Integer[] {0,0});
 

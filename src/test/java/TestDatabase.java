@@ -7,17 +7,18 @@ import maze.core.Database;
 import maze.core.Maze;
 import maze.core.solver.Solver;
 
+import java.sql.Connection;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-@Disabled
 public class TestDatabase {
-    Database testDatabase = (Database) Database.getInstance();
     Maze testChildMaze;
     Solver testSolver;
     final String MAZENAME ="Test";
     final String AUTHOR ="Test";
     public final int[] STARTLOC = {0,0};
     public final int[] ENDLOC= {9,9};
-    @Disabled
+    Database testDatabase = new Database();
+
     @BeforeEach
     public void Before() throws MazeException {
 
@@ -29,6 +30,7 @@ public class TestDatabase {
         testChildMaze.setMazeName(MAZENAME);
         testChildMaze.setAuthor(AUTHOR);
 
+        Connection newConnection = testDatabase.getInstance();
     }
 
 
@@ -37,7 +39,6 @@ public class TestDatabase {
      * #ID 9
      * @author Jack
      */
-    @Disabled
     @Test
     public void TestUpdateChildren() {
         //Test positive case
@@ -50,7 +51,6 @@ public class TestDatabase {
      * not be able to be stored
      * @author Jack
      */
-    @Disabled
     @Test
     public void TestFailUpdateChildren() {
         //Test with everything null
@@ -114,7 +114,6 @@ public class TestDatabase {
      * @author Jack
      * #ID 10
      */
-    @Disabled
     @Test
     public void TestDownload() {
         util.statusCodes.dbStatus result = testDatabase.exportMaze(testChildMaze);
@@ -131,7 +130,6 @@ public class TestDatabase {
      * Test 5: Download maze by author or name that is not in the db and have it return a fail
      * @author Jack
      */
-    @Disabled
     @Test
     public void TestFailDownload() {
         //Search by Name
@@ -145,7 +143,6 @@ public class TestDatabase {
      * @author Jack
      * #ID 12
      */
-    @Disabled
     @Test
     public void TestDownloadSolution() {
         util.statusCodes.dbStatus result = testDatabase.exportMaze(testChildMaze);

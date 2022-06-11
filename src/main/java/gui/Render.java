@@ -139,7 +139,6 @@ public class Render {
      * @author Hudson, Jayden, and Jack
      */
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution, boolean renderSolution) {
-        
         //maze generation starting
         // on frame
 

@@ -29,8 +29,8 @@ public class ImageProcessing {
         BufferedImage img = new BufferedImage(mazeBox.getWidth(), mazeBox.getHeight(), BufferedImage.TYPE_INT_RGB);
         mazeBox.paint(img.getGraphics());
         String path = location+"/"+name+".png";
-        File outputfile = new File(path);
-        ImageIO.write(img, "png", outputfile);
+        File outputFile = new File(path);
+        ImageIO.write(img, "png", outputFile);
     }
 
     public static BufferedImage GetLogo(File file) throws IOException {
@@ -94,11 +94,9 @@ public class ImageProcessing {
 
         BufferedImage image = ImageProcessing.resizeImage(bi,bounds[2],bounds[3]);
         ImageIcon imageIcon = new ImageIcon(image);
-
-        JLabel centreim = new JLabel(imageIcon);
-
+        JLabel centreim = new JLabel();
         centreim.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
-        centreim.setVisible(true);
+        centreim.setIcon(imageIcon);
         return centreim;
     }
     public static JLabel drawLogo(int[] bounds, Maze myMaze, int mazeSize1, int mazeSize2) throws Exception {
@@ -107,7 +105,7 @@ public class ImageProcessing {
         ImageIcon imageIcon = new ImageIcon(bi);
         JLabel endim = new JLabel(imageIcon);
         endim.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
-        endim.setVisible(true);
+
         return endim;
     }
     public static JLabel drawLogo(int[] bounds, BufferedImage bi) {
@@ -115,7 +113,7 @@ public class ImageProcessing {
         JLabel startim = new JLabel(imageIcon);
 
         startim.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
-        startim.setVisible(true);
+
         return startim;
     }
 

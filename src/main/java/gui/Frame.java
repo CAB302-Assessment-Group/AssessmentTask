@@ -280,8 +280,17 @@ public class Frame {
             SearchResultsTable.add(loadMazeName);
             SearchResultsTable.add(loadMazeAuthor);
         }
+        //window3.add(SearchResultsTable);
+        window3.setTitle("Search Results");
+        JPanel SearchPanel = new JPanel();
+        SearchPanel.setLayout(new BorderLayout());
+        JScrollPane jsp = new JScrollPane(SearchPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jsp.setBounds(50,10,400,200);
+        SearchPanel.add(SearchResultsTable);
 
-        window3.add(SearchResultsTable);
+
+        window3.add(jsp);
+        //window3.add(SearchResultsTable);
 
         //window3.setVisible(false);
         //window3.setVisible(true);

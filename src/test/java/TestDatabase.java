@@ -7,17 +7,21 @@ import maze.core.Database;
 import maze.core.Maze;
 import maze.core.solver.Solver;
 
+import java.sql.Connection;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-@Disabled
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 public class TestDatabase {
-    Database testDatabase = (Database) Database.getInstance();
     Maze testChildMaze;
     Solver testSolver;
     final String MAZENAME ="Test";
     final String AUTHOR ="Test";
     public final int[] STARTLOC = {0,0};
     public final int[] ENDLOC= {9,9};
-    @Disabled
+    Database testDatabase = new Database();
+
     @BeforeEach
     public void Before() throws MazeException {
 
@@ -29,6 +33,7 @@ public class TestDatabase {
         testChildMaze.setMazeName(MAZENAME);
         testChildMaze.setAuthor(AUTHOR);
 
+        Connection newConnection = testDatabase.getInstance();
     }
 
 
@@ -37,7 +42,6 @@ public class TestDatabase {
      * #ID 9
      * @author Jack
      */
-    @Disabled
     @Test
     public void TestUpdateChildren() {
         //Test positive case
@@ -50,8 +54,9 @@ public class TestDatabase {
      * not be able to be stored
      * @author Jack
      */
-    @Disabled
+    // I would argue that the DB export function should fail gracefully
     @Test
+    @Disabled
     public void TestFailUpdateChildren() {
         //Test with everything null
         util.statusCodes.dbStatus result = testDatabase.exportMaze(null);
@@ -114,16 +119,15 @@ public class TestDatabase {
      * @author Jack
      * #ID 10
      */
-    @Disabled
     @Test
     public void TestDownload() {
         util.statusCodes.dbStatus result = testDatabase.exportMaze(testChildMaze);
         if(result == util.statusCodes.dbStatus.OK){
             //Search by Name
-            assertEquals(testDatabase.loadMaze(MAZENAME),util.statusCodes.dbStatus.OK);
+            assertFalse(testDatabase.loadMaze(MAZENAME).equals(new ArrayList<Maze>()));
 
             //Search by Author
-            assertEquals(testDatabase.loadMaze(AUTHOR),util.statusCodes.dbStatus.OK);
+            assertFalse(testDatabase.loadMaze(AUTHOR).equals(new ArrayList<Maze>()));
         }
 
     }
@@ -131,27 +135,25 @@ public class TestDatabase {
      * Test 5: Download maze by author or name that is not in the db and have it return a fail
      * @author Jack
      */
-    @Disabled
     @Test
     public void TestFailDownload() {
         //Search by Name
-        assertEquals(testDatabase.loadMaze("cRaZy MAZE"),util.statusCodes.dbStatus.FAILED);
+        assertEquals(testDatabase.loadMaze("cRaZy MAZE"), new ArrayList<Maze>());
 
         //Search by Author
-        assertEquals(testDatabase.loadMaze("staff"),util.statusCodes.dbStatus.FAILED);
+        assertEquals(testDatabase.loadMaze("staff"), new ArrayList<Maze>());
     }
     /**
      * Test 6: Download maze by author or name that is not in the db and have it return a fail
      * @author Jack
      * #ID 12
      */
-    @Disabled
     @Test
     public void TestDownloadSolution() {
         util.statusCodes.dbStatus result = testDatabase.exportMaze(testChildMaze);
         if(result == util.statusCodes.dbStatus.OK){
             //Search by Name
-            assertEquals(testDatabase.loadMaze(MAZENAME),util.statusCodes.dbStatus.OK);
+            assertFalse(testDatabase.loadMaze(MAZENAME).equals(new ArrayList<Maze>()));
             //testChildMaze = databaseOutput
             //downloadedSolution = testChildMaze.Solution();
             //assertEquals(testSolver.Solution(),downloadedSolution);

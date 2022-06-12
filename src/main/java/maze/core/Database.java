@@ -129,36 +129,12 @@ public class Database {
         }
     }
 
-    /**
-     * Loads a maze object from a DB record
-     * @author Hudson
-     * @param mazeName The maze name/unique identifier of the maze
-     */
-//    public Maze loadMaze(String mazeName) {
-//        Connection myDBInstance = getInstance();
-//        ResultSet rs = null;
-//
-//        String SQL = "SELECT * FROM mazes WHERE mazeName = '" + mazeName + "'";
-//
-//        try {
-//            PreparedStatement SQLselection = myDBInstance.prepareStatement(SQL);
-//            rs = SQLselection.executeQuery();
-//            rs.next();
-//            Blob blob = rs.getBlob("maze_obj");
-//
-//            int blobLength = (int) blob.length();
-//            byte[] blobAsBytes = blob.getBytes(1, blobLength);
-//
-//            //release the blob and free up memory. (since JDBC 4.0)
-//            blob.free();
-//
-//            return util.deserialize(blobAsBytes);
-//        } catch (Exception e) {
-//            return null;
-//        }
-//    }
+    private String constructSortBy(String SQL, String collumn) {
+        SQL += " ORDER BY " + collumn + " ASC";
+        return SQL;
+    }
 
-    private String constructQuery(String mazeName, String author, String dateCreated, String dateModified) {
+    private String constructQuery(String mazeName, String author, String dateCreated, String dateModified, String sortBy) {
         String baseQuery = "SELECT * from mazes where ";
 
         String[] queryMatch = {"name", "creator", "dateCreated", "dateModified"};
@@ -181,19 +157,22 @@ public class Database {
             foundQueryStatement = true;
         }
 
-        return foundQueryStatement ? baseQuery : "SELECT * FROM mazes";
+        if (!foundQueryStatement) baseQuery = "SELECT * FROM mazes";
+        if (!sortBy.isEmpty()) baseQuery = constructSortBy(baseQuery, sortBy);
+
+        return baseQuery;
     }
 
-    public ArrayList<Maze> loadMaze(String mazeName) { return loadMaze(mazeName, "", "", ""); }
+    public ArrayList<Maze> loadMaze(String mazeName) { return loadMaze(mazeName, "", "", "", ""); }
 
-    public ArrayList<Maze> loadMaze(String mazeName, String author, String dateCreated, String dateModified)
+    public ArrayList<Maze> loadMaze(String mazeName, String author, String dateCreated, String dateModified, String sortBy)
     {
         Connection connection = getInstance();
 
         ArrayList<Maze> mazeList = new ArrayList<Maze>();
         try
         {
-            String query = constructQuery(mazeName, author, dateCreated, dateModified);
+            String query = constructQuery(mazeName, author, dateCreated, dateModified, sortBy);
             PreparedStatement SQLselection = connection.prepareStatement(query);
 //            ps.setString(1, mazeName);
             ResultSet rs = SQLselection.executeQuery();

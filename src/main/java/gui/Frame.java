@@ -120,7 +120,7 @@ public class Frame {
         // on CreateNewMaze button press move to SelectOption Screen
         CreateNewMaze.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { initialise();}
+            public void actionPerformed(ActionEvent e) { initialise(); }
         });
 
         // on OpenExistingMaze button press open file chooser
@@ -179,6 +179,16 @@ public class Frame {
         JButton Back = new JButton(("Back"));
         Back.setBounds(10,10,75,20);
 
+        JLabel orderByLBL = new JLabel("Sort By");
+        orderByLBL.setBounds(350, 0, 100, 30);
+
+        String sortByOPT[] = {"", "name", "creator", "dateCreated", "dateModified"};
+        JComboBox sortByPickerCMBO = new JComboBox(sortByOPT);
+        sortByPickerCMBO.setBounds(350, 30, 100, 20);
+
+        window.add(sortByPickerCMBO);
+        window.add(orderByLBL);
+
         window.add(Back);
         window.add(SearchForMazeTitle);
         window.add(MazeName);
@@ -206,7 +216,8 @@ public class Frame {
                         MazeNameInput.getText(),
                         AuthorInput.getText(),
                         DateCreatedInput.getText(),
-                        DateModifiedInput.getText()
+                        DateModifiedInput.getText(),
+                        sortByPickerCMBO.getSelectedItem().toString()
                 );
             }
         });
@@ -221,7 +232,7 @@ public class Frame {
      * @param dateModified
      * @author Vim and Hudson
      */
-    public void SearchResults(String mazeName, String author, String dateCreated, String dateModified) {
+    public void SearchResults(String mazeName, String author, String dateCreated, String dateModified, String sortBy) {
         window3.setLayout(null);
 
         window3.getContentPane().removeAll();
@@ -235,13 +246,13 @@ public class Frame {
 
         Database db = new Database();
         db.getInstance();
-        ArrayList<Maze> loadedMazes =  db.loadMaze(mazeName, author, dateCreated, dateModified);
+        ArrayList<Maze> loadedMazes =  db.loadMaze(mazeName, author, dateCreated, dateModified, sortBy);
 
         JLabel SearchResultsTitle = new JLabel("Search Results");
         SearchResultsTitle.setBounds((500/2) - (100/2),10,100,20);
 
         JTable SearchResultsTable = new JTable();
-        SearchResultsTable.setBounds(50,30,400,120);
+        SearchResultsTable.setBounds(50,30,400,loadedMazes.size() * 30);
 
         // render the mazes that have been loaded from the database in a list
         for (int i = 0; i < loadedMazes.size(); i++) {
@@ -293,11 +304,17 @@ public class Frame {
         window3.setTitle("Search Results");
         JPanel SearchPanel = new JPanel();
         SearchPanel.setLayout(new BorderLayout());
-        JScrollPane jsp = new JScrollPane(SearchPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JScrollPane jsp = new JScrollPane(SearchPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jsp.setBounds(10,10,window3.getWidth()-30,window3.getHeight()-50);
+
         SearchPanel.add(SearchResultsTable);
 
+        SearchPanel.setPreferredSize(new Dimension(window3.getWidth() - 30, loadedMazes.size() * 30));
+
         window3.add(jsp);
+        //window3.setVisible(false);
+        window3.setVisible(true);
+
         //window3.add(SearchResultsTable);
 
         //window3.setVisible(false);
@@ -491,6 +508,7 @@ public class Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 window2.setVisible(false);
+                MetricsWindow.setVisible(false);
                 Frame.getInstance().MainMenu();
 
             }

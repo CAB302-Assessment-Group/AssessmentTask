@@ -49,7 +49,7 @@ public class Render {
         window2.getContentPane().repaint();
 
         // render the solution
-        renderMazeOBJ(Frame.getInstance().myMaze, true, false, shouldRenderSolution);
+        renderMazeOBJ(Frame.getInstance().myMaze, !Frame.childMaze, false, shouldRenderSolution);
     }
 
     public static void toggleSolutionVisualisation(boolean state) {
@@ -124,7 +124,7 @@ public class Render {
 
 
         renderMazeOBJ(currentMaze, generated, autoSolve);
-
+        getInstance().myMaze = currentMaze;
     }
 
     public static void renderMazeOBJ(Maze myMaze, boolean generated) { renderMazeOBJ(myMaze, generated, false, false); }
@@ -139,13 +139,17 @@ public class Render {
      * @author Hudson, Jayden, and Jack
      */
     public static void renderMazeOBJ(Maze myMaze, boolean generated, boolean showSolution, boolean renderSolution) {
-        
         //maze generation starting
         // on frame
 
+        window2.setLayout(null);
+
+        window2.getContentPane().removeAll();
+        window2.getContentPane().repaint();
+
         int xposition = 0;
         int yposition = 0;
-        double scale_factor = Util.scaleFactor(getInstance().myMaze.largestDimension(), screenHeight);
+        double scale_factor = Util.scaleFactor(myMaze.largestDimension(), screenHeight);
 
         int wallLength = 40;
         int wallWidth = 10;
@@ -153,6 +157,9 @@ public class Render {
         int between_walls = wallLength+wallWidth;
         //Removes bug where logo shows twice
         window2.getContentPane().removeAll();
+
+        if (childMaze) myMaze.mazeTile(myMaze.mazeSize()[0] - 3, myMaze.mazeSize()[1] - 1).setRightWall(false);
+
 
         if(Frame.childMaze){
             myMaze.mazeTile(0,0).setTopWall(true);
@@ -283,11 +290,15 @@ public class Render {
         Frame.getInstance().myMaze = myMaze;
 
         if (showSolution) {
-            Util.drawSolution();
+            Solver tmpSolver = new Solver();
+            tmpSolver.DFS(myMaze, new Integer[] {0, 0});
+            ArrayList<Integer[]> solution = tmpSolver.Solution();
+            Render.drawSolution(solution);
         }
 
         window2.setVisible(false);
 
+        
         if(childMaze){
             if(Startlogo != null){
                 System.out.println("Found startim");
@@ -301,28 +312,15 @@ public class Render {
                     System.out.println(e.getMessage());
                 }
             }
-
-            if(Endlogo != null){
+	 	    if(Endlogo != null && childMaze){
                 System.out.println("Found endim");
                 try{
                     Frame.getInstance().myMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1 ).setImage(ImageProcessing.toByteArray(Endlogo));
                     int[] bounds = Util.generateBounds(xposition,between_walls,scale_factor,yposition,mazeSize[0],mazeSize[1]);
                     window2.add(ImageProcessing.drawLogo(bounds, getInstance().myMaze,mazeSize[0],mazeSize[1]));
-                    window2.repaint();
                 }catch(Exception e){
                     System.out.println(e.getMessage());
-                }
-            }
-        } else {
-            if(Centerlogo != null){
-                System.out.println("Found centerim");
-                try{
-                    Frame.getInstance().myMaze.mazeTile(gui.Frame.getInstance().myMaze.getLogoTopCorner()[0], gui.Frame.getInstance().myMaze.getLogoTopCorner()[1]).setImage(ImageProcessing.toByteArray(Centerlogo));
-                    int bounds[] = Util.generateBounds(xposition,Frame.getInstance().myMaze.getLogoTopCorner()[0],between_walls,scale_factor,yposition);
-                    window2.add(ImageProcessing.drawLogo(bounds, getInstance().myMaze));
-                    System.out.println("added im");
-                }catch(Exception e){
-                    System.out.println(e.getMessage());
+
                 }
             }
         }

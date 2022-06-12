@@ -147,17 +147,17 @@ public class Maze implements MazeOutline, Serializable {
     /**
      * Sets the start location for the maze for child mazes
      * @param start 2D position representing the start coordinate
-     * @param StartImage image for the start tile in byte[] format
+     * @param startImage image for the start tile in byte[] format
      * @author Jayden
      * @throws MazeException
      */
-    public void setStart(int[] start, byte[] StartImage) throws MazeException {
+    public void setStart(int[] start, byte[] startImage) throws MazeException {
         if (OneLocSet) {
             if (startLoc != null && startLoc == endLoc) {
                 throw new MazeException("Start and End Locations are the Same");
             } else {
                 this.startLoc=start;
-                this.mazeTile(startLoc[0], startLoc[1]).setImage(StartImage);
+                this.mazeTile(startLoc[0], startLoc[1]).setImage(startImage);
             }
             this.OneLocSet = true;
 

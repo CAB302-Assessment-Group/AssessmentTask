@@ -289,6 +289,15 @@ public class Frame {
                 window2.setLocation((screenWidth /6 + 330),screenHeight/16);
                 Frame.initialise();
                 Frame.getInstance().myMaze = loadingMaze;
+                try {
+
+                    Centerlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.getLogoTopCorner()[0],loadingMaze.getLogoTopCorner()[1]).getImage());
+                    Startlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(0,0).getImage());
+                    Endlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1 ).getImage());
+                    System.out.println("Restored images");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 SwingUtilities.updateComponentTreeUI(window2);
                 Render.renderMazeOBJ(loadingMaze, true);
 

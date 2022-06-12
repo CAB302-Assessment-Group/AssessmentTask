@@ -312,6 +312,9 @@ public class Frame {
         SearchPanel.setPreferredSize(new Dimension(window3.getWidth() - 30, loadedMazes.size() * 30));
 
         window3.add(jsp);
+        //window3.setVisible(false);
+        window3.setVisible(true);
+
         //window3.add(SearchResultsTable);
 
         //window3.setVisible(false);

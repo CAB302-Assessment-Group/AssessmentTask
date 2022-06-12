@@ -1,0 +1,2491 @@
+commit 78897f30f26354ba26ae5f93de0b5a7021fe7dab
+Merge: e10a8e5 3b676d6
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Fri Jun 10 17:10:15 2022 +1000
+
+    Merge pull request #143 from CAB302-DreamTeam/Jack
+    
+    Fixed bug with generating solution when not requested
+
+commit 3b676d6b786061d72dbdfaa7bf45384b6fdeb610
+Merge: 174e443 e10a8e5
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Fri Jun 10 17:09:30 2022 +1000
+
+    Merge branch 'main' into Jack
+
+commit 174e443ab4c42017c0261ab01e20304d22362abf
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Fri Jun 10 16:34:58 2022 +1000
+
+    Fixing up errors to generate JDOC.
+
+commit e2e8a3ee256f44663054a9631bc1c273ae8f0399
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Fri Jun 10 16:34:26 2022 +1000
+
+    Removed test JDOCs
+
+commit 74aee0e3d77ae790e732bde7a62dbc34a7145411
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Fri Jun 10 16:33:52 2022 +1000
+
+    Removed non-gui classes
+
+commit 722744865d9abffc1599ee0cc171a0643a313e36
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Fri Jun 10 16:31:42 2022 +1000
+
+    Regenerating JDOC for final time.
+
+commit e10a8e5fffa3e515ff74f8833c9cf0413fb4660c
+Merge: 0a06393 85f0b73
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Fri Jun 10 16:14:57 2022 +1000
+
+    Merge pull request #142 from CAB302-DreamTeam/Vim
+    
+    Vim ui_update_10_06_2022_1613
+
+commit 85f0b73a3490ce6ed8d9c87c817631d314651bfa
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Fri Jun 10 16:12:47 2022 +1000
+
+    turned off search results window on load
+
+commit c41f2e9159916dbde95cf3c8e5e74893d9ca1f3e
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Fri Jun 10 16:12:21 2022 +1000
+
+    updated maze buttons flickering on load
+
+commit 0a063938c1aafba47e471317365a08db139dd1b7
+Merge: 2e17bc7 f977de9
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Thu Jun 9 21:56:31 2022 +1000
+
+    Merge pull request #140 from CAB302-DreamTeam/Jayden
+    
+    Jayden
+
+commit f977de9761f1c92a3f02828c8f31a2f6dc55b069
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Jun 9 21:56:05 2022 +1000
+
+    Update Clear All
+
+commit b44d1a2d4fe5e34dc401620c6fd92482b2f9e826
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Jun 9 21:40:03 2022 +1000
+
+    Fix Clearing Images
+
+commit 06d11fd184dc0049e069c6468e9aa6a1ddf3f151
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Jun 9 21:37:10 2022 +1000
+
+    Revert "Update Frame.java"
+    
+    This reverts commit 15adeeb623d864f4f819c85ed8f5b200d4f7e63b.
+
+commit a57d0ff8cb142f26c770a3d93d36d677c09290c1
+Merge: 15adeeb 2e17bc7
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Jun 9 21:25:03 2022 +1000
+
+    Merge branch 'main' into Jayden
+
+commit 15adeeb623d864f4f819c85ed8f5b200d4f7e63b
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Jun 9 21:24:58 2022 +1000
+
+    Update Frame.java
+
+commit 2e17bc71f17cbc663a6e6c5b3bafe54d4e9a8caa
+Merge: 6b0c026 1fd0d59
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Thu Jun 9 21:23:58 2022 +1000
+
+    Merge pull request #139 from CAB302-DreamTeam/Jack
+    
+    Adding unit test to try and debug children mazes not solving.
+
+commit 1fd0d59c6a44720f7781354742779ec1fc383488
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Thu Jun 9 21:22:14 2022 +1000
+
+    Adding unit test to try and debug children mazes not solving.
+
+commit 6b0c026c531a251d77df7d6caef321e27ee479e2
+Merge: ae1718e 6179d72
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Thu Jun 9 20:28:51 2022 +1000
+
+    Merge pull request #138 from CAB302-DreamTeam/Jack
+    
+    Starting massive refactoring and finishing off logos
+
+commit 6179d72353b05c3513578b50480f621e7ff7c4cd
+Merge: dcfd7a2 ae1718e
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Thu Jun 9 20:27:07 2022 +1000
+
+    Adding more refactoring + proper scaling for images and new methods for inserting images.
+
+commit ae1718e5e5afbc0765c1e612fb1e38866a808276
+Merge: 5c229f4 579b37b
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu Jun 9 14:35:17 2022 +1000
+
+    Merge pull request #137 from CAB302-DreamTeam/Hudson
+    
+    made preferences panel appear when importing from database
+
+commit 579b37b7d65fd8f67a6f5651e89e488cedcd76ca
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 9 14:32:53 2022 +1000
+
+    made preferences panel appear when importing from database
+
+commit 5c229f4acf5a0bc811e718bdc5118ce20e15a871
+Merge: 94835fb 5ba262b
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu Jun 9 14:25:57 2022 +1000
+
+    Merge pull request #136 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit 5ba262b527b5e02f53de8b112c15830341251c5a
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 9 14:21:57 2022 +1000
+
+    bug fix: rendering issue, elements on window were not being packed
+
+commit 8506d295ba2e60cdc73299a958708e9fc7f63706
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 9 13:57:06 2022 +1000
+
+    made renderMazeOBJ() method render a new maze rather than render ontop of the existing content panel
+
+commit 83b8cc3042a2da5306564e193c24669dd7c59570
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 9 13:37:54 2022 +1000
+
+    bug fix: if no maze object is loaded in the maze, the database would crash
+
+commit 2112ce9479eace70c3611d931b86d60a919209eb
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 9 13:32:48 2022 +1000
+
+    fixed rendering overlap for maze load GUI
+
+commit dcfd7a243ad36ba76356aa2106d95c78d3af0dcb
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 21:36:56 2022 +1000
+
+    Adding Unit tests to help with debugging new refactored methods.
+
+commit ca325d79ca66f18fbc481f570c8e5e9f89080774
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 21:36:28 2022 +1000
+
+    Removing ChildrenMaze.java because it is no longer being used. Might refactor to make an object out of some maze fields to clump together.
+
+commit 4bcf86ab9e8f3d79f9e2f61b520239de1146d302
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 21:35:46 2022 +1000
+
+    Starting to replace hardcoded stuff with refactored methods.
+
+commit 35df1331e7739b87f84e5e513e3b00dd8f5e012d
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 21:13:23 2022 +1000
+
+    Refactored some complex scaling maths into an overloaded method.
+
+commit 2317bc67d9f14383f408bbac234567412c7c31d1
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 20:34:39 2022 +1000
+
+    Completed some more refactoring for Render and Frame with Util methods. Also adding more unit tests when applicable (i.e not GUI only)
+
+commit 52ce7fdeef01deeaa51bd28f9aac5deba4295250
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 19:12:24 2022 +1000
+
+    Fixing test solver to account for some mazes that can't generate a solution. This is easily circumvented later in frontend by regenerating maze.
+
+commit c53696f254d5c9749f4022e6d0e36fd3bea5ea6e
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 18:44:28 2022 +1000
+
+    Added some more tests as part of refactoring and disabled tests that are no longer required or were too harsh.
+
+commit 239ee8f7e82f97bd1990181626dc98d3d933ab39
+Merge: 07cc524 94835fb
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 18:22:52 2022 +1000
+
+    Merge branch 'main' into Jack
+
+commit 94835fbb2175b73f95600c32a02296fc5ae49448
+Merge: 28c5bc3 5de0e3c
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Wed Jun 8 15:28:52 2022 +1000
+
+    Merge pull request #135 from CAB302-DreamTeam/Jayden
+    
+    Jayden
+
+commit 5de0e3c538e70caa852daaaffa0c69f5e9a5c7f1
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Jun 8 15:28:39 2022 +1000
+
+    Images
+
+commit 28c5bc333d5dc4b3cab28ecf8800b5921ee2da24
+Merge: 4447fc6 a849f40
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Wed Jun 8 15:27:22 2022 +1000
+
+    Merge pull request #134 from CAB302-DreamTeam/Hudson
+    
+    Merging bugfix for solver
+
+commit a849f403a2c6072ef09bf7da494a97bfba4d7dd3
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 8 15:24:43 2022 +1000
+
+    fixed bug where if a non finish wall was empty, the solver would attempt to use it as a solution path
+
+commit 75d5e715e923903b5cb652e5b2c9a9a4b8497afa
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Jun 8 15:24:16 2022 +1000
+
+    Reloading Mazes With Images
+    
+    Mazes with images should now reload with them correctly
+
+commit f70ffdb46be32f4510f94fa49c22f25f6cbcc46d
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Jun 8 15:19:08 2022 +1000
+
+    Logo Corrections
+    
+    Implement logos and start/finish images for blank mazes. Also clear images after generation so future creation of mazes requires the images to be recreated
+
+commit 72e30038a33f17b7e73997080d01c69cc73855c8
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 8 15:13:35 2022 +1000
+
+    made maze solver work with starting and end positions for child mazes
+
+commit 77bfa0ff1b8cbcec4a95397590977d79b5dfbb12
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Jun 8 15:09:46 2022 +1000
+
+    Update so logos dont persist
+    
+    Logos will now clear between generations of the maze.
+
+commit b90c1beaa2ae8525d4df1dfc9ba8b9859dc22050
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Jun 8 15:07:15 2022 +1000
+
+    Fix to start/end/logo image import and display
+    
+    Logos will now display and be able to be seen in the image.
+
+commit 07cc524ba14b0d59ae9b2fb1444e83384f64fad3
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 11:09:53 2022 +1000
+
+    Fixed issue with return
+
+commit 960a8681effe5468e9234007eaaa30963e0ced05
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 11:09:32 2022 +1000
+
+    Updated TestMaze to move stuff around to UtilTests
+
+commit 231dc0f907916f2e4bc438098178185d98196a05
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 8 11:08:26 2022 +1000
+
+    Refactoring methods into respective classes or adding to Util classes.
+
+commit 4447fc6164f50fde983a43ab6efe9d4782d59c71
+Merge: 926e5f5 4a9bacf
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Tue Jun 7 23:53:04 2022 +1000
+
+    Merge pull request #133 from CAB302-DreamTeam/Jayden
+    
+    Jayden
+
+commit 4a9bacfcb2da73acf4b1caa5188060ac1a299539
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Tue Jun 7 23:52:50 2022 +1000
+
+    Close #100
+    
+    Child mazes now generate correctly, start and end locations should always set to top left and bottom right even for user created mazes
+
+commit b2e5104bebe866aab38717890cc1fe5c4e4c5442
+Merge: 9208083 926e5f5
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Tue Jun 7 23:04:11 2022 +1000
+
+    Merge branch 'main' into Jayden
+
+commit 926e5f58a368bc885bb54f22a46422ff26136e3f
+Merge: 560e0b5 0ba0093
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Tue Jun 7 21:18:16 2022 +1000
+
+    Merge pull request #132 from CAB302-DreamTeam/Jack
+    
+    Changed scaling again to 1.5.
+
+commit 0ba009380931c79301ca9368f8abe606d6f72897
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Tue Jun 7 21:05:18 2022 +1000
+
+    Changed scaling again to 1.5.
+
+commit 560e0b54b0b0c9da73b9911043c4771e7f57b942
+Merge: c63a324 ea2d34f
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Tue Jun 7 20:57:38 2022 +1000
+
+    Merge pull request #131 from CAB302-DreamTeam/Jack
+    
+    Reverted resolution fix for another one.
+
+commit ea2d34f7023f8195d986bd9468905aca6ae6969b
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Tue Jun 7 20:57:14 2022 +1000
+
+    Reverted resolution fix for another one.
+
+commit c63a324dda93b643b1172adfa35b552c245555a2
+Merge: 0eb17ef 6127cac
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Tue Jun 7 20:46:44 2022 +1000
+
+    Merge pull request #130 from CAB302-DreamTeam/Jack
+    
+    Fixing issue with solver + fixing up maze frame for large resolutions.
+
+commit 6127cacbf367e06257927f5bff59667b5cd5637d
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Tue Jun 7 20:45:22 2022 +1000
+
+    Fixing issue with solver + fixing up maze frame not showing for larger resolutions.
+
+commit 0eb17ef3c88c4367b17a0881277f9ccebf441efb
+Merge: 48d246c aeb3fbb
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Tue Jun 7 20:22:09 2022 +1000
+
+    Merge pull request #128 from CAB302-DreamTeam/Jack
+    
+    Adding new unit tests and disabling redundant tests such as db tests
+
+commit aeb3fbb37afd99977ff055a9791966403bce5c5b
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Tue Jun 7 20:20:32 2022 +1000
+
+    Fixed bug where saving image was storing in directory above chosen and bug where filechooser popped up again.
+
+commit ecff49a6ebafeef7fa0475112095632a6b2eed5b
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Tue Jun 7 20:19:18 2022 +1000
+
+    Added some new tests to solver and fixed up tests so they are good to be testable again.
+
+commit 599a4f23625c7b31616b82c5007640735910c0d3
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Tue Jun 7 18:22:40 2022 +1000
+
+    Adding more solver tests.
+
+commit d834999f1197a87b8746224840da2a46986c4c15
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Tue Jun 7 17:40:14 2022 +1000
+
+    Disabling ImageProcessingTest.java as it is a GUI test and not suitable for CI
+
+commit 51e0e865f0f11a94e189b2fa6cb20739ed5ffbdd
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Tue Jun 7 17:38:42 2022 +1000
+
+    Disabling some unit tests and trying to fix some bugs. More unit test updates to come in order to resolve bugs and setup for refactoring.
+
+commit 48d246c16c00c91f8fc5be119ee7cd85013c8acc
+Merge: 3fbd0ed 8c9edea
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Mon Jun 6 21:44:12 2022 +1000
+
+    Merge pull request #127 from CAB302-DreamTeam/Vim
+    
+    ui_update_06_06_2022_2143
+
+commit 8c9edea68c4e94f6962884c40a757f2221a008ef
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Mon Jun 6 21:43:44 2022 +1000
+
+    ui_update_06_06_2022_2143
+
+commit 3fbd0ed146c658a9045225bb7b7634a5b6ca0dcb
+Merge: bc87c00 6866f53
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Mon Jun 6 20:40:33 2022 +1000
+
+    Merge pull request #126 from CAB302-DreamTeam/Jack
+    
+    Updating for Logo stuff and finished exporting image
+
+commit 6866f53e483c6296aa4c33f837e592ade9ffea1f
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Jun 6 20:36:48 2022 +1000
+
+    Added in basic image importing functionality.
+
+commit 92fa9d2dea90771d5bc9d59962e756c9ef0ddba0
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Jun 6 19:59:18 2022 +1000
+
+    Fixing up mistake from last commit
+
+commit 76d23626a90159519191f642362420220633f258
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Jun 6 19:58:58 2022 +1000
+
+    Moving example images around to make test run easier
+
+commit 966e4501951f0eb8afe588f2154e7af9b5488b07
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Jun 6 18:43:08 2022 +1000
+
+    Adding example images for testing.
+
+commit e5471cf695bfb770f44aa321c75c11009284e2ed
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Jun 6 18:37:23 2022 +1000
+
+    Added some comments and started developing ImageProcessing class by adding some unit tests.
+
+commit 8b158f88f1d097484613f06274f5d5b428052c3e
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Jun 6 17:55:38 2022 +1000
+
+    Fixed up check to check if maze is solvable before exporting
+
+commit 26ccd95541b6340037e812c35b595b866881b1a8
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Jun 6 15:26:44 2022 +1000
+
+    Added in exporting solution + unsolved maze if the user checks show solution before exporting.
+
+commit bc87c00c0fbb3c9376cc27dba7b57b25169271e5
+Merge: c5a0a56 f83fe53
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Mon Jun 6 10:58:34 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask
+
+commit f83fe53d3d6f81066208d629358e00728b10cfb4
+Merge: 6324508 a56a188
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Mon Jun 6 01:07:20 2022 +1000
+
+    Merge pull request #125 from CAB302-DreamTeam/Vim
+    
+    ui_update_06_06_2022_0106
+
+commit a56a188699a8fd80aa69b2bc53154fde9a82ce5f
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Mon Jun 6 01:05:59 2022 +1000
+
+    ui_update_06_06_2022_0105
+    
+    1.fixed export to database button location
+    2. fixed text input fields experience errors when pressing tab and enter keys
+
+commit 1de721f91a245953afdab247aebd1336493153aa
+Merge: 614b78d 6324508
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Mon Jun 6 00:49:09 2022 +1000
+
+    Merge branch 'main' into Vim
+
+commit 63245084697659f6531c8e35e121077fd5aec1e6
+Merge: 995dd75 11448cb
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Sun Jun 5 20:32:50 2022 +1000
+
+    Merge pull request #124 from CAB302-DreamTeam/Jack
+    
+    Adding functionality for popUp errors for #99
+
+commit 11448cb111ca6a04e8aaec30e3d5fd98a9393f7a
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun Jun 5 20:31:45 2022 +1000
+
+    Fixed a merge error
+
+commit b8988782f1493de5f092eea5b8824f0db8c2103c
+Merge: 83cbc1b 995dd75
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun Jun 5 20:30:15 2022 +1000
+
+    Merge branch 'main' into Jack
+    
+    # Conflicts:
+    #       src/main/java/gui/Render.java
+
+commit 83cbc1b7a20b28f563fb518fa0e53a7a58eb76f7
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun Jun 5 20:26:25 2022 +1000
+
+    Added Popup error and added into some areas with existing console error write lines #99
+
+commit 995dd7544b4661913cd8ae8d16cb24b3e520016c
+Merge: fb12f98 dea8150
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Sun Jun 5 19:27:45 2022 +1000
+
+    Merge pull request #123 from CAB302-DreamTeam/Hudson
+    
+    if no search parameters are specified in the load database search que…
+
+commit dea81502a2a951c0babf1203f58e5de5649969bc
+Author: Grathium <grath@duck.com>
+Date:   Sun Jun 5 19:26:40 2022 +1000
+
+    if no search parameters are specified in the load database search query, all mazes are loaded (isse #119)
+
+commit fb12f98d998e18c902562f6ddeb5e6402d30148d
+Merge: d8e5cd0 3f894a6
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Sun Jun 5 19:14:18 2022 +1000
+
+    Merge pull request #122 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit 3f894a6304a10c1e7a273f93bce73b4402aa9ed7
+Author: Grathium <grath@duck.com>
+Date:   Sun Jun 5 19:13:48 2022 +1000
+
+    fixed bug: show solution checkbox not impacting if solution is shown when the solve button is pressed
+
+commit b1d13f7d5b3afb59dba404dd4559c08a8b68733a
+Author: Grathium <grath@duck.com>
+Date:   Sun Jun 5 19:08:28 2022 +1000
+
+    added functionality to 'show solution' checkbox
+
+commit 832248ee70cbb8860542936efb2fc00363c5dbfe
+Author: Grathium <grath@duck.com>
+Date:   Sun Jun 5 18:59:09 2022 +1000
+
+    added 'show solution' checkbox
+
+commit d8e5cd064ed1915c3e6c4a280c789ea4cc029424
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Sun Jun 5 18:22:45 2022 +1000
+
+    Upload Statement of Completeness
+
+commit f046b009d2230ff7ff1b6109869fcdd9c1149618
+Merge: 8dd4550 e325415
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun Jun 5 17:49:00 2022 +1000
+
+    Merge branch 'main' into Jack
+
+commit 8dd45501fd796568c7020796c46b886c32c71320
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun Jun 5 17:44:26 2022 +1000
+
+    Fixed up % travelled for solver metrics.
+
+commit e32541577feaebd4f0c8a1d9b252eae62e723481
+Merge: 6059720 d45e791
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Sun Jun 5 17:25:01 2022 +1000
+
+    Merge pull request #121 from CAB302-DreamTeam/Jack
+    
+    Fixed up scaling for images.
+
+commit 6059720b305ff2d8a32f3beaa39a15f1fc48edf9
+Merge: fd24201 1db6056
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Sun Jun 5 17:24:21 2022 +1000
+
+    Merge pull request #120 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit d45e79118f9bfd829188695d17b10f07b2405b9b
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun Jun 5 17:23:29 2022 +1000
+
+    Fixed up scaling for images so images will now have the correct pixel dimensions for export.
+
+commit 1db6056c5f470dcdad0cc07f01aed1ba9ba06cc4
+Author: Grathium <grath@duck.com>
+Date:   Sun Jun 5 17:20:32 2022 +1000
+
+    bugfix for: issue #97 solver now deletes an old solution and renders a better one if the user has changed any of the walls since solution computation
+
+commit e074f2216c0c4c411ced0c323b64be75ed1e19b1
+Author: Grathium <grath@duck.com>
+Date:   Sun Jun 5 17:01:34 2022 +1000
+
+    renamed the checkbox that automatically soves the maze to better reflect its purpose
+
+commit 2df6a7584d2057f75f599c08058a3d276f48f4f3
+Merge: f3670d1 fd24201
+Author: Grathium <grath@duck.com>
+Date:   Sun Jun 5 16:58:50 2022 +1000
+
+    fixed merge conflicts
+
+commit f3670d10918192680ec044b718169e78c8e784de
+Author: Grathium <grath@duck.com>
+Date:   Sun Jun 5 16:56:52 2022 +1000
+
+    staging for merge
+
+commit 614b78def701f1da09a8bab867eb0859cd60cfdc
+Merge: 5d4de62 fd24201
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Sun Jun 5 16:49:07 2022 +1000
+
+    Merge branch 'main' into Vim
+
+commit fd242016148152375220818cbfd206f8bde4e5b9
+Merge: 1dc2f6d e928949
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Sun Jun 5 15:24:51 2022 +1000
+
+    Merge pull request #115 from CAB302-DreamTeam/Jack
+    
+    Fixed up scaling a little and adding in initial error popups
+
+commit e9289494548ef324317f0626a0e66084a2f78c8e
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun Jun 5 15:23:44 2022 +1000
+
+    Fixed up bug with scaling and changed scale factor to 25.0 which meets all the dimensions (except 95+ nicely)
+
+commit 880534f192ca58ad910f30f6913fa341168ce649
+Merge: 6e83ade 1dc2f6d
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun Jun 5 14:38:40 2022 +1000
+
+    Merge branch 'main' into Jack
+
+commit 6e83ade3ece41f654eecc762d5d04e7e10e067b3
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun Jun 5 14:37:41 2022 +1000
+
+    Adding PopUp.java
+
+commit 9208083be273eed4239509b0cdfe347d0669977d
+Merge: cb7bf40 34efa06
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Sun Jun 5 14:27:51 2022 +1000
+
+    Merge branch 'main' into Jayden
+
+commit 1dc2f6d1d26b5651c0195f37fb596711b35ff41e
+Merge: 34efa06 cb7bf40
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Sun Jun 5 14:27:38 2022 +1000
+
+    Merge pull request #114 from CAB302-DreamTeam/Jayden
+    
+    Window Modification
+
+commit cb7bf4091a643e5d18e98acafee6f79d9c2172a2
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Sun Jun 5 14:27:21 2022 +1000
+
+    Window Modification
+
+commit 34efa062589d824a318d6e4ac458037616a861f2
+Author: Grathium <grath@duck.com>
+Date:   Sat Jun 4 22:04:29 2022 +1000
+
+    remove db file
+
+commit e512efc63a310c7fa76a18786720cf7a9b1d8b0c
+Author: Grathium <grath@duck.com>
+Date:   Sat Jun 4 21:55:56 2022 +1000
+
+    added UX feedback when the 'export maze' button is pressed (issue #59)
+
+commit 7fe79984a2cf5f1494b7a3d529afddc2c1b483e7
+Merge: f892bfc ee20911
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Sat Jun 4 19:00:19 2022 +1000
+
+    Merge pull request #113 from CAB302-DreamTeam/Jayden
+    
+    Close #108
+
+commit ee209110b731d41847b1885b3ff13e0d472c3c5d
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Sat Jun 4 18:58:09 2022 +1000
+
+    Close #108
+    
+    Maze image now scales to be visible for maze sizes
+
+commit f892bfc5835c5604ae66659dbb28f30f04e40b35
+Merge: f9383e1 736ecba
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Sat Jun 4 18:19:51 2022 +1000
+
+    Merge pull request #112 from CAB302-DreamTeam/Jayden
+    
+    Close #101
+
+commit 736ecba608497336af2137618960313bca51be68
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Sat Jun 4 18:19:26 2022 +1000
+
+    Close #101
+    
+    Metrics Window now updates on button press and is a new window!
+
+commit f9383e184a6fcb839619004fa9ae9a7b9ba49547
+Merge: d4e38d3 f308ecb
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu Jun 2 19:06:28 2022 +1000
+
+    Merge pull request #111 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit f308ecb890a11c6569a5b7ad3efa628021cd8872
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 2 19:04:25 2022 +1000
+
+    fixed database list
+
+commit e0fb07e8a897495a20e34b2ea3365168b10c0fbf
+Merge: 2d42ada d4e38d3
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 2 18:07:56 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask into Hudson
+
+commit 2d42ada14058f749bfba176def7ca4f0241e5804
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 2 18:07:46 2022 +1000
+
+    staging before main -> Hudson
+
+commit c5a0a5605f03d2dc2a8a6cb0ff1f22c559b0ffa5
+Merge: e516384 d4e38d3
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Thu Jun 2 14:05:26 2022 +1000
+
+    staging
+
+commit e51638425bd66bd774e1c88ad621582254512b2f
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Thu Jun 2 14:04:52 2022 +1000
+
+    fixed merge conflicts
+
+commit d4e38d3199e6c7761311115d7262b56c53726ea5
+Merge: bf2e0f3 3e04cc1
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Thu Jun 2 14:03:20 2022 +1000
+
+    Merge pull request #110 from CAB302-DreamTeam/Jayden
+    
+    Jayden
+
+commit 3e04cc1fefc8846e50907eb1f6465840da038a1a
+Merge: 3053be6 bf2e0f3
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Jun 2 14:02:49 2022 +1000
+
+    Merge branch 'main' into Jayden
+
+commit 3053be600e7ec937e8b80ebce613d168a37e2c9a
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Jun 2 14:01:18 2022 +1000
+
+    Revert "Delete cab302.db"
+    
+    This reverts commit 29951b5897ef45606773b8ba7c8010f66ec2abd4.
+
+commit 5d4de629c62b96334c0bd0da0811836a5b88e1d2
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Thu Jun 2 14:00:57 2022 +1000
+
+    ui_update_02_06_2022_1400
+
+commit bf2e0f3efc6f45164017442340c46eb31b48ba5a
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Jun 2 14:00:09 2022 +1000
+
+    Ignore db file
+
+commit 29951b5897ef45606773b8ba7c8010f66ec2abd4
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Jun 2 13:52:44 2022 +1000
+
+    Delete cab302.db
+
+commit 4c2c3722d9790b7f6e1c613ecf7e392e5a1c982e
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Jun 2 13:50:49 2022 +1000
+
+    #101 Update maze Metrics
+    
+    Include maze metrics, still an issue with the solver class which doesnt produce the correct values
+
+commit 1d73aef7f0c2cacc93e84e6da449eb24c3fd488d
+Merge: a7c19dd ca7e333
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu Jun 2 13:15:07 2022 +1000
+
+    Merge pull request #105 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit ca7e33341fcf3a9c8915b57b93cd59a72b4f842c
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 2 13:13:08 2022 +1000
+
+    added the ability to search by databse by author, time modified, and created time (issue #96)
+
+commit 06541e1f281155c4385b978c86b23476c027cc22
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 2 12:02:12 2022 +1000
+
+    added sqlite3 local db to .gitignore
+
+commit a7c19dd649051c38096013aa389a4559dcfaab36
+Merge: 2190b00 a1b3c02
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu Jun 2 12:01:10 2022 +1000
+
+    Merge pull request #104 from CAB302-DreamTeam/Hudson
+    
+    added a GUI for importing mazes that fetches data fom a search query …
+
+commit a1b3c02242f9f75f1466fafda6ec885b50dadb82
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 2 11:59:00 2022 +1000
+
+    added a GUI for importing mazes that fetches data fom a search query and allows the user to render a selected maze from a list (issue #96)
+
+commit 2190b001cd71ecb5a4ab50975df8e68f648488e0
+Merge: 93b3965 d624962
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu Jun 2 08:51:26 2022 +1000
+
+    Merge pull request #103 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit d6249627f0c02f7da4dc55a304aee9460cd3f884
+Merge: a935b6a 93b3965
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 2 08:46:22 2022 +1000
+
+    fixed merge conflicts from main -> Hudson
+
+commit a935b6a2afd9191e0b74a7b3efb21056c70e6fd2
+Author: Grathium <grath@duck.com>
+Date:   Thu Jun 2 08:37:42 2022 +1000
+
+    implemented auto solve checkbox functionality (issue #97)
+
+commit 40def346db73e7c9cfdcf2b26e82f3576f21b7a7
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 1 22:55:32 2022 +1000
+
+    fixed maze solver visualization
+
+commit d79ca39b412d3fde31587fc9139c53b28beb4ca7
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 1 22:39:22 2022 +1000
+
+    created solver visualization mvp
+
+commit 82e54d87ab99108fe51ac687218916e727531cab
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 1 22:09:52 2022 +1000
+
+    removed duplicate code
+
+commit fd6d3187d35f0439cef4dd0a26d65dc31f6cfb68
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 1 21:41:12 2022 +1000
+
+    added function to render maze solver visualization (issue #97)
+
+commit 587fdc1820b7238dbe5ee2e004dc12816346e601
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 1 21:21:29 2022 +1000
+
+    fixed dfs solver
+
+commit 93b396561966de25380dbab713d1dd475f08a709
+Merge: c232779 fb5f4ea
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Wed Jun 1 20:30:16 2022 +1000
+
+    Merge pull request #93 from CAB302-DreamTeam/Jack
+    
+    Added in export image support
+
+commit fb5f4eaec065ba167d76a2bf0bf7caaf03737b8d
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 1 20:29:18 2022 +1000
+
+    Added in support for exporting image with database saving.
+
+commit 90e97106755fb36718002b4184b400d8c89433d0
+Merge: 6c1070a c232779
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 1 20:23:59 2022 +1000
+
+    Merge branch 'main' into Jack
+    
+    # Conflicts:
+    #       src/main/java/gui/Frame.java
+
+commit c23277949729d42139b1a96b0ad56b6cd81ed780
+Merge: ec2125d 62dd198
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Wed Jun 1 20:07:24 2022 +1000
+
+    Merge pull request #92 from CAB302-DreamTeam/Hudson
+    
+    fields now update global object
+
+commit 62dd198c9253fce18046008ba2474e6ab4f31c6a
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 1 20:06:13 2022 +1000
+
+    fields now update global object
+
+commit 6c1070ab2571570583795435782dfcf048ae358f
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 1 19:55:16 2022 +1000
+
+    Added file picker support to exportImage.
+
+commit ec2125d5d312cb3c18a38e928f9fda80352107ec
+Merge: 9410ce9 453aa85
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Wed Jun 1 19:49:31 2022 +1000
+
+    Merge pull request #91 from CAB302-DreamTeam/Jayden
+    
+    Fix Blank Maze Generation
+
+commit 453aa85a69ea234fba068c30ef910df9dda57ae9
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Jun 1 19:49:14 2022 +1000
+
+    Fix Blank Maze Generation
+    
+    Set the outer walls to be black for a blank maze
+
+commit 9410ce9924aac74eff8c3a6398bb340af36a1bd6
+Merge: 2bfeca2 9fa126f
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Wed Jun 1 19:43:11 2022 +1000
+
+    Merge pull request #90 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit 9fa126f098585c2d2e29c7abe149a00f093a3516
+Merge: b40239d 2bfeca2
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 1 19:40:32 2022 +1000
+
+    fixed merge conflicts
+
+commit b40239decb3e25eb56a4082663de21b03fbac39e
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 1 19:36:12 2022 +1000
+
+    maze solver now runs when 'sovle' button is pressed
+
+commit 2bfeca2e75418f9e3c5b26e59b8c92fa0c3ddb9e
+Merge: 112ebab dce96e3
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Wed Jun 1 19:34:48 2022 +1000
+
+    Merge pull request #89 from CAB302-DreamTeam/Jayden
+    
+    #47 Add for Auto Generation
+
+commit dce96e3ff3091ccb9abbae0666b43cc4853fe24f
+Merge: 100fff2 112ebab
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Wed Jun 1 19:34:17 2022 +1000
+
+    Merge branch 'main' into Jayden
+
+commit 100fff2fe9161611ef45d300769045029fa2d821
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Jun 1 19:33:07 2022 +1000
+
+    #47 Add for Auto Generation
+    
+    Adds a start and end location for automatic maze generation
+
+commit 112ebab9117208df1292db735b6b3e619eb5c93f
+Merge: 7c53989 5838910
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Wed Jun 1 19:29:21 2022 +1000
+
+    Merge pull request #88 from CAB302-DreamTeam/Jack
+    
+    Fixed up some more merge errors I think
+
+commit 583891075857480c8592f73faff543c96bf41c4d
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Jun 1 19:28:29 2022 +1000
+
+    Fixed up some more merge errors I think
+
+commit 20a18d1a0096fd479861bdd473bbb3319cec9a2c
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 1 15:55:46 2022 +1000
+
+    mazes now export to splite3 db (issue #53)
+
+commit c5facb2b723e516652228f60ef16fdd9f9242d8f
+Merge: 81fe82e 7c53989
+Author: Grathium <grath@duck.com>
+Date:   Wed Jun 1 11:58:55 2022 +1000
+
+    fixed merge conflicts from main -> Hudson
+
+commit 7c53989e8eb15151033de94817cf2d28b2cad30a
+Merge: 7d8c4f8 f3ae224
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Wed Jun 1 11:26:44 2022 +1000
+
+    Merge pull request #87 from CAB302-DreamTeam/Jayden
+    
+    Approved Jayden's pull request for adjusting maze sizing and logo stuff
+
+commit f3ae22438e3e128f94921b3e5263df7189bf877b
+Merge: 8a81606 7d8c4f8
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Wed Jun 1 11:26:09 2022 +1000
+
+    Merge branch 'main' into Jayden
+
+commit 7d8c4f88f073ed3887791df020bd501a07c20a28
+Merge: feb89d3 54650d5
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Wed Jun 1 11:24:55 2022 +1000
+
+    Merge pull request #86 from CAB302-DreamTeam/Vim
+    
+    Approved pull request for Vim's UI adjustments
+
+commit 8a81606d8519eea18248b9dd38d151416601a2da
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Jun 1 00:02:07 2022 +1000
+
+    Close #70 Maze Generation is Now visible
+    
+    Maze can be seen visually, in addition you can see the logo and the sizes will render properly for all valid inputs (noting they are squares), in addition clicking any wall tile will now set the correct wall in the maze object as far as I can tell, will need a DB test to see if it restores correctly
+
+commit 85fbbd17fc97966b2d6cae7fa79a02d2f14261e9
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Tue May 31 23:45:15 2022 +1000
+
+    #71 Adds the ability to clear space for a logo
+    
+    Clears space for logo provided it leaves a single clear row on either side of the maze, noting that the logo is not being imported into the lcoation, and it is always centered. Also assumes logo is square
+
+commit 3886e322baef457e94cf7f639ea77c48ecd1f204
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Tue May 31 23:13:15 2022 +1000
+
+    Missed comment lines
+
+commit c64ae322c6d490df3a7f355efd6ffed143f848a4
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Tue May 31 23:12:23 2022 +1000
+
+    Remove Unneeded Buttons
+    
+    Easy Med Hard not needed
+
+commit c4c2b9a7f4bcda4778d35f49397fec5b62f0033b
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Tue May 31 23:10:29 2022 +1000
+
+    #71 Fix to visualisation of auto generation
+    
+    you can now use the auto generate button to see the maze!
+
+commit 54650d5927e631c9a52da1c90461b251728f2431
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Tue May 31 23:05:49 2022 +1000
+
+    ui_update_31_05_2022_2305
+
+commit 81fe82e2a5221ff5d655e352f125d747ef6edf7b
+Author: Grathium <grath@duck.com>
+Date:   Tue May 31 21:10:32 2022 +1000
+
+    added missing author and maze name buttons
+
+commit bf608e7409fedbb891c2771ea0045bd9fffa42fd
+Merge: 74afcb3 feb89d3
+Author: Grathium <grath@duck.com>
+Date:   Tue May 31 20:58:27 2022 +1000
+
+    fixed merge conflict
+
+commit 74afcb381201fdf8be72e9ca39d5811a072d198a
+Author: Grathium <grath@duck.com>
+Date:   Tue May 31 20:51:17 2022 +1000
+
+    added functionality for maze buttton
+
+commit feb89d311b5e8074514c5f7b037fcf41d764f480
+Merge: f75d05a e7dab78
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Tue May 31 20:39:10 2022 +1000
+
+    Merge pull request #85 from CAB302-DreamTeam/Jack
+    
+    Added maze image exporting button functionality and some other testing stuff
+
+commit e7dab78267a201f67ef3d5214d36a3772adccd33
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Tue May 31 20:38:00 2022 +1000
+
+    Added basic export maze as image functionality. Still todo is file picker and naming support.
+
+commit 39d9e47f6a1960e15938fff5e12aef199e4037d3
+Merge: c60cf42 f75d05a
+Author: Grathium <grath@duck.com>
+Date:   Tue May 31 20:18:59 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask into Hudson
+
+commit ffc9a5a39e4e6c1bcdbaddc9cb08470f14e2b49f
+Merge: 8eaef64 f75d05a
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Tue May 31 20:11:31 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask into Jack
+
+commit e11be62fa1645e08af65debc88729eac29a9b501
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Tue May 31 19:59:32 2022 +1000
+
+    ui_update_31_05_2022_1959
+
+commit f75d05a8ba5a502bef84e53fc1bb70de77777c89
+Merge: 1004b68 d6a1bb3
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Tue May 31 11:34:33 2022 +1000
+
+    Merge pull request #84 from CAB302-DreamTeam/Vim
+    
+    UI elements updated as of 30_05_2022_2110
+
+commit d6a1bb3edeb43c34f80a83757942179ee67deec6
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Mon May 30 21:10:59 2022 +1000
+
+    ui_update_30_05_2022_2110
+
+commit 0e887d451bf916e86dcf9c181fbcea4ff1301777
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Mon May 30 19:41:02 2022 +1000
+
+    ui_update_30_05_2022_1940
+    
+    added open existing maze window
+
+commit c9e470ade811ea95f7829ed561f7d0ed5ef4a6ce
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Mon May 30 13:36:07 2022 +1000
+
+    ui update 30_05_2022
+    
+    back button closes maze generation window
+
+commit 582ec61b58ad05a5c2e7fcdf182f128a56ebe6c0
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Mon May 30 06:31:35 2022 +1000
+
+    Maze Properties Control UI working
+
+commit 1004b689b6b4ee893b6d8312d2bf51a4cbfd5ea9
+Merge: 2bd1c4f 681487e
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Mon May 30 00:03:16 2022 +1000
+
+    Merge pull request #83 from CAB302-DreamTeam/Vim
+    
+    Vim fixed ui elements for maze generation
+
+commit 681487ec821296e5db905371e08642e298380af3
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Mon May 30 00:00:32 2022 +1000
+
+    fixed maze not showing after generate button pressed on new window
+
+commit e537779a01252169794155ffaf9befaee46d18d8
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Sun May 29 23:45:30 2022 +1000
+
+    maze generation frame created on button press
+
+commit c888c1fadbdf3285275b9e32ba222330dea23f2d
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Sun May 29 14:20:46 2022 +1000
+
+    Maze generation working on new frame
+
+commit bac6419b5b93a3ca518277470894d7334f570990
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Sun May 29 13:55:43 2022 +1000
+
+    maze generation working v2
+    
+    i've added x and y position variables to the maze render class so we can move the maze generation anywhere on the frame now
+    
+    check the generate blank maze button, my solution to redraw it was to rerun the initialise method inside that button action, so I dunno if that will cause problems
+    
+    after maze generation button is pressed it also makes the text boxes blank again, which is because the initialise method redraws the whole frame
+    
+    but if there's a way to access the buttons only and redraw them then that would be way better than rerunning the initialising method
+
+commit 2e395492a58c175846fcb974ea2e117dd2d1fc4e
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Sun May 29 13:46:34 2022 +1000
+
+    maze generation working
+
+commit 09635b89b76d8485f4c4ad14d6d2ec0890a7e778
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Sun May 29 13:05:09 2022 +1000
+
+    updated maze generation position variables
+
+commit d0f5132f0db3d60884c897df73acd0ba41a79330
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Sun May 29 12:04:43 2022 +1000
+
+    created new window for maze generation
+
+commit 8eaef64d34411408ac831124895ca5dd79838791
+Merge: 469900a 2bd1c4f
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun May 29 11:02:35 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask into Jack
+
+commit 2bd1c4f589543def57493bbc58d5ed8a49cd364a
+Merge: 98f4f62 dd1d47c
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Sat May 28 21:37:49 2022 +1000
+
+    Merge pull request #82 from CAB302-DreamTeam/Vim
+    
+    Vim
+
+commit dd1d47cb72c2ba91efe14012450a1149bb2172bf
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Sat May 28 16:05:18 2022 +1000
+
+    maze generation updated v2
+
+commit b678575b8e29858aae13c4ef876c4629f40b01d0
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Sat May 28 16:00:19 2022 +1000
+
+    maze generation working
+
+commit 31469ff212b3bc675b2ba242722dec3b9862c5f6
+Merge: 2ec9bdd 98f4f62
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Sat May 28 13:07:09 2022 +1000
+
+    Merge branch 'main' into Vim
+
+commit 98f4f62b4f4a3833a5e26ae085d92046210dbf9e
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 01:57:24 2022 +1000
+
+    updated: readme
+
+commit ecdb0f2fba39d289aa87ba8f97bd7e25e324b376
+Merge: ff99850 bbed6d0
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 01:56:46 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask
+
+commit c60cf42c7f19f116efcbffbb0f8b41b3d6ddf6cb
+Merge: da7e308 bbed6d0
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 01:56:16 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask into Hudson
+
+commit da7e308581e14352d6cf4dae42fc63d0b9489e47
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 01:55:37 2022 +1000
+
+    updated readme.md
+
+commit bbed6d060d7d8dd2901b4ef17c3dd6b0517862a1
+Merge: d1c59db 8b46a37
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Sat May 28 01:54:44 2022 +1000
+
+    Merge pull request #79 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit 8b46a37aca6b22fd779ca75da98a6e830b73e127
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 01:49:16 2022 +1000
+
+    bugfix: maze objects should be loaded as maze object not Object object
+
+commit cad2ae57cb208940c292b8664ef12d2cbd7358f5
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 01:44:42 2022 +1000
+
+    added the ability to load database objects from the database (issue #42 #53)
+
+commit 134e05aee4fda2dc0e512adde8d824b4e0dbda28
+Merge: a756bf7 d1c59db
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 01:24:05 2022 +1000
+
+    merging origin main -> Hudson
+
+commit a756bf7f577f059ad2bb43776f55436a80045d74
+Merge: e6594fa 985a624
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 01:20:53 2022 +1000
+
+    merging origin Hudson -> Hudson
+
+commit e6594fa893dab5d3f00e9e0f268f81cf5d7edd5f
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 01:18:35 2022 +1000
+
+    database now supports downloading a database (issue #53)
+
+commit 985a624ccacb2073b0765a021fa6389838d5264d
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 01:02:46 2022 +1000
+
+    comming stages for rollback
+
+commit 0be87b9592bb802c50c9464403a3142758ceb0a2
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 00:38:06 2022 +1000
+
+    Made tile object serializable
+
+commit 7f3e9a78c695af8388321121e48609cfe2b15717
+Author: Grathium <grath@duck.com>
+Date:   Sat May 28 00:22:03 2022 +1000
+
+    Made maze object serializable
+
+commit 2ec9bdddfb4458ec4e2a8803721c77fa3b8796f5
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Fri May 27 10:29:06 2022 +1000
+
+    maze generation update with hardcoded values
+
+commit 6a85baa095c5d584fc40f8c476c59ed9e615f9bb
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Fri May 27 02:13:24 2022 +1000
+
+    updated maze functionality
+
+commit d1c59db01b36dca71b963cfc02d4bcd09299bb4b
+Merge: a959fea b98cf7e
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Thu May 26 22:39:58 2022 +1000
+
+    Merge pull request #77 from CAB302-DreamTeam/Jayden
+    
+    Bug Fixes to Generating Maze Walls
+
+commit b98cf7ec115d7ea1cb43b49799ba8a81516cf968
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu May 26 22:39:11 2022 +1000
+
+    Bug Fixes to Generating Maze Walls
+    
+    Maze Path Generated Correctly, but walls were not setting correctly for some reason. This has now been fixed. Visualisation still wonky
+
+commit ff99850329fe0d2ba572e9c289aebc43e2eb7e9e
+Merge: 091bd96 a959fea
+Author: Grathium <grath@duck.com>
+Date:   Thu May 26 16:36:05 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask
+
+commit 94ac0c274e0879618a220d4e7101e0d5cae9a630
+Author: Grathium <grath@duck.com>
+Date:   Thu May 26 16:35:50 2022 +1000
+
+    staging to create new branch 'dev'
+
+commit a959fea2e59b70c7f5a6899813da71975cc2f1e5
+Merge: 45b7812 dd3dd93
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu May 26 13:47:50 2022 +1000
+
+    Merge pull request #75 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit dd3dd93cbfa240b1a0b8adb69dc30f5b8c7887b8
+Merge: e7fe099 45b7812
+Author: Grathium <grath@duck.com>
+Date:   Thu May 26 13:45:46 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask into Hudson
+
+commit e7fe0992e76dd0fba101d9e6879f728c79e6d99c
+Author: Grathium <grath@duck.com>
+Date:   Thu May 26 13:45:25 2022 +1000
+
+    added function to return the number of tiles visited in a optimal solution (issue #74)
+
+commit 45b78129ed2ac00002ef30f57b804b80d3ab727f
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu May 26 13:44:07 2022 +1000
+
+    Implement Count Dead-Ends
+
+commit cfa3639cdc8504edf4f61616b6361cb68774e4c8
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Thu May 26 13:42:37 2022 +1000
+
+    Updated Generation Frame v4
+
+commit 091bd964492f164b3e9691646729aed5c8c97fa2
+Merge: dcf21bb d57de7b
+Author: Grathium <grath@duck.com>
+Date:   Thu May 26 13:22:32 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask
+
+commit d57de7bec9de715431fd5800e38b3922373a94f4
+Merge: 11bb0b3 ae9374c
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu May 26 13:19:52 2022 +1000
+
+    Merge branch 'Jayden'
+
+commit dcf21bb2d8a74ed8653839625d3976fe41eb82ed
+Merge: 3f2a1c1 11bb0b3
+Author: Grathium <grath@duck.com>
+Date:   Wed May 25 21:09:14 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask
+
+commit 3f2a1c1014b5332add089747fcbeb104d84d42fb
+Author: Grathium <grath@duck.com>
+Date:   Wed May 25 21:09:09 2022 +1000
+
+    staging
+
+commit 11bb0b367d284cf2a00d7d8c55682443df821255
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Wed May 25 21:04:21 2022 +1000
+
+    Update pom.xml
+
+commit 0c12813ce4206de193a7c1a329767c5034a43df3
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Wed May 25 20:50:27 2022 +1000
+
+    Update pom.xml
+
+commit f9206ad247c7f22a64c46a48309b4dd49076bf61
+Merge: 0665054 236dccd
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Wed May 25 20:49:47 2022 +1000
+
+    Merge pull request #73 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit 469900a09372374883bf5ad657b9149cd8464c85
+Merge: a20def2 236dccd
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed May 25 20:49:00 2022 +1000
+
+    Merge branch 'Hudson' of https://github.com/CAB302-DreamTeam/AssessmentTask into Jack
+
+commit 09d82072b1e2813b3df69140ea619a8772a22def
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Wed May 25 16:19:19 2022 +1000
+
+    maze_generation_frame_update_v3
+
+commit ae9374cfea5d3f2d5c5f82ee3052674b6ca9450b
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Sun May 22 18:52:39 2022 +1000
+
+    Update to change old cells
+
+commit 3a662a076125d04fa0eb63088d28b2326aa2241f
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Sun May 22 18:39:59 2022 +1000
+
+    #71 Bug Fixes
+    
+    Fixed some bugs that led to mazes not generating correctly, looks like they are not visually showing correctly, but they are in fact generating. Will still need to fix some wall logic
+
+commit 236dccd55b50bd4d081a65998d3e20bbce05d4ff
+Merge: 13ccc49 8ffa36e
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Sun May 22 17:32:20 2022 +1000
+
+    Merge pull request #72 from CAB302-DreamTeam/Jayden
+    
+    #71 Automatic Maze Generation Algorithm
+
+commit 8ffa36e4a0fc7e9e066bab4a39a555bbd0a7ad93
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Sun May 22 17:31:49 2022 +1000
+
+    #71 Automatic Maze Generation Algorithm
+    
+    Initial beta algorithm for generating the maze, should fill all potential tiles in the maze. Currently missing setting the tiles for the GUI (currently only changes backend)
+    Also could use a seed for consistent generation?
+
+commit 13ccc490b09edaa7c26d240d73d51c3c617c7b98
+Merge: c82edeb caf2e04
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Sat May 21 19:19:56 2022 +1000
+
+    Merge pull request #69 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit caf2e0431be8357410f09a4ca77881a33ba0c276
+Author: Grathium <grath@duck.com>
+Date:   Sat May 21 19:18:06 2022 +1000
+
+    ran Maven clean and added target/ to .gitignore
+
+commit a20def208d025d3b12b3bc4af817641905480f94
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sat May 21 19:17:57 2022 +1000
+
+    Messed around with some stuff that didn't really do much.
+
+commit b3df7753856e2c31f056f61ec283287758b7fd85
+Merge: eb5b7f4 c82edeb
+Author: Grathium <grath@duck.com>
+Date:   Sat May 21 19:14:21 2022 +1000
+
+    fixed merge conflicts
+
+commit c82edeb5d7741f13e20c89a30be232ec4109acac
+Merge: e04f567 ce8ecdc
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Sat May 21 19:08:50 2022 +1000
+
+    Merge pull request #68 from CAB302-DreamTeam/Maven_Dev
+    
+    Maven dev
+
+commit ce8ecdc5aa91c16546c82bd94f81d7c75b496f66
+Merge: b5e6d79 e04f567
+Author: Grathium <grath@duck.com>
+Date:   Sat May 21 19:03:42 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask into Maven_Dev
+
+commit e04f567eb3e558e9d4e9dfdc9e9171a588a94045
+Merge: d0cb369 57b34a4
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Sat May 21 16:06:24 2022 +1000
+
+    Merge pull request #67 from CAB302-DreamTeam/Vim
+    
+    Adding in initial UI changes from Vim and some refactoring from me
+
+commit 57b34a492eb0320cf57aaffb839b472163ef4494
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sat May 21 16:05:33 2022 +1000
+
+    Some moving around
+
+commit af8a9a3f4b39de784a30efb79da82e7d8c1bb94c
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sat May 21 16:00:39 2022 +1000
+
+    Initial refactoring for improved OOP
+
+commit cca256201e813669ada6c931396f2af4a9c4efd9
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sat May 21 15:57:40 2022 +1000
+
+    Moved the initialize method back because it is more UI then Maze generation.
+
+commit c6e567a8e805c5c6e1bb36603143ccebca2cabe6
+Merge: f749f54 d0cb369
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sat May 21 15:26:29 2022 +1000
+
+    Merge remote-tracking branch 'remotes/origin/main' into Vim
+
+commit f749f54199a976852e48a4d3ae45f8ba9f2cd300
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sat May 21 14:49:28 2022 +1000
+
+    Refactored Maze rendering from Frame Class to Render Class and removed UI class as it is not being used.
+
+commit 2b745c24fe86f058b78b9c45eefb966eb89ce4db
+Merge: 07c4185 ab42702
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sat May 21 14:17:01 2022 +1000
+
+    Merge branch 'Vim' of https://github.com/CAB302-DreamTeam/AssessmentTask into Vim
+    
+    # Conflicts:
+    #       src/main/java/gui/Frame.java
+
+commit eb5b7f45c60fc73734736436caf7b805fde305f1
+Merge: 0e464a3 b5e6d79
+Author: Grathium <grath@duck.com>
+Date:   Thu May 19 14:34:53 2022 +1000
+
+    Merge branch 'Maven_Dev' of https://github.com/CAB302-DreamTeam/AssessmentTask into Hudson
+
+commit b5e6d797d04d56ef33d0b01d2cea3bee3a187504
+Author: Grathium <grath@duck.com>
+Date:   Thu May 19 14:25:51 2022 +1000
+
+    changed name of integrated build process to better reflect its purpose (issue #66 #58)
+
+commit 5011ca60d1f4401e398022d70364101cbdf3e5a1
+Merge: 70a64c8 c3e6554
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 14:13:21 2022 +1000
+
+    Merge branch 'Workflow-Pipeline' of https://github.com/CAB302-DreamTeam/AssessmentTask into Maven_Dev
+
+commit c3e6554aa58b7573a629fcabf148d979fced5e06
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu May 19 14:10:35 2022 +1000
+
+    Create maven-tests.yml
+
+commit d0cb369d6f393107ebf42a5d2d149af7f91b1a2d
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu May 19 14:04:10 2022 +1000
+
+    Delete maven-publish.yml
+
+commit 225fbff7cf9ae42b8015b8aebbb7994e6c14c415
+Merge: 0665054 bdeaccd
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu May 19 14:03:33 2022 +1000
+
+    Merge pull request #64 from CAB302-DreamTeam/Integration-Pipeline
+    
+    Created Integration Pipeline
+
+commit bdeaccd889ed88faf86685549933fbf03c63da8e
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu May 19 14:03:12 2022 +1000
+
+    Created Integration Pipeline
+
+commit 0e464a32a38ba6bb43980c7ab73cfeed5008b81a
+Merge: f8cffc4 70a64c8
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 13:54:18 2022 +1000
+
+    fixed merge conflict of Maven_Dev -> Hudson
+
+commit 70a64c8e305fae84dd6245d7d2ced95bafa36f31
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 13:49:21 2022 +1000
+
+    Added Junit as global dependency in Maven pom.xml
+
+commit 91ccd48e720e174f78083a5793b8a6d3ebb2d00f
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 13:31:58 2022 +1000
+
+    added pom.xml maven build config file
+
+commit c31bbf0f84281bdd41c1bf37586dc09129c89d08
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 13:23:41 2022 +1000
+
+    marked test and source directory
+
+commit 565c3165606d99721afd146ad1bc3bca2c30345e
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu May 19 13:14:25 2022 +1000
+
+    Update README.md
+
+commit f8cffc4263f1c758f06275055f599713f60e261e
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 13:11:10 2022 +1000
+
+    refactored database class
+
+commit 2945819ce9a2ef1e2c74de02fecca77652d92495
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 10:26:49 2022 +1000
+
+    implemented parer for db.props file (issue #62)
+
+commit 82bf64ecd6abe37c815b21242a18055f00471cdd
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 10:14:33 2022 +1000
+
+    added functionality to db.props file reader (issue #62)
+
+commit 2120c32ae8fb821652f1ef06b3397a8d7b4dab27
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 09:58:55 2022 +1000
+
+    created skeleton of db.props file reader (issue #62)
+
+commit 58d721f133455dd58ae3360a2ad664fa8ef8841e
+Merge: 908ed82 7d41fb8
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 09:50:58 2022 +1000
+
+    Merge branch 'Hudson' of https://github.com/CAB302-DreamTeam/AssessmentTask into Hudson
+
+commit 908ed82896992d6ab9462fb1398ccdc2efc319a4
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 19 09:50:30 2022 +1000
+
+    added db.props file (issue #62)
+
+commit ab427027de008f95f869a795ca3acea573d1cf9f
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Wed May 18 17:52:33 2022 +1000
+
+    Updated difficulty panel on maze frame
+
+commit dc846ed9562a1ad3704d5f1a7d176aeca60df4f0
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Wed May 18 16:25:54 2022 +1000
+
+    Updated Maze Generation Frame
+    
+    added panels to maze generation frame
+
+commit 7d41fb8f70478eabacaf66a0770cfcf1bafeb7ef
+Merge: a3aa391 0665054
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Wed May 18 15:17:12 2022 +1000
+
+    Merge pull request #61 from CAB302-DreamTeam/main
+    
+    Merge pull request #60 from CAB302-DreamTeam/Hudson
+
+commit 066505422d560459ca329d919c609eb7b2a1c5a4
+Merge: b64deaf a3aa391
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Wed May 18 15:15:34 2022 +1000
+
+    Merge pull request #60 from CAB302-DreamTeam/Hudson
+    
+    Merge pull request #59 from CAB302-DreamTeam/main
+
+commit a3aa391d2bb5122b97ab3ae5607c9b4e525c4bf4
+Merge: 9683b31 b64deaf
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Wed May 18 15:15:20 2022 +1000
+
+    Merge pull request #59 from CAB302-DreamTeam/main
+    
+    updating git branch
+
+commit b64deaf1c28418973c4bebeb2360bc1b2704ced6
+Merge: 98dbb75 9683b31
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Sun May 15 11:41:52 2022 +1000
+
+    Merge pull request #57 from CAB302-DreamTeam/Hudson
+    
+    Hudson
+
+commit 9683b319909e677579288435bb580f8c1678a89b
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Sun May 15 00:05:52 2022 +1000
+
+    updated neighbours unit test to reflect backend changes in ordering
+
+commit 7c220ad74e8b778f38beebf2ce7bfd4ca9b00c78
+Merge: 41be08d a3c61f2
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Sun May 15 00:02:47 2022 +1000
+
+    Merge branch 'Hudson' of https://github.com/CAB302-DreamTeam/AssessmentTask into Hudson
+
+commit 41be08d943270ea563b4ddf6d74ba7329c29ac55
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Sun May 15 00:02:40 2022 +1000
+
+    improved DFS efficancy
+
+commit a3c61f2f36d9c689b85a98a046e20c162cf31ed5
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sat May 14 14:06:08 2022 +1000
+
+    Fixed up Unit tests to better reflect implementation
+
+commit cf1fef9e86dcbee3cac9001f6c344359fcfe57fb
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Fri May 13 21:25:37 2022 +1000
+
+    bug fixes for sovler
+
+commit 98dbb7564c6b95a4bd2d3d69e172bb5a2f6d50f6
+Merge: 5b0e1c7 69579cb
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Fri May 13 15:15:02 2022 +1000
+
+    Merge pull request #56 from CAB302-DreamTeam/Jack
+    
+    Added some database unit tests and finished off #38 for now
+
+commit 69579cba44d4726296fdb49e98b1515ddeec81b3
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Fri May 13 15:13:31 2022 +1000
+
+    Added some database unit tests and finished off #38 for now
+
+commit 5b0e1c7c33203f071b51dacefec381cb8f2179ec
+Merge: 1781f16 0fcfdb9
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Fri May 13 13:53:57 2022 +1000
+
+    Merge pull request #55 from CAB302-DreamTeam/Hudson
+    
+    Adding Maze Solver and Corresponding Unit tests + Database stuff
+
+commit 0fcfdb9679dfff5b416938db7824b60870c16dbc
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Fri May 13 13:50:28 2022 +1000
+
+    Updated solver test as I forgot we can not go directly diagonal. Also added 2 different ways to go diagonal.
+
+commit 5082c48cc4b12d00f79f5275e0f97ef9964fd60a
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Thu May 12 20:52:05 2022 +1000
+
+    Added some unit tests in to help develop the solver further. Also added some comments #54
+
+commit 3f8dd4b17b7a992eddaf118d2c49fe31614b9a3c
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed May 11 22:24:37 2022 +1000
+
+    added rough implementation of database maze export feature (issue #42 #53)
+
+commit 3549d934fbf25459283c63d6423194652a6255a2
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed May 11 22:02:35 2022 +1000
+
+    fixed spelling error and adjusted database for development
+
+commit 0b38f5716679a79234b03c4972fc87a7d3c267c3
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed May 11 22:00:02 2022 +1000
+
+    Added SQLITE3 local database with predefined schema (issue #42)
+
+commit bdccb2836927f5094f04448aa1f17fd837e7aa57
+Merge: 42c165b 1781f16
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed May 11 21:39:49 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask into Hudson
+    
+    Merging into local branch
+
+commit 42c165b9303d9f4a76f75eb7d7ebbfb9cd969da0
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed May 11 21:35:12 2022 +1000
+
+    implemented solver class using DFS (issue #50)
+
+commit 1781f16f04a64183f5a754c85d73351cd3e70248
+Merge: bdee130 b3f8c6d
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Wed May 11 19:48:34 2022 +1000
+
+    Merge pull request #49 from CAB302-DreamTeam/Jack
+    
+    Adding some more tests again #38
+
+commit b3f8c6d97f6d6055b53de46d1f3dc18a89f1237e
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed May 11 11:05:17 2022 +1000
+
+    Adding some more tests again #38
+
+commit bdee1303f860c871d4017a416a196b725891a2aa
+Merge: 64b98d1 c2e6c54
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Wed May 11 10:10:24 2022 +1000
+
+    Merge pull request #48 from CAB302-DreamTeam/Jack
+    
+    Moved some stuff around and fixed some issues with the unit tests
+
+commit c2e6c54e6e4c8c7402d4a0e8a1661fd5d7c762d8
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed May 11 10:05:43 2022 +1000
+
+    Update stuff
+
+commit 95581b14f331b8a2b8b8d7da6b9ba165b1a0c9fc
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed May 11 10:05:06 2022 +1000
+
+    Some more reshuffling
+
+commit e56983278b951fe89f8863bd1585a165e931fa0d
+Merge: 9eabbcb 64b98d1
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed May 11 09:57:21 2022 +1000
+
+    Merge branch 'main' of https://github.com/CAB302-DreamTeam/AssessmentTask into Jack
+
+commit 9eabbcb4ab062183ee4b31dcee25d43791e5aa90
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed May 11 09:56:46 2022 +1000
+
+    Moved around tests folder again so I can designate it as a test suite to run all the time it runs #38
+
+commit 64b98d1fae7ba2910d7cd5f2d81343c72c09d5ca
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Tue May 10 23:15:10 2022 +1000
+
+    Fix Commenting
+    
+    Some code in a unit test was commented out for no reason. Fixed
+
+commit e385d8a679041701f6ad5e6288e8a63b575720a4
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Tue May 10 23:11:28 2022 +1000
+
+    #12 #38 Update to Unit Tests for Maze Class
+    
+    Update some generation functions, and their associated unit tests
+
+commit 4f2370d0b234861b91d0514298682f313291cc5c
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Tue May 10 22:51:36 2022 +1000
+
+    #38 Update to test Conditions
+    
+    Update the end location to match the start location, and ensure the  code throws errors in correct locations
+
+commit eea5dc4a665ce3dad430c5f0c01b7764907f2a81
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Tue May 10 22:42:29 2022 +1000
+
+    #12 Update to Maze Class
+
+commit 56c9cd1cc13a35f428949cad85bde69865f229aa
+Merge: 0a5765b 688d476
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Mon May 9 20:24:43 2022 +1000
+
+    Merge pull request #45 from CAB302-DreamTeam/Jack
+    
+    Implementing more stuff for #38
+
+commit 688d476a95b159411e6ec73495439f7a367730c7
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon May 9 20:23:55 2022 +1000
+
+    Implementing more stuff for #38
+
+commit 0a5765b3f3a6fab8e37a7fde1ad428c3edad4205
+Merge: 9e781ab 4de80e5
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Mon May 9 16:43:18 2022 +1000
+
+    Merge pull request #44 from CAB302-DreamTeam/Jack
+    
+    Added in some stuff for preliminary test driven development
+
+commit 4de80e5047ff9b7addc2b22b1c8095668c21fbc5
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon May 9 16:41:13 2022 +1000
+
+    Added some tests to validateInput and updated JDOC again.
+
+commit 73ea15a01d549377597980eb67370b96aba35e09
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon May 9 16:19:40 2022 +1000
+
+    Added in stuff for test driven development. Mainly for Maze.java methods and logic for now. Also added in Maze Exception.
+
+commit 9e781ab5629c236a2b28d60617306c8b88e24841
+Merge: 410a1d3 a076144
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu May 5 14:55:12 2022 +1000
+
+    Merge pull request #43 from CAB302-DreamTeam/Hudson
+    
+    refactored directory structure
+
+commit a0761448e580d636064cf7329227877f85ae33c3
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 5 14:48:07 2022 +1000
+
+    refactored directory structure to reflect tests being in line with java directory strucutre
+
+commit 410a1d3b81d0ab232ab5cae31c67ea2381355cc2
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 5 14:37:08 2022 +1000
+
+    removed code which was not needed
+
+commit ab43c56c83f3964598f6bd3e21ddd1f29aaad9e4
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 5 14:31:51 2022 +1000
+
+    implemented array union function
+
+commit 93198022ff3d6c313ef46a4f14876cb4f2e6fed0
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 5 14:18:46 2022 +1000
+
+    save point for neighbours class (issue #41)
+
+commit d0615c676ce4bf324960c0adcb985efcf59ca56c
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu May 5 13:32:01 2022 +1000
+
+    (test driven development) created tests to define neighbours function (issue #40)
+
+commit d65ee350013b2da09bc0190a596df50533b0076b
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Fri Apr 29 09:29:21 2022 +1000
+
+    Update TestMaze.java
+
+commit 32a433e77eb24c41b8428fcfa77f05ec8a158afc
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Apr 28 21:20:02 2022 +1000
+
+    Added Video File
+
+commit 025c04e1fb8bff347415165d73bc66f26bbfb1d3
+Merge: a9ee6c2 c5d6c29
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Thu Apr 28 20:17:13 2022 +1000
+
+    Merge pull request #35 from CAB302-DreamTeam/Vim
+    
+    Vim UI updates with new frames
+
+commit c5d6c292bf6df8a9909f8d5999bcc7ac3388ada2
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Thu Apr 28 20:12:41 2022 +1000
+
+    Created OpenExisitngMaze Frame
+
+commit 2138fc6437f9792e1d6da34ec0191352f1fdb77f
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Thu Apr 28 19:01:47 2022 +1000
+
+    Add Java modules
+
+commit ef0b4306f8dee078f871d3b6c7b4e72561abcd14
+Merge: 6eeac4e a9ee6c2
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Thu Apr 28 18:45:37 2022 +1000
+
+    Merge branch 'main' into Vim
+
+commit 07c41855f24adf4ffb71fc4a4df1bf1405a5f744
+Merge: 7f317b0 6eeac4e
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Thu Apr 28 18:38:18 2022 +1000
+
+    Merge branch 'Vim' of https://github.com/CAB302-DreamTeam/AssessmentTask into Vim
+    
+    # Conflicts:
+    #       src/main/java/gui/Frame.java
+
+commit 6eeac4e2771bcff2c3c617915f8a9f7fdf75459b
+Author: WowCow1 <96435969+WowCow1@users.noreply.github.com>
+Date:   Thu Apr 28 18:35:16 2022 +1000
+
+    Update Frame.java
+
+commit 7f317b0c7d7b94db67dec1c74d8016a3ad7cdaf0
+Merge: 8925ae1 a9ee6c2
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Thu Apr 28 18:27:29 2022 +1000
+
+    Merge branch 'main' into Vim
+
+commit a9ee6c2a92128b3cda16ab73eaf8f55bc626062d
+Merge: ba6c22b 25e8eb7
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu Apr 28 14:14:13 2022 +1000
+
+    Merge pull request #34 from CAB302-DreamTeam/Main
+    
+    added menu bar as outlined in a subtask in (issue #29)
+
+commit 25e8eb719c0088ceeea4c258bcbccac718dadf17
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu Apr 28 14:12:28 2022 +1000
+
+    added menu bar as outlined in a subtask in (issue #29)
+
+commit ba6c22b2bf050ec83e4699fcd333ee97e3d48414
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu Apr 28 13:49:30 2022 +1000
+
+    added export button (issue #29)
+
+commit 14b4ddbbe9b0d4b4a096c6d9b43fc1d7a0effcba
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu Apr 28 13:43:45 2022 +1000
+
+    remvoed myself from author of functions i was not invloved in
+
+commit 95e029c14173948cc800bf1d1e94fc06d8d124d9
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu Apr 28 13:40:08 2022 +1000
+
+    Created database class (issue #33)
+
+commit 8925ae10826153424c32e75eaf050f466141bb1b
+Author: WowCow1 <n9471219@qut.edu.au>
+Date:   Thu Apr 28 13:31:43 2022 +1000
+
+    Update Frame.java
+
+commit a86e379a93ef6e5773b1ea93b39ea733b0c820fb
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Thu Apr 28 11:08:44 2022 +1000
+
+    #32 Added Variables for Frame Type
+    
+    Initial Changes
+
+commit ffe8d32ae8f585154c05acac1894df5c3e2f9da1
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 27 22:22:02 2022 +1000
+
+    #3  Update to UML Diagrams
+    
+    Update the UML Diagrams to represent what is expected to be included from a maze object perspective. Includes image format
+
+commit 9067bf201fe59e05e28243e6ef38f85c69cd50af
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Tue Apr 26 08:51:48 2022 +1000
+
+    Updated issue creation guide
+    
+    Added in thing to say you MUST assign a priority to an issue as a label.
+
+commit 5eb7d539a3015b70147c612a5b4a872e0a074ad5
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Apr 25 20:33:55 2022 +1000
+
+    Adding stuff for JDOC and commented everything I could
+
+commit a41c2e6af92fec1820b14072ba546234b2cd04b3
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Apr 25 20:32:57 2022 +1000
+
+    Committing the JDOC for first time
+
+commit 85c45b451ba6b6cf3ae87109b2c8941856a406b5
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Apr 25 20:02:59 2022 +1000
+
+    Turned Frame Class into a singleton class #27
+
+commit ca24e2caa9ff87f9b9787177c20f35757086feb5
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Apr 25 19:53:31 2022 +1000
+
+    Accidentality reverted my JUnit library addition so adding it back
+
+commit 4051406f202ba1fbb066e6e30f96812735b0faa9
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Apr 25 19:47:48 2022 +1000
+
+    Added in Unit tests to TestMaze.java and added in getters and setters to Maze.java #12
+
+commit 273d91d77695930d49e5ee4f910417b73265cc2f
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Apr 25 17:33:58 2022 +1000
+
+    Adjusted button size for Generate Maze and renamed it to "Generate Maze" for #24
+
+commit b301410bbb51e897c541f8ba10cc3b85ff4d83ef
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Mon Apr 25 17:27:31 2022 +1000
+
+    Added MazeEditor UI design screen to address #2 #18 #24 #29
+
+commit 73285feec3f6967be00621a5100e330a2aa2d540
+Author: JackFFFFFF <102127250+JackFFFFFF@users.noreply.github.com>
+Date:   Sun Apr 24 15:22:16 2022 +1000
+
+    Updated README.md
+    
+    Completed about 1/2 of the proposed changes to the readme document from #11
+
+commit a038c68a39ffc6e1d6d02c4881ea90c812c1fa34
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Sun Apr 24 14:31:44 2022 +1000
+
+    Updated current UI diagrams to include error messages as per #18
+
+commit 62b16fbaed2caae0b4100f4b33f8fe76290a66b7
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Sat Apr 23 13:01:48 2022 +1000
+
+    Added runtime checking to validate maze size inputs are valid (issue #20)
+
+commit af36fb42aeb3f9b150b160fcfb5ebc9c842c9de0
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Sat Apr 23 12:29:34 2022 +1000
+
+    Generated mazes should have all outer edges activated by default (issue #19)
+
+commit c7dd519194eefa580db6a02fdd452b8fdf9c2a5e
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Wed Apr 20 20:30:28 2022 +1000
+
+    Update README.md
+
+commit 0d59139c1a55cd1e3dc984311d0da9e1b2def472
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 20 14:48:54 2022 +1000
+
+    Start of modification of Tile Values
+    
+    Initial attempt to store the current tile values in the myMaze. Currently only stores the horizontal values and does not work for very bottom value.
+
+commit 0d35434962d7bccf9474a0c718beba4d67542ad3
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 20 14:21:19 2022 +1000
+
+    Create Tiles
+    
+    Turns each individual button into a cell with 4 border buttons (noting that location x,y is probably broken now)
+
+commit bfcb0226fa4281b434c233a5606481cd3a042d07
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 20 14:05:38 2022 +1000
+
+    Add Button Checking
+    
+    Writes location of the button to the console
+
+commit 241be2fd969495298c36bb52f0d0aa618644a3f3
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 20 12:45:18 2022 +1000
+
+    Update Frame.java
+
+commit 29d70b356878f6147e449b378eb03fbee206c7f1
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 20 12:44:16 2022 +1000
+
+    Resizing down
+    
+    Updated to fix resizing down (includes error checking for spaces)
+
+commit 50541ef7a7df9781b1f995ad1de3e3ff460c52b8
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 20 12:34:08 2022 +1000
+
+    Added User Input for Maze Size
+    
+    Noting that it has an error with reducing size currently
+
+commit b13cfbdb846e2edbbcfaf7f35846e2facff25af8
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed Apr 20 12:08:52 2022 +1000
+
+    enabled the ability to define custom maze sizes (#15)
+
+commit 7456e7c8101f7ea64d1d643f3f93efa053b10726
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed Apr 20 11:39:10 2022 +1000
+
+    stylised fixes
+
+commit a3cd42f59ab5771d2da6684b7d5a1bd75b3de645
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed Apr 20 11:33:26 2022 +1000
+
+    bug fix for tile rendering
+    
+    unloaded window while adding new compondents to jframe base window
+
+commit b18c16492961d5e29e4ee2c847b41665d86b92c7
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed Apr 20 11:28:34 2022 +1000
+
+    made process stop when main window is closed
+
+commit a769eb468af10d048042c6148e098ee4f95e2fd5
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed Apr 20 11:27:22 2022 +1000
+
+    implemented basic rendering of tiles
+
+commit 51a107d136f1df57a7b4f197de5face68e146400
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed Apr 20 11:23:16 2022 +1000
+
+    working checkpoint of backend implementation of maze classess
+
+commit cd49fec65edc0d71928079fa4ebac8255a3f5c10
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed Apr 20 11:17:58 2022 +1000
+
+    implemented tile and maze class
+
+commit e761cfacb9f0809e0a08c16a25d134fd960b48d6
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Wed Apr 20 10:57:40 2022 +1000
+
+    added functions and restructured getters and setters to allow for itteritive rendering
+
+commit ecd129af77be6042d914c2745dd679dd60e329e3
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu Apr 14 20:30:05 2022 +1000
+
+    updated .gitignore to exclude out/ folder
+
+commit a99f78324e197bb7b17f8b8cd5cce4c05152d1a6
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu Apr 14 20:28:22 2022 +1000
+
+    Created basic Swing window
+
+commit 62f8fc2ac150c065132285eb557d6e2cdac73810
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu Apr 14 20:10:33 2022 +1000
+
+    Restructured directory inline with Java Doc standards (issue #10)
+
+commit a6bb0f7d10e963b6587ea843b1c488e9b3d08e32
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 13 16:40:22 2022 +1000
+
+    Update README.md
+
+commit 7b66c52a8eb82f2a2595d92d7df8d24cfc0a7cc0
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 13 16:36:15 2022 +1000
+
+    Creation of initial maze methods
+
+commit 0bdb1887ac35871a8e1ca938622266134d6ca90f
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 13 16:29:46 2022 +1000
+
+    Update to UML
+
+commit a8ae433846750c8e5633048268a393908b8feae9
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 13 16:23:54 2022 +1000
+
+    Create intial classes + initial UML
+    
+    Create the Tile + Maze classes, add the UML file to be updated as the project grows, reformate the drive
+
+commit 603ddda7f157c67d7f32d039444b65e450e08506
+Author: j-lyttle <lyttle.jayden@gmail.com>
+Date:   Wed Apr 13 16:08:03 2022 +1000
+
+    Reformatted + Cleared Folders
+
+commit fe683ecaff6bb3c001a6d23d3accef555bec15e4
+Author: JackFFFFFF <n10794948@qut.edu.au>
+Date:   Wed Apr 13 15:33:26 2022 +1000
+
+    Added Draft UI Diagrams and some other docs
+
+commit 099d278a3fcec10260f55d93fa16a792ebe7736c
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Tue Mar 29 19:24:44 2022 +1000
+
+    Scribed user stories
+
+commit c94f65c35b5be97a65f398dabb1f6ea4d3ae9655
+Author: Jayden Lyttle <85596245+j-lyttle@users.noreply.github.com>
+Date:   Tue Mar 29 19:02:17 2022 +1000
+
+    Initial group meeting
+
+commit 345a6b1001ab956def50c8af4711a9085e483a31
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Thu Mar 24 13:04:52 2022 +1000
+
+    Update README.md
+
+commit e8b9b84bb15cdcc69b464d7421e6969474ee0172
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu Mar 17 16:16:38 2022 +1000
+
+    l;ol
+
+commit cbffb6cc18c02056adf3a244ffecf4c793cde86f
+Author: Grathium-Industries <GrathiumIndustries@gmail.com>
+Date:   Thu Mar 17 16:15:42 2022 +1000
+
+    demo
+
+commit 7ac957c9412ada320c9dee1081f8895b3e75b77a
+Author: Grathium <33742269+Grathium@users.noreply.github.com>
+Date:   Tue Mar 15 18:49:19 2022 +1000
+
+    Initial commit

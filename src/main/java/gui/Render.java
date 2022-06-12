@@ -155,6 +155,8 @@ public class Render {
         int wallWidth = 10;
 
         int between_walls = wallLength+wallWidth;
+        //Removes bug where logo shows twice
+        window2.getContentPane().removeAll();
 
         if (childMaze) myMaze.mazeTile(myMaze.mazeSize()[0] - 3, myMaze.mazeSize()[1] - 1).setRightWall(false);
 
@@ -296,43 +298,39 @@ public class Render {
 
         window2.setVisible(false);
 
-        if(Startlogo != null && childMaze){
-            System.out.println("Found startim");
-            try{
-                Frame.getInstance().myMaze.mazeTile(0,0).setImage(ImageProcessing.toByteArray(Startlogo));
-                BufferedImage bi = ImageProcessing.fromByteArray(myMaze.mazeTile(0,0).getImage());
-                int bounds[] = Util.generateBounds(xposition,between_walls,scale_factor,yposition);
-                window2.add(ImageProcessing.drawLogo(bounds,bi));
-            }catch(Exception e){
-                System.out.println(e.getMessage());
+        
+        if(childMaze){
+            if(Startlogo != null){
+                System.out.println("Found startim");
+                try{
+                    Frame.getInstance().myMaze.mazeTile(0,0).setImage(ImageProcessing.toByteArray(Startlogo));
+                    BufferedImage bi = ImageProcessing.fromByteArray(myMaze.mazeTile(0,0).getImage());
+                    int bounds[] = Util.generateBounds(xposition,between_walls,scale_factor,yposition);
+                    window2.add(ImageProcessing.drawLogo(bounds,bi));
+                    window2.repaint();
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
             }
+	 	    if(Endlogo != null && childMaze){
+                System.out.println("Found endim");
+                try{
+                    Frame.getInstance().myMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1 ).setImage(ImageProcessing.toByteArray(Endlogo));
+                    int[] bounds = Util.generateBounds(xposition,between_walls,scale_factor,yposition,mazeSize[0],mazeSize[1]);
+                    window2.add(ImageProcessing.drawLogo(bounds, getInstance().myMaze,mazeSize[0],mazeSize[1]));
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
 
-        }
-        if(Endlogo != null && childMaze){
-            System.out.println("Found endim");
-            try{
-                Frame.getInstance().myMaze.mazeTile(mazeSize[0]-1,mazeSize[1]-1 ).setImage(ImageProcessing.toByteArray(Endlogo));
-                int[] bounds = Util.generateBounds(xposition,between_walls,scale_factor,yposition,mazeSize[0],mazeSize[1]);
-                window2.add(ImageProcessing.drawLogo(bounds, myMaze,mazeSize[0],mazeSize[1]));
-            }catch(Exception e){
-                System.out.println(e.getMessage());
+                }
             }
         }
-        if(Centerlogo != null){
-            System.out.println("Found centerim");
-            try{
-                int bounds[] = Util.generateBounds(xposition,myMaze.getLogoTopCorner()[0],between_walls,scale_factor,yposition);
-                window2.add(ImageProcessing.drawLogo(bounds, myMaze));
-                System.out.println("added im");
-            }catch(Exception e){
-                System.out.println(e.getMessage());
-            }
-        }
+
+
         window2.pack();
-
         // set the window size
-        int [] size = Util.windowScaledSize(myMaze.largestDimension(), screenHeight);
+        int [] size = Util.windowScaledSize(getInstance().myMaze.largestDimension(), screenHeight);
         window2.setSize(size[0],size[1]);
+
 
         window2.setVisible(true);
         SwingUtilities.updateComponentTreeUI(window2);

@@ -28,9 +28,9 @@ public class Frame {
     public static JFrame window3;
     public static JFrame MetricsWindow;
     public static Solver solver = new Solver();
-    public static BufferedImage Startlogo;
-    public static BufferedImage Endlogo;
-    public static BufferedImage Centerlogo;
+    public static BufferedImage Startlogo = null;
+    public static BufferedImage Endlogo = null;
+    public static BufferedImage Centerlogo = null;
     public static boolean childMaze = false;
     public static String logoCellSize;
 
@@ -290,6 +290,7 @@ public class Frame {
                 window2.setLocation((screenWidth /6 + 330),screenHeight/16);
                 Frame.initialise();
                 Frame.getInstance().myMaze = loadingMaze;
+
                 try {
 
                     Centerlogo = ImageProcessing.fromByteArray(loadingMaze.mazeTile(loadingMaze.getLogoTopCorner()[0],loadingMaze.getLogoTopCorner()[1]).getImage());

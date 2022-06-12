@@ -105,6 +105,7 @@ public class Render {
         mazeSize = new int[]{Integer.parseInt(width.trim()),Integer.parseInt(height.trim())};
         currentMaze = new Maze(mazeSize); //need to pass child maze param
 
+
         if(logoSizeInt >= Integer.parseInt(width.trim())-1 || logoSizeInt >= Integer.parseInt(height.trim())-1){
             System.out.println("[ERROR] Logo size too large...");
             return;
@@ -112,6 +113,7 @@ public class Render {
         int hasIm = 0;
         if(logoSizeInt > 0){
             hasIm = logoSizeInt;
+            currentMaze.setLogoCellSize(logoSizeInt);
         }
 
         if(generated){
@@ -146,7 +148,7 @@ public class Render {
 
         window2.getContentPane().removeAll();
         window2.getContentPane().repaint();
-
+        logoCellSize = myMaze.getLogoCellSize() + "";
         int xposition = 0;
         int yposition = 0;
         double scale_factor = Util.scaleFactor(myMaze.largestDimension(), screenHeight);
@@ -304,7 +306,7 @@ public class Render {
                 int bounds[] = Util.generateBounds(xposition,between_walls,scale_factor,yposition);
                 window2.add(ImageProcessing.drawLogo(bounds,bi));
             }catch(Exception e){
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
 
         }
@@ -315,7 +317,7 @@ public class Render {
                 int[] bounds = Util.generateBounds(xposition,between_walls,scale_factor,yposition,mazeSize[0],mazeSize[1]);
                 window2.add(ImageProcessing.drawLogo(bounds, myMaze,mazeSize[0],mazeSize[1]));
             }catch(Exception e){
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
         if(Centerlogo != null){
@@ -325,7 +327,7 @@ public class Render {
                 window2.add(ImageProcessing.drawLogo(bounds, myMaze));
                 System.out.println("added im");
             }catch(Exception e){
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
         window2.pack();

@@ -505,6 +505,7 @@ public class Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 window2.setVisible(false);
+                MetricsWindow.setVisible(false);
                 Frame.getInstance().MainMenu();
 
             }

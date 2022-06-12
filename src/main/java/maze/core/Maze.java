@@ -17,7 +17,10 @@ public class Maze implements MazeOutline, Serializable {
     private boolean OneLocSet;
     private String lastEditor;
     private int[] logoTopCorner;
+    private int logoCellSize;
 
+    public void setLogoCellSize(int size){this.logoCellSize=size;}
+    public int getLogoCellSize(){return this.logoCellSize;}
     public int[] getLogoTopCorner(){return logoTopCorner;}
     public void setLogoTopCorner(int[] loc){this.logoTopCorner = loc;}
 

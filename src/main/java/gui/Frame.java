@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import maze.core.image.ImageProcessing;
@@ -182,7 +183,7 @@ public class Frame {
         JLabel orderByLBL = new JLabel("Sort By");
         orderByLBL.setBounds(350, 0, 100, 30);
 
-        String sortByOPT[] = {"", "name", "creator", "dateCreated", "dateModified"};
+        String sortByOPT[] = {"name", "creator", "dateCreated", "dateModified"};
         JComboBox sortByPickerCMBO = new JComboBox(sortByOPT);
         sortByPickerCMBO.setBounds(350, 30, 100, 20);
 
@@ -239,7 +240,7 @@ public class Frame {
         window3.getContentPane().repaint();
 
         // set frame location to center of screen
-        window3.setLocation(screenWidth/2 -(500/2), screenHeight/16+300);
+        window3.setLocation(screenWidth/2 -(700/2), screenHeight/16+300);
         window3.setSize(700, 300);
 
         window3.setVisible(true);
@@ -302,15 +303,32 @@ public class Frame {
         }
         //window3.add(SearchResultsTable);
         window3.setTitle("Search Results");
+        JLabel MazeName = new JLabel("Name");
+        MazeName.setBounds(110,10,100,20);
+
+        JLabel Author = new JLabel("Author");
+        Author.setBounds(210,10,100,20);
+
+        JLabel DateCreated = new JLabel("Date Created");
+        DateCreated.setBounds(310,10,100,20);
+
+        JLabel DateModified = new JLabel("Date Modified");
+        DateModified.setBounds(510,10,100,20);
+
+
         JPanel SearchPanel = new JPanel();
         SearchPanel.setLayout(new BorderLayout());
         JScrollPane jsp = new JScrollPane(SearchPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jsp.setBounds(10,10,window3.getWidth()-30,window3.getHeight()-50);
+        jsp.setBounds(10,40,window3.getWidth()-30,window3.getHeight()-80);
 
         SearchPanel.add(SearchResultsTable);
 
         SearchPanel.setPreferredSize(new Dimension(window3.getWidth() - 30, loadedMazes.size() * 30));
 
+        window3.add(MazeName);
+        window3.add(Author);
+        window3.add(DateCreated);
+        window3.add(DateModified);
         window3.add(jsp);
         //window3.setVisible(false);
         window3.setVisible(true);

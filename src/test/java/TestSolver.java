@@ -279,6 +279,7 @@ public class TestSolver {
 
 
     }
+    @Disabled
     @Test
     public void testChildrenSolver() throws MazeException {
         testMaze.setStart(STARTLOC);
